@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?><?pde version="3.6"?><target name="WebSphere Application Server v7.0 stub">
+<locations>
+<location path="C:/Program Files (x86)/IBM/SDP/runtimes/base_v7_stub/feature_packs/aries" type="Directory"/>
+<location path="C:/Program Files (x86)/IBM/SDP/runtimes/base_v7_stub/feature_packs/jpa" type="Directory"/>
+<location path="C:/Program Files (x86)/IBM/SDP/runtimes/base_v7_stub/feature_packs/cea" type="Directory"/>
+</locations>
+</target>
