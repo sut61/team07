@@ -4,6 +4,7 @@ import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 import SUT61.Team07.Drug.Entity.Prescription;
 
 @RepositoryRestResource
+public
 interface PrescriptionRepository extends JpaRepository<Prescription, Long> {
 
 

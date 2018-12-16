@@ -11,5 +11,5 @@ import javax.persistence.Entity;
 public class Drug {
     @Id @GeneratedValue
     private Long id;
-    private @NonNull String drug_name;
+    private @NonNull String name;
 }
