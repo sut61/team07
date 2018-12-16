@@ -5,4 +5,6 @@ import SUT61.Team07.Drug.Entity.Staff;
 
 @RepositoryRestResource
 interface StaffRepository extends JpaRepository<Staff, Long> {
+
+
 }

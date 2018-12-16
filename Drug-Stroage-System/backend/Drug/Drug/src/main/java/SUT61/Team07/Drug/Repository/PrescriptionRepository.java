@@ -5,4 +5,6 @@ import SUT61.Team07.Drug.Entity.Prescription;
 
 @RepositoryRestResource
 interface PrescriptionRepository extends JpaRepository<Prescription, Long> {
+
+
 }
