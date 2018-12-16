@@ -1,0 +1,400 @@
+!SESSION 2018-12-17 02:12:39.186 -----------------------------------------------
+eclipse.buildId=unknown
+java.fullversion=JRE 1.6.0 IBM J9 2.4 Windows Vista x86-32 jvmwi3260sr9-20110324_78506 (JIT enabled, AOT enabled)
+J9VM - 20110324_078506
+JIT  - r9_20101028_17488ifx3
+GC   - 20101027_AA
+BootLoader constants: OS=win32, ARCH=x86, WS=win32, NL=en_US
+Framework arguments:  -product com.ibm.rational.rsa.product.v80.ide
+Command-line arguments:  -os win32 -ws win32 -arch x86 -product com.ibm.rational.rsa.product.v80.ide
+
+!ENTRY com.ibm.cic.licensing.common.util 4 0 2018-12-17 02:14:56.279
+!MESSAGE LUM license expired for productID 45: Past the expiration date on license.
+
+!ENTRY com.ibm.cic.licensing.common.util 4 0 2018-12-17 02:14:56.458
+!MESSAGE LUM license expired for productID 44: Past the expiration date on license.
+
+!ENTRY com.ibm.xtools.emf.ram.ui 4 0 2018-12-17 02:14:56.515
+!MESSAGE RAM Client is not installed. Please install the RAM Client to enable the RAM integration functionality.
+
+!ENTRY com.ibm.cic.licensing.common.util 4 0 2018-12-17 02:14:56.603
+!MESSAGE LUM license expired for productID 45: Past the expiration date on license.
+
+!ENTRY com.ibm.cic.licensing.common.util 4 0 2018-12-17 02:14:56.609
+!MESSAGE LUM license expired for productID 45: Past the expiration date on license.
+
+!ENTRY com.ibm.cic.licensing.common.util 4 0 2018-12-17 02:14:56.617
+!MESSAGE LUM license expired for productID 45: Past the expiration date on license.
+
+!ENTRY com.ibm.cic.licensing.common.util 4 0 2018-12-17 02:14:56.632
+!MESSAGE LUM license expired for productID 45: Past the expiration date on license.
+
+!ENTRY com.ibm.cic.licensing.common.util 4 0 2018-12-17 02:16:13.111
+!MESSAGE LUM license expired for productID 45: Past the expiration date on license.
+
+!ENTRY com.ibm.cic.licensing.common.util 4 0 2018-12-17 02:16:18.110
+!MESSAGE LUM license expired for productID 45: Past the expiration date on license.
+
+!ENTRY com.ibm.cic.licensing.common.util 4 0 2018-12-17 02:20:39.013
+!MESSAGE LUM license expired for productID 45: Past the expiration date on license.
+
+!ENTRY com.ibm.cic.licensing.common.util 4 0 2018-12-17 03:20:47.145
+!MESSAGE LUM license expired for productID 47: Past the expiration date on license.
+
+!ENTRY com.ibm.cic.licensing.common.util 4 0 2018-12-17 03:21:42.301
+!MESSAGE LUM license expired for productID 45: Past the expiration date on license.
+
+!ENTRY org.eclipse.osgi 2 1 2018-12-17 04:02:50.048
+!MESSAGE NLS missing message: MenuManager_CreateAction__ServiceProvider__Stereotype_name in: com.ibm.xtools.modeling.enterprise.services.internal.l10n.Messages
+
+!ENTRY org.eclipse.osgi 2 1 2018-12-17 04:02:50.060
+!MESSAGE NLS unused message: MenuManager_CreateAction__MessageDriven__Activity_name in: com.ibm.xtools.transform.uml2.ejb3.ui.internal.l10n.EJB_3_0_TransformationMessages
+
+!ENTRY com.ibm.cic.licensing.common.util 4 0 2018-12-17 04:03:13.766
+!MESSAGE LUM license expired for productID 45: Past the expiration date on license.
+
+!ENTRY com.ibm.cic.licensing.common.util 4 0 2018-12-17 04:03:13.767
+!MESSAGE LicenseCheck returned FALSE!
+
+!ENTRY com.ibm.xtools.emf.core 4 0 2018-12-17 04:03:13.785
+!MESSAGE Feature com.ibm.xtools.transform.uml2.soa.feature, version 1.0.0, failed license check
+
+!ENTRY com.ibm.cic.licensing.common.util 4 0 2018-12-17 04:03:13.878
+!MESSAGE LUM license expired for productID 45: Past the expiration date on license.
+
+!ENTRY com.ibm.cic.licensing.common.util 4 0 2018-12-17 04:03:13.878
+!MESSAGE LicenseCheck returned FALSE!
+
+!ENTRY com.ibm.xtools.emf.core 4 0 2018-12-17 04:03:13.878
+!MESSAGE Feature com.ibm.xtools.transform.uml2.soa.feature, version 1.0.0, failed license check
+
+!ENTRY com.ibm.cic.licensing.common.util 4 0 2018-12-17 04:03:13.887
+!MESSAGE LUM license expired for productID 45: Past the expiration date on license.
+
+!ENTRY com.ibm.cic.licensing.common.util 4 0 2018-12-17 04:03:13.887
+!MESSAGE LicenseCheck returned FALSE!
+
+!ENTRY com.ibm.xtools.emf.core 4 0 2018-12-17 04:03:13.887
+!MESSAGE Feature com.ibm.xtools.transform.struts.profile.feature, version 1.0.0.qualifier, failed license check
+
+!ENTRY com.ibm.cic.licensing.common.util 4 0 2018-12-17 04:03:14.176
+!MESSAGE LUM license expired for productID 45: Past the expiration date on license.
+
+!ENTRY com.ibm.cic.licensing.common.util 4 0 2018-12-17 04:03:14.176
+!MESSAGE LicenseCheck returned FALSE!
+
+!ENTRY com.ibm.cic.licensing.common.util 4 0 2018-12-17 04:03:14.182
+!MESSAGE LUM license expired for productID 44: Past the expiration date on license.
+
+!ENTRY com.ibm.cic.licensing.common.util 4 0 2018-12-17 04:03:14.182
+!MESSAGE LicenseCheck returned FALSE!
+
+!ENTRY com.ibm.xtools.emf.core 4 0 2018-12-17 04:03:14.183
+!MESSAGE Feature com.ibm.xtools.transform.uml2.soa.feature, version 1.0.0, failed license check
+
+!ENTRY com.ibm.xtools.emf.core 4 0 2018-12-17 04:03:14.183
+!MESSAGE Feature com.ibm.xtools.updm, version 7.3.0, failed license check
+
+!ENTRY com.ibm.cic.licensing.common.util 4 0 2018-12-17 04:03:14.190
+!MESSAGE LUM license expired for productID 49: Past the expiration date on license.
+
+!ENTRY com.ibm.cic.licensing.common.util 4 0 2018-12-17 04:03:14.190
+!MESSAGE LicenseCheck returned FALSE!
+
+!ENTRY com.ibm.xtools.emf.core 4 0 2018-12-17 04:03:14.191
+!MESSAGE Feature com.ibm.rsa.sipmtk.feature, version 7.5.4.qualifier, failed license check
+!SESSION 2018-12-17 04:14:25.128 -----------------------------------------------
+eclipse.buildId=unknown
+java.fullversion=JRE 1.6.0 IBM J9 2.4 Windows Vista x86-32 jvmwi3260sr9-20110324_78506 (JIT enabled, AOT enabled)
+J9VM - 20110324_078506
+JIT  - r9_20101028_17488ifx3
+GC   - 20101027_AA
+BootLoader constants: OS=win32, ARCH=x86, WS=win32, NL=en_US
+Framework arguments:  -product com.ibm.rational.rsa.product.v80.ide
+Command-line arguments:  -os win32 -ws win32 -arch x86 -product com.ibm.rational.rsa.product.v80.ide
+
+!ENTRY com.ibm.cic.licensing.common.util 4 0 2018-12-17 04:15:01.246
+!MESSAGE LUM license expired for productID 45: Past the expiration date on license.
+
+!ENTRY com.ibm.cic.licensing.common.util 4 0 2018-12-17 04:15:01.436
+!MESSAGE LUM license expired for productID 44: Past the expiration date on license.
+
+!ENTRY com.ibm.cic.licensing.common.util 4 0 2018-12-17 04:15:01.512
+!MESSAGE LUM license expired for productID 45: Past the expiration date on license.
+
+!ENTRY com.ibm.cic.licensing.common.util 4 0 2018-12-17 04:15:01.519
+!MESSAGE LUM license expired for productID 45: Past the expiration date on license.
+
+!ENTRY com.ibm.cic.licensing.common.util 4 0 2018-12-17 04:15:01.526
+!MESSAGE LUM license expired for productID 45: Past the expiration date on license.
+
+!ENTRY com.ibm.cic.licensing.common.util 4 0 2018-12-17 04:15:01.588
+!MESSAGE LUM license expired for productID 45: Past the expiration date on license.
+
+!ENTRY com.ibm.xtools.emf.ram.ui 4 0 2018-12-17 04:15:01.665
+!MESSAGE RAM Client is not installed. Please install the RAM Client to enable the RAM integration functionality.
+
+!ENTRY com.ibm.cic.licensing.common.util 4 0 2018-12-17 04:18:55.315
+!MESSAGE LUM license expired for productID 45: Past the expiration date on license.
+
+!ENTRY com.ibm.cic.licensing.common.util 4 0 2018-12-17 04:19:00.875
+!MESSAGE LUM license expired for productID 47: Past the expiration date on license.
+
+!ENTRY org.eclipse.help.base 4 0 2018-12-17 04:31:09.063
+!MESSAGE Internal error while reading topic extensions from remote server
+!STACK 0
+org.xml.sax.SAXParseException: Premature end of file.
+	at org.apache.xerces.parsers.DOMParser.parse(Unknown Source)
+	at org.apache.xerces.jaxp.DocumentBuilderImpl.parse(Unknown Source)
+	at org.eclipse.help.internal.dynamic.DocumentReader.read(Unknown Source)
+	at org.eclipse.help.internal.dynamic.DocumentReader.read(Unknown Source)
+	at org.eclipse.help.internal.base.remote.RemoteExtensionProvider.getContentExtensions(Unknown Source)
+	at org.eclipse.help.internal.extension.ContentExtensionManager.loadExtensions(Unknown Source)
+	at org.eclipse.help.internal.extension.ContentExtensionManager.getExtensions(Unknown Source)
+	at org.eclipse.help.internal.dynamic.ExtensionResolver.resolveExtension(Unknown Source)
+	at org.eclipse.help.internal.dynamic.ExtensionHandler.handleExtension(Unknown Source)
+	at org.eclipse.help.internal.dynamic.ExtensionHandler.handle(Unknown Source)
+	at org.eclipse.help.internal.dynamic.DocumentProcessor.process(Unknown Source)
+	at org.eclipse.help.internal.dynamic.DocumentProcessor.process(Unknown Source)
+	at org.eclipse.help.internal.context.ContextFileProvider.loadContextsFromInputStream(Unknown Source)
+	at org.eclipse.help.internal.context.ContextFileProvider.loadContexts(Unknown Source)
+	at org.eclipse.help.internal.context.ContextFileProvider.getContexts(Unknown Source)
+	at org.eclipse.help.internal.context.ContextFileProvider.getPluginContexts(Unknown Source)
+	at org.eclipse.help.internal.context.ContextFileProvider.getContext(Unknown Source)
+	at org.eclipse.help.internal.context.ContextManager.getContext(Unknown Source)
+	at org.eclipse.help.HelpSystem.getContext(Unknown Source)
+	at org.eclipse.ui.internal.help.WorkbenchHelpSystem$WorkbenchHelpListener.helpRequested(Unknown Source)
+	at org.eclipse.swt.widgets.TypedListener.handleEvent(Unknown Source)
+	at org.eclipse.swt.widgets.EventTable.sendEvent(Unknown Source)
+	at org.eclipse.swt.widgets.Widget.sendEvent(Unknown Source)
+	at org.eclipse.swt.widgets.Widget.sendEvent(Unknown Source)
+	at org.eclipse.swt.widgets.Widget.sendEvent(Unknown Source)
+	at org.eclipse.swt.widgets.Widget.notifyListeners(Unknown Source)
+	at org.eclipse.jface.preference.PreferenceDialog$12.openDialogHelp(Unknown Source)
+	at org.eclipse.jface.preference.PreferenceDialog$12.helpRequested(Unknown Source)
+	at org.eclipse.swt.widgets.TypedListener.handleEvent(Unknown Source)
+	at org.eclipse.swt.widgets.EventTable.sendEvent(Unknown Source)
+	at org.eclipse.swt.widgets.Widget.sendEvent(Unknown Source)
+	at org.eclipse.swt.widgets.Widget.sendEvent(Unknown Source)
+	at org.eclipse.swt.widgets.Widget.sendEvent(Unknown Source)
+	at org.eclipse.swt.widgets.Widget.notifyListeners(Unknown Source)
+	at org.eclipse.jface.dialogs.TrayDialog.helpPressed(Unknown Source)
+	at org.eclipse.jface.dialogs.TrayDialog.access$2(Unknown Source)
+	at org.eclipse.jface.dialogs.TrayDialog$2.widgetSelected(Unknown Source)
+	at org.eclipse.swt.widgets.TypedListener.handleEvent(Unknown Source)
+	at org.eclipse.swt.widgets.EventTable.sendEvent(Unknown Source)
+	at org.eclipse.swt.widgets.Widget.sendEvent(Unknown Source)
+	at org.eclipse.swt.widgets.Display.runDeferredEvents(Unknown Source)
+	at org.eclipse.swt.widgets.Display.readAndDispatch(Unknown Source)
+	at org.eclipse.jface.window.Window.runEventLoop(Unknown Source)
+	at org.eclipse.jface.window.Window.open(Unknown Source)
+	at org.eclipse.gmf.runtime.common.ui.services.properties.extended.PropertyPageCellEditor.openDialogBox(Unknown Source)
+	at com.ibm.xtools.modeler.ui.internal.ui.properties.ModelPropertyPageCellEditor.access$0(Unknown Source)
+	at com.ibm.xtools.modeler.ui.internal.ui.properties.ModelPropertyPageCellEditor$1.run(Unknown Source)
+	at org.eclipse.gmf.runtime.emf.core.internal.domain.MSLEditingDomain$3.run(Unknown Source)
+	at org.eclipse.gmf.runtime.emf.core.internal.domain.MSLTransactionalEditingDomain.runExclusive(Unknown Source)
+	at org.eclipse.gmf.runtime.emf.core.internal.domain.MSLEditingDomain.runExclusive(Unknown Source)
+	at org.eclipse.gmf.runtime.emf.core.internal.domain.MSLEditingDomain.runAsRead(Unknown Source)
+	at org.eclipse.gmf.runtime.emf.core.util.OperationUtil.runAsRead(Unknown Source)
+	at com.ibm.xtools.modeler.ui.internal.ui.properties.ModelPropertyPageCellEditor.openDialogBox(Unknown Source)
+	at org.eclipse.gmf.runtime.common.ui.services.properties.extended.PropertyPageCellEditor$2.execute(Unknown Source)
+	at org.eclipse.gmf.runtime.common.ui.services.properties.extended.MultiButtonCellEditor$1.widgetSelected(Unknown Source)
+	at org.eclipse.swt.widgets.TypedListener.handleEvent(Unknown Source)
+	at org.eclipse.swt.widgets.EventTable.sendEvent(Unknown Source)
+	at org.eclipse.swt.widgets.Widget.sendEvent(Unknown Source)
+	at org.eclipse.swt.widgets.Display.runDeferredEvents(Unknown Source)
+	at org.eclipse.swt.widgets.Display.readAndDispatch(Unknown Source)
+	at org.eclipse.ui.internal.Workbench.runEventLoop(Unknown Source)
+	at org.eclipse.ui.internal.Workbench.runUI(Unknown Source)
+	at org.eclipse.ui.internal.Workbench.access$4(Unknown Source)
+	at org.eclipse.ui.internal.Workbench$7.run(Unknown Source)
+	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Unknown Source)
+	at org.eclipse.ui.internal.Workbench.createAndRunWorkbench(Unknown Source)
+	at org.eclipse.ui.PlatformUI.createAndRunWorkbench(Unknown Source)
+	at org.eclipse.ui.internal.ide.application.IDEApplication.start(Unknown Source)
+	at org.eclipse.equinox.internal.app.EclipseAppHandle.run(Unknown Source)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.runApplication(Unknown Source)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.start(Unknown Source)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(Unknown Source)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(Unknown Source)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at org.eclipse.equinox.launcher.Main.invokeFramework(Unknown Source)
+	at org.eclipse.equinox.launcher.Main.basicRun(Unknown Source)
+	at org.eclipse.equinox.launcher.Main.run(Unknown Source)
+
+!ENTRY org.eclipse.help 4 0 2018-12-17 04:31:14.908
+!MESSAGE Error reading help table of contents file /"org.eclipse.gmf.doc/toc-runtime.xml" (skipping file)
+!STACK 0
+java.io.FileNotFoundException
+	at org.eclipse.help.internal.toc.TocFileParser.parse(Unknown Source)
+	at org.eclipse.help.internal.toc.TocFileProvider.getTocContributions(Unknown Source)
+	at org.eclipse.help.internal.toc.TocManager.getAndCacheTocContributions(Unknown Source)
+	at org.eclipse.help.internal.toc.TocManager.getTocContributionsForToc(Unknown Source)
+	at org.eclipse.help.internal.toc.TocManager.getRootTocContributions(Unknown Source)
+	at org.eclipse.help.internal.toc.TocManager.getTocs(Unknown Source)
+	at org.eclipse.help.ui.internal.views.ContextHelpPart.getTopicCategory(Unknown Source)
+	at org.eclipse.help.ui.internal.views.ContextHelpPart.formatHelpContext(Unknown Source)
+	at org.eclipse.help.ui.internal.views.ContextHelpPart.handleActivation(Unknown Source)
+	at org.eclipse.help.ui.internal.views.ContextHelpPart.setFormInput(Unknown Source)
+	at org.eclipse.ui.forms.ManagedForm.setInput(Unknown Source)
+	at org.eclipse.help.ui.internal.views.RelatedTopicsPart.setFormInput(Unknown Source)
+	at org.eclipse.ui.forms.ManagedForm.setInput(Unknown Source)
+	at org.eclipse.help.ui.internal.views.ReusableHelpPart.update(Unknown Source)
+	at org.eclipse.help.ui.internal.DefaultHelpUI.displayContextAsHelpTray(Unknown Source)
+	at org.eclipse.help.ui.internal.DefaultHelpUI.displayContext(Unknown Source)
+	at org.eclipse.help.ui.internal.DefaultHelpUI.displayContext(Unknown Source)
+	at org.eclipse.ui.internal.help.WorkbenchHelpSystem.displayContext(Unknown Source)
+	at org.eclipse.ui.internal.help.WorkbenchHelpSystem$WorkbenchHelpListener.helpRequested(Unknown Source)
+	at org.eclipse.swt.widgets.TypedListener.handleEvent(Unknown Source)
+	at org.eclipse.swt.widgets.EventTable.sendEvent(Unknown Source)
+	at org.eclipse.swt.widgets.Widget.sendEvent(Unknown Source)
+	at org.eclipse.swt.widgets.Widget.sendEvent(Unknown Source)
+	at org.eclipse.swt.widgets.Widget.sendEvent(Unknown Source)
+	at org.eclipse.swt.widgets.Widget.notifyListeners(Unknown Source)
+	at org.eclipse.jface.preference.PreferenceDialog$12.openDialogHelp(Unknown Source)
+	at org.eclipse.jface.preference.PreferenceDialog$12.helpRequested(Unknown Source)
+	at org.eclipse.swt.widgets.TypedListener.handleEvent(Unknown Source)
+	at org.eclipse.swt.widgets.EventTable.sendEvent(Unknown Source)
+	at org.eclipse.swt.widgets.Widget.sendEvent(Unknown Source)
+	at org.eclipse.swt.widgets.Widget.sendEvent(Unknown Source)
+	at org.eclipse.swt.widgets.Widget.sendEvent(Unknown Source)
+	at org.eclipse.swt.widgets.Widget.notifyListeners(Unknown Source)
+	at org.eclipse.jface.dialogs.TrayDialog.helpPressed(Unknown Source)
+	at org.eclipse.jface.dialogs.TrayDialog.access$2(Unknown Source)
+	at org.eclipse.jface.dialogs.TrayDialog$2.widgetSelected(Unknown Source)
+	at org.eclipse.swt.widgets.TypedListener.handleEvent(Unknown Source)
+	at org.eclipse.swt.widgets.EventTable.sendEvent(Unknown Source)
+	at org.eclipse.swt.widgets.Widget.sendEvent(Unknown Source)
+	at org.eclipse.swt.widgets.Display.runDeferredEvents(Unknown Source)
+	at org.eclipse.swt.widgets.Display.readAndDispatch(Unknown Source)
+	at org.eclipse.jface.window.Window.runEventLoop(Unknown Source)
+	at org.eclipse.jface.window.Window.open(Unknown Source)
+	at org.eclipse.gmf.runtime.common.ui.services.properties.extended.PropertyPageCellEditor.openDialogBox(Unknown Source)
+	at com.ibm.xtools.modeler.ui.internal.ui.properties.ModelPropertyPageCellEditor.access$0(Unknown Source)
+	at com.ibm.xtools.modeler.ui.internal.ui.properties.ModelPropertyPageCellEditor$1.run(Unknown Source)
+	at org.eclipse.gmf.runtime.emf.core.internal.domain.MSLEditingDomain$3.run(Unknown Source)
+	at org.eclipse.gmf.runtime.emf.core.internal.domain.MSLTransactionalEditingDomain.runExclusive(Unknown Source)
+	at org.eclipse.gmf.runtime.emf.core.internal.domain.MSLEditingDomain.runExclusive(Unknown Source)
+	at org.eclipse.gmf.runtime.emf.core.internal.domain.MSLEditingDomain.runAsRead(Unknown Source)
+	at org.eclipse.gmf.runtime.emf.core.util.OperationUtil.runAsRead(Unknown Source)
+	at com.ibm.xtools.modeler.ui.internal.ui.properties.ModelPropertyPageCellEditor.openDialogBox(Unknown Source)
+	at org.eclipse.gmf.runtime.common.ui.services.properties.extended.PropertyPageCellEditor$2.execute(Unknown Source)
+	at org.eclipse.gmf.runtime.common.ui.services.properties.extended.MultiButtonCellEditor$1.widgetSelected(Unknown Source)
+	at org.eclipse.swt.widgets.TypedListener.handleEvent(Unknown Source)
+	at org.eclipse.swt.widgets.EventTable.sendEvent(Unknown Source)
+	at org.eclipse.swt.widgets.Widget.sendEvent(Unknown Source)
+	at org.eclipse.swt.widgets.Display.runDeferredEvents(Unknown Source)
+	at org.eclipse.swt.widgets.Display.readAndDispatch(Unknown Source)
+	at org.eclipse.ui.internal.Workbench.runEventLoop(Unknown Source)
+	at org.eclipse.ui.internal.Workbench.runUI(Unknown Source)
+	at org.eclipse.ui.internal.Workbench.access$4(Unknown Source)
+	at org.eclipse.ui.internal.Workbench$7.run(Unknown Source)
+	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Unknown Source)
+	at org.eclipse.ui.internal.Workbench.createAndRunWorkbench(Unknown Source)
+	at org.eclipse.ui.PlatformUI.createAndRunWorkbench(Unknown Source)
+	at org.eclipse.ui.internal.ide.application.IDEApplication.start(Unknown Source)
+	at org.eclipse.equinox.internal.app.EclipseAppHandle.run(Unknown Source)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.runApplication(Unknown Source)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.start(Unknown Source)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(Unknown Source)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(Unknown Source)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at org.eclipse.equinox.launcher.Main.invokeFramework(Unknown Source)
+	at org.eclipse.equinox.launcher.Main.basicRun(Unknown Source)
+	at org.eclipse.equinox.launcher.Main.run(Unknown Source)
+
+!ENTRY org.eclipse.help 4 0 2018-12-17 04:31:14.909
+!MESSAGE Error reading help table of contents file /"org.eclipse.gmf.doc/toc-tooling.xml" (skipping file)
+!STACK 0
+java.io.FileNotFoundException
+	at org.eclipse.help.internal.toc.TocFileParser.parse(Unknown Source)
+	at org.eclipse.help.internal.toc.TocFileProvider.getTocContributions(Unknown Source)
+	at org.eclipse.help.internal.toc.TocManager.getAndCacheTocContributions(Unknown Source)
+	at org.eclipse.help.internal.toc.TocManager.getTocContributionsForToc(Unknown Source)
+	at org.eclipse.help.internal.toc.TocManager.getRootTocContributions(Unknown Source)
+	at org.eclipse.help.internal.toc.TocManager.getTocs(Unknown Source)
+	at org.eclipse.help.ui.internal.views.ContextHelpPart.getTopicCategory(Unknown Source)
+	at org.eclipse.help.ui.internal.views.ContextHelpPart.formatHelpContext(Unknown Source)
+	at org.eclipse.help.ui.internal.views.ContextHelpPart.handleActivation(Unknown Source)
+	at org.eclipse.help.ui.internal.views.ContextHelpPart.setFormInput(Unknown Source)
+	at org.eclipse.ui.forms.ManagedForm.setInput(Unknown Source)
+	at org.eclipse.help.ui.internal.views.RelatedTopicsPart.setFormInput(Unknown Source)
+	at org.eclipse.ui.forms.ManagedForm.setInput(Unknown Source)
+	at org.eclipse.help.ui.internal.views.ReusableHelpPart.update(Unknown Source)
+	at org.eclipse.help.ui.internal.DefaultHelpUI.displayContextAsHelpTray(Unknown Source)
+	at org.eclipse.help.ui.internal.DefaultHelpUI.displayContext(Unknown Source)
+	at org.eclipse.help.ui.internal.DefaultHelpUI.displayContext(Unknown Source)
+	at org.eclipse.ui.internal.help.WorkbenchHelpSystem.displayContext(Unknown Source)
+	at org.eclipse.ui.internal.help.WorkbenchHelpSystem$WorkbenchHelpListener.helpRequested(Unknown Source)
+	at org.eclipse.swt.widgets.TypedListener.handleEvent(Unknown Source)
+	at org.eclipse.swt.widgets.EventTable.sendEvent(Unknown Source)
+	at org.eclipse.swt.widgets.Widget.sendEvent(Unknown Source)
+	at org.eclipse.swt.widgets.Widget.sendEvent(Unknown Source)
+	at org.eclipse.swt.widgets.Widget.sendEvent(Unknown Source)
+	at org.eclipse.swt.widgets.Widget.notifyListeners(Unknown Source)
+	at org.eclipse.jface.preference.PreferenceDialog$12.openDialogHelp(Unknown Source)
+	at org.eclipse.jface.preference.PreferenceDialog$12.helpRequested(Unknown Source)
+	at org.eclipse.swt.widgets.TypedListener.handleEvent(Unknown Source)
+	at org.eclipse.swt.widgets.EventTable.sendEvent(Unknown Source)
+	at org.eclipse.swt.widgets.Widget.sendEvent(Unknown Source)
+	at org.eclipse.swt.widgets.Widget.sendEvent(Unknown Source)
+	at org.eclipse.swt.widgets.Widget.sendEvent(Unknown Source)
+	at org.eclipse.swt.widgets.Widget.notifyListeners(Unknown Source)
+	at org.eclipse.jface.dialogs.TrayDialog.helpPressed(Unknown Source)
+	at org.eclipse.jface.dialogs.TrayDialog.access$2(Unknown Source)
+	at org.eclipse.jface.dialogs.TrayDialog$2.widgetSelected(Unknown Source)
+	at org.eclipse.swt.widgets.TypedListener.handleEvent(Unknown Source)
+	at org.eclipse.swt.widgets.EventTable.sendEvent(Unknown Source)
+	at org.eclipse.swt.widgets.Widget.sendEvent(Unknown Source)
+	at org.eclipse.swt.widgets.Display.runDeferredEvents(Unknown Source)
+	at org.eclipse.swt.widgets.Display.readAndDispatch(Unknown Source)
+	at org.eclipse.jface.window.Window.runEventLoop(Unknown Source)
+	at org.eclipse.jface.window.Window.open(Unknown Source)
+	at org.eclipse.gmf.runtime.common.ui.services.properties.extended.PropertyPageCellEditor.openDialogBox(Unknown Source)
+	at com.ibm.xtools.modeler.ui.internal.ui.properties.ModelPropertyPageCellEditor.access$0(Unknown Source)
+	at com.ibm.xtools.modeler.ui.internal.ui.properties.ModelPropertyPageCellEditor$1.run(Unknown Source)
+	at org.eclipse.gmf.runtime.emf.core.internal.domain.MSLEditingDomain$3.run(Unknown Source)
+	at org.eclipse.gmf.runtime.emf.core.internal.domain.MSLTransactionalEditingDomain.runExclusive(Unknown Source)
+	at org.eclipse.gmf.runtime.emf.core.internal.domain.MSLEditingDomain.runExclusive(Unknown Source)
+	at org.eclipse.gmf.runtime.emf.core.internal.domain.MSLEditingDomain.runAsRead(Unknown Source)
+	at org.eclipse.gmf.runtime.emf.core.util.OperationUtil.runAsRead(Unknown Source)
+	at com.ibm.xtools.modeler.ui.internal.ui.properties.ModelPropertyPageCellEditor.openDialogBox(Unknown Source)
+	at org.eclipse.gmf.runtime.common.ui.services.properties.extended.PropertyPageCellEditor$2.execute(Unknown Source)
+	at org.eclipse.gmf.runtime.common.ui.services.properties.extended.MultiButtonCellEditor$1.widgetSelected(Unknown Source)
+	at org.eclipse.swt.widgets.TypedListener.handleEvent(Unknown Source)
+	at org.eclipse.swt.widgets.EventTable.sendEvent(Unknown Source)
+	at org.eclipse.swt.widgets.Widget.sendEvent(Unknown Source)
+	at org.eclipse.swt.widgets.Display.runDeferredEvents(Unknown Source)
+	at org.eclipse.swt.widgets.Display.readAndDispatch(Unknown Source)
+	at org.eclipse.ui.internal.Workbench.runEventLoop(Unknown Source)
+	at org.eclipse.ui.internal.Workbench.runUI(Unknown Source)
+	at org.eclipse.ui.internal.Workbench.access$4(Unknown Source)
+	at org.eclipse.ui.internal.Workbench$7.run(Unknown Source)
+	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Unknown Source)
+	at org.eclipse.ui.internal.Workbench.createAndRunWorkbench(Unknown Source)
+	at org.eclipse.ui.PlatformUI.createAndRunWorkbench(Unknown Source)
+	at org.eclipse.ui.internal.ide.application.IDEApplication.start(Unknown Source)
+	at org.eclipse.equinox.internal.app.EclipseAppHandle.run(Unknown Source)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.runApplication(Unknown Source)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.start(Unknown Source)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(Unknown Source)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(Unknown Source)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at org.eclipse.equinox.launcher.Main.invokeFramework(Unknown Source)
+	at org.eclipse.equinox.launcher.Main.basicRun(Unknown Source)
+	at org.eclipse.equinox.launcher.Main.run(Unknown Source)
+
+!ENTRY com.ibm.cic.licensing.common.util 4 0 2018-12-17 04:37:00.316
+!MESSAGE LUM license expired for productID 45: Past the expiration date on license.
+
+!ENTRY com.ibm.cic.licensing.common.util 4 0 2018-12-17 04:37:01.330
+!MESSAGE LUM license expired for productID 45: Past the expiration date on license.
