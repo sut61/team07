@@ -13,4 +13,6 @@ public class Drug {
     @Id @GeneratedValue
     private Long id;
     private @NonNull String name;
+
+    
 }
