@@ -5,5 +5,5 @@ import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 import SUT.SE61.Team07.Entity.*;
 
 @RepositoryRestResource
-interface DrugRepository extends JpaRepository<Drug, Long> {
+public interface DrugRepository extends JpaRepository<Drug, Long> {
 }
