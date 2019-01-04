@@ -1,4 +1,4 @@
-package SUT.SE61.Team07;
+package SUT.SE61.Team07.Entity;
 import lombok.*;
 
 import javax.persistence.Id;
