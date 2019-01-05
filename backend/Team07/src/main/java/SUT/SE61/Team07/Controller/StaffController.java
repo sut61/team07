@@ -16,8 +16,8 @@ class StaffController {
         this.staffrepository = staffrepository;
     }
 
-    @GetMapping("/drug-staff")
-    public Collection<Staff> coolstaff() {
+    @GetMapping("/Stroage-staff")
+    public Collection<Staff> staffs() {
         return staffrepository.findAll().stream().collect(Collectors.toList());
     }
 }

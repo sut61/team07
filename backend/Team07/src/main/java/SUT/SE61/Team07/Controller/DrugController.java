@@ -16,8 +16,8 @@ class DrugController {
         this.drugrepository = drugrepository;
     }
 
-    @GetMapping("/drug-stroages")
-    public Collection<Drug> cooldrug() {
+    @GetMapping("/Stroage-drug")
+    public Collection<Drug> drugs() {
         return drugrepository.findAll().stream().collect(Collectors.toList());
     }
 

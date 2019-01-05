@@ -15,8 +15,8 @@ class TypeController {
     public TypeController(TypeRepository typerepository) {
         this.typerepository = typerepository;
     }
-    @GetMapping("/drug-type")
-    public Collection<Type> coolstaff() {
+    @GetMapping("/Stroage-type")
+    public Collection<Type> types() {
         return typerepository.findAll().stream().collect(Collectors.toList());
     }
 }
