@@ -5,7 +5,7 @@ import { MatButtonModule, MatCardModule, MatInputModule, MatListModule, MatToolb
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppComponent } from './app.component';
 import { RoutingMainModule } from "./routing-main/routing-main.module";
-
+import { RouterModule } from '@angular/router';
 import { DrugComponent } from './drug/drug.component';
 import { TypeComponent } from './type/type.component';
 import { LoginStaffComponent } from './login-staff/login-staff.component';
@@ -82,6 +82,7 @@ import { FormsModule } from '@angular/forms';
     MatNativeDateModule,
     FormsModule,
     RoutingMainModule,
+    RouterModule
     
     
   ],
