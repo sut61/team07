@@ -7,6 +7,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import lombok.*;
+import javax.persistence.ManyToOne;
+import java.util.*;	
 
 @Entity
 @Data
@@ -20,12 +22,30 @@ public class Prescription {
     private @NonNull String name;
     private LocalDate date;
 
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "Drug", nullable = true)
+	private Drug drug;
+	
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "Staff", nullable = true)
+	private Staff staff;
+		  
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "Type", nullable = true)
+	private Type  type;
+
     private Prescription() {
     }
 
-    public Prescription(String name) {
+
+    public Prescription(String name,Drug drug,Staff staff,Type type) {
+        
         this.name = name;
         this.date = LocalDate.now();
+        this.drug = drug;
+        this.staff = staff;
+        this.type = type;
+
     }
 
 }
