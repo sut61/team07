@@ -3,12 +3,10 @@ import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
 
 import { DrugComponent } from '../drug/drug.component';
-import { TypeComponent } from '../type/type.component';
 import { LoginStaffComponent } from '../login-staff/login-staff.component';
 
 const routes: Routes = [
   {path:'',component:DrugComponent},
-  {path:'Type',component:TypeComponent},
   {path:'Login-staff',component:LoginStaffComponent}
 ];
 

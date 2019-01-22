@@ -6,9 +6,13 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppComponent } from './app.component';
 import { RoutingMainModule } from "./routing-main/routing-main.module";
 import { RouterModule } from '@angular/router';
+
+// user import 
 import { DrugComponent } from './drug/drug.component';
-import { TypeComponent } from './type/type.component';
 import { LoginStaffComponent } from './login-staff/login-staff.component';
+// end user import 
+
+// system import 
 import {MatCheckboxModule, MatNativeDateModule} from '@angular/material';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import {MatDatepickerModule} from '@angular/material/datepicker';
@@ -35,13 +39,12 @@ import {MatTableModule} from '@angular/material/table';
 import {MatSortModule} from '@angular/material/sort';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import { FormsModule } from '@angular/forms';
-
+// end system import 
 
 @NgModule({
   declarations: [
     AppComponent,
     DrugComponent,
-    TypeComponent,
     LoginStaffComponent
   ],
   imports: [
