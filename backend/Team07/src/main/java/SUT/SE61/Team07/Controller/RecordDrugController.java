@@ -21,6 +21,4 @@ class RecordDrugController {
         return recordDrugrepository.findAll().stream().collect(Collectors.toList());
     }
 
-
-
 }
