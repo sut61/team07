@@ -1,4 +1,4 @@
-package SUT.SE61.Team07.Controller;
+/*package SUT.SE61.Team07.Controller;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -21,4 +21,6 @@ class DrugController {
         return drugrepository.findAll().stream().collect(Collectors.toList());
     }
 
-}
+
+
+}*/
