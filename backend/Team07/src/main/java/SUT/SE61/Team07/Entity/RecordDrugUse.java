@@ -12,18 +12,18 @@ import java.util.*;
 
 @Entity
 @Getter @Setter
-@Table(name = "RecordDrug")
-public class RecordDrug {
+@Table(name = "RecordDrugUse")
+public class RecordDrugUse {
     @Id
-    @SequenceGenerator(name = "RecordDrug_seq", sequenceName = "RecordDrug_seq")
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "RecordDrug_seq")
-    private Long RecordDrugId;
+    @SequenceGenerator(name = "RecordDrugUse_seq", sequenceName = "RecordDrugUse_seq")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "RecordDrugUse_seq")
+    private Long RecordDrugUseId;
     private @NonNull String symptom;
     private LocalDate date;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "Drug", nullable = true)
-	private Drug drug;
+    @JoinColumn(name = "Drugdata", nullable = true)
+	private Drugdata drugdata;
 	
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "Pharmacist", nullable = true)
@@ -33,15 +33,15 @@ public class RecordDrug {
     @JoinColumn(name = "Customer", nullable = true)
 	private Customer  customer;
 
-    private RecordDrug() {
+    private RecordDrugUse() {
     }
 
 
-    public RecordDrug(String symptom,Drug drug,Pharmacist pharmacist,Customer  customer) {
+    public RecordDrugUse(String symptom,Drugdata drugdata,Pharmacist pharmacist,Customer  customer) {
         
         this.symptom = symptom;
         this.date = LocalDate.now();
-        this.drug = drug;
+        this.drugdata = drugdata;
         this.pharmacist = pharmacist;
         this.customer = customer;
 
