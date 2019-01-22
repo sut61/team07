@@ -5,5 +5,6 @@ import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 import SUT.SE61.Team07.Entity.*;
 
 @RepositoryRestResource
-public interface TypeRepository extends JpaRepository<Type, Long> {
+public interface CategoryRepository extends JpaRepository<Category, Long> {
+    Category findByCategoryId(Long categoryId);
 }

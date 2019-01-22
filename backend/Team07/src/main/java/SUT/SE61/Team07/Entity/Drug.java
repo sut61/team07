@@ -16,12 +16,12 @@ public class Drug {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "drug_seq")
     private  Long drugId;
     private @NonNull String name;
-    private @NonNull String explanation;
+    private @NonNull String code;
     
    private Drug(){}
    public Drug(String name,String explanation){
        this.name  = name;
-       this.explanation = explanation;
+       this.code = code;
 
 
    }
