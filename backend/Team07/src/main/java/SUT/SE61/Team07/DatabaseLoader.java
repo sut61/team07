@@ -1,4 +1,4 @@
-package SUT.SE61.Team07;
+/*package SUT.SE61.Team07;
 
 import SUT.SE61.Team07.Entity.*;
 import SUT.SE61.Team07.Controller.*;
@@ -28,4 +28,4 @@ public class DatabaseLoader implements ApplicationRunner {
     public void run(ApplicationArguments args) throws Exception {
         this.drugrepository.save(new Drug("para","hotheatd"));
     }
-}
+}*/
