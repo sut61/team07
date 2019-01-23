@@ -23,7 +23,7 @@ public class DrugdataController{
     @Autowired private MedicineRepository medicineRepository;
     @Autowired private CategoryRepository categoryRepository;
 
-    @GetMapping("/Drugdata")
+    @GetMapping("/Drugdata-list")
     public Collection<Drugdata> items(){
         return drugdataRepository.findAll();
     }
