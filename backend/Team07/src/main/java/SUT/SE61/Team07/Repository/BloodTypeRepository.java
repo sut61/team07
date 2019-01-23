@@ -4,7 +4,9 @@ import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 
 import SUT.SE61.Team07.Entity.*;
 
+
 @RepositoryRestResource
-public interface RecordDrugRepository extends JpaRepository<RecordDrugUse, Long> {
-    
-}
+ public interface BloodTypeRepository extends JpaRepository<BloodType, Long> {
+     Gender findByBloodTypeId(Long bloodTypeId);
+     Gender findByName(String name);
+ }
