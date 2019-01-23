@@ -1,7 +1,7 @@
 Members
 =======
   
-1.B5802838 Miss Tantika Chinklang
+1.B5802838 Miss Tuntika Chinklang
   
 2.B5814824 Mr.Bancha Nonphala
   
