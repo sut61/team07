@@ -49,15 +49,14 @@ public class DatabaseLoader implements ApplicationRunner {
         this.categoryrepository.save(new Category("ABC5")); 
         Category C1 = this.categoryrepository.findByCategoryId(1L);
 
-        this.staffrepository.save(new Staff("Bancha","john","exx"));
-        this.staffrepository.save(new Staff("Banchon","Luy","kk1234"));
-        this.staffrepository.save(new Staff("warsom","physics","II"));
-        this.staffrepository.save(new Staff("watsmon","joy","kkk"));
-        this.staffrepository.save(new Staff("ahmouy","mouy","gg1234"));
+        this.staffrepository.save(new Staff("Bancha","john","exx","0802457192"));
+        this.staffrepository.save(new Staff("Banchon","Luy","kk1234","0900030004"));
+        this.staffrepository.save(new Staff("warsom","physics","II","0832781846"));
+        this.staffrepository.save(new Staff("watsmon","joy","kkk","0801231234"));
+        this.staffrepository.save(new Staff("ahmouy","mouy","gg1234","0960050004"));
 
         Staff S1 = this.staffrepository.findByStaffId(1L);
         this.prescriptionrepository.save(new Prescription("name1", D1, S1, C1));
-
         
         initialRepository.save(new Initial("mr."));
         genderRepository.save(new Gender("MALE"));
