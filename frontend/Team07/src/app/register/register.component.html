@@ -1,0 +1,136 @@
+<mat-card class="register-all">
+  <h2 align="center">
+    <img src="https://www.picz.in.th/images/2018/10/25/kMFR9n.jpg" width="200" height="200">
+    
+  </h2>
+
+  <form class="example-form" >
+
+    <table class="example-first-last" cellspacing="0">
+      <tr>
+        <td>
+          <mat-form-field class="example-first-last ">
+            <input matInput placeholder="Name" [(ngModel)]="data.Firstname" required name="Firstname" #Firstname>
+          </mat-form-field>
+        </td>
+      </tr>
+
+      <tr>
+       <td>
+        <mat-form-field>
+          <mat-select [(value)]="selected" placeholder="Gender">
+            <mat-option>None</mat-option>
+            <mat-option value="Male">Male</mat-option>
+            <mat-option value="Female">Female</mat-option>
+            <mat-option value="Gay">Gay </mat-option>
+          </mat-select>
+        </mat-form-field>
+        
+       
+        </td>
+      </tr>
+
+      <tr>
+        <td>
+          <mat-form-field>
+            <input matInput [matDatepicker]="picker" placeholder="BirthDay">
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>
+        </td>
+      </tr>
+
+      <tr>
+        <td>
+          <mat-form-field class="example-first-last ">
+            <input matInput placeholder="Address1" [(ngModel)]="data.Address1" required name="Address1" #Address1>
+          </mat-form-field>
+        </td>
+        <td>
+          <mat-form-field>
+            <mat-select placeholder="Province">
+              <mat-option>None</mat-option>
+              <mat-option *ngFor="let state of states" [value]="state" >{{state}} </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </td>
+      </tr>
+
+      <tr>
+        <td>
+          <mat-form-field class="example-first-last ">
+            <input matInput placeholder="Address2" [(ngModel)]="data.Address2" required name="Address2" #Address2>
+          </mat-form-field>
+        </td>
+        <td>
+          <mat-form-field>
+            <mat-select placeholder="Province"
+            [(ngModel)] = "Select.stateselect"
+            [(ngModel)] ="states" 
+            [value]="state">{{state}}
+            >
+              <mat-option>None</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </td>
+      </tr>
+
+
+      <tr>
+        <td>
+          <mat-form-field class="example-first-last ">
+            <input matInput placeholder="Email" [(ngModel)]="data.Email" required name="Email" #Email>
+          </mat-form-field>
+        </td>
+      </tr>
+
+      <tr>
+        <td>
+          <mat-form-field class="example-first-last ">
+            <input matInput placeholder="Phonenumber" [(ngModel)]="data.Phonenumber" required name="Phonenumber"
+              #Phonenumber>
+          </mat-form-field>
+        </td>
+      </tr>
+
+      <tr>
+        <td>
+          <mat-form-field class="example-first-last ">
+            <input matInput placeholder="Username" [(ngModel)]="data.Username" required name="Username" #Username>
+          </mat-form-field>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <mat-form-field class="example-first-last ">
+            <input matInput placeholder="Password" type="password" [(ngModel)]="data.Password" required name="Password"
+              #Password>
+          </mat-form-field>
+        </td>
+      </tr>
+
+      <tr>
+        <td>
+          <mat-form-field class="example-first-last ">
+            <input matInput placeholder="ConfirmPassword" type="password" [(ngModel)]="data.ConfirmPassword" required
+              name="ConfirmPassword" #ConfirmPassword>
+          </mat-form-field>
+        </td>
+      </tr>
+
+
+
+
+
+
+    </table>
+  </form>
+
+  <mat-card-actions align="end">
+   
+      <button mat-raised-button color="warn" (click) = "SubmitdData()">Sign Up</button>
+      <a mat-stroked-button routerLink="">Cancle</a>
+
+</mat-card-actions>
+
+</mat-card>

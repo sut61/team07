@@ -1,0 +1,53 @@
+table {
+    width: 100%;
+  }
+  .example-form {
+    min-width: 150px;
+    max-width: 500px;
+    width: 100%;
+    text-align: center;
+  }
+
+  .example-form {
+    min-width: 150px;
+    max-width: 500px;
+    width: 100%;
+  }
+  
+  .example-full-width {
+    width: 100%;
+  }
+  
+     #center {
+            background-color: brown;
+            color: bisque;
+            padding: 10px;
+            text-align: center;
+        }
+        #left {
+          background-color: brown;
+          color: bisque;
+          padding: 40px;
+          text-align: center;
+      }
+     #right {
+            background-color: brown;
+            color: bisque;
+            padding: 40px;
+            text-align: center;
+        }
+  
+        #card {
+          background-color: crimson;
+          color: sienna;
+          padding: 10px;
+          text-align: center;
+      }
+  
+  
+      #showDB {
+        background-color: rgb(39, 37, 38);
+        color: rgb(255, 255, 255);
+        padding: 10px;
+        text-align: center;
+    }
