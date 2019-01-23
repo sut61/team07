@@ -16,17 +16,13 @@ public class Worktime {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "worktime_seq")
     private @NonNull Long timeId;
     private @NonNull String rangeTime;
-    private @NonNull Integer timeMin;
-    private @NonNull Integer timeMax;
     private @NonNull Integer hrsAmount;
 
     private Worktime() {
     }
 
-    public Worktime(String rangeTime, Integer timeMin, Integer timeMax, Integer hrsAmount) {
+    public Worktime(String rangeTime, Integer hrsAmount) {
         this.rangeTime = rangeTime;
-        this.timeMin = timeMin;
-        this.timeMax = timeMax;
         this.hrsAmount = hrsAmount;
     }
 }
