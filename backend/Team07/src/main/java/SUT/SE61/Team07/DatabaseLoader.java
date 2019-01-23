@@ -51,7 +51,12 @@ public class DatabaseLoader implements ApplicationRunner {
 
     @Override
     public void run(ApplicationArguments args) throws Exception {
-
+        // pam
+        this.departmentrepository.save(new Department("Maid"));
+        this.departmentrepository.save(new Department("Messenger"));
+        this.departmentrepository.save(new Department("Phamacist"));
+        Department De1 = this.departmentrepository.findBydeptId(1L);
+        // end pam
         /*
          * john db loader
          */
@@ -66,12 +71,13 @@ public class DatabaseLoader implements ApplicationRunner {
         this.categoryrepository.save(new Category("ABC3"));
         this.categoryrepository.save(new Category("ABC4"));
         this.categoryrepository.save(new Category("ABC5"));
+        
         Category C1 = this.categoryrepository.findByCategoryId(1L);
-        this.staffrepository.save(new Staff("Bancha", "john", "exx", "0802457192"));
-        this.staffrepository.save(new Staff("Banchon", "Luy", "kk1234", "0900030004"));
-        this.staffrepository.save(new Staff("warsom", "physics", "II", "0832781846"));
-        this.staffrepository.save(new Staff("watsmon", "joy", "kkk", "0801231234"));
-        this.staffrepository.save(new Staff("ahmouy", "mouy", "gg1234", "0960050004"));
+        this.staffrepository.save(new Staff(De1,"Bancha", "john", "exx", "0802457192"));
+        this.staffrepository.save(new Staff(De1,"Banchon", "Luy", "kk1234", "0900030004"));
+        this.staffrepository.save(new Staff(De1,"warsom", "physics", "II", "0832781846"));
+        this.staffrepository.save(new Staff(De1,"watsmon", "joy", "kkk", "0801231234"));
+        this.staffrepository.save(new Staff(De1,"ahmouy", "mouy", "gg1234", "0960050004"));
         Staff S1 = this.staffrepository.findByStaffId(1L);
         this.prescriptionrepository.save(new Prescription("name1", D1, S1, C1));
         /* end john db loader */
@@ -96,10 +102,6 @@ public class DatabaseLoader implements ApplicationRunner {
         /* end bow db loader */
 
         /* pam dbloader */
-        this.departmentrepository.save(new Department("Maid"));
-        this.departmentrepository.save(new Department("Messenger"));
-        this.departmentrepository.save(new Department("Phamacist"));
-        Department De1 = this.departmentrepository.findBydeptId(1L);
 
         this.worktimerepository.save(new Worktime("9:00-12:00", 3));
         this.worktimerepository.save(new Worktime("13:00-17:00", 4));

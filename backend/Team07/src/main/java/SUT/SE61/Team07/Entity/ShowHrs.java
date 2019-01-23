@@ -28,7 +28,8 @@ public class ShowHrs {
     @JoinColumn(name = "timeId")
     private Worktime worktime;
 
-    @OneToOne(fetch = FetchType.LAZY)
+    
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "staffId")
     private Staff staff;
 
@@ -40,7 +41,6 @@ public class ShowHrs {
         this.worktime = worktime;
         this.staff = staff;
         this.date = LocalDate.now();
-
     }
 
 }
