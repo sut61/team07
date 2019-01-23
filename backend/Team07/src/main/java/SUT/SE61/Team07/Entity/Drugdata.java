@@ -5,38 +5,39 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import lombok.*;
-import java.util.ArrayList;
-import java.util.List;
+
 @Entity
 @Data
 @Table(name = "Drugdata")
 
 public class Drugdata {
+
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long DrugdataId;
-    private @NonNull String brand;
+    @SequenceGenerator(name = "drugdata_seq", sequenceName = "drugdata_seq")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "drugdata_seq")
+    private long drugdataId;
     private @NonNull String detail; //สรรพคุณ
 
-    @ManyToOne()
-    @JoinColumn(name = "staffId")
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "staffId", nullable = true)
     private Staff staff;
 
-    @ManyToOne()
-    @JoinColumn(name = "categoryId")
+   
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "categoryId", nullable = true)
     private Category category;
 
-    @ManyToOne()
-    @JoinColumn(name = "medicine_id")
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "medicine_id", nullable = true)
     private Medicine medicine;
 
     
-    @ManyToOne()
-    @JoinColumn(name = "drugId")
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "Drug", nullable = true)
     private Drug drug;
+    private Drugdata(){}
     
-    public Drugdata (String brand,String detail,Drug drug,Staff staff,Category category, Medicine medicine) {
-        this.brand = brand;
+    public Drugdata (String detail,Drug drug,Staff staff,Category category, Medicine medicine) {
         this.detail = detail;
         this.drug = drug;
         this.staff = staff;

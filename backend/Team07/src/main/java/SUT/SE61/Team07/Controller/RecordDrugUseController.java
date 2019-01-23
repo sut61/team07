@@ -9,16 +9,16 @@ import SUT.SE61.Team07.Repository.*;
 
 
 @RestController
-class RecordDrugController {
-    private RecordDrugRepository recordDrugrepository;
+class RecordDrugUseController {
+    private RecordDrugUseRepository recordDrugUserepository;
 
-    public RecordDrugController(RecordDrugRepository recordDrugrepository) {
-        this.recordDrugrepository = recordDrugrepository;
+    public RecordDrugUseController(RecordDrugUseRepository recordDrugUserepository) {
+        this.recordDrugUserepository = recordDrugUserepository;
     }
 
-    @GetMapping("/RecordDrug")
+    @GetMapping("/RecordDrugUse-list")
     public Collection<RecordDrugUse> drugs() {
-        return recordDrugrepository.findAll().stream().collect(Collectors.toList());
+        return recordDrugUserepository.findAll().stream().collect(Collectors.toList());
     }
 
 
