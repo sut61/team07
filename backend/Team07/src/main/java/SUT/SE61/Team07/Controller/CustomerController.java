@@ -1,6 +1,5 @@
 package SUT.SE61.Team07.Controller;
 
-
 import SUT.SE61.Team07.Entity.*;
 import SUT.SE61.Team07.Repository.*;
 
@@ -27,13 +26,13 @@ import java.util.stream.Collectors;
 class CustomerController {
 
     @Autowired
-    private  CustomerRepository customerRepository;
+    private CustomerRepository customerRepository;
     @Autowired
-    private  InitialRepository initialRepository;
+    private InitialRepository initialRepository;
     @Autowired
-    private  GenderRepository genderRepository;
+    private GenderRepository genderRepository;
     @Autowired
-    private  BloodTypeRepository bloodTypeRepository;
+    private BloodTypeRepository bloodTypeRepository;
 
     public CustomerController(CustomerRepository customerRepository) {
         this.customerRepository = customerRepository;
@@ -44,59 +43,99 @@ class CustomerController {
         return customerRepository.findAll().stream().collect(Collectors.toList());
     }
 
-
     @GetMapping("/Customer/{customerId}")
     public Customer customerFind(@PathVariable("customerId") Long id) {
         return customerRepository.findByCustomerId(id);
     }
 
-  
     @GetMapping("/Customer/customeruserID/{customeruserID}")
     public Customer customeruser(@PathVariable("customeruserID") String name) {
         return customerRepository.findBycustomerUserID(name);
     }
-    
+
     @GetMapping("/Customer/customerPassword/{customerPassword}")
     public Customer customerpassword(@PathVariable("customerPassword") String password) {
         return customerRepository.findBycustomerPassword(password);
     }
-}
-    // @RequestBody Customer newCustomer,
-  /*  @PostMapping("/Customer/{initial}/{name}/{gender}/{blood}/{address}/{phonenumber}/{username}/{password}")
-    public Customer newCustomer(
-                                @PathVariable String initial,
-                                @PathVariable String name,
-                                @PathVariable String gender,
-                                @PathVariable String blood,
-                                @PathVariable String address,
-                                @PathVariable String phonenumber, 
-                                @PathVariable String username,
-                                @PathVariable String password                 
-    ){
-        Customer newCustomer = new Customer();
-        Initial initialCustomer = initialRepository.findByInitialName(initial); //การที่มีselectข้อมูล
-        Gender gen = genderRepository.findBySex(gender); //การที่มีselectข้อมูล
-        BloodType bloods = bloodTypeRepository.findByBloodTypeName(blood); //การที่มีselectข้อมูล
-
-        newCustomer.setInitial(initialCustomer);
-        newCustomer.setCustomerName(name);
-        newCustomer.setGender(gen);
-        newCustomer.setBloodType(bloods);
-        newCustomer.setCustomerAddress(address);
-        newCustomer.setCustomerPhone(phonenumber);
-        newCustomer.setCustomerUserID(username);
-        newCustomer.setCustomerPassword(password);
-
-        return customerRepository.save(newCustomer);
-
-    }
 
     @PostMapping("/Customer/customeruserID/{customeruserID}/customerPassword/{customerPassword}")
+    @CrossOrigin(origins = "http://localhost:4200")
     public ResponseEntity<Map<String, Object>> customercheck(@PathVariable("customeruserID") String customeruserID,
             @PathVariable("customerPassword") String customerPassword) {
-                Customer customer = this.customerRepository.findBycustomerUserID(customeruserID);
-                Customer customer2 = this.customerRepository.findBycustomerPassword(customerPassword);
+                Customer cusUID = this.customerRepository.findBycustomerUserID(customeruserID);
+                Customer cuspasswd = this.customerRepository.findBycustomerPassword(customerPassword);
+
+                if((cusUID != null ) && (cuspasswd != null)){
+                    Map<String, Object> json = new HashMap<String, Object>();
+                    json.put("success", true);
+                    json.put("status", "found");
+                    json.put("user",cusUID);
+                    HttpHeaders headers = new HttpHeaders();
+                    headers.add("Content-Type", "application/json; charset=UTF-8");
+                    headers.add("X-Fsl-Location", "/");
+                    headers.add("X-Fsl-Response-Code", "302");
+                    return (new ResponseEntity<Map<String, Object>>(json, headers, HttpStatus.OK));
+                }else{
+                    Map<String, Object> json = new HashMap<String, Object>();
+                    json.put("success", false);
+                    json.put("status", "not found");
+        
+                    HttpHeaders headers = new HttpHeaders();
+                    headers.add("Content-Type", "application/json; charset=UTF-8");
+                    headers.add("X-Fsl-Location", "/");
+                    headers.add("X-Fsl-Response-Code", "404");
+                    return (new ResponseEntity<Map<String, Object>>(json, headers, HttpStatus.OK));
+                }
     
             }
-        }*/
+}
 
+// @RequestBody Customer newCustomer,
+/*
+ * @PostMapping(
+ * "/Customer/{initial}/{name}/{gender}/{blood}/{address}/{phonenumber}/{username}/{password}")
+ * public Customer newCustomer(
+ * 
+ * @PathVariable String initial,
+ * 
+ * @PathVariable String name,
+ * 
+ * @PathVariable String gender,
+ * 
+ * @PathVariable String blood,
+ * 
+ * @PathVariable String address,
+ * 
+ * @PathVariable String phonenumber,
+ * 
+ * @PathVariable String username,
+ * 
+ * @PathVariable String password ){ Customer newCustomer = new Customer();
+ * Initial initialCustomer = initialRepository.findByInitialName(initial);
+ * //การที่มีselectข้อมูล Gender gen = genderRepository.findBySex(gender);
+ * //การที่มีselectข้อมูล BloodType bloods =
+ * bloodTypeRepository.findByBloodTypeName(blood); //การที่มีselectข้อมูล
+ * 
+ * newCustomer.setInitial(initialCustomer); newCustomer.setCustomerName(name);
+ * newCustomer.setGender(gen); newCustomer.setBloodType(bloods);
+ * newCustomer.setCustomerAddress(address);
+ * newCustomer.setCustomerPhone(phonenumber);
+ * newCustomer.setCustomerUserID(username);
+ * newCustomer.setCustomerPassword(password);
+ * 
+ * return customerRepository.save(newCustomer);
+ * 
+ * }
+ * 
+ * @PostMapping(
+ * "/Customer/customeruserID/{customeruserID}/customerPassword/{customerPassword}")
+ * public ResponseEntity<Map<String, Object>>
+ * customercheck(@PathVariable("customeruserID") String customeruserID,
+ * 
+ * @PathVariable("customerPassword") String customerPassword) { Customer
+ * customer = this.customerRepository.findBycustomerUserID(customeruserID);
+ * Customer customer2 =
+ * this.customerRepository.findBycustomerPassword(customerPassword);
+ * 
+ * } }
+ */
