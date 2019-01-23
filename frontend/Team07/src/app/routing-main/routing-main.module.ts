@@ -4,14 +4,8 @@ import { RouterModule, Routes } from '@angular/router';
 import { BillWarehouseComponent } from '../bill-warehouse/bill-warehouse.component';
 import { ProductWarehouseComponent } from '../product-warehouse/product-warehouse.component';
 import { SelectWarehouseComponent } from '../select-warehouse/select-warehouse.component';
-
 import { LoginUserComponent } from '../loginuser/loginuser.component';
-
 import { HomeComponent } from '../home/home.component';
-
-
-
-
 import { RegisterComponent } from '../register/register.component';
 import { RegisterShowComponent } from '../register-show/register-show.component';
 
