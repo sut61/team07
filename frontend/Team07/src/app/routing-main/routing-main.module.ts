@@ -9,6 +9,9 @@ import { HomeComponent } from '../home/home.component';
 import { RegisterComponent } from '../register/register.component';
 import { RegisterShowComponent } from '../register-show/register-show.component';
 
+import { LoginStaffComponent } from '../login-staff/login-staff.component';
+
+import { DrugStorageMenuComponent } from '../drug-storage-menu/drug-storage-menu.component';
 import { from } from 'rxjs';
 
 const routes: Routes = [
@@ -16,6 +19,8 @@ const routes: Routes = [
   { path: 'product', component: ProductWarehouseComponent },
   { path: 'select', component: SelectWarehouseComponent },
   { path: 'bill', component: BillWarehouseComponent },
+  { path: 'login-staff', component: LoginStaffComponent },
+  { path: 'drug-stroagemeng', component: DrugStorageMenuComponent },
 
   //PECK
 

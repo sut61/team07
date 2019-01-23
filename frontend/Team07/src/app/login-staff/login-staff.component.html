@@ -1,4 +1,44 @@
-<p>
-  login-staff drug
-  
+<p align="center">
+  <img src="https://sv1.picz.in.th/images/2019/01/24/TS6xHy.png" alt="TS6xHy.png" border="0" />
 </p>
+
+<h2 align="center">Welcome To YaMaii</h2>
+<h2 align="center">ระบบคลังยา </h2>
+
+
+
+&nbsp;
+<mat-card class="login-card">
+  <h1 align="center">Login</h1>
+
+<form class="example-form">
+<mat-card>
+    <mat-form-field>
+        <input matInput placeholder="username" [(ngModel)]="credentials.username" required name="username" #username>
+      </mat-form-field>
+    
+      <mat-form-field>
+        <input matInput placeholder="password" type="password" [(ngModel)]="credentials.password" required name="password" #password>
+      </mat-form-field>
+</mat-card>
+
+</form>
+
+<div class="example-container">
+
+
+</div>
+
+
+  <mat-card-actions>
+    <div class="button-address" align="center">
+        <button mat-raised-button color="primary"  (click)="LoginSubmit()">เข้าสู่ระบบ</button>
+      <!-- <a mat-stroked-button routerLink="/home">เข้าสู่ระบบ</a> -->
+      <a mat-stroked-button routerLink="/home">กลับหน้าหลัก</a>
+      
+      &nbsp;
+    </div>
+  </mat-card-actions>
+</mat-card>
+&nbsp;
+
