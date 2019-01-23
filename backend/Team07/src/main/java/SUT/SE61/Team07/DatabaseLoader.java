@@ -15,22 +15,29 @@ public class DatabaseLoader implements ApplicationRunner {
     private final PrescriptionRepository prescriptionrepository;
     private final StaffRepository staffrepository;
     private final CategoryRepository categoryrepository;
-    private final CustomerRepository customerRepository;
-    private final InitialRepository initialRepository;
-    private final BloodTypeRepository bloodTypeRepository;
-    private final GenderRepository genderRepository;
+    private final CustomerRepository customerrepository;
+    private final InitialRepository initialrepository;
+    private final BloodTypeRepository bloodTyperepository;
+    private final GenderRepository genderrepository;
+    private final DepartmentRepository departmentrepository;
+    private final WorktimeRepository worktimerepository;
+
+
 
     public DatabaseLoader(DrugRepository drugrepository, PrescriptionRepository prescriptionrepository,
-            StaffRepository staffrepository, CategoryRepository categoryrepository,CustomerRepository customerRepository, InitialRepository initialRepository,
-            BloodTypeRepository bloodTypeRepository,GenderRepository genderRepository) {
+            StaffRepository staffrepository, CategoryRepository categoryrepository,CustomerRepository customerrepository, InitialRepository initialrepository,
+            BloodTypeRepository bloodTyperepository,GenderRepository genderrepository,DepartmentRepository departmentrepository,WorktimeRepository worktimerepository) {
         this.drugrepository = drugrepository;
         this.prescriptionrepository = prescriptionrepository;
         this.staffrepository = staffrepository;
         this.categoryrepository = categoryrepository;
-        this.customerRepository = customerRepository;
-        this.initialRepository = initialRepository;
-        this.bloodTypeRepository = bloodTypeRepository;
-        this.genderRepository = genderRepository;  
+        this.customerrepository = customerrepository;
+        this.initialrepository = initialrepository;
+        this.bloodTyperepository = bloodTyperepository;
+        this.genderrepository = genderrepository;
+        this.departmentrepository = departmentrepository;
+        this.worktimerepository = worktimerepository;
+
     }
 
     @Override
@@ -58,64 +65,32 @@ public class DatabaseLoader implements ApplicationRunner {
         Staff S1 = this.staffrepository.findByStaffId(1L);
         this.prescriptionrepository.save(new Prescription("name1", D1, S1, C1));
         
-        initialRepository.save(new Initial("Mr."));
-        initialRepository.save(new Initial("Mrs."));
-        initialRepository.save(new Initial("Miss."));
+        initialrepository.save(new Initial("Mr."));
+        initialrepository.save(new Initial("Mrs."));
+        initialrepository.save(new Initial("Miss."));
     
 
-        genderRepository.save(new Gender("None"));
-        genderRepository.save(new Gender("Male"));
-        genderRepository.save(new Gender("Female"));
-        genderRepository.save(new Gender("Tom"));
-        genderRepository.save(new Gender("Gay"));
+        genderrepository.save(new Gender("None"));
+        genderrepository.save(new Gender("Male"));
+        genderrepository.save(new Gender("Female"));
+        genderrepository.save(new Gender("Tom"));
+        genderrepository.save(new Gender("Gay"));
 
 
-        bloodTypeRepository.save(new BloodType("A"));
-        bloodTypeRepository.save(new BloodType("B"));
-        bloodTypeRepository.save(new BloodType("O"));
-        bloodTypeRepository.save(new BloodType("AB"));
+        bloodTyperepository.save(new BloodType("A"));
+        bloodTyperepository.save(new BloodType("B"));
+        bloodTyperepository.save(new BloodType("O"));
+        bloodTyperepository.save(new BloodType("AB"));
 
-        /*Initial init1 = new Initial();
-        init1.setInitialname("Mr.");
-        initialRepository.save(init1);
-        Initial init2 = new Initial();
-        init2.setInitialname("Mrs.");
-        initialRepository.save(init2);
-        Initial init3 = new Initial();
-        init3.setInitialname("Miss");
-        initialRepository.save(init3);
+        departmentrepository.save(new Department("Maid"));
+        departmentrepository.save(new Department("Messenger"));
+        departmentrepository.save(new Department("Phamacist"));
 
-        Gender g1 = new Gender();
-        g1.setSex("None");
-        genderRepository.save(g1);
-        Gender g2 = new Gender();
-        g2.setSex("Male");
-        genderRepository.save(g2);
-        Gender g3 = new Gender();
-        g3.setSex("Female");
-        genderRepository.save(g3);
-        Gender g4 = new Gender();
-        g4.setSex("Tom");
-        genderRepository.save(g4);
-        Gender g5 = new Gender();
-        g5.setSex("Gay");
-        genderRepository.save(g5);
+        worktimerepository.save(new Worktime("9:00-12:00",3));
+        worktimerepository.save(new Worktime("13:00-17:00",4));
+        worktimerepository.save(new Worktime("17:00-22:00",5));
+        worktimerepository.save(new Worktime("9:00-17:00",8));
+        worktimerepository.save(new Worktime("9:00-22:00",13));
 
-        BloodType b1 = new BloodType();
-        b1.setbloodTypename("A");
-        bloodTypeRepository.save(b1);
-        BloodType b2 = new BloodType();
-        b2.setbloodTypename("B");
-        bloodTypeRepository.save(b2);
-        BloodType b3 = new BloodType();
-        b3.setbloodTypename("O");
-        bloodTypeRepository.save(b3);
-        BloodType b4 = new BloodType();
-        b4.setbloodTypename("AB");
-        bloodTypeRepository.save(b4);
-*/
-
-
-        
     }
 }
