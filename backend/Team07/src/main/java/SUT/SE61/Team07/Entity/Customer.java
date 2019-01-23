@@ -24,6 +24,12 @@ public class Customer {
     private String customerAddress;
     private String customerUserID;
     private String customerPassword;
+    
+
+    
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "initialId")
+    private Initial initial;
 
     
     @ManyToOne(fetch = FetchType.EAGER)
@@ -31,9 +37,6 @@ public class Customer {
     private Gender gender;
 
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "initialId")
-    private Initial initial;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "BloodTypeId")
@@ -41,16 +44,20 @@ public class Customer {
 
 
     private Customer(){}
-    public Customer(String customerName, String customerPhonenumber, String customerAddress,String customerUserID, String customerPassword
-                    ,Gender gender,Initial initial, BloodType bloodType){
+    public Customer(Initial initial,String customerName, Gender gender,BloodType bloodType
+                    , String customerAddress,String customerPhonenumber,String customerUserID, String customerPassword
+                    ){
+        
+        this.initial =  initial;
         this.customerName = customerName;
-        this.customerPhonenumber = customerPhonenumber;
+        this.gender = gender;
+        this.bloodType = bloodType;
         this.customerAddress = customerAddress;
+        this.customerPhonenumber = customerPhonenumber;
         this.customerUserID =customerUserID;
         this.customerPassword = customerPassword;
-        this.gender = gender;
-        this.initial =  initial;
-        this.bloodType = bloodType;
+      
+        
 
     }
            

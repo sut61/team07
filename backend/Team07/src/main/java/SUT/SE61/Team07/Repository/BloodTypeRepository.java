@@ -7,6 +7,6 @@ import SUT.SE61.Team07.Entity.*;
 
 @RepositoryRestResource
  public interface BloodTypeRepository extends JpaRepository<BloodType, Long> {
-     Gender findByBloodTypeId(Long bloodTypeId);
-     Gender findByName(String name);
+     BloodType findByBloodTypeId(Long bloodTypeId);
+     BloodType findByName(String name);
  }

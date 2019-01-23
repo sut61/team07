@@ -5,5 +5,5 @@ import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 
 @RepositoryRestResource
 public interface WorktimeRepository extends JpaRepository<Worktime, Long> {
-	Worktime findBytimeId(String timeId);
+	Worktime findBytimeId(Long timeId);
 }
