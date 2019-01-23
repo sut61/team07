@@ -24,6 +24,7 @@ public class DatabaseLoader implements ApplicationRunner {
     private final MedicineRepository medicinerepository;
     private final DrugdataRepository drugdatarepository;
     private final ShowHrsRepository showHrsrepository;
+    private final RecordDrugUseRepository recordDrugUserepository;
 
     public DatabaseLoader(DrugRepository drugrepository, PrescriptionRepository prescriptionrepository,
             StaffRepository staffrepository, CategoryRepository categoryrepository,
@@ -31,7 +32,7 @@ public class DatabaseLoader implements ApplicationRunner {
             BloodTypeRepository bloodTyperepository, GenderRepository genderrepository,
             DepartmentRepository departmentrepository, WorktimeRepository worktimerepository,
             MedicineRepository medicinerepository, DrugdataRepository drugdatarepository,
-            ShowHrsRepository showHrsrepository) {
+            ShowHrsRepository showHrsrepository, RecordDrugUseRepository recordDrugUserepository) {
         this.drugrepository = drugrepository;
         this.prescriptionrepository = prescriptionrepository;
         this.staffrepository = staffrepository;
@@ -45,7 +46,7 @@ public class DatabaseLoader implements ApplicationRunner {
         this.medicinerepository = medicinerepository;
         this.drugdatarepository = drugdatarepository;
         this.showHrsrepository = showHrsrepository;
-
+        this.recordDrugUserepository = recordDrugUserepository;
     }
 
     @Override
@@ -53,7 +54,7 @@ public class DatabaseLoader implements ApplicationRunner {
 
         /*
          * john db loader
-         */ 
+         */
         this.drugrepository.save(new Drug("para", "hotheatd"));
         this.drugrepository.save(new Drug("para2", "aaaa"));
         this.drugrepository.save(new Drug("para3", "bbbb"));
@@ -99,21 +100,28 @@ public class DatabaseLoader implements ApplicationRunner {
         this.departmentrepository.save(new Department("Messenger"));
         this.departmentrepository.save(new Department("Phamacist"));
         Department De1 = this.departmentrepository.findBydeptId(1L);
-        
+
         this.worktimerepository.save(new Worktime("9:00-12:00", 3));
         this.worktimerepository.save(new Worktime("13:00-17:00", 4));
         this.worktimerepository.save(new Worktime("17:00-22:00", 5));
         this.worktimerepository.save(new Worktime("9:00-17:00", 8));
         this.worktimerepository.save(new Worktime("9:00-22:00", 13));
         Worktime W1 = this.worktimerepository.findBytimeId(1L);
-        this.showHrsrepository.save(new ShowHrs(De1,W1,S1));
-                /* end pam dbloader */
+        this.showHrsrepository.save(new ShowHrs(De1, W1, S1));
+        /* end pam dbloader */
 
         /* kan db loader */
         medicinerepository.save(new Medicine("danger"));
         Medicine M1 = this.medicinerepository.findBymedicineId(1L);
-        this.drugdatarepository.save(new Drugdata("name1", "name2", D1, S1, C1, M1));
+        this.drugdatarepository.save(new Drugdata("name1", D1, S1, C1, M1));
         /* end kan dbloader */
+
+        /* frame db loader */
+        Drugdata Dru1 = this.drugdatarepository.findByDrugdataId(1L);
+        Customer Cu1 = this.customerrepository.findByCustomerId(1L);
+        this.recordDrugUserepository.save(new RecordDrugUse("hothead", Dru1, S1, Cu1));
+
+        /* end frame db loader */
 
     }
 }

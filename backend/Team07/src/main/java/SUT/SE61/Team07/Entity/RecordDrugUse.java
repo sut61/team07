@@ -8,10 +8,11 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import lombok.*;
 import javax.persistence.ManyToOne;
-import java.util.*;	
+import java.util.*;
 
 @Entity
-@Getter @Setter
+@Getter
+@Setter
 @Table(name = "RecordDrug")
 public class RecordDrugUse {
     @Id
@@ -24,28 +25,25 @@ public class RecordDrugUse {
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "Drugdata", nullable = true)
     private Drugdata drugdata;
-	
+
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "Staff", nullable = true)
-	private Staff staff;
-		  
+    private Staff staff;
+
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "Customer", nullable = true)
-	private Customer  customer;
-    
+    private Customer customer;
 
     private RecordDrugUse() {
     }
 
+    public RecordDrugUse(String symptom, Drugdata drugdata, Staff staff, Customer customer) {
 
-    public RecordDrugUse(String symptom,Drugdata drugdata,Staff staff,Customer  customer) {
-        
         this.symptom = symptom;
-        this.date = LocalDate.now();
         this.drugdata = drugdata;
         this.staff = staff;
         this.customer = customer;
-
+        this.date = LocalDate.now();
     }
 
 }
