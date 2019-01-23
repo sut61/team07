@@ -19,7 +19,7 @@ public class Drug {
     private @NonNull String code;
     
    private Drug(){}
-   public Drug(String name,String explanation){
+   public Drug(String name,String code){
        this.name  = name;
        this.code = code;
 
