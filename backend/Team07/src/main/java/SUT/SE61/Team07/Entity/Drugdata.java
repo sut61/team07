@@ -14,7 +14,7 @@ import java.util.List;
 public class Drugdata {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long drugdataId;
+    private long DrugdataId;
     private @NonNull String brand;
     private @NonNull String detail; //สรรพคุณ
 
