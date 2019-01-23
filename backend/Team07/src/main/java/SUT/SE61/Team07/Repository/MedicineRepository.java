@@ -13,5 +13,6 @@ import SUT.SE61.Team07.Entity.*;
 public
 interface MedicineRepository extends JpaRepository<Medicine, Long> {
 
+	Medicine findBymedicineId(Long medicineId);
 	Medicine findByName(String name);
 }

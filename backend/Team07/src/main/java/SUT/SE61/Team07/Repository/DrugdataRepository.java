@@ -7,5 +7,6 @@ import SUT.SE61.Team07.Entity.*;
 @RepositoryRestResource
     public
     interface DrugdataRepository extends JpaRepository<Drugdata, Long> {
+        Drugdata findBydrugdataId(Long drugdataId);
 
 }
