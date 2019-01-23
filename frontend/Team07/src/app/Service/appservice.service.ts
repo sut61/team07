@@ -5,7 +5,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 
 export class AppserviceService {
-  public API = '//localhost:8081';
+  public API = '//localhost:8080';
   authenticated = false;
   user : any;
   public name: any =''
@@ -13,7 +13,7 @@ export class AppserviceService {
   constructor(private http: HttpClient) {
   }
   authenticate(credentials, callback){
-    this.http.post(this.API+'/User-list/0/'+credentials.username+'/pass/'+credentials.password,{}).subscribe(data=>{
+    this.http.post(this.API+'/Customer/customeruserID/'+credentials.username+'/customerPassword/'+credentials.password,{}).subscribe(data=>{
      // console.log(credentials)
         if(data['success']){
             this.authenticated = true
