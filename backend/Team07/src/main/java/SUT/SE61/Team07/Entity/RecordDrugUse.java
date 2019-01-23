@@ -13,7 +13,7 @@ import java.util.*;
 @Entity
 @Getter @Setter
 @Table(name = "RecordDrug")
-public class RecordDrug {
+public class RecordDrugUse {
     @Id
     @SequenceGenerator(name = "RecordDrug_seq", sequenceName = "RecordDrug_seq")
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "RecordDrug_seq")
@@ -22,27 +22,28 @@ public class RecordDrug {
     private LocalDate date;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "Drug", nullable = true)
-	private Drug drug;
+    @JoinColumn(name = "Drugdata", nullable = true)
+    private Drugdata drugdata;
 	
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "Pharmacist", nullable = true)
-	private Pharmacist pharmacist;
+    @JoinColumn(name = "Staff", nullable = true)
+	private Staff staff;
 		  
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "Customer", nullable = true)
 	private Customer  customer;
+    
 
-    private RecordDrug() {
+    private RecordDrugUse() {
     }
 
 
-    public RecordDrug(String symptom,Drug drug,Pharmacist pharmacist,Customer  customer) {
+    public RecordDrugUse(String symptom,Drugdata drugdata,Staff staff,Customer  customer) {
         
         this.symptom = symptom;
         this.date = LocalDate.now();
-        this.drug = drug;
-        this.pharmacist = pharmacist;
+        this.drugdata = drugdata;
+        this.staff = staff;
         this.customer = customer;
 
     }

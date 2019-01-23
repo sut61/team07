@@ -17,7 +17,7 @@ class RecordDrugController {
     }
 
     @GetMapping("/RecordDrug")
-    public Collection<RecordDrug> drugs() {
+    public Collection<RecordDrugUse> drugs() {
         return recordDrugrepository.findAll().stream().collect(Collectors.toList());
     }
 

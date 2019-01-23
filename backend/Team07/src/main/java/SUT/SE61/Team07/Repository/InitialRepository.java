@@ -3,8 +3,9 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 
 import SUT.SE61.Team07.Entity.*;
-
 @RepositoryRestResource
-public interface RecordDrugRepository extends JpaRepository<RecordDrugUse, Long> {
-    
+//@CrossOrigin(origins = "http://localhost:4200")
+public interface InitialRepository extends JpaRepository<Initial, Long> {
+   Initial findByName(String name);
+
 }
