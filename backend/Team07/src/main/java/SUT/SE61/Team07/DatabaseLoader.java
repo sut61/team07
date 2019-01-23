@@ -21,12 +21,16 @@ public class DatabaseLoader implements ApplicationRunner {
     private final GenderRepository genderrepository;
     private final DepartmentRepository departmentrepository;
     private final WorktimeRepository worktimerepository;
+    private final MedicineRepository medicinerepository;
+    private final DrugdataRepository drugdatarepository;
+    
+    
 
 
 
     public DatabaseLoader(DrugRepository drugrepository, PrescriptionRepository prescriptionrepository,
             StaffRepository staffrepository, CategoryRepository categoryrepository,CustomerRepository customerrepository, InitialRepository initialrepository,
-            BloodTypeRepository bloodTyperepository,GenderRepository genderrepository,DepartmentRepository departmentrepository,WorktimeRepository worktimerepository) {
+            BloodTypeRepository bloodTyperepository,GenderRepository genderrepository,DepartmentRepository departmentrepository,WorktimeRepository worktimerepository,MedicineRepository medicinerepository,DrugdataRepository drugdatarepository) {
         this.drugrepository = drugrepository;
         this.prescriptionrepository = prescriptionrepository;
         this.staffrepository = staffrepository;
@@ -37,6 +41,8 @@ public class DatabaseLoader implements ApplicationRunner {
         this.genderrepository = genderrepository;
         this.departmentrepository = departmentrepository;
         this.worktimerepository = worktimerepository;
+        this.medicinerepository = medicinerepository;
+        this.drugdatarepository = drugdatarepository;
 
     }
 
@@ -91,6 +97,16 @@ public class DatabaseLoader implements ApplicationRunner {
         worktimerepository.save(new Worktime("17:00-22:00",5));
         worktimerepository.save(new Worktime("9:00-17:00",8));
         worktimerepository.save(new Worktime("9:00-22:00",13));
+
+
+        // kan db loader
+        medicinerepository.save(new Medicine("danger"));
+        Medicine M1 = this.medicinerepository.findBymedicineId(1L);
+        
+        this.drugdatarepository.save(new Drugdata("name1","name2",D1,S1,C1,M1));
+
+
+
 
     }
 }
