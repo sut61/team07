@@ -57,6 +57,8 @@ import { AppserviceService } from './Service/appservice.service';
 
 import { RegisterComponent } from './register/register.component';
 import { RegisterShowComponent } from './register-show/register-show.component';
+import { LoginStaffComponent } from './login-staff/login-staff.component';
+import { DrugStorageMenuComponent } from './drug-storage-menu/drug-storage-menu.component';
 //BOW
 
 
@@ -65,7 +67,9 @@ import { RegisterShowComponent } from './register-show/register-show.component';
     AppComponent,LoginUserComponent,HomeComponent,
     BillWarehouseComponent,ProductWarehouseComponent,SelectWarehouseComponent,
     RegisterComponent,
-    RegisterShowComponent
+    RegisterShowComponent,
+    LoginStaffComponent,
+    DrugStorageMenuComponent
   ],
   imports: [
     RoutingMainModule,
