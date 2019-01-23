@@ -41,12 +41,16 @@ public class Customer {
 
 
     private Customer(){}
-    public Customer(String customerName, String customerPhonenumber, String customerAddress,String customerUserID, String customerPassword){
+    public Customer(String customerName, String customerPhonenumber, String customerAddress,String customerUserID, String customerPassword
+                    ,Gender gender,Initial initial, BloodType bloodType){
         this.customerName = customerName;
         this.customerPhonenumber = customerPhonenumber;
         this.customerAddress = customerAddress;
         this.customerUserID =customerUserID;
         this.customerPassword = customerPassword;
+        this.gender = gender;
+        this.initial =  initial;
+        this.bloodType = bloodType;
 
     }
            

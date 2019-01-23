@@ -58,10 +58,23 @@ public class DatabaseLoader implements ApplicationRunner {
         Staff S1 = this.staffrepository.findByStaffId(1L);
         this.prescriptionrepository.save(new Prescription("name1", D1, S1, C1));
         
-        initialRepository.save(new Initial("mr."));
-        genderRepository.save(new Gender("MALE"));
+        initialRepository.save(new Initial("Mr."));
+        initialRepository.save(new Initial("Mrs."));
+        initialRepository.save(new Initial("Miss."));
+    
+
+        genderRepository.save(new Gender("None"));
+        genderRepository.save(new Gender("Male"));
+        genderRepository.save(new Gender("Female"));
+        genderRepository.save(new Gender("Tom"));
+        genderRepository.save(new Gender("Gay"));
+
+
+        bloodTypeRepository.save(new BloodType("A"));
+        bloodTypeRepository.save(new BloodType("B"));
         bloodTypeRepository.save(new BloodType("O"));
-        
+        bloodTypeRepository.save(new BloodType("AB"));
+
         /*Initial init1 = new Initial();
         init1.setInitialname("Mr.");
         initialRepository.save(init1);
