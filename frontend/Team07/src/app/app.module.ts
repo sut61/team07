@@ -1,19 +1,10 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { HttpClientModule } from '@angular/common/http';
-import { MatButtonModule, MatCardModule, MatInputModule, MatListModule, MatToolbarModule } from '@angular/material';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppComponent } from './app.component';
-import { RoutingMainModule } from "./routing-main/routing-main.module";
-import { RouterModule } from '@angular/router';
-
-// user import 
-import { DrugComponent } from './drug/drug.component';
-import { LoginStaffComponent } from './login-staff/login-staff.component';
-// end user import 
-
-// system import 
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MatCheckboxModule, MatNativeDateModule} from '@angular/material';
+import {MatButtonModule} from '@angular/material';
+import {MatInputModule} from '@angular/material/input';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatFormFieldModule} from '@angular/material/form-field';
@@ -23,7 +14,10 @@ import {MatSliderModule} from '@angular/material/slider';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import {MatMenuModule} from '@angular/material/menu';
 import {MatSidenavModule} from '@angular/material/sidenav';
+import {MatToolbarModule} from '@angular/material/toolbar';
+import {MatListModule} from '@angular/material/list';
 import {MatGridListModule} from '@angular/material/grid-list';
+import {MatCardModule} from '@angular/material/card';
 import {MatStepperModule} from '@angular/material/stepper';
 import {MatTabsModule} from '@angular/material/tabs';
 import {MatExpansionModule} from '@angular/material/expansion';
@@ -39,20 +33,47 @@ import {MatTableModule} from '@angular/material/table';
 import {MatSortModule} from '@angular/material/sort';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import { FormsModule } from '@angular/forms';
-// end system import 
+import { HttpClientModule } from '@angular/common/http';
+
+import { RoutingMainModule } from "./routing-main/routing-main.module";
+
+// PEAK
+import { LoginUserComponent } from './loginuser/loginuser.component';
+import { HomeComponent } from './home/home.component';
+
+
+//PEAK
+
+//John
+import { BillWarehouseComponent } from './bill-warehouse/bill-warehouse.component';
+import { SelectWarehouseComponent } from './select-warehouse/select-warehouse.component';
+import { ProductWarehouseComponent } from './product-warehouse/product-warehouse.component';
+import { BillOfladingService } from './Service/bill-oflading.service';
+import { ProductService } from './Service/product.service';
+import { AppserviceService } from './Service/appservice.service';
+
+
+// BOW
+
+import { RegisterComponent } from './register/register.component';
+import { RegisterShowComponent } from './register-show/register-show.component';
+//BOW
+
 
 @NgModule({
   declarations: [
-    AppComponent,
-    DrugComponent,
-    LoginStaffComponent
+    AppComponent,LoginUserComponent,HomeComponent,
+    BillWarehouseComponent,ProductWarehouseComponent,SelectWarehouseComponent,
+    RegisterComponent,
+    RegisterShowComponent
   ],
   imports: [
+    RoutingMainModule,
     HttpClientModule,
     BrowserModule,
-    BrowserAnimationsModule, 
+    BrowserAnimationsModule,
     MatCheckboxModule,
-    MatCheckboxModule, 
+    MatCheckboxModule,
     MatButtonModule,
     MatInputModule,
     MatAutocompleteModule,
@@ -84,12 +105,13 @@ import { FormsModule } from '@angular/forms';
     MatPaginatorModule,
     MatNativeDateModule,
     FormsModule,
-    RoutingMainModule,
-    RouterModule
-    
-    
+
+
+
+
+
   ],
-  providers: [],
+  providers: [BillOfladingService,ProductService,AppserviceService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,0 +1,34 @@
+.example-headers-align .mat-expansion-panel-header-title, 
+.example-headers-align .mat-expansion-panel-header-description {
+  flex-basis: 0;
+}
+
+.example-headers-align .mat-expansion-panel-header-description {
+  justify-content: space-between;
+  align-items: center;
+}
+#center {
+  background-color: brown;
+  color: bisque;
+  padding: 20px;
+  text-align: center;
+}
+#left {
+background-color: brown;
+color: bisque;
+padding: 40px;
+text-align: center;
+}
+#right {
+  background-color: brown;
+  color: bisque;
+  padding: 40px;
+  text-align: center;
+}
+
+#card {
+background-color: crimson;
+color: sienna;
+padding: 40px;
+text-align: center;
+}

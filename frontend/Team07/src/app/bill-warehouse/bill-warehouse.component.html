@@ -1,0 +1,68 @@
+<p align="center">
+  <img src="https://www.picz.in.th/images/2018/09/06/fUmgcu.png" alt="fUmgcu.png" border="0" />
+</p>
+
+<h2 align="center">Welcome To Khong Kao Shop</h2>
+<h2 align="center">ร้านของเก่าช็อป ยินดีต้อนรับ</h2>
+
+<mat-card>
+
+  <div class="button-row" align="center">
+
+    <mat-card-actions>
+
+      <a mat-stroked-button routerLink="/home"><mat-icon>home</mat-icon>ไปหน้าหลัก</a>
+
+      <a mat-stroked-button routerLink="/">ซื้อของเก่า</a>
+
+      <a mat-stroked-button routerLink="/">ขายของเก่า</a>
+
+      <a mat-stroked-button routerLink="/">เสนอขายของเก่า</a>
+
+      <a mat-stroked-button routerLink="/delivery">รายการจัดส่ง</a>
+
+      <a mat-stroked-button routerLink="/bill">พิมพ์ใบเสร็จ</a>
+
+      <a mat-stroked-button routerLink="/home">ติดต่อร้าน</a>
+      
+      <a mat-stroked-button routerLink="/bill">จัดการคลังสินค้า</a>
+
+      <a mat-stroked-button routerLink="">ออกจากระบบ</a>
+
+      
+    </mat-card-actions>
+
+  </div>
+
+</mat-card>
+
+<mat-card id="center">
+    <h1 id="center"> Bill - of -lading </h1>
+</mat-card>
+
+<mat-card id="showDB">
+
+    <div>
+        <h3>bill of lading </h3>
+        <mat-form-field>
+          <input matInput placeholder="Select Bill ID : "  [(ngModel)]="data.id"
+         required name="id" #id >
+         </mat-form-field>
+
+        <button mat-raised-button color="primary" (click)="pushBillId()">Send </button>
+
+
+        <p>bill id:&nbsp;&nbsp;&nbsp; {{this.bill_of_lading.billId}}</p>
+        <p>Username :&nbsp;&nbsp;&nbsp; {{this.bill_of_lading.user.username}}</p>
+        <p> nameproduct :&nbsp;&nbsp;&nbsp;{{this.bill_of_lading.product.name}} </p>
+        <p> priceproduct:&nbsp;&nbsp;{{this.bill_of_lading.product.price}}</p>
+        <p> typeProduct:&nbsp;&nbsp;{{this.bill_of_lading.typeproduct.nametype}}</p>
+        <p> qty :&nbsp;&nbsp;{{this.bill_of_lading.product.qty}}</p>
+        <p> date :&nbsp;&nbsp;{{this.bill_of_lading.date}}</p>
+
+
+
+        <button mat-raised-button color="primary" (click)="selectLink()">back to save product</button>
+
+    </div>
+</mat-card>
