@@ -9,12 +9,14 @@ import { RegisterShowComponent } from '../register-show/register-show.component'
 import { LoginStaffComponent } from '../login-staff/login-staff.component';
 
 import { DrugStorageMenuComponent } from '../drug-storage-menu/drug-storage-menu.component';
+
+import { DrugdataComponent } from '../Drugdata/drugdata.component';
 import { from } from 'rxjs';
 
 const routes: Routes = [
   //JOHN
   { path: 'login-staff', component: LoginStaffComponent },
-  { path: 'drug-stroagemeng', component: DrugStorageMenuComponent },
+  { path: 'drug-stroagemenu', component: DrugStorageMenuComponent },
 
   //PECK
 
@@ -24,6 +26,8 @@ const routes: Routes = [
 
   { path: 'register', component: RegisterComponent },
   { path: 'register-show', component: RegisterShowComponent },
+  
+  { path: 'drug-data', component: DrugdataComponent },
 ];
 
 @NgModule({
