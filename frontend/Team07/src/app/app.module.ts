@@ -55,7 +55,9 @@ import { RegisterComponent } from './register/register.component';
 import { RegisterShowComponent } from './register-show/register-show.component';
 import { LoginStaffComponent } from './login-staff/login-staff.component';
 import { DrugStorageMenuComponent } from './drug-storage-menu/drug-storage-menu.component';
-
+import { PostComponent } from './post/post.component';
+import { ShowComponent } from './show/show.component';
+import { PostService } from './Service/post.service';
 
 import { DrugdataComponent } from './Drugdata/drugdata.component';
 
@@ -70,7 +72,9 @@ import { CategoryService } from './Service/category.service';
     RegisterShowComponent,
     LoginStaffComponent,
     DrugStorageMenuComponent,
-    DrugdataComponent
+    DrugdataComponent,
+    PostComponent,
+    ShowComponent,
   ],
   imports: [
     RoutingMainModule,
@@ -116,7 +120,7 @@ import { CategoryService } from './Service/category.service';
 
 
   ],
-  providers: [AppserviceService,RegisterService,CategoryService],
+  providers: [AppserviceService,RegisterService,CategoryService,PostService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
