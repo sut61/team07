@@ -7,7 +7,9 @@
 
     <mat-card-actions>
 
-      <a mat-stroked-button routerLink="/home"><mat-icon>home</mat-icon>ไปหน้าหลัก</a>
+      <a mat-stroked-button routerLink="/home">
+        <mat-icon>home</mat-icon>ไปหน้าหลัก
+      </a>
 
       <a mat-stroked-button routerLink="/">คลังยา</a>
 
@@ -17,7 +19,7 @@
 
       <a mat-stroked-button routerLink="/">บันทึกการใช้ยา</a>
 
-       <!-- <a mat-stroked-button routerLink="/home">ติดต่อร้าน</a>
+      <!-- <a mat-stroked-button routerLink="/home">ติดต่อร้าน</a>
 
       <a mat-stroked-button routerLink="/bill">จัดการคลังสินค้า</a> -->
 
@@ -29,46 +31,49 @@
   </div>
 
 </mat-card>
+
 <body>
   <div class="flex-container">
     <mat-tab-group>
       <mat-tab label="นำยาเข้าคลัง">
         <div class="flex-container">
-          <form #datarec = "ngForm"  (ngSubmit) = "onClickSubmit(datarec.value)" align="center">
+          <form #datarec="ngForm" (ngSubmit)="onClickSubmit(datarec.value)" align="center">
             <h2>กรอกรายละเอียดข้อมูลยา</h2>
-              
-             
 
-            <mat-form-field>  
-                <h4>ประเภ:</h4> 
-                <mat-select name ="category" [(ngModel)]="datarec.categorys">
-                  <mat-option *ngFor="let category of categorys" [value]="category.value">
-                    {{category.viewValue}}
-                  </mat-option>
-                </mat-select>
-              </mat-form-field><br>
-              <mat-form-field>
-                <h4>ชื่อยา:</h4> 
-                  <input matInput name ="brandName" [(ngModel)]="datarec.brandName_id">
-              </mat-form-field><br>
-          
-             
-            
-               
-                
-                <pre align="center">
-                  <button  mat-stroked-button color="primary">บันทึก</button>
+
+
+            <mat-form-field>
+              <h4>ประเภท</h4>
+              <mat-select [(ngModel)]="categoryselect"name="Dran">
+                <mat-option *ngFor="let titlecat of category" [value]="titlecat.categoryname">
+                  {{titlecat.categoryname}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+             <br>
+            <br>
+            <mat-form-field>
+              <h4>ชื่อยา:</h4>
+              <input matInput placeholder="" [(ngModel)]="data.namedrug" required name="namedrug" #namedrug>
+            </mat-form-field><br>
+
+
+
+
+
+            <pre align="center">
+                  <button mat-raised-button color="primary"  (click)="showdata()">บันทึก</button>
                 </pre>
           </form>
         </div>
       </mat-tab>
-         
+
       <mat-tab label="รายชื่อยาที่มีในคลัง">
         <div class="flex-container">
-       <h2>ยาจ๋ารอกูโค้ดแปป</h2>
-        </div>        
+          <h2>ยาจ๋ารอกูโค้ดแปป</h2>
+        </div>
       </mat-tab>
-    <!--   
+      <!--   
       <mat-tab label="ดูข้อมูลยา"> 
         <div class="flex-container">
           ดูข้อมูลยา 
@@ -86,4 +91,3 @@
 <p align="center">
   <B>Tel: +66123456789</B>
 </p>
-
