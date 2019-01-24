@@ -58,6 +58,8 @@ import { DrugStorageMenuComponent } from './drug-storage-menu/drug-storage-menu.
 
 
 import { DrugdataComponent } from './Drugdata/drugdata.component';
+
+import { CategoryService } from './Service/category.service';
 //BOW
 
 
@@ -114,7 +116,7 @@ import { DrugdataComponent } from './Drugdata/drugdata.component';
 
 
   ],
-  providers: [AppserviceService,RegisterService],
+  providers: [AppserviceService,RegisterService,CategoryService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
