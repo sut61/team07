@@ -123,7 +123,7 @@ public class DatabaseLoader implements ApplicationRunner {
         Medicine M1 = this.medicinerepository.findBymedicineId(1L);
         this.drugdatarepository.save(new Drugdata("name1", D1, S1, C1, M1));
         /* end gan dbloader */
-
+        
         /* frame db loader */
         Drugdata Dru1 = this.drugdatarepository.findByDrugdataId(1L);
         Customer Cu1 = this.customerrepository.findByCustomerId(1L);
@@ -131,5 +131,5 @@ public class DatabaseLoader implements ApplicationRunner {
 
         /* end frame db loader */
 
-}
+    }
 }
