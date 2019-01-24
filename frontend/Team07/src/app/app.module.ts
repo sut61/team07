@@ -55,6 +55,7 @@ import { AppserviceService } from './Service/appservice.service';
 
 // BOW
 
+import { RegisterService } from './Service/register.service';
 import { RegisterComponent } from './register/register.component';
 import { RegisterShowComponent } from './register-show/register-show.component';
 import { LoginStaffComponent } from './login-staff/login-staff.component';
@@ -115,7 +116,7 @@ import { DrugStorageMenuComponent } from './drug-storage-menu/drug-storage-menu.
 
 
   ],
-  providers: [BillOfladingService,ProductService,AppserviceService],
+  providers: [BillOfladingService,ProductService,AppserviceService,RegisterService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
