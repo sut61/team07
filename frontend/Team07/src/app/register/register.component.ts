@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from "@angular/router";
+import { RegisterService } from '../Service/register.service';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-register',
@@ -8,47 +10,74 @@ import { Router } from "@angular/router";
 })
 
 export class RegisterComponent implements OnInit {
-  data: any = {}
-  Select: any = {
-    stateselect: ''
-  }
-  states: string[] = [
-    ' กรุงเทพมหานคร ', 'กระบี่  ', 'กาญจนบุรี ', 'กาฬสินธุ์ ', 'กำแพงเพชร', 'ขอนแก่น', ' จันทบุรี ', 'ฉะเชิงเทรา ',
-    'ชลบุรี', 'ชัยนาท ', 'ชัยภูมิ ', 'ชุมพร', 'เชียงราย', 'เชียงใหม่', 'ตรัง', 'ตราด', ' ตาก ',
-    'นครนายก ', 'นครปฐม ', 'นครพนม ', 'นครราชสีมา ', 'นครศรีธรรมราช ', 'นครสวรรค์ ', 'นนทบุรี ',
-    'นราธิวาส ', 'น่าน ', 'บึงกาฬ ', 'บุรีรัมย์ ', 'ปทุมธานี ', 'ประจวบคีรีขันธ์ ', 'ปราจีนบุรี ',
-    'ปัตตานี ', 'พระนครศรีอยุธยา ', ' พังงา', 'พัทลุง ', 'พิจิตร ', 'พิษณุโลก ', 'เพชรบุรี ',
-    'เพชรบูรณ์ ', 'แพร่ ', 'พะเยา ', 'ภูเก็ต ', 'มหาสารคาม ', 'มุกดาหาร ', 'แม่ฮ่องสอน ',
-    'ยะลา ', 'ยโสธร ', 'ร้อยเอ็ด ', 'ระนอง ', 'ระยอง ', 'ราชบุรี  ', ' ลพบุรี ',
-    'ลำปาง  ', 'ลำพูน  ', 'เลย ', 'ศรีสะเกษ ', 'สกลนคร ', 'สงขลา', 'สตูล ', 'สมุทรปราการ',
-    'สมุทรสงคราม ', 'สมุทรสาคร ', ' สระแก้ว ', 'สระบุรี ', 'สิงห์บุรี ', 'สุโขทัย ', 'สุพรรณบุรี', 'สุราษฎร์ธานี',
-    ' สุรินทร์  ', 'หนองคาย  ', 'หนองบัวลำภู ', 'อ่างทอง  ', 'อุดรธานี ', 'อุทัยธานี', 'อุตรดิตถ์ ', 'อุบลราชธานี ', 'อำนาจเจริญ'
-  ];
+  initials: Array<any>;
+  genders: Array<any>;
+  bloodType: Array<any>;
+
+  data: any = {
+    initial:'',
+    firstname:'',
+    gender:'',
+    bloodTypeSelect: '',
+    address:'',
+    phonenumber:'',
+    username:'',
+    password:''
+  };
+  customers: any = {
+    initialSelect: '',
+    genderSelect: '',
+    bloodTypeSelect: ''
+  };
 
 
-
-
-  selected = '';
   showdatainput() {
     console.log(this.data)
-    console.log(this.states)
 
 
   }
-  constructor(private router:Router) { }
+  constructor(private router:Router,private registerService: RegisterService, private httpClient: HttpClient) { }
 
   ngOnInit() {
+    this.registerService.getInitials().subscribe(data => {
+      this.initials = data;
+      console.log(this.initials);
+    });
+  
+    this.registerService.getGenders().subscribe(data => {
+      this.genders = data;
+      console.log(this.genders);
+    });
+    
+    this.registerService.getBloodTypes().subscribe(data => {
+    this.bloodType = data;
+    console.log(this.bloodType);
+     });
   }
 
   SubmitdData(){
     console.log(this.data)
     const data  = this.data
-    this.router.navigate(['/register-show',{Firstname:data.Firstname,last:data.last}])
+      this.router.navigate(['register-show',{
+        initial:       data.initial,
+        firstname:     data.firstname,
+        gender:        data.gender,
+        bloodType:     data.bloodType,
+        address:       data.address,
+        phonenumber:   data.phonenumber,
+        username:      data.username,
+        password:       data.password,
+        }])
+ 
   }
 
 
 
 }
+
+
+
+
 
 
 
