@@ -1,8 +1,39 @@
-<mat-card class="register-all">
-  <h2 align="center">
+    <h2 align="center">
     <img src="https://sv1.picz.in.th/images/2019/01/24/TS6xHy.png" width="200" height="200">
 
   </h2>
+    <h2 align="center">Welcome To YaMaii</h2>
+    <h2 align="center">ร้านยามั้ย ยินดีต้อนรับ</h2>
+    <h2 align="center">สมัครสมาขิก</h2>
+
+    <mat-card-actions align="center">
+
+        <a mat-stroked-button routerLink="/home"><mat-icon>home</mat-icon>ไปหน้าหลัก</a>
+  
+        <a mat-stroked-button routerLink="/">คลังยา</a>
+  
+        <a mat-stroked-button routerLink="/">จัดเก็บข้อมูลยา</a>
+  
+        <a mat-stroked-button routerLink="/">จัดการพนักงาน</a>
+  
+        <a mat-stroked-button routerLink="/">บันทึกการใช้ยา</a>
+        <a mat-stroked-button routerLink="/">สมัครสมาชิก</a>
+  
+         <!-- <a mat-stroked-button routerLink="/home">ติดต่อร้าน</a>
+  
+        <a mat-stroked-button routerLink="/bill">จัดการคลังสินค้า</a> -->
+  
+        <a mat-stroked-button routerLink="">ออกจากระบบ</a>
+  
+  
+      </mat-card-actions>
+
+      
+
+  
+
+    
+    <mat-card class="register-all">
 
   <form class="example-form">
 
@@ -11,8 +42,8 @@
             <td>
                 <mat-form-field>
                     <mat-select placeholder="Initial" [(ngModel)]="data.initial" [(ngModel)]="customers.initialSelect" name="initial" #initial>
-                      <mat-option *ngFor="let initial of initials" [value]="initial.initialName">
-                        {{initial.initialName}}
+                      <mat-option *ngFor="let initial of initials" [value]="initial.name">
+                        {{initial.name}}
                       </mat-option>
                     </mat-select>
                   </mat-form-field>
@@ -41,7 +72,7 @@
         <td>
           <mat-form-field>
               <mat-select placeholder="BloodType" [(ngModel)]="data.bloodType" [(ngModel)]="customers.bloodTypeSelect" name="bloodType" #bloodType>
-                <mat-option *ngFor="let bloodType of bloodTypes" [value]="bloodType.sex">
+                <mat-option *ngFor="let bloodType of bloodTypes" [value]="bloodType.name">
                   {{bloodType.name}}
                 </mat-option>
               </mat-select>
@@ -85,14 +116,7 @@
         </td>
       </tr>
 
-      <tr>
-        <td>
-          <mat-form-field class="example-first-last ">
-            <input matInput placeholder="Confirmpassword" type="confirmpassword" [(ngModel)]="data.confirmpassword" required name="Confirmpassword"
-              #Confirmpassword>
-          </mat-form-field>
-        </td>
-      </tr>
+      
     </table>
   </form>
 

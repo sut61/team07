@@ -12,7 +12,7 @@ import { HttpClient } from '@angular/common/http';
 export class RegisterComponent implements OnInit {
   initials: Array<any>;
   genders: Array<any>;
-  bloodType: Array<any>;
+  bloodTypes: Array<any>;
 
   data: any = {
     initial:'',
@@ -50,8 +50,8 @@ export class RegisterComponent implements OnInit {
     });
     
     this.registerService.getBloodTypes().subscribe(data => {
-    this.bloodType = data;
-    console.log(this.bloodType);
+    this.bloodTypes = data;
+    console.log(this.bloodTypes);
      });
   }
 
