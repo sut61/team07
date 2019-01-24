@@ -1,0 +1,42 @@
+
+<mat-card class="post-card">
+  <h1 style="text-align:center">
+      บันทึกเวลา เข้า-ออกงาน
+    </h1>
+<mat-card-content style="text-align:center">
+    <form>
+        <mat-form-field>
+          <mat-select placeholder="ชื่อพนักงาน" [(ngModel)]="detail.staff" [(ngModel)]="emp.staffSelect" name="staff" #staff>
+            <mat-option *ngFor="let staff of staffs" [value]="staff.staffName">
+              {{staff.staffName}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </form>
+  
+  <form>
+      <mat-form-field>
+        <mat-select placeholder="ตำแหน่ง" [(ngModel)]="detail.department" [(ngModel)]="emp.departmentSelect" name="department" #department>
+          <mat-option *ngFor="let department of departments" [value]="department.deptName">
+            {{department.deptName}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </form>
+    
+  <form>
+    <mat-form-field>
+      <mat-select placeholder="ช่วงเวลาเข้า-ออก งาน" [(ngModel)]="detail.worktime" [(ngModel)]="emp.worktimeSelect" name="worktime" #worktime>
+        <mat-option *ngFor="let worktime of worktimes" [value]="worktime.rangeTime">
+          {{worktime.rangeTime}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </form>
+</mat-card-content>
+
+<mat-card-actions style="text-align:right">
+  <a mat-raised-button  (click)="save()" color="warn" type="submit" routerLink="/show">Confirm</a>
+  <a mat-raised-button  (click)="cancel()" color="warn"routerLink=".">Cancel</a>
+</mat-card-actions>
+</mat-card>
