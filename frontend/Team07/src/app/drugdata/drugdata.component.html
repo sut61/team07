@@ -32,12 +32,15 @@
 <body>
   <div class="flex-container">
     <mat-tab-group>
-      <mat-tab label="นำยาเข้าคลัง">
+      <mat-tab label="บันทึกข้อมูลยา">
         <div class="flex-container">
           <form #datarec = "ngForm"  (ngSubmit) = "onClickSubmit(datarec.value)" align="center">
             <h2>กรอกรายละเอียดข้อมูลยา</h2>
               
-             
+             <mat-form-field>
+                <h4>ยี่ห้อ:</h4> 
+                  <input matInput name ="brandName" [(ngModel)]="datarec.brandName_id">
+              </mat-form-field><br>
 
             <mat-form-field>  
                 <h4>ประเภ:</h4> 
@@ -47,14 +50,20 @@
                   </mat-option>
                 </mat-select>
               </mat-form-field><br>
-              <mat-form-field>
-                <h4>ชื่อยา:</h4> 
-                  <input matInput name ="brandName" [(ngModel)]="datarec.brandName_id">
-              </mat-form-field><br>
           
-             
+              <mat-form-field>
+                <h4>ตัวยาสำคัญ:</h4> 
+                <mat-select name ="medicine" [(ngModel)]="datarec.medicines">
+                  <mat-option *ngFor="let medicine of medicines" [value]="medicine.value">
+                    {{medicine.viewValue}}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field><br>
             
-               
+                <mat-form-field>
+                  <h4>รายละเอียดอธิบายตัวยา:</h4> 
+                    <input matInput name ="detail"  [(ngModel)]="datarec.detial_id">
+                </mat-form-field><br>
                 
                 <pre align="center">
                   <button  mat-stroked-button color="primary">บันทึก</button>
@@ -63,9 +72,17 @@
         </div>
       </mat-tab>
          
-      <mat-tab label="รายชื่อยาที่มีในคลัง">
+      <mat-tab label="เพิ่มตัวยาสำคัญ">
         <div class="flex-container">
-       <h2>ยาจ๋ารอกูโค้ดแปป</h2>
+          <form #datarec2 = "ngForm"  (ngSubmit) = "AddMedicine(datarec2.value)" align="center">
+            <mat-form-field>
+              <h4>เพิ่มตัวยาสำคัญ:</h4> 
+              <input matInput name ="medicineName" [(ngModel)]="datarec2.medicineName">
+            </mat-form-field><br>
+              <pre style="text-align:center;">
+                <button   mat-stroked-button  color="primary">บันทึก</button>
+              </pre>
+           </form>
         </div>        
       </mat-tab>
     <!--   

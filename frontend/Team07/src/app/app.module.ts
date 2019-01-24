@@ -55,6 +55,9 @@ import { RegisterComponent } from './register/register.component';
 import { RegisterShowComponent } from './register-show/register-show.component';
 import { LoginStaffComponent } from './login-staff/login-staff.component';
 import { DrugStorageMenuComponent } from './drug-storage-menu/drug-storage-menu.component';
+
+
+import { DrugdataComponent } from './Drugdata/drugdata.component';
 //BOW
 
 
@@ -64,7 +67,8 @@ import { DrugStorageMenuComponent } from './drug-storage-menu/drug-storage-menu.
     RegisterComponent,
     RegisterShowComponent,
     LoginStaffComponent,
-    DrugStorageMenuComponent
+    DrugStorageMenuComponent,
+    DrugdataComponent
   ],
   imports: [
     RoutingMainModule,
