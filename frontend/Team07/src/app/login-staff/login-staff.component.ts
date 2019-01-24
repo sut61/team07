@@ -11,12 +11,13 @@ export class LoginStaffComponent implements OnInit {
   credentials = {username: '', password: ''};
   constructor(private app:AppserviceService ,private router: Router, private http: HttpClient) {}
 
-  LoginSubmit(){
+  loginstaff(){
+    console.log(this.credentials)
     if(this.credentials.username === '' ||this.credentials.password ==='' ){
   alert('please Enter usernaem or pass')
     }else{
-      this.app.authenticate(this.credentials,()=>{
-        if(this.app.authenticated){
+      this.app.authenticate2(this.credentials,()=>{
+        if(this.app.authenticated2){
           
          this.router.navigate(['drug-stroagemeng',{name:this.credentials.username,pass:this.credentials.password}]);
         }else{
