@@ -88,7 +88,51 @@ class CustomerController {
                 }
     
             }
-}
+           /* @PostMapping("/Customer/{initial}/{name}/{gender}/{blood}/{address}/{phonenumber}/{username}/{password}")
+            @CrossOrigin(origins = "http://localhost:4200")
+            public ResponseEntity<Map<String, Object>> userSumbit(@PathVariable("id") Long customerId,
+                        @PathVariable("initial") String initial, @PathVariable("name")  String name, 
+                        @PathVariable("gender") String gender, @PathVariable("blood") String blood, 
+                        @PathVariable("address") String address , @PathVariable("phonenumber") String phonenumber, 
+                        @PathVariable(" username")  String username, @PathVariable(" password")  String password) {
+
+                
+                try {
+
+                    Customer cus = new Customer(initial, name, gender,blood,address,phonenumber,username,password);
+
+                    this.customerRepository.save(cus);
+
+                    Map<String, Object> json = new HashMap<String, Object>();
+                    json.put("success", true);
+                    json.put("status", "save");
+        
+                    HttpHeaders headers = new HttpHeaders();
+                    headers.add("Content-Type", "application/json; charset=UTF-8");
+                    headers.add("X-Fsl-Location", "/");
+                    headers.add("X-Fsl-Response-Code", "302");
+                    return (new ResponseEntity<Map<String, Object>>(json, headers, HttpStatus.OK));
+              
+              
+                } catch (NullPointerException e) {
+                    Map<String, Object> json = new HashMap<String, Object>();
+                    System.out.println("Error Save CancelReservation");
+                    json.put("success", false);
+                    json.put("status", "save-false");
+        
+                    HttpHeaders headers = new HttpHeaders();
+                    headers.add("Content-Type", "application/json; charset=UTF-8");
+                    headers.add("X-Fsl-Location", "/");
+                    headers.add("X-Fsl-Response-Code", "500");
+                    return (new ResponseEntity<Map<String, Object>>(json, headers, HttpStatus.INTERNAL_SERVER_ERROR));
+        
+                }
+
+
+
+            }*/
+}          
+
 
 // @RequestBody Customer newCustomer,
 /*
