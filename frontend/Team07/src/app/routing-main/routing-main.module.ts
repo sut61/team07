@@ -12,6 +12,8 @@ import { DrugStorageMenuComponent } from '../drug-storage-menu/drug-storage-menu
 
 import { DrugdataComponent } from '../Drugdata/drugdata.component';
 import { from } from 'rxjs';
+import { PostComponent } from '../post/post.component';
+import { ShowComponent } from '../show/show.component';
 
 const routes: Routes = [
   //JOHN
@@ -28,6 +30,9 @@ const routes: Routes = [
   { path: 'register-show', component: RegisterShowComponent },
   
   { path: 'drug-data', component: DrugdataComponent },
+
+  { path: 'post', component: PostComponent },
+  { path: 'show', component: ShowComponent },
 ];
 
 @NgModule({
