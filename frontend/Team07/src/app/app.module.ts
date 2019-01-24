@@ -45,11 +45,6 @@ import { HomeComponent } from './home/home.component';
 //PEAK
 
 //John
-import { BillWarehouseComponent } from './bill-warehouse/bill-warehouse.component';
-import { SelectWarehouseComponent } from './select-warehouse/select-warehouse.component';
-import { ProductWarehouseComponent } from './product-warehouse/product-warehouse.component';
-import { BillOfladingService } from './Service/bill-oflading.service';
-import { ProductService } from './Service/product.service';
 import { AppserviceService } from './Service/appservice.service';
 
 
@@ -66,7 +61,6 @@ import { DrugStorageMenuComponent } from './drug-storage-menu/drug-storage-menu.
 @NgModule({
   declarations: [
     AppComponent,LoginUserComponent,HomeComponent,
-    BillWarehouseComponent,ProductWarehouseComponent,SelectWarehouseComponent,
     RegisterComponent,
     RegisterShowComponent,
     LoginStaffComponent,
@@ -116,7 +110,7 @@ import { DrugStorageMenuComponent } from './drug-storage-menu/drug-storage-menu.
 
 
   ],
-  providers: [BillOfladingService,ProductService,AppserviceService,RegisterService],
+  providers: [AppserviceService,RegisterService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
