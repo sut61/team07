@@ -98,7 +98,7 @@ class CustomerController {
 
         try {
 
-            Initial I = this.initialRepository.findByInitialId(initalId);
+            Initial I = this.initialRepository.findByInitialId(initalId); //Select
             Gender G = this.genderRepository.findByGenderId(genderId);
             BloodType B = this.bloodTypeRepository.findByBloodTypeId(bloodTypeId);
 
@@ -121,7 +121,7 @@ class CustomerController {
             json.put("status", "save-false");
 
             HttpHeaders headers = new HttpHeaders();
-            headers.add("Content-Type", "application/json; charset=UTF-8");
+            headers.add("Content-Type", "application/json; charset=UTF-8"); 
             headers.add("X-Fsl-Location", "/");
             headers.add("X-Fsl-Response-Code", "500");
             return (new ResponseEntity<Map<String, Object>>(json, headers, HttpStatus.INTERNAL_SERVER_ERROR));
