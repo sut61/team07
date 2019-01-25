@@ -16,6 +16,8 @@ export class DrugStorageMenuComponent implements OnInit {
   categoryselect ='';
 
   data :any ={}
+  
+  datas :any ={}
   constructor(private route:ActivatedRoute,private router:Router,private categoryService: CategoryService, private httpClient: HttpClient,private inputdrugstroageService : InputdrugstroageService) { }
 
   showdata(){
@@ -43,7 +45,7 @@ export class DrugStorageMenuComponent implements OnInit {
 
   ngOnInit() {
     this.route.params.subscribe(prams=>{
-      this.data = prams
+      this.datas = prams
       console.log(prams)
     })
     this.categoryService.getCategory().subscribe(data=>{

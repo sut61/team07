@@ -121,11 +121,7 @@ import { CategoryService } from './Service/category.service';
 
 
   ],
-<<<<<<< HEAD
-  providers: [AppserviceService,RegisterService,CategoryService,PostService],
-=======
-  providers: [AppserviceService,RegisterService,CategoryService,InputdrugstroageService],
->>>>>>> issue-55
+  providers: [AppserviceService,RegisterService,CategoryService,InputdrugstroageService,PostService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
