@@ -48,6 +48,7 @@ import { HomeComponent } from './home/home.component';
 import { AppserviceService } from './Service/appservice.service';
 
 
+import { InputdrugstroageService } from './Service/inputdrugstroage.service';
 // BOW
 
 import { RegisterService } from './Service/register.service';
@@ -116,7 +117,7 @@ import { CategoryService } from './Service/category.service';
 
 
   ],
-  providers: [AppserviceService,RegisterService,CategoryService],
+  providers: [AppserviceService,RegisterService,CategoryService,InputdrugstroageService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

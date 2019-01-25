@@ -19,14 +19,14 @@ export class LoginStaffComponent implements OnInit {
       this.app.authenticate2(this.credentials,()=>{
         if(this.app.authenticated2){
           
-         this.router.navigate(['drug-stroagemeng',{name:this.credentials.username,pass:this.credentials.password}]);
+         this.router.navigate(['drug-stroagemenu',{name:this.credentials.username,pass:this.credentials.password}]);
         }else{
          //  alert('not user')
         alert('No User ')
         }
       })
     }
-    
+     
    
   }
   ngOnInit() {
