@@ -36,7 +36,7 @@ public class ShowHrs {
     private ShowHrs() {
     }
 
-    public ShowHrs(Department department, Worktime worktime, Staff staff) {
+    public ShowHrs(Staff staff ,Department department, Worktime worktime) {
         this.department = department;
         this.worktime = worktime;
         this.staff = staff;

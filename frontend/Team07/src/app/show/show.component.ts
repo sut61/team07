@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute} from "@angular/router";
-import { HttpClient} from '@angular/common/http';
+
 @Component({
   selector: 'app-show',
   templateUrl: './show.component.html',
@@ -9,13 +9,10 @@ import { HttpClient} from '@angular/common/http';
 export class ShowComponent implements OnInit {
 
   data:any={}
-
-  constructor(private route:ActivatedRoute, private httpClient: HttpClient) { }
-  SumbitRegister(){
-    alert('register !!!')
-  }
+  constructor(private route:ActivatedRoute) { }
 
   ngOnInit() {
+
     this.route.params.subscribe(prams=>{
       this.data = prams
       console.log(prams)

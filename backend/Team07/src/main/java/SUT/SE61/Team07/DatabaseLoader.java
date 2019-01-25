@@ -110,7 +110,7 @@ public class DatabaseLoader implements ApplicationRunner {
         this.worktimerepository.save(new Worktime("9:00-17:00", 8));
         this.worktimerepository.save(new Worktime("9:00-22:00", 13));
         Worktime W1 = this.worktimerepository.findBytimeId(1L);
-        this.showHrsrepository.save(new ShowHrs(De1, W1, S1));
+        this.showHrsrepository.save(new ShowHrs(  S1,De1,W1));
         /* end pam dbloader */
 
         /* gan db loader */
