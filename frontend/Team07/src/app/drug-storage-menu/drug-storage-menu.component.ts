@@ -16,7 +16,6 @@ export class DrugStorageMenuComponent implements OnInit {
   categoryselect ='';
 
   data :any ={}
-  
   datas :any ={}
   constructor(private route:ActivatedRoute,private router:Router,private categoryService: CategoryService, private httpClient: HttpClient,private inputdrugstroageService : InputdrugstroageService) { }
 

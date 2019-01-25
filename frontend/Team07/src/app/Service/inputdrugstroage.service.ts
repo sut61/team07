@@ -16,8 +16,7 @@ export class InputdrugstroageService {
     console.log(this.API + '/Drug-insert/' +  drugId +'/name/' + namedrug)
     return this.http.post(this.API + '/Drug-insert/' +  drugId +'/name/' + namedrug, {});
   }
-
-
+  
   sumbittycategory(categoryId: number, categoryname: string): Observable<any> {
     console.log('categoryname = ')
     console.log(categoryname)

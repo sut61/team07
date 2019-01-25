@@ -1,7 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { DrugdataComponent } from './drugdata.component';
-
+import { HttpClient } from '@angular/common/http';
 describe('DrugdataComponent', () => {
   let component: DrugdataComponent;
   let fixture: ComponentFixture<DrugdataComponent>;
