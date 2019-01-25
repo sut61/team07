@@ -55,7 +55,7 @@ export class RegisterComponent implements OnInit {
      });
   }
 
-  SubmitdData(){
+  SubmitdData(){//Data
     console.log(this.data)
     const data  = this.data
       this.router.navigate(['register-show',{
