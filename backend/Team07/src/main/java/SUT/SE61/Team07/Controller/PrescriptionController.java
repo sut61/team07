@@ -41,7 +41,7 @@ class PrescriptionController {
         return prescriptionrepository.findAll().stream().collect(Collectors.toList());
     }
 
-    @PostMapping("/Prescription-insert/{id}/nameprescription/{nameprescription}")
+    @PostMapping("/Prescription-insert/id/{id}/nameprescription/{nameprescription}")
     @CrossOrigin(origins = "http://localhost:4200")
     public ResponseEntity<Map<String, Object>> Drugsumbit(@PathVariable("id") Long id,
             @PathVariable("nameprescription") String nameprescription) {
