@@ -100,7 +100,7 @@ class CustomerController {
 
             Initial I = this.initialRepository.findByInitialId(initalId); //Select
             Gender G = this.genderRepository.findByGenderId(genderId); //Select
-            BloodType B = this.bloodTypeRepository.findByBloodTypeId(bloodTypeId);
+            BloodType B = this.bloodTypeRepository.findByBloodTypeId(bloodTypeId);//Select
 
             this.customerRepository.save(new Customer(I, names, G, B, address, phonenumber, username, password));
 
