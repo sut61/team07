@@ -64,6 +64,7 @@ import { DrugdataComponent } from './Drugdata/drugdata.component';
 import { MedicineService } from './Service/medicine.service';
 
 import { CategoryService } from './Service/category.service';
+import { RedcordUseComponent } from './redcord-use/redcord-use.component';
 //BOW
 
 
@@ -77,6 +78,7 @@ import { CategoryService } from './Service/category.service';
     DrugdataComponent,
     PostComponent,
     ShowComponent,
+    RedcordUseComponent,
   ],
   imports: [
     RoutingMainModule,
