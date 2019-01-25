@@ -61,6 +61,7 @@ import { ShowComponent } from './show/show.component';
 import { PostService } from './Service/post.service';
 
 import { DrugdataComponent } from './Drugdata/drugdata.component';
+import { MedicineService } from './Service/medicine.service';
 
 import { CategoryService } from './Service/category.service';
 //BOW
@@ -121,7 +122,7 @@ import { CategoryService } from './Service/category.service';
 
 
   ],
-  providers: [AppserviceService,RegisterService,CategoryService,InputdrugstroageService,PostService],
+providers: [AppserviceService,RegisterService,MedicineService,CategoryService,InputdrugstroageService,PostService,],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

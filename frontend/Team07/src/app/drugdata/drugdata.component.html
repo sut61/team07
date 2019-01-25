@@ -34,39 +34,39 @@
     <mat-tab-group>
       <mat-tab label="บันทึกข้อมูลยา">
         <div class="flex-container">
-          <form #datarec = "ngForm"  (ngSubmit) = "onClickSubmit(datarec.value)" align="center">
+          <form align="center">
             <h2>กรอกรายละเอียดข้อมูลยา</h2>
               
-             <mat-form-field>
-                <h4>ยี่ห้อ:</h4> 
-                  <input matInput name ="brandName" [(ngModel)]="datarec.brandName_id">
-              </mat-form-field><br>
+            <mat-form-field>
+              <h4>ชื่อตัวยา:</h4>
+              <input matInput placeholder="" [(ngModel)]="data.namedrug" required name="namedrug" #namedrug>
+            </mat-form-field><br>
 
-            <mat-form-field>  
-                <h4>ประเภ:</h4> 
-                <mat-select name ="category" [(ngModel)]="datarec.categorys">
-                  <mat-option *ngFor="let category of categorys" [value]="category.value">
-                    {{category.viewValue}}
+              <mat-form-field>
+                <h4>ประเภทยา</h4>
+                <mat-select [(ngModel)]="categoryselect"name="Dran">
+                  <mat-option *ngFor="let titlecat of category" [value]="titlecat.categoryname">
+                    {{titlecat.categoryname}}
                   </mat-option>
                 </mat-select>
               </mat-form-field><br>
           
               <mat-form-field>
-                <h4>ตัวยาสำคัญ:</h4> 
-                <mat-select name ="medicine" [(ngModel)]="datarec.medicines">
-                  <mat-option *ngFor="let medicine of medicines" [value]="medicine.value">
-                    {{medicine.viewValue}}
+                <h4>ตัวยาสำคัญ</h4>
+                <mat-select [(ngModel)]="medicines"name="Drans">
+                  <mat-option *ngFor="let titlemedicine of medicine" [value]="titlemedicine.name">
+                    {{titlemedicine.name}}
                   </mat-option>
                 </mat-select>
               </mat-form-field><br>
             
-                <mat-form-field>
-                  <h4>รายละเอียดอธิบายตัวยา:</h4> 
-                    <input matInput name ="detail"  [(ngModel)]="datarec.detial_id">
-                </mat-form-field><br>
+              <mat-form-field>
+                <h4>อธิบายรายละเอียดตัวยา:</h4>
+                <input matInput placeholder="" [(ngModel)]="data.nameexplantion" required name="nameexplantion" #nameexplantion>
+              </mat-form-field><br>
                 
                 <pre align="center">
-                  <button  mat-stroked-button color="primary">บันทึก</button>
+                  <button mat-raised-button color="primary"  (click)="showdata()">บันทึก</button>
                 </pre>
           </form>
         </div>
@@ -76,11 +76,11 @@
         <div class="flex-container">
           <form #datarec2 = "ngForm"  (ngSubmit) = "AddMedicine(datarec2.value)" align="center">
             <mat-form-field>
-              <h4>เพิ่มตัวยาสำคัญ:</h4> 
+              <h4>เพิ่มชนิดตัวยาสำคัญ:</h4> 
               <input matInput name ="medicineName" [(ngModel)]="datarec2.medicineName">
             </mat-form-field><br>
               <pre style="text-align:center;">
-                <button   mat-stroked-button  color="primary">บันทึก</button>
+                <button mat-raised-button color="primary"  (click)="showdata()">บันทึก</button>
               </pre>
            </form>
         </div>        

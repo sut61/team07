@@ -1,6 +1,5 @@
 import { TestBed } from '@angular/core/testing';
-InputdrugstroageService
-
+import { InputdrugstroageService } from './inputdrugstroage.service';
 describe('InputdrugstroageService', () => {
   beforeEach(() => TestBed.configureTestingModule({}));
 
