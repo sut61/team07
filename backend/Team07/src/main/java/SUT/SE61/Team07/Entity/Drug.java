@@ -15,7 +15,7 @@ public class Drug {
     @SequenceGenerator(name = "drug_seq", sequenceName = "drug_seq")
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "drug_seq")
     private  Long drugId;
-    private @NonNull String name
+    private @NonNull String name;
     
    private Drug(){}
    public Drug(String name){
