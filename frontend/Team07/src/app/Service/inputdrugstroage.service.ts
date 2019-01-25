@@ -28,7 +28,7 @@ export class InputdrugstroageService {
   summbituyPrescription(preId: number, nameprescription: string): Observable<any> {
     console.log('nameprescription = ')
     console.log(nameprescription)
-    console.log(this.API + '/Prescription-insert/' +'/id/'+  preId +'/nameprescription/' + nameprescription)
+    console.log(this.API + '/Prescription-insert/' +  preId +'/nameprescription/' + nameprescription)
     return this.http.post(this.API + '/Prescription-insert/' +  preId +'/nameprescription/' + nameprescription, {});
   }
 }

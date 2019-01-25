@@ -14,7 +14,7 @@ export class PostComponent implements OnInit {
   departments: Array<any>;
   worktimes: Array<any>;
 
-  detail: any = {
+  data: any = {
     staff:'',
     department:'',
     worktime:''
@@ -27,7 +27,7 @@ export class PostComponent implements OnInit {
 
 
   showdatainput() {
-    console.log(this.detail)
+    console.log(this.data)
   }
   constructor(private router:Router,private postService: PostService, private httpClient: HttpClient) { }
 
@@ -49,8 +49,8 @@ export class PostComponent implements OnInit {
   }
 
   SubmitdData(){
-    console.log(this.detail)
-    const data  = this.detail
+    console.log(this.data)
+    const data  = this.data
       this.router.navigate(['show',{
         staff:        data.staff,
         department:     data.department,
@@ -60,7 +60,7 @@ export class PostComponent implements OnInit {
   }
 
   save() {
-    this.httpClient.post('http://localhost:8080/Customer/' + this.detail.staff + '/' + this.detail.department + '/' + this.detail.worktime  ,this.detail)
+    this.httpClient.post('http://localhost:8080/Customer/' + this.data.staff + '/' + this.data.department + '/' + this.data.worktime  ,this.data)
     .subscribe(
       data =>   {console.log('PUT Request is successful', data);},
       error =>  {console.log('Error', error);}

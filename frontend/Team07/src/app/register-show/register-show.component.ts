@@ -1,8 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute} from "@angular/router";
-
-import { RegisterService } from '../Service/register.service';
-
 @Component({
   selector: 'app-register-show',
   templateUrl: './register-show.component.html',
@@ -11,12 +8,8 @@ import { RegisterService } from '../Service/register.service';
 export class RegisterShowComponent implements OnInit {
 
   data:any={}
-  constructor(private route:ActivatedRoute,private  app :RegisterService) { }
-save(){
-  this.app.Customersumbit(Number(1),Number(1),Number(1),String("jjj"),String("hhh"),String("ggg"),String("ff"),String("fff")).subscribe(data=>{
-    console.log(this.data)
-  })
-}
+  constructor(private route:ActivatedRoute) { }
+
   ngOnInit() {
 
     this.route.params.subscribe(prams=>{
