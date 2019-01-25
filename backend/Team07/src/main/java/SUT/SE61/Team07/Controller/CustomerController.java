@@ -1,8 +1,5 @@
 package SUT.SE61.Team07.Controller;
 
-import SUT.SE61.Team07.Entity.*;
-import SUT.SE61.Team07.Repository.*;
-
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -19,6 +16,8 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
+import SUT.SE61.Team07.Repository.*;
+import SUT.SE61.Team07.Entity.*;
 
 @CrossOrigin(origins = "http://localhost:4200")
 @RestController
@@ -62,77 +61,75 @@ class CustomerController {
     @CrossOrigin(origins = "http://localhost:4200")
     public ResponseEntity<Map<String, Object>> customercheck(@PathVariable("customeruserID") String customeruserID,
             @PathVariable("customerPassword") String customerPassword) {
-                Customer cusUID = this.customerRepository.findBycustomerUserID(customeruserID);
-                Customer cuspasswd = this.customerRepository.findBycustomerPassword(customerPassword);
+        Customer cusUID = this.customerRepository.findBycustomerUserID(customeruserID);
+        Customer cuspasswd = this.customerRepository.findBycustomerPassword(customerPassword);
 
-                if((cusUID != null ) && (cuspasswd != null)){
-                    Map<String, Object> json = new HashMap<String, Object>();
-                    json.put("success", true);
-                    json.put("status", "found");
-                    json.put("user",cusUID);
-                    HttpHeaders headers = new HttpHeaders();
-                    headers.add("Content-Type", "application/json; charset=UTF-8");
-                    headers.add("X-Fsl-Location", "/");
-                    headers.add("X-Fsl-Response-Code", "302");
-                    return (new ResponseEntity<Map<String, Object>>(json, headers, HttpStatus.OK));
-                }else{
-                    Map<String, Object> json = new HashMap<String, Object>();
-                    json.put("success", false);
-                    json.put("status", "not found");
-        
-                    HttpHeaders headers = new HttpHeaders();
-                    headers.add("Content-Type", "application/json; charset=UTF-8");
-                    headers.add("X-Fsl-Location", "/");
-                    headers.add("X-Fsl-Response-Code", "404");
-                    return (new ResponseEntity<Map<String, Object>>(json, headers, HttpStatus.OK));
-                }
-    
-            }
-           /* @PostMapping("/Customer/{initial}/{name}/{gender}/{blood}/{address}/{phonenumber}/{username}/{password}")
-            @CrossOrigin(origins = "http://localhost:4200")
-            public ResponseEntity<Map<String, Object>> userSumbit(@PathVariable("id") Long customerId,
-                        @PathVariable("initial") String initial, @PathVariable("name")  String name, 
-                        @PathVariable("gender") String gender, @PathVariable("blood") String blood, 
-                        @PathVariable("address") String address , @PathVariable("phonenumber") String phonenumber, 
-                        @PathVariable(" username")  String username, @PathVariable(" password")  String password) {
+        if ((cusUID != null) && (cuspasswd != null)) {
+            Map<String, Object> json = new HashMap<String, Object>();
+            json.put("success", true);
+            json.put("status", "found");
+            json.put("user", cusUID);
+            HttpHeaders headers = new HttpHeaders();
+            headers.add("Content-Type", "application/json; charset=UTF-8");
+            headers.add("X-Fsl-Location", "/");
+            headers.add("X-Fsl-Response-Code", "302");
+            return (new ResponseEntity<Map<String, Object>>(json, headers, HttpStatus.OK));
+        } else {
+            Map<String, Object> json = new HashMap<String, Object>();
+            json.put("success", false);
+            json.put("status", "not found");
 
-                
-                try {
+            HttpHeaders headers = new HttpHeaders();
+            headers.add("Content-Type", "application/json; charset=UTF-8");
+            headers.add("X-Fsl-Location", "/");
+            headers.add("X-Fsl-Response-Code", "404");
+            return (new ResponseEntity<Map<String, Object>>(json, headers, HttpStatus.OK));
+        }
 
-                    Customer cus = new Customer(initial, name, gender,blood,address,phonenumber,username,password);
+    }
 
-                    this.customerRepository.save(cus);
+    @CrossOrigin(origins = "http://localhost:4200")
+    @PostMapping("/Customer-insert/initalId/{initalId}/genderId/{genderId}/bloodTypeId/{bloodTypeId}/name/{name}/address/{address}/phonenumber/{phonenumber}/username/{username}/password/{password}")
+    public ResponseEntity<Map<String, Object>> Customersumbit(@PathVariable("initalId") Long initalId,
+            @PathVariable("genderId") Long genderId, @PathVariable("bloodTypeId") Long bloodTypeId,
+            @PathVariable("names") String names, @PathVariable("address") String address,
+            @PathVariable("phonenumber") String phonenumber, @PathVariable(" username") String username,
+            @PathVariable(" password") String password) {
 
-                    Map<String, Object> json = new HashMap<String, Object>();
-                    json.put("success", true);
-                    json.put("status", "save");
-        
-                    HttpHeaders headers = new HttpHeaders();
-                    headers.add("Content-Type", "application/json; charset=UTF-8");
-                    headers.add("X-Fsl-Location", "/");
-                    headers.add("X-Fsl-Response-Code", "302");
-                    return (new ResponseEntity<Map<String, Object>>(json, headers, HttpStatus.OK));
-              
-              
-                } catch (NullPointerException e) {
-                    Map<String, Object> json = new HashMap<String, Object>();
-                    System.out.println("Error Save CancelReservation");
-                    json.put("success", false);
-                    json.put("status", "save-false");
-        
-                    HttpHeaders headers = new HttpHeaders();
-                    headers.add("Content-Type", "application/json; charset=UTF-8");
-                    headers.add("X-Fsl-Location", "/");
-                    headers.add("X-Fsl-Response-Code", "500");
-                    return (new ResponseEntity<Map<String, Object>>(json, headers, HttpStatus.INTERNAL_SERVER_ERROR));
-        
-                }
+        try {
 
+            Initial I = this.initialRepository.findByInitialId(initalId);
+            Gender G = this.genderRepository.findByGenderId(genderId);
+            BloodType B = this.bloodTypeRepository.findByBloodTypeId(bloodTypeId);
 
+            this.customerRepository.save(new Customer(I, names, G, B, address, phonenumber, username, password));
 
-            }*/
-}          
+            Map<String, Object> json = new HashMap<String, Object>();
+            json.put("success", true);
+            json.put("status", "save");
 
+            HttpHeaders headers = new HttpHeaders();
+            headers.add("Content-Type", "application/json; charset=UTF-8");
+            headers.add("X-Fsl-Location", "/");
+            headers.add("X-Fsl-Response-Code", "302");
+            return (new ResponseEntity<Map<String, Object>>(json, headers, HttpStatus.OK));
+
+        } catch (NullPointerException e) {
+            Map<String, Object> json = new HashMap<String, Object>();
+            System.out.println("Error Save CancelReservation");
+            json.put("success", false);
+            json.put("status", "save-false");
+
+            HttpHeaders headers = new HttpHeaders();
+            headers.add("Content-Type", "application/json; charset=UTF-8");
+            headers.add("X-Fsl-Location", "/");
+            headers.add("X-Fsl-Response-Code", "500");
+            return (new ResponseEntity<Map<String, Object>>(json, headers, HttpStatus.INTERNAL_SERVER_ERROR));
+
+        }
+
+    }
+}
 
 // @RequestBody Customer newCustomer,
 /*
