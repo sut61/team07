@@ -15,11 +15,13 @@ import { from } from 'rxjs';
 import { PostComponent } from '../post/post.component';
 import { ShowComponent } from '../show/show.component';
 
+import { RedcordUseComponent } from '../redcord-use/redcord-use.component';
+
 const routes: Routes = [
   //JOHN
   { path: 'login-staff', component: LoginStaffComponent },
   { path: 'drug-stroagemenu', component: DrugStorageMenuComponent },
-
+  { path: 'redcord-use', component: RedcordUseComponent },
   //PECK
 
   { path: 'home', component: HomeComponent },
@@ -28,11 +30,13 @@ const routes: Routes = [
 
   { path: 'register', component: RegisterComponent },
   { path: 'register-show', component: RegisterShowComponent },
-  
+
   { path: 'drug-data', component: DrugdataComponent },
 
   { path: 'post', component: PostComponent },
   { path: 'show', component: ShowComponent },
+
+
 ];
 
 @NgModule({
