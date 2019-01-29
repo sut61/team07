@@ -44,7 +44,17 @@ class PrescriptionController {
             @PathVariable("staffId") Long staffId) {
         try {
 
-            Drug D = this.drugrepository.findByDrugId(DrugId);
+    if(nameprescription.length() > 10){
+        Map<String, Object> json = new HashMap<String, Object>();
+            HttpHeaders headers = new HttpHeaders();
+            json.put("success", false);
+            json.put("status", "save-false");
+            headers.add("Content-Type", "application/json; charset=UTF-8");
+            headers.add("X-Fsl-Location", "/");
+            headers.add("X-Fsl-Response-Code", "302");
+            return (new ResponseEntity<Map<String, Object>>(json, headers, HttpStatus.OK));
+    }else{
+             Drug D = this.drugrepository.findByDrugId(DrugId);
             Staff S = this.staffrepository.findByStaffId(staffId);
             Category C = this.categoryrepository.findByCategoryId(CategoryId);
 
@@ -59,6 +69,8 @@ class PrescriptionController {
             headers.add("X-Fsl-Location", "/");
             headers.add("X-Fsl-Response-Code", "302");
             return (new ResponseEntity<Map<String, Object>>(json, headers, HttpStatus.OK));
+    }
+         
         } catch (NullPointerException e) {
             Map<String, Object> json = new HashMap<String, Object>();
             System.out.println("Error Save CancelReservation");
