@@ -31,7 +31,6 @@ class GenderController {
 
 
     @GetMapping("/Gender/{id}")
-    @CrossOrigin(origins = "http://localhost:4200")
     public Gender Itemfind(@PathVariable("id") Long id) {
         return genderrepository.findByGenderId(id);
     }

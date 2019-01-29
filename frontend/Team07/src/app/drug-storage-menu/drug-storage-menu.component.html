@@ -7,19 +7,18 @@
 
     <mat-card-actions>
 
-      <a mat-stroked-button routerLink="/home">
-        <mat-icon>home</mat-icon>ไปหน้าหลัก
-      </a>
+      <a mat-stroked-button routerLink="/home"><mat-icon>home</mat-icon>ไปหน้าหลัก</a>
+      <a mat-stroked-button routerLink="/register">สมัครสมาชิก</a>
 
-      <a mat-stroked-button routerLink="/">คลังยา</a>
+      <a mat-stroked-button routerLink="/login-staff">คลังยา</a>
 
-      <a mat-stroked-button routerLink="/">จัดเก็บข้อมูลยา</a>
+      <a mat-stroked-button routerLink="/drug-data">จัดเก็บข้อมูลยา</a>
 
-      <a mat-stroked-button routerLink="/">จัดการพนักงาน</a>
+      <a mat-stroked-button routerLink="/post">จัดการพนักงาน</a>
 
-      <a mat-stroked-button routerLink="/">บันทึกการใช้ยา</a>
+      <a mat-stroked-button routerLink="/redcord-use">บันทึกการใช้ยา</a>
 
-      <!-- <a mat-stroked-button routerLink="/home">ติดต่อร้าน</a>
+       <!-- <a mat-stroked-button routerLink="/home">ติดต่อร้าน</a>
 
       <a mat-stroked-button routerLink="/bill">จัดการคลังสินค้า</a> -->
 
@@ -35,27 +34,39 @@
 <body>
   <div class="flex-container">
     <mat-tab-group>
-      <mat-tab label="นำยาเข้าคลัง">
+      <mat-tab label="ใบสั่งยา">
         <div class="flex-container">
-          <form align = "center">
-            <h2>กรอกรายละเอียดข้อมูลยา</h2>
-
-
-
+          <form align="center">
+            <h2>กรอกรายละเอียดใบสั่งยา</h2>
+            <br>
             <mat-form-field>
-              <h4>ประเภท</h4>
-              <mat-select [(ngModel)]="categoryselect"name="Dran">
-                <mat-option *ngFor="let titlecat of category" [value]="titlecat.categoryname">
+              <h4>ชื่อใบสั่งยา:</h4>
+              <input matInput placeholder="" [(ngModel)]="data.namepre" required name="namepre" #namepre>
+            </mat-form-field><br>
+
+
+
+
+
+            <br>
+            <mat-form-field>
+              <h4>เลือกยาที่ต้องการ</h4>
+              <mat-select [(ngModel)]="drugselect" name="Dranss">
+                <mat-option *ngFor="let titledrug of drug" [value]="titledrug.drugId">
+                  {{titledrug.name}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+            <br>
+            <mat-form-field>
+              <h4>ประเภทของยา</h4>
+              <mat-select [(ngModel)]="categoryselect" name="Dran">
+                <mat-option *ngFor="let titlecat of category" [value]="titlecat.categoryId">
                   {{titlecat.categoryname}}
                 </mat-option>
               </mat-select>
             </mat-form-field>
-             <br>
             <br>
-            <mat-form-field>
-              <h4>ชื่อยา:</h4>
-              <input matInput placeholder="" [(ngModel)]="data.namedrug" required name="namedrug" #namedrug>
-            </mat-form-field><br>
 
 
 
@@ -70,8 +81,46 @@
 
       <mat-tab label="รายชื่อยาที่มีในคลัง">
         <div class="flex-container">
-          <h2>รอทำ </h2>
         </div>
+        <div class="mat-elevation-z8">
+          <table mat-table [dataSource]="prescription">
+
+            <!-- Position Column -->
+            <ng-container matColumnDef="position">
+              <th mat-header-cell *matHeaderCellDef> No. </th>
+              <td mat-cell *matCellDef="let element"> {{element.prescriptionId}} </td>
+            </ng-container>
+
+            <!-- Name Column -->
+            <ng-container matColumnDef="name">
+              <th mat-header-cell *matHeaderCellDef> Name </th>
+              <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+            </ng-container>
+
+            <!-- Weight Column -->
+            <ng-container matColumnDef="drugname">
+              <th mat-header-cell *matHeaderCellDef> drugname </th>
+              <td mat-cell *matCellDef="let element"> {{element.drug.name}} </td>
+            </ng-container>
+
+            <!-- Symbol Column -->
+            <ng-container matColumnDef="category">
+              <th mat-header-cell *matHeaderCellDef> category </th>
+              <td mat-cell *matCellDef="let element"> {{element.category.categoryname}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="staff">
+              <th mat-header-cell *matHeaderCellDef> staff </th>
+              <td mat-cell *matCellDef="let element"> {{element.staff.staffName}} </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+          </table>
+
+
+        </div>
+
       </mat-tab>
       <!--   
       <mat-tab label="ดูข้อมูลยา"> 

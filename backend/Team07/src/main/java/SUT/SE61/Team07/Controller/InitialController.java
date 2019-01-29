@@ -14,10 +14,11 @@ import java.util.stream.Collectors;
 
 @RestController
 @CrossOrigin(origins = "http://localhost:4200")
+
 class InitialController {
 
-    @Autowired
-    private final InitialRepository initialRepository;
+  
+    private  InitialRepository initialRepository;
 
     public InitialController(InitialRepository initialRepository) {
         this.initialRepository = initialRepository;

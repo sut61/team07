@@ -17,19 +17,20 @@ import SUT.SE61.Team07.Entity.*;
 
 
 @RestController
+@CrossOrigin(origins = "http://localhost:4200")
 class CategoryController {
     private CategoryRepository categoryRepository;
 
     public CategoryController(CategoryRepository categoryRepository) {
         this.categoryRepository = categoryRepository;
     }
-    @CrossOrigin(origins = "http://localhost:4200")
+
     @GetMapping("/Stroage-Category")
     public Collection<Category> types() {
         return categoryRepository.findAll().stream().collect(Collectors.toList());
     }
     
-    @CrossOrigin(origins = "http://localhost:4200")
+
     @PostMapping("/Category-insert/{id}/categoryname/{categoryname}")
      public ResponseEntity<Map<String, Object>> Categorysumbit(@PathVariable("id") Long id,
             @PathVariable("categoryname") String categoryname) {

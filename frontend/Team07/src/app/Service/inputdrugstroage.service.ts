@@ -10,24 +10,19 @@ export class InputdrugstroageService {
 
   constructor(private http: HttpClient) { }
 
-  sumbittyDrug(drugId: number, namedrug: string): Observable<any> {
-    console.log('namedrug = ')
-    console.log(namedrug)
-    console.log(this.API + '/Drug-insert/' +  drugId +'/name/' + namedrug)
-    return this.http.post(this.API + '/Drug-insert/' +  drugId +'/name/' + namedrug, {});
-  }
-  
-  sumbittycategory(categoryId: number, categoryname: string): Observable<any> {
-    console.log('categoryname = ')
-    console.log(categoryname)
-    console.log(this.API + '/Category-insert/' +  categoryId +'/name/' + categoryname)
-    return this.http.post(this.API + '/Category-insert/' +  categoryId +'/categoryname/' + categoryname, {});
-  }
+  // sumbittyDrug(drugId: number, namedrug: string): Observable<any> {
+  //   console.log('namedrug = ')
+  //   console.log(namedrug)
+  //   console.log(this.API + '/Drug-insert/' +  drugId +'/name/' + namedrug)
+  //   return this.http.post(this.API + '/Drug-insert/' +  drugId +'/name/' + namedrug, {});
+  // }
 
-  summbituyPrescription(preId: number, nameprescription: string): Observable<any> {
-    console.log('nameprescription = ')
-    console.log(nameprescription)
-    console.log(this.API + '/Prescription-insert/' +  preId +'/nameprescription/' + nameprescription)
-    return this.http.post(this.API + '/Prescription-insert/' +  preId +'/nameprescription/' + nameprescription, {});
+
+
+  summbituyPrescription(nameprescription: string, categoryId: number, DrugId: number, staffId: number): Observable<any> {
+
+    console.log(this.API + '/Prescription-insert/nameprescription/' + nameprescription + '/CategoryId/' + categoryId + '/DrugId/' + DrugId + '/staffId/' + staffId)
+    return this.http.post(this.API + '/Prescription-insert/nameprescription/' + nameprescription + '/CategoryId/' + categoryId + '/DrugId/' + DrugId + '/staffId/' + staffId, {});
+  
   }
 }

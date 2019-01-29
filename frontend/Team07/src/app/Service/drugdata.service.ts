@@ -10,11 +10,13 @@ export class DrugdataService {
   public API = '//localhost:8080';
   constructor(private http: HttpClient) { }
 
-  sumbittyDrug(drugId: number, namedrug: string): Observable<any> {
-    console.log('namedrug = ')
-    console.log(namedrug)
-    console.log(this.API + '/Drug-insert/' +  drugId +'/name/' + namedrug)
-    return this.http.post(this.API + '/Drug-insert/' +  drugId +'/name/' + namedrug, {});
+  DrugDataPost(detail: String, drugId: Number, staffId: Number, categoryId: Number, medicineId: Number): Observable<any> {
+    console.log(this.API + '/Drugdata-insert/detail/' + detail + '/drugId/' + drugId + '/staffId/' + staffId + '/categoryId/' + categoryId + '/medicineId/' + medicineId)
+    return this.http.post(this.API + '/Drugdata-insert/detail/' + detail + '/drugId/' + drugId + '/staffId/' + staffId + '/categoryId/' + categoryId + '/medicineId/' + medicineId, {});
   }
-  
+
+  MedicinePost(name: String): Observable<any> {
+    return this.http.post(this.API + '/Medicine-insert/name/' + name,{});
+  }
+
 }

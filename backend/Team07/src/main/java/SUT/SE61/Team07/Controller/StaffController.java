@@ -19,8 +19,9 @@ import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-@CrossOrigin(origins = "http://localhost:4200")
 @RestController
+@CrossOrigin(origins = "http://localhost:4200")
+
 
 class StaffController {
     private StaffRepository staffrepository;
@@ -47,7 +48,6 @@ class StaffController {
 
 
     @PostMapping("/Staff/Staffuser/{staffUser}/staffpassword/{staffPass}")
-    @CrossOrigin(origins = "http://localhost:4200")
     public ResponseEntity<Map<String, Object>> staffcheck(@PathVariable("staffUser") String staffUser,
             @PathVariable("staffPass") String staffPass) {
                 Staff staffuser = this.staffrepository.findByStaffUser(staffUser);
