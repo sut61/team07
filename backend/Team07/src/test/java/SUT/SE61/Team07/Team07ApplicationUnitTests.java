@@ -23,13 +23,13 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 //////////////////// System import ///////////
 
  //////////////////////////////// all import //////////////////////////////
-import SUT.SE61.Team07.Repository.*;
-import SUT.SE61.Team07.Entity.*;
+import SUT.SE61.Team07.Repository.DrugRepository;
+import SUT.SE61.Team07.Entity.Drug;
  //////////////////////////////// all import //////////////////////////////
 
 @RunWith(SpringRunner.class)
-//@SpringBootTest
-public class Team07ApplicationTests {
+@DataJpaTest
+public class Team07ApplicationUnitTests {
 	
 	@Autowired
 	private DrugRepository drugrepository;
@@ -45,13 +45,13 @@ public class Team07ApplicationTests {
         validator = factory.getValidator();
 	}
 	@Test
-	public void testDrugnameCannotbeNull(){
-		Drug drug = new Drug("lhkjdsflihkj");
+	public void testSetNameDrug(){
+		Drug drug = new Drug("para1");
 		try{
 			entityManager.persist(drug);
 			entityManager.flush();
 	
-			fail("firstName must not be null to be valid");
+			fail("drugname  must not be null to be valid");
 		}
 		catch(javax.validation.ConstraintViolationException e) {
 			Set<ConstraintViolation<?>> violations = e.getConstraintViolations();

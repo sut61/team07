@@ -41,12 +41,12 @@ export class RedcordUseComponent implements OnInit {
 
 
   constructor(private route: ActivatedRoute, private redcorduseservice: RedcorduseService, private registerservice: RegisterService, private router: Router, private categoryservice: CategoryService, private httpClient: HttpClient) { }
-  
-  
-  
+
+
+
   SaveRedcord() {
-   // console.log(this.data.symptom)
-   // console.log(this.categoryselect)
+    // console.log(this.data.symptom)
+    // console.log(this.categoryselect)
 
     this.redcorduseservice.postRedcorduse(String(this.data.symptom), Number(this.categoryselect), Number(1), Number(this.customer.customerId)).subscribe(data => {
       console.log(data)
@@ -58,11 +58,15 @@ export class RedcordUseComponent implements OnInit {
 
   }
   searchCustomername() {
-    this.redcorduseservice.getCustomerByname(String(this.data.namecus)).subscribe(data => {
-      this.customer = data;
-      console.log(this.customer)
+    console.log(this.data.namecus)
+    if (this.data.namecus === undefined || this.data.namecus == "") {
+      alert("กรุณาใส่ชื่อ")
+    } else {
+      this.redcorduseservice.getCustomerByname(String(this.data.namecus)).subscribe(data => {
+        this.customer = data;
+      })
+    }
 
-    })
   }
   ngOnInit() {
     this.redcorduseservice.getCustomerByname(String("name1")).subscribe(data => {

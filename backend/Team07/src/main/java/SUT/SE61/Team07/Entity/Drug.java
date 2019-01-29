@@ -13,7 +13,7 @@ import lombok.*;
 @Table(name = "Drug")
 public class Drug {
 
-    @Id
+     @Id
     @SequenceGenerator(name = "drug_seq", sequenceName = "drug_seq")
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "drug_seq")
     private  Long drugId;

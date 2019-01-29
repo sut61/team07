@@ -67,6 +67,7 @@ public class DatabaseLoader implements ApplicationRunner {
         this.drugrepository.save(new Drug("Prilosec"));
         this.drugrepository.save(new Drug("Budesonide"));
         this.drugrepository.save(new Drug("Fluticasone"));
+       
         Drug D1 = this.drugrepository.findByDrugId(1L);
         this.categoryrepository.save(new Category("ABC1"));
         this.categoryrepository.save(new Category("ABC2"));
