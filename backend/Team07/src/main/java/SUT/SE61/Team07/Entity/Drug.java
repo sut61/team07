@@ -4,6 +4,8 @@ import javax.persistence.*;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.validation.constraints.Size;
+
 import lombok.*;
 
 @Entity
@@ -15,8 +17,10 @@ public class Drug {
     @SequenceGenerator(name = "drug_seq", sequenceName = "drug_seq")
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "drug_seq")
     private  Long drugId;
+
+    //@Size(min = 3, max = 20)
     private @NonNull String name;
-    
+
    private Drug(){}
    public Drug(String name){
        this.name  = name;

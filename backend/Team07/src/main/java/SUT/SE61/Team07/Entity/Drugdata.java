@@ -35,6 +35,7 @@ public class Drugdata {
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "Drug", nullable = true)
     private Drug drug;
+    
     private Drugdata(){}
     
     public Drugdata (String detail,Drug drug,Staff staff,Category category, Medicine medicine) {

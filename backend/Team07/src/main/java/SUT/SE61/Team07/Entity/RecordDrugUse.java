@@ -18,7 +18,7 @@ public class RecordDrugUse {
     @Id
     @SequenceGenerator(name = "RecordDrug_seq", sequenceName = "RecordDrug_seq")
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "RecordDrug_seq")
-    private Long RecordDrugId;
+    private Long recorddrugId;
     private @NonNull String symptom;
     private LocalDate date;
 

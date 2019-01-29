@@ -1,92 +1,129 @@
+
 package SUT.SE61.Team07.Controller;
 
-import SUT.SE61.Team07.Entity.*;
-import SUT.SE61.Team07.Repository.*;
-
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
 import java.util.Collection;
-import java.util.stream.Collectors;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
+import java.util.stream.Collectors;
+import SUT.SE61.Team07.Repository.*;
+import SUT.SE61.Team07.Entity.*;
 
 @RestController
 @CrossOrigin(origins = "http://localhost:4200")
-public class DrugdataController{
-    @Autowired private DrugdataRepository drugdataRepository;
-    @Autowired private StaffRepository staffRepository;
-    @Autowired private MedicineRepository medicineRepository;
-    @Autowired private CategoryRepository categoryRepository;
+
+class DrugdataController {
+
+    private DrugRepository drugrepository;
+    private DrugdataRepository drugdatarepository;
+    private StaffRepository staffrepository;
+    private MedicineRepository medicinerepository;
+    private CategoryRepository categoryrepository;
+    private CustomerRepository customerrepository;
+
+    public DrugdataController(DrugdataRepository drugdatarepository, DrugRepository drugrepository,
+            StaffRepository staffrepository, MedicineRepository medicinerepository,
+            CategoryRepository categoryrepository, CustomerRepository customerrepository) {
+        this.drugdatarepository = drugdatarepository;
+        this.drugrepository = drugrepository;
+        this.staffrepository = staffrepository;
+        this.medicinerepository = medicinerepository;
+        this.categoryrepository = categoryrepository;
+        this.customerrepository = customerrepository;
+    }
 
     @GetMapping("/Drugdata-list")
-    public Collection<Drugdata> items(){
-        return drugdataRepository.findAll();
+    public Collection<Drugdata> items() {
+        return drugdatarepository.findAll();
     }
 
-    @GetMapping("/Drugdata/{dataID}")
-    public Optional<Drugdata> takeinMedicineDataByid(@PathVariable Long dataID ){
-        return drugdataRepository.findById(dataID);
+    @GetMapping("/Drugdata/{drugdataId}")
+    public Drugdata DrugdataFinds(@PathVariable("drugdataId") Long drugdataId) {
+        return drugdatarepository.findByDrugdataId(drugdataId);
     }
 
-   /* @PostMapping("/MedicineData/addMedicineData")
-    
-    public Drugdata newDrugdata(Drugdata newDrugdata,@RequestBody() Map<String,Object> body) {
-        Optional<Staff> staff = staffRepository.findById(Long.valueOf(body.get("staff").toString()));
-        Optional<Category> category = categoryRepository.findById(Long.valueOf(body.get("category").toString()));
-        Optional<Medicine> medicine = medicineRepository.findById(Long.valueOf(body.get("medicine").toString()));
-
-        newDrugdata.setStaff(staff.get());
-        newDrugdata.setCategory(category.get());
-        newDrugdata.setMedicine(medicine.get());
-        newDrugdata.setBrand(body.get("brandName").toString());
-        newDrugdata.setDetail(body.get("detail").toString());
-        return drugdataRepository.save(newDrugdata);
-    }*/
-
-    //=============Staff====================
-    @GetMapping("/Staff")
-    public Collection<Staff> staff(){
-        return staffRepository.findAll();
-    }
-    
-    @GetMapping("/Staff/{staffId}")
-    public Optional<Staff> takeinUserByid(@PathVariable Long userID ){
-        return staffRepository.findById(userID);
-    }
-
-    //=============Medicine=================
     @GetMapping("/Medicine")
-    public Collection<Medicine> Medicine(){
-        return medicineRepository.findAll();
+    public Collection<Medicine> Medicine() {
+        return medicinerepository.findAll();
     }
+
     @GetMapping("/Medicine/{medicineId}")
-    public Optional<Medicine> takeinMedicineByid(@PathVariable Long medicineId ){
-        return medicineRepository.findById(medicineId);
+    public Optional<Medicine> takeinMedicineByid(@PathVariable Long medicineId) {
+        return medicinerepository.findById(medicineId);
     }
 
-   /*@PostMapping("/Medicine/addMedicine/{medicineName}")
-   public Medicine newMedicine(@PathVariable String medicineName){
-    Medicine newMedicine = new Medicine(medicineName);
-       return medicineRepository.save(newMedicine);
-   }*/
+    @PostMapping("/Drugdata-insert/detail/{detail}/drugId/{drugId}/staffId/{staffId}/categoryId/{categoryId}/medicineId/{medicineId}")
+    public ResponseEntity<Map<String, Object>> Drugdatasumbit(@PathVariable("detail") String detail,
+            @PathVariable("drugId") Long drugId, @PathVariable("staffId") Long staffId,
+            @PathVariable("categoryId") Long categoryId, @PathVariable("medicineId") Long medicineId) {
+        try {
 
-   //=============Category==================
-   @GetMapping("/Category")
-   public Collection<Category> Type(){
-       return categoryRepository.findAll();
-   }
-   @GetMapping("/Category/{CategoryId}")
-   public Optional<Category> takeinTypeByid(@PathVariable Long categoryId ){
-       return categoryRepository.findById(categoryId);
-   }
-   /*@PostMapping("/Category/addCategory/{CategoryName}")
-   public Category newCategory(@PathVariable String categoryName){
-    Category newCategory = new Category(categoryName); 
-       return categoryRepository.save(newCategory); 
-   }*/
+            Drug D = this.drugrepository.findByDrugId(drugId);
+            Staff S = this.staffrepository.findByStaffId(staffId);
+            Category C = this.categoryrepository.findByCategoryId(categoryId);
+            Medicine M = this.medicinerepository.findBymedicineId(medicineId);
+
+            this.drugdatarepository.save(new Drugdata(detail, D, S, C, M));
+
+            Map<String, Object> json = new HashMap<String, Object>();
+            json.put("success", true);
+            json.put("status", "save");
+
+            HttpHeaders headers = new HttpHeaders();
+            headers.add("Content-Type", "application/json; charset=UTF-8");
+            headers.add("X-Fsl-Location", "/");
+            headers.add("X-Fsl-Response-Code", "302");
+            return (new ResponseEntity<Map<String, Object>>(json, headers, HttpStatus.OK));
+        } catch (NullPointerException e) {
+            Map<String, Object> json = new HashMap<String, Object>();
+            System.out.println("Error Save CancelReservation");
+            json.put("success", false);
+            json.put("status", "save-false");
+
+            HttpHeaders headers = new HttpHeaders();
+            headers.add("Content-Type", "application/json; charset=UTF-8");
+            headers.add("X-Fsl-Location", "/");
+            headers.add("X-Fsl-Response-Code", "500");
+            return (new ResponseEntity<Map<String, Object>>(json, headers, HttpStatus.INTERNAL_SERVER_ERROR));
+
+        }
+    }
+
+    @PostMapping("/Medicine-insert/name/{name}")
+    public ResponseEntity<Map<String, Object>> Medicinesumbit(@PathVariable("name") String name) {
+        try {
+            Medicine Me = new Medicine(name);
+            this.medicinerepository.save(Me);
+            Map<String, Object> json = new HashMap<String, Object>();
+            json.put("success", true);
+            json.put("status", "save");
+
+            HttpHeaders headers = new HttpHeaders();
+            headers.add("Content-Type", "application/json; charset=UTF-8");
+            headers.add("X-Fsl-Location", "/");
+            headers.add("X-Fsl-Response-Code", "302");
+            return (new ResponseEntity<Map<String, Object>>(json, headers, HttpStatus.OK));
+        } catch (NullPointerException e) {
+            Map<String, Object> json = new HashMap<String, Object>();
+            System.out.println("Error Save CancelReservation");
+            json.put("success", false);
+            json.put("status", "save-false");
+
+            HttpHeaders headers = new HttpHeaders();
+            headers.add("Content-Type", "application/json; charset=UTF-8");
+            headers.add("X-Fsl-Location", "/");
+            headers.add("X-Fsl-Response-Code", "500");
+            return (new ResponseEntity<Map<String, Object>>(json, headers, HttpStatus.INTERNAL_SERVER_ERROR));
+
+        }
+    }
+
 }

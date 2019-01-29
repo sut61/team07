@@ -13,4 +13,6 @@ p {
     font-size: 110%;
   }
   
-  
+  table {
+    width: 100%;
+  }

@@ -1,17 +1,16 @@
 &nbsp;
 <mat-card class="time-card">
-  <p>ชื่อ:&nbsp;&nbsp;&nbsp; {{this.detail.staff}}</p>
+    <h1 style="text-align:center">
+        บันทึกเวลา เข้า-ออกงาน สำเร็จ!
+      </h1>
+  <!-- <p>ชื่อ:&nbsp;&nbsp;&nbsp; {{this.detail.staff}}</p>
   <p>ตำแหน่ง:&nbsp;&nbsp;&nbsp; {{this.detail.department}}</p>
   <p>ช่วงเวลาที่เข้า-ออก งาน:&nbsp;&nbsp;&nbsp; {{this.detail.worktime}}</p>
   
-  <!-- <p>province:&nbsp;&nbsp;&nbsp; {{this.detail.province}}</p>
-  <p>email:&nbsp;&nbsp;&nbsp; {{this.detail.email}}</p>
-  <p>phonenumber:&nbsp;&nbsp;&nbsp; {{this.detail.phonenumber}}</p>
-  <p>username:&nbsp;&nbsp;&nbsp; {{this.detail.username}}</p>
-  <p>password:&nbsp;&nbsp;&nbsp; {{this.detail.password}}</p> -->
+   -->
+  <mat-card-actions style="text-align:center">
+    <a mat-stroked-button routerLink="/post">กลับ</a>
 
-  <!-- <a mat-stroked-button (click) = "save()" routerLink="/">Confirm </a> -->
-
-  <a mat-stroked-button routerLink="/post">กลับ</a>
+  </mat-card-actions>
 
 </mat-card>
