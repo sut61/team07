@@ -46,9 +46,12 @@ public class Team07ApplicationUnitTests {
 	}
 	@Test
 	public void testSetNameDrug(){
-		Drug drug = new Drug("para1");
+		this.drugrepository.save(new Drug("para"));
+		
+        Drug D1 = this.drugrepository.findByDrugId(1
+		//Drug drug = new Drug("para1");
 		try{
-			entityManager.persist(drug);
+			entityManager.persist(D1);
 			entityManager.flush();
 	
 			fail("drugname  must not be null to be valid");
