@@ -48,7 +48,7 @@ public class Team07ApplicationUnitTests {
 	public void testSetNameDrug(){
 		this.drugrepository.save(new Drug("para"));
 		
-        Drug D1 = this.drugrepository.findByDrugId(1
+        Drug D1 = this.drugrepository.findByDrugId(1);
 		//Drug drug = new Drug("para1");
 		try{
 			entityManager.persist(D1);
