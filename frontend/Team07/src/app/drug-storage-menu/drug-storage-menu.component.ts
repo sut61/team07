@@ -50,6 +50,11 @@ export class DrugStorageMenuComponent implements OnInit {
     } else {
       this.inputdrugstroageService.summbituyPrescription(String(this.data.namepre), Number(this.categoryselect), Number(this.drugselect), Number(1)).subscribe(datas => {
         console.log(datas)
+        if (datas.status == "save") {
+          alert("บันทึกสำเร็จ")
+        } else if (datas.status == "save-false") {
+          alert("บันทึกไม่สำเร็จ")
+        }
       })
     }
 
