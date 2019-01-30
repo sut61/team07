@@ -20,10 +20,14 @@ public class Drug {
 
     //@Size(min = 3, max = 20)
     private @NonNull String name;
+    private @NonNull String price;
+    
+
 
    private Drug(){}
-   public Drug(String name){
+   public Drug(String name,String price){
        this.name  = name;
+       this.price = price;
    }
     
 }
