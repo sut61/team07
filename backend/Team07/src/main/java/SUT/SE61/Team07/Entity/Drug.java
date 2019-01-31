@@ -22,12 +22,16 @@ public class Drug {
     private @NonNull String name;
     private @NonNull String price;
     
+    private @NonNull String qty;
+    
 
 
    private Drug(){}
-   public Drug(String name,String price){
+   public Drug(String name,String price,String qty){
        this.name  = name;
        this.price = price;
+       this.qty = qty;
+       
    }
     
 }

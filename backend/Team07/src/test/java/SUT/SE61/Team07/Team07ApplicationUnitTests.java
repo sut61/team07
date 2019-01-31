@@ -47,7 +47,7 @@ public class Team07ApplicationUnitTests {
 	@Test
 	public void testSetNameDrug(){
 		
-		Drug D1 = new Drug("para1","20");
+		Drug D1 = new Drug("para1","20","10");
 		try{
 			entityManager.persist(D1);
 			entityManager.flush();
