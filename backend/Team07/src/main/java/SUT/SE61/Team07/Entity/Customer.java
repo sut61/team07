@@ -1,46 +1,56 @@
 package SUT.SE61.Team07.Entity;
 
-import javax.persistence.Entity;
-import java.time.LocalDate;
-import javax.persistence.*;
+import lombok.*;
+import javax.validation.constraints.NotNull;
+import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import lombok.*;
+import javax.persistence.Entity;
+import java.util.Date;
 import javax.persistence.ManyToOne;
-import java.util.*;
+import javax.persistence.OneToOne;
+import javax.persistence.JoinColumn;
+import javax.persistence.CascadeType;
+import javax.persistence.FetchType;
+import javax.validation.constraints.*;
 
 @Entity
 @Data
-@Table(name = "Customer")
 
 public class Customer {
 
     @Id
     @SequenceGenerator(name = "customer_seq", sequenceName = "customer_seq")
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "customer_seq")
-    private Long customerId;
-    private @NonNull String customerName;
+  
+    @NotNull private Long customerId;
+
+    @NotNull(message="customerName must not be null to be valid")
+   // @Pattern(regexp = "\\w{0,3}\\d{8,13}")
+    //@Size(min = 10, max = 20)
+    private  String customerName;
+
     private @NonNull String customerPhonenumber;
     private @NonNull String customerAddress;
     private @NonNull String customerUserID;
     private @NonNull String customerPassword;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "Initial", nullable = true)
+    @JoinColumn(name = "InitialId")
     private Initial initial;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "Gender", nullable = true)
+    @JoinColumn(name = "genderId")
     private Gender gender;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "BloodType", nullable = true)
+    @JoinColumn(name = "bloodTypeId")
     private BloodType bloodType;
 
-    private Customer() {
+    public Customer() {
     }
-
+  
     public Customer(Initial initial, String customerName, Gender gender, BloodType bloodType, String customerAddress,
             String customerPhonenumber, String customerUserID, String customerPassword) {
 

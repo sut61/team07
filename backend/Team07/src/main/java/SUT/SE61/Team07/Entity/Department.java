@@ -9,7 +9,7 @@ import lombok.*;
 
 @Entity
 @Data
-@Table(name = "Department")
+
 public class Department {
     @Id
     @SequenceGenerator(name = "dept_seq", sequenceName = "dept_seq")
@@ -17,7 +17,7 @@ public class Department {
     private @NonNull Long deptId;
     private @NonNull String deptName;
 
-    private Department() {
+    public Department() {
     }
 
     public Department(String deptName) {

@@ -1,50 +1,59 @@
 package SUT.SE61.Team07.Entity;
 
-import javax.persistence.Entity;
-import java.time.LocalDate;
-import javax.persistence.*;
+import lombok.*;
+import javax.validation.constraints.NotNull;
+import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import lombok.*;
+import javax.persistence.Entity;
+import java.util.Date;
 import javax.persistence.ManyToOne;
-import java.util.*;
+import javax.persistence.OneToOne;
+import javax.persistence.JoinColumn;
+import javax.persistence.CascadeType;
+import javax.persistence.FetchType;
+import javax.validation.constraints.*;
 
 @Entity
 @Data
-@Table(name = "Prescription")
-
 public class Prescription {
+
     @Id
     @SequenceGenerator(name = "prescription_seq", sequenceName = "prescription_seq")
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "prescription_seq")
-    private Long PrescriptionId;
-    private @NonNull String name;
-    private LocalDate date;
+    @NotNull private  Long PrescriptionId;
+
+    @NotNull(message="Package Id must not be null to be valid")
+    //@Pattern(regexp = "\\w{0,3}\\d{8,13}TH")
+    //@Size(min = 10, max = 20)
+    private  String preId;
+
+    @NotNull 
+    private  Date date;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "Drug", nullable = true)
+    @JoinColumn(name = "drugId")
     private Drug drug;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "Staff", nullable = true)
+    @JoinColumn(name = "staffId")
     private Staff staff;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "Category", nullable = true)
+    @JoinColumn(name = "categoryId")
     private Category category;
 
-    private Prescription() {
+    public Prescription() {
     }
 
-    public Prescription(String name, Category category, Drug drug, Staff staff) {
+    public Prescription(String preId, Category category, Drug drug, Staff staff) {
 
-        this.name = name;
+        this.preId = preId;
         this.category = category;
         this.drug = drug;
         this.staff = staff;
-
-        this.date = LocalDate.now();
+        this.date = new Date();
     }
 
 }

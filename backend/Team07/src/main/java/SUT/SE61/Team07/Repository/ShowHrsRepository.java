@@ -6,5 +6,5 @@ import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 
 @RepositoryRestResource
 public interface ShowHrsRepository extends JpaRepository<ShowHrs, Long> {
-	ShowHrs findByshowId(String showId);
+	ShowHrs findByshowId(Long showId);
 }

@@ -27,17 +27,17 @@ class DrugdataController {
     private StaffRepository staffrepository;
     private MedicineRepository medicinerepository;
     private CategoryRepository categoryrepository;
-    private CustomerRepository customerrepository;
+
 
     public DrugdataController(DrugdataRepository drugdatarepository, DrugRepository drugrepository,
             StaffRepository staffrepository, MedicineRepository medicinerepository,
-            CategoryRepository categoryrepository, CustomerRepository customerrepository) {
+            CategoryRepository categoryrepository) {
         this.drugdatarepository = drugdatarepository;
         this.drugrepository = drugrepository;
         this.staffrepository = staffrepository;
         this.medicinerepository = medicinerepository;
         this.categoryrepository = categoryrepository;
-        this.customerrepository = customerrepository;
+     
     }
 
     @GetMapping("/Drugdata-list")
@@ -50,15 +50,9 @@ class DrugdataController {
         return drugdatarepository.findByDrugdataId(drugdataId);
     }
 
-    @GetMapping("/Medicine")
-    public Collection<Medicine> Medicine() {
-        return medicinerepository.findAll();
-    }
+    
 
-    @GetMapping("/Medicine/{medicineId}")
-    public Optional<Medicine> takeinMedicineByid(@PathVariable Long medicineId) {
-        return medicinerepository.findById(medicineId);
-    }
+   
 
     @PostMapping("/Drugdata-insert/detail/{detail}/drugId/{drugId}/staffId/{staffId}/categoryId/{categoryId}/medicineId/{medicineId}")
     public ResponseEntity<Map<String, Object>> Drugdatasumbit(@PathVariable("detail") String detail,
@@ -97,33 +91,6 @@ class DrugdataController {
         }
     }
 
-    @PostMapping("/Medicine-insert/name/{name}")
-    public ResponseEntity<Map<String, Object>> Medicinesumbit(@PathVariable("name") String name) {
-        try {
-            Medicine Me = new Medicine(name);
-            this.medicinerepository.save(Me);
-            Map<String, Object> json = new HashMap<String, Object>();
-            json.put("success", true);
-            json.put("status", "save");
-
-            HttpHeaders headers = new HttpHeaders();
-            headers.add("Content-Type", "application/json; charset=UTF-8");
-            headers.add("X-Fsl-Location", "/");
-            headers.add("X-Fsl-Response-Code", "302");
-            return (new ResponseEntity<Map<String, Object>>(json, headers, HttpStatus.OK));
-        } catch (NullPointerException e) {
-            Map<String, Object> json = new HashMap<String, Object>();
-            System.out.println("Error Save CancelReservation");
-            json.put("success", false);
-            json.put("status", "save-false");
-
-            HttpHeaders headers = new HttpHeaders();
-            headers.add("Content-Type", "application/json; charset=UTF-8");
-            headers.add("X-Fsl-Location", "/");
-            headers.add("X-Fsl-Response-Code", "500");
-            return (new ResponseEntity<Map<String, Object>>(json, headers, HttpStatus.INTERNAL_SERVER_ERROR));
-
-        }
-    }
+   
 
 }

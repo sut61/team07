@@ -1,42 +1,53 @@
 package SUT.SE61.Team07.Entity;
-import javax.persistence.Entity;
-import javax.persistence.*;
+
+import lombok.*;
+import javax.validation.constraints.NotNull;
+import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import lombok.*;
+import javax.persistence.Entity;
+import java.util.Date;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
+import javax.persistence.JoinColumn;
+import javax.persistence.CascadeType;
+import javax.persistence.FetchType;
+import javax.validation.constraints.*;
 
 @Entity
 @Data
-@Table(name = "Drugdata")
-
 public class Drugdata {
 
     @Id
     @SequenceGenerator(name = "drugdata_seq", sequenceName = "drugdata_seq")
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "drugdata_seq")
-    private long drugdataId;
-    private @NonNull String detail; //สรรพคุณ
+    @NotNull private  Long drugdataId;
+
+    @NotNull(message="detail  must not be null to be valid")
+    //@Size(min = 10, max = 20)
+    private  String detail; //สรรพคุณ
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "staffId", nullable = true)
+    @JoinColumn(name = "staffId")
     private Staff staff;
 
    
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "categoryId", nullable = true)
+    @JoinColumn(name = "categoryId")
     private Category category;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "medicine_id", nullable = true)
+    @JoinColumn(name = "medicineId")
     private Medicine medicine;
 
     
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "Drug", nullable = true)
+    @JoinColumn(name = "drugId")
     private Drug drug;
     
-    private Drugdata(){}
+    public Drugdata(){}
     
     public Drugdata (String detail,Drug drug,Staff staff,Category category, Medicine medicine) {
         this.detail = detail;

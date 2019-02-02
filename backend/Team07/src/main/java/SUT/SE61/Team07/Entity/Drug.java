@@ -10,7 +10,6 @@ import lombok.*;
 
 @Entity
 @Data
-@Table(name = "Drug")
 public class Drug {
 
      @Id
