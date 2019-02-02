@@ -11,7 +11,6 @@ import javax.persistence.Id;
 
 @Entity
 @Data
-@Table(name = "BloodType")
 public class BloodType {
   @Id
   @SequenceGenerator(name = "bloodType_seq", sequenceName = "bloodType_seq")
@@ -20,7 +19,7 @@ public class BloodType {
   private Long bloodTypeId;
   private String name;
 
-  private BloodType() {
+  public BloodType() {
 
   }
 

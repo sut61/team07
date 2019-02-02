@@ -9,7 +9,6 @@ import lombok.*;
 
 @Entity
 @Data
-@Table(name = "Staff")
 public class Staff {
 
     @Id
@@ -21,17 +20,14 @@ public class Staff {
     private @NonNull String staffPass;
     private @NonNull String staffPhone;
 
-   private Staff(){}
+    private Staff() {
+    }
 
-   @ManyToOne(fetch = FetchType.EAGER)   //set festch data เป็น LAZY LAZY = fetch when needed EAGER = fetch immediately
-    @JoinColumn(name= "deptId")      // join colume video_id จาก video กับ entity comment
-    private Department department;
+    public Staff(String staffName, String staffUser, String staffPass, String staffPhone) {
 
-   public Staff(Department department,String staffName,String staffUser,String staffPass, String staffPhone){
-      this.department = department;
-    this.staffName  = staffName;
-       this.staffUser = staffUser;
-       this.staffPass = staffPass;
-       this.staffPhone = staffPhone;
-   }
+        this.staffName = staffName;
+        this.staffUser = staffUser;
+        this.staffPass = staffPass;
+        this.staffPhone = staffPhone;
+    }
 }

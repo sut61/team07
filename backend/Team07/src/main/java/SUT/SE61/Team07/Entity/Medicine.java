@@ -8,7 +8,6 @@ import lombok.*;
 
 @Entity
 @Data
-@Table(name = "Medicine")
 public class Medicine {
     @Id
     @SequenceGenerator(name = "medicine_seq", sequenceName = "medicine_seq")
