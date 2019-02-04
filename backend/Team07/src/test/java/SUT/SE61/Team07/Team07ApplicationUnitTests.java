@@ -49,9 +49,10 @@ public class Team07ApplicationUnitTests {
     private OrdersRepository ordersrepository;
     @Autowired
     private InvoiceRepository invoicerepository;
-
     @Autowired
     private TestEntityManager entityManager;
+    @Autowired
+    private ResistanceRepository resistancerepository;
 
     private Validator validator;
 
@@ -263,6 +264,38 @@ public class Team07ApplicationUnitTests {
         in.setDate(new Date());
         try {
             entityManager.persist(in);
+            entityManager.flush();
+            fail("Should not pass to this line");
+        } catch (javax.validation.ConstraintViolationException e) {
+            Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
+            assertEquals(violations.isEmpty(), false);
+            assertEquals(violations.size(), 1);
+        }
+    }
+
+
+    
+    // ทดสอบ save Resistance ปกติ
+    public void testTestInsertResistanceDataSuccess() {
+        Resistance re = new Resistance();
+        re.setResistanceId(1L);
+        try {
+            entityManager.persist(re);
+            entityManager.flush();
+        } catch (javax.validation.ConstraintViolationException e) {
+            fail("Should not pass to this line");
+        }
+    }
+
+
+    // ทดสอบห้าม Resistance เป็น not null
+    @Test
+    public void testTestResistancedataNotNull() {
+        Resistance re = new Resistance();
+        re.setRecordDrugUse(null);
+
+        try {
+            entityManager.persist(re);
             entityManager.flush();
             fail("Should not pass to this line");
         } catch (javax.validation.ConstraintViolationException e) {
