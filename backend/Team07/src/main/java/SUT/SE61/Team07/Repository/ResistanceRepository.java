@@ -6,5 +6,6 @@ import SUT.SE61.Team07.Entity.*;
 
 @RepositoryRestResource
 public interface ResistanceRepository extends JpaRepository<Resistance, Long> {
+    Resistance findByResistanceId(Long resistanceId);
     
 }
