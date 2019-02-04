@@ -13,6 +13,6 @@ import SUT.SE61.Team07.Entity.*;
 public
 interface OrdersRepository extends JpaRepository<Orders, Long> {
 
-	Partners findByordersId(Long ordersId);
+	Orders findByordersId(Long ordersId);
 	
 }
