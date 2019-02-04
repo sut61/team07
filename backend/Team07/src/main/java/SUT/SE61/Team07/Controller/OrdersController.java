@@ -18,14 +18,19 @@ import java.util.stream.Collectors;
 class OrdersController {
     OrdersRepository ordersrepository;
 
-    public OrdersController(OrdersRepository ordersrepository) {
+    public OrdersController(OrdersRepository ordersrepository) { 
         this.ordersrepository = ordersrepository;
     }
 
     @GetMapping("/Orders-list")
-    public Collection<Orders> bloodTypeList() {
+    public Collection<Orders> ordersList() {
         return ordersrepository.findAll().stream().collect(Collectors.toList());
 
+    }
+
+    @GetMapping("/OrdersName/{name}")
+    public Orders Ordersname(@PathVariable("name")String name){
+        return ordersrepository.findByname(name);
     }
     
 
