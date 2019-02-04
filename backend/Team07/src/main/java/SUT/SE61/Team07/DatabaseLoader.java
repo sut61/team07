@@ -26,6 +26,9 @@ public class DatabaseLoader implements ApplicationRunner {
     private final DrugdataRepository drugdatarepository;
     private final ShowHrsRepository showHrsrepository;
     private final RecordDrugUseRepository recordDrugUserepository;
+    private final CatalogRepository catalogrepository;
+    private final PartnersRepository partnersrepository;
+    private final OrdersRepository ordersrepository;
 
     public DatabaseLoader(DrugRepository drugrepository, PrescriptionRepository prescriptionrepository,
             StaffRepository staffrepository, CategoryRepository categoryrepository,
@@ -33,7 +36,9 @@ public class DatabaseLoader implements ApplicationRunner {
             BloodTypeRepository bloodTyperepository, GenderRepository genderrepository,
             DepartmentRepository departmentrepository, WorktimeRepository worktimerepository,
             MedicineRepository medicinerepository, DrugdataRepository drugdatarepository,
-            ShowHrsRepository showHrsrepository, RecordDrugUseRepository recordDrugUserepository) {
+            ShowHrsRepository showHrsrepository, RecordDrugUseRepository recordDrugUserepository,
+            CatalogRepository catalogrepository, PartnersRepository partnersrepository,
+            OrdersRepository ordersrepository) {
         this.drugrepository = drugrepository;
         this.prescriptionrepository = prescriptionrepository;
         this.staffrepository = staffrepository;
@@ -48,6 +53,10 @@ public class DatabaseLoader implements ApplicationRunner {
         this.drugdatarepository = drugdatarepository;
         this.showHrsrepository = showHrsrepository;
         this.recordDrugUserepository = recordDrugUserepository;
+        this.catalogrepository = catalogrepository;
+        this.partnersrepository = partnersrepository;
+        this.ordersrepository = ordersrepository;
+
     }
 
     @Override
@@ -86,6 +95,27 @@ public class DatabaseLoader implements ApplicationRunner {
         this.staffrepository.save(new Staff("ahmouy", "mouy", "gg1234", "0960050004"));
         Staff S1 = this.staffrepository.findByStaffId(1L);
         this.prescriptionrepository.save(new Prescription("namepre1", C1, D1, S1)); // this is bug WTF
+
+        this.catalogrepository.save(new Catalog("ยาหมอมี", "ยาน้ำ"));
+        this.catalogrepository.save(new Catalog("ยาหมอมา", "ยาเม็ด"));
+        this.catalogrepository.save(new Catalog("ยาหมอแมว", "ยาผง"));
+        this.catalogrepository.save(new Catalog("ยาหมอหมา", "ยาฉีด"));
+        this.catalogrepository.save(new Catalog("ยาหมอหมี", "ยาทา"));
+
+        Catalog catalog1 = this.catalogrepository.findByCatalogId(1L);
+
+        this.partnersrepository.save(new Partners("บริษัทตามา"));
+        this.partnersrepository.save(new Partners("บริษัทตามี"));
+        this.partnersrepository.save(new Partners("บริษัทตาแมว"));
+        this.partnersrepository.save(new Partners("บริษัทตาโอะ"));
+        this.partnersrepository.save(new Partners("บริษัทตาเอะ"));
+
+        Partners partners1  = this.partnersrepository.findBypartnersId(1L);
+
+        this.ordersrepository.save(new Orders("รายการสั่งของที่1","20",partners1,catalog1));
+
+        
+
         // /* end john db loader */
 
         // /* bow db loader */
