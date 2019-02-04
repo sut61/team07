@@ -26,14 +26,22 @@ public class DatabaseLoader implements ApplicationRunner {
     private final DrugdataRepository drugdatarepository;
     private final ShowHrsRepository showHrsrepository;
     private final RecordDrugUseRepository recordDrugUserepository;
+    
 
-    public DatabaseLoader(DrugRepository drugrepository, PrescriptionRepository prescriptionrepository,
-            StaffRepository staffrepository, CategoryRepository categoryrepository,
-            CustomerRepository customerrepository, InitialRepository initialrepository,
-            BloodTypeRepository bloodTyperepository, GenderRepository genderrepository,
-            DepartmentRepository departmentrepository, WorktimeRepository worktimerepository,
-            MedicineRepository medicinerepository, DrugdataRepository drugdatarepository,
-            ShowHrsRepository showHrsrepository, RecordDrugUseRepository recordDrugUserepository) {
+    public DatabaseLoader(DrugRepository drugrepository, 
+                        PrescriptionRepository prescriptionrepository,
+                        StaffRepository staffrepository, 
+                        CategoryRepository categoryrepository,
+                        CustomerRepository customerrepository, 
+                        InitialRepository initialrepository,
+                        BloodTypeRepository bloodTyperepository, 
+                        GenderRepository genderrepository,
+                        DepartmentRepository departmentrepository, 
+                        WorktimeRepository worktimerepository,
+                        MedicineRepository medicinerepository, 
+                        DrugdataRepository drugdatarepository,
+                        ShowHrsRepository showHrsrepository,
+                        RecordDrugUseRepository recordDrugUserepository) {
         this.drugrepository = drugrepository;
         this.prescriptionrepository = prescriptionrepository;
         this.staffrepository = staffrepository;
