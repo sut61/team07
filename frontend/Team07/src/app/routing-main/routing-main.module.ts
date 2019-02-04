@@ -16,7 +16,7 @@ import { PostComponent } from '../post/post.component';
 import { ShowComponent } from '../show/show.component';
 
 import { RedcordUseComponent } from '../redcord-use/redcord-use.component';
-
+import { NotificationComponent } from '../notification/notification.component';
 const routes: Routes = [
   //JOHN
   { path: 'login-staff', component: LoginStaffComponent },
@@ -30,12 +30,14 @@ const routes: Routes = [
 
   { path: 'register', component: RegisterComponent },
   { path: 'register-show', component: RegisterShowComponent },
+   
 
   { path: 'drug-data', component: DrugdataComponent },
 
   { path: 'post', component: PostComponent },
   { path: 'show', component: ShowComponent },
-
+  
+  { path: 'notification', component: NotificationComponent},
 
 ];
 
