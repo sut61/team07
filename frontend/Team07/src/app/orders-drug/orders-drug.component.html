@@ -60,7 +60,7 @@
               <h4>เลือกรายการยาที่ต้องการนำเข้า</h4>
               <mat-select [(ngModel)]="catalogselect" name="Dran">
                 <mat-option *ngFor="let titlecatalog of catalog" [value]="titlecatalog.catalogId">
-                  {{titlecatalog.name}}
+                  {{titlecatalog.catalogname}}
                 </mat-option>
               </mat-select>
             </mat-form-field>
@@ -74,7 +74,7 @@
 
 
             <pre align="center">
-                <button mat-raised-button color="primary"  (click)="sumbitData()">บันทึก</button>
+                <button mat-raised-button color="primary"  (click)="showdata()">บันทึก</button>
               </pre>
 
           </form>
