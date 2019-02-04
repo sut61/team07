@@ -20,10 +20,7 @@ public class Catalog {
     private @NonNull String catalogname;
     private @NonNull String price;
 
-    @ManyToOne //เป็น foreign key ที่ชี้ไปที่ primary key ของ table POST_FORUM ซึ่งก็คือ POST_FORUM_ID
-    private Partners partners;
-    
-
+   
     private Catalog() {
     }
 

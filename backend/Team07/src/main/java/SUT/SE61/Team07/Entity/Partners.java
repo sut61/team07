@@ -21,9 +21,6 @@ public class Partners {
     private Long partnersId;
     private String name;
 
-    @OneToMany(mappedBy = "partners")//เป็น bidirectional mapping ที่ map กลับไปยัง table COMMENT_FORUM ฟิลด์ COMMENT_ID 
-    private List<Catalog> catalog;
-
 
     public Partners() {
     }

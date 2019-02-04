@@ -47,6 +47,9 @@ public class Team07ApplicationUnitTests {
     private  CustomerRepository customerrepository;
     @Autowired
     private  ShowHrsRepository showHrsrepository;
+
+    @Autowired
+    private  OrdersRepository ordersrepository;
     
 
 
@@ -208,6 +211,37 @@ public class Team07ApplicationUnitTests {
            ss.setDate(null);
         try {
             entityManager.persist(ss);
+            entityManager.flush();
+            fail("Should not pass to this line");
+        } catch(javax.validation.ConstraintViolationException e) {
+            Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
+            assertEquals(violations.isEmpty(), false);
+            assertEquals(violations.size(), 1);
+        }
+    }
+
+
+     
+     //ทดสอบ save data  Orders ปกติ
+     public void testTestInsertOrdersSuccess() {
+        Orders os = new Orders();
+        os.setName("AAA");
+        try {
+            entityManager.persist(os);
+            entityManager.flush();
+        } catch(javax.validation.ConstraintViolationException e) {
+            fail("Should not pass to this line");
+        }
+    }
+
+    // ทดสอบห้าม Drugdata เป็น  not null
+    @Test
+	public void testTestOrdersNotNull() {
+        Orders os = new Orders();
+        os.setName(null);
+        
+        try {
+            entityManager.persist(os);
             entityManager.flush();
             fail("Should not pass to this line");
         } catch(javax.validation.ConstraintViolationException e) {
