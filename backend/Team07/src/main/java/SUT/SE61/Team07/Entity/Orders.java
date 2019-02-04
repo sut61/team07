@@ -2,6 +2,8 @@ package SUT.SE61.Team07.Entity;
 
 import lombok.*;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.GeneratedValue;
@@ -10,6 +12,7 @@ import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import javax.persistence.JoinColumn;
 import javax.persistence.FetchType;
+import javax.persistence.Column;
 
 
 @Entity
@@ -22,10 +25,12 @@ public class Orders {
     @NotNull private Long ordersId;
 
     @NotNull(message = " name Orders must not be null to be valid")
+    @Pattern(regexp = "[OMD]\\d{7}")
+    @Size(min = 8, max = 10)
+    @Column(unique = true)
     private String  name;
 
-   
-    private String qty;
+    private String amount;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "partnersId")
@@ -43,9 +48,9 @@ public class Orders {
     public Orders() {
     }
 
-    public Orders(String name,String qty, Partners partners,Catalog catalog) {
+    public Orders(String name,String amount, Partners partners,Catalog catalog) {
         this.name = name;
-        this.qty = qty;
+        this.amount = amount;
         this.partners = partners;
         this.catalog = catalog;
         

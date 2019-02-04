@@ -216,7 +216,8 @@ public class Team07ApplicationUnitTests {
     // ทดสอบ save data Orders ปกติ
     public void testTestInsertOrdersSuccess() {
         Orders os = new Orders();
-        os.setName("AAA");
+        os.setName("O1234567");
+        os.setAmount("20");
         try {
             entityManager.persist(os);
             entityManager.flush();
@@ -224,6 +225,65 @@ public class Team07ApplicationUnitTests {
             fail("Should not pass to this line");
         }
     }
+    
+    // ทดสอบ  first  Orders name  ไม่ใช่ตัว O
+    @Test
+    public void testFistAmountNotO(){
+        Orders os = new Orders();
+        os.setName("A1234567");
+        os.setAmount("20");
+         try {
+            entityManager.persist(os);
+            entityManager.flush();
+
+            fail("Should not pass to this line");
+        } catch(javax.validation.ConstraintViolationException e) {
+            Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
+            assertEquals(violations.isEmpty(), false);
+            assertEquals(violations.size(),1);
+        }
+    }
+
+// ทดสอบ  ความยาวของ Orders name  ไม่ถึง 8
+    @Test
+    public void testLengthMinimum8(){
+        Orders os = new Orders();
+        os.setName("O123456");
+        os.setAmount("20");
+         try {
+            entityManager.persist(os);
+            entityManager.flush();
+
+            fail("Should not pass to this line");
+        } catch(javax.validation.ConstraintViolationException e) {
+            Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
+            assertEquals(violations.isEmpty(), false);
+            assertEquals(violations.size(),2);
+        }
+    }
+
+
+
+    // ทดสอบ  ความยาวของ Orders name  มากกว่า 10
+    @Test
+    public void testLengthNotEquals10(){
+        Orders os = new Orders();
+        os.setName("O1234567891");
+        os.setAmount("20");
+         try {
+            entityManager.persist(os);
+            entityManager.flush();
+
+            fail("Should not pass to this line");
+        } catch(javax.validation.ConstraintViolationException e) {
+            Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
+            assertEquals(violations.isEmpty(), false);
+            assertEquals(violations.size(),2);
+        }
+    }
+
+   
+
 
     // ทดสอบห้าม Drugdata เป็น not null
     @Test
