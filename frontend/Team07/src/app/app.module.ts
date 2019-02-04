@@ -42,13 +42,17 @@ import { LoginUserComponent } from './loginuser/loginuser.component';
 import { HomeComponent } from './home/home.component';
 
 
-//PEAK
 
 //John
 import { AppserviceService } from './Service/appservice.service';
-
-
 import { InputdrugstroageService } from './Service/inputdrugstroage.service';
+import { OrdersService } from './Service/orders.service';
+import { PartnersService } from './Service/partners.service';
+
+import { CatalogService } from './Service/catalog.service';
+
+
+
 // BOW
 
 import { RegisterService } from './Service/register.service';
@@ -133,7 +137,7 @@ import { OrdersDrugComponent } from './orders-drug/orders-drug.component';
 
 
   ],
-providers: [AppserviceService,DrugdataService,RedcorduseService,DrugService,RegisterService,MedicineService,CategoryService,InputdrugstroageService,PostService,PrescriptionService,NotificationComponent],
+providers: [AppserviceService,CatalogService,PartnersService,OrdersService,DrugdataService,RedcorduseService,DrugService,RegisterService,MedicineService,CategoryService,InputdrugstroageService,PostService,PrescriptionService,NotificationComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
