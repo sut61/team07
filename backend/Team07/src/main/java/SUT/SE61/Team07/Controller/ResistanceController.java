@@ -46,10 +46,10 @@ class ResistanceController {
         this.staffrepository = staffrepository;
     }
 
-    /*@GetMapping("/Resistance-list")
-    public Collection<Resistance> drugs() {
-        return resistanceController.findAll().stream().collect(Collectors.toList());
-    }*/
+    @GetMapping("/Resistance-list")
+    public Collection<Resistance> records() {
+        return resistanceRepository.findAll().stream().collect(Collectors.toList());
+    }
 
     /*@PostMapping("Resistance/{Resistance}/RecordDrugUseId/{RecordDrugUseId}/customerId/{customerId}/bloodTypeId/{bloodTypeId}/drugId/{drugId}/drugdataId/{drugdataId}/symptom/{symptom}/staffId/{staffId}")
     public ResponseEntity<Map<String, Object>> RedcordSumbit(   @PathVariable("symptom") String symptom,
