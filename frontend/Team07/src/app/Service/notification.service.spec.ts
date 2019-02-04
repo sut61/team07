@@ -1,12 +1,12 @@
 import { TestBed } from '@angular/core/testing';
 
-import { PrescriptionService } from './prescription.service';
+import { NotificationService } from './notification.service';
 
-describe('PrescriptionService', () => {
+describe('NotificationService', () => {
   beforeEach(() => TestBed.configureTestingModule({}));
 
   it('should be created', () => {
-    const service: PrescriptionService = TestBed.get(PrescriptionService);
+    const service: NotificationService = TestBed.get(NotificationService);
     expect(service).toBeTruthy();
   });
 });

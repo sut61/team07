@@ -72,6 +72,7 @@ import { DrugService } from './Service/drug.service';
 
 import { DrugdataService } from './Service/drugdata.service';
 import { RedcorduseService } from './Service/redcorduse.service';
+import { NotificationComponent } from './notification/notification.component';
 
 @NgModule({
   declarations: [
@@ -84,6 +85,7 @@ import { RedcorduseService } from './Service/redcorduse.service';
     PostComponent,
     ShowComponent,
     RedcordUseComponent,
+    NotificationComponent,
   ],
   imports: [
     RoutingMainModule,
@@ -129,7 +131,7 @@ import { RedcorduseService } from './Service/redcorduse.service';
 
 
   ],
-providers: [AppserviceService,DrugdataService,RedcorduseService,DrugService,RegisterService,MedicineService,CategoryService,InputdrugstroageService,PostService,PrescriptionService],
+providers: [AppserviceService,DrugdataService,RedcorduseService,DrugService,RegisterService,MedicineService,CategoryService,InputdrugstroageService,PostService,PrescriptionService,NotificationComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
