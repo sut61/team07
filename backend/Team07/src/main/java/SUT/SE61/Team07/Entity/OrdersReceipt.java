@@ -1,26 +1,32 @@
 package SUT.SE61.Team07.Entity;
 
-import javax.persistence.*;
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
+import javax.validation.constraints.NotNull;
+import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
+import javax.persistence.JoinColumn;
+import javax.persistence.FetchType;
 
 @Entity
-@Getter @Setter
+@Data
 public class OrdersReceipt {
     @Id
-    @GeneratedValue(strategy= GenerationType.IDENTITY)
-    private Long id;
+    @SequenceGenerator(name = "ordersReceipt_seq", sequenceName = "ordersReceipt_seq")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "ordersReceipt_seq")
+
+    @NotNull
+    private Long ordersreceiptId;
     private Integer amount;
 
-    @ManyToOne
-    private Drug drug;
-    
-    @ManyToOne
-    @JsonIgnore
-    private Receipt receipt;
+    public OrdersReceipt() {
+    }
 
-
-    protected OrdersReceipt(){}
+    public OrdersReceipt(Integer amount) {
+        this.amount = amount;
+    }
 
 }
