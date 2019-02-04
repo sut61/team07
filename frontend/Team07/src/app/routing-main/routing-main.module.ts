@@ -17,12 +17,18 @@ import { ShowComponent } from '../show/show.component';
 
 import { RedcordUseComponent } from '../redcord-use/redcord-use.component';
 import { NotificationComponent } from '../notification/notification.component';
+
+import { OrdersDrugComponent } from '../orders-drug/orders-drug.component';
 const routes: Routes = [
   //JOHN
   { path: 'login-staff', component: LoginStaffComponent },
   { path: 'drug-stroagemenu', component: DrugStorageMenuComponent },
+  { path: 'orders-drug', component: OrdersDrugComponent },
+ 
+  
+
+
   { path: 'redcord-use', component: RedcordUseComponent },
-  //PECK
 
   { path: 'home', component: HomeComponent },
 

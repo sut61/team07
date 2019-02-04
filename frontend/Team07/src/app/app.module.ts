@@ -73,6 +73,7 @@ import { DrugService } from './Service/drug.service';
 import { DrugdataService } from './Service/drugdata.service';
 import { RedcorduseService } from './Service/redcorduse.service';
 import { NotificationComponent } from './notification/notification.component';
+import { OrdersDrugComponent } from './orders-drug/orders-drug.component';
 
 @NgModule({
   declarations: [
@@ -86,6 +87,7 @@ import { NotificationComponent } from './notification/notification.component';
     ShowComponent,
     RedcordUseComponent,
     NotificationComponent,
+    OrdersDrugComponent,
   ],
   imports: [
     RoutingMainModule,
