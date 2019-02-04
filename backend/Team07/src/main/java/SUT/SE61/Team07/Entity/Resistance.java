@@ -34,6 +34,15 @@ public class Resistance {
     @OneToOne
     private RecordDrugUse recordDrugUse;
 
+    public Resistance(){
+
+    }
+
+    public Resistance(RecordDrugUse recordDrugUse){
+        this.recordDrugUse = recordDrugUse;
+
+    }
+
 
     
 
