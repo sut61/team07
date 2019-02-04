@@ -9,7 +9,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Entity;
 import java.util.Date;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.JoinColumn;
 import javax.persistence.CascadeType;
@@ -23,38 +22,40 @@ public class Invoice {
     @SequenceGenerator(name = "invoice_seq", sequenceName = "invoice_seq")
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "invoice_seq")
 
-    @NotNull(message="invoice Id must not be null to be valid")
-    private  Long invoiceId;
+    @NotNull(message = "data Invoice must not be null to be valid")
+    private Long invoiceId;
+    
+    @NotNull
+    private Date date;
 
-    @NotNull 
-    private  Date date;
-
-    @NotNull 
-    private  String amount;
-
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "addressId")
-    private Address adress;
+    @NotNull
+    private String amount;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "customerId")
     private Customer customer;
 
-    
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "staffId")
     private Staff staff;
 
-    // @OneToMany(mappedBy = "invoice")//เป็น bidirectional mapping ที่ map กลับไปยัง table COMMENT_FORUM ฟิลด์ COMMENT_ID 
-    // private List<Drug> drug;
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "drugId")
+    private Drug drug;
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "addressId")
+    private Address address;
 
     public Invoice() {
+
     }
 
-    public Invoice(Staff staff , Customer customer, Drug drug,String amount,Date date) {
+    public Invoice(Staff staff, Customer customer, Drug drug, Address address, String amount) {
         this.staff = staff;
         this.customer = customer;
-        //this.drug = drug;
+        this.drug = drug;
+        this.address = address;
         this.amount = amount;
         this.date = new Date();
     }

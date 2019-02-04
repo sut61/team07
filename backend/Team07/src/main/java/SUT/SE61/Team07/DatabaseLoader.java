@@ -30,6 +30,8 @@ public class DatabaseLoader implements ApplicationRunner {
     private final CatalogRepository catalogrepository;
     private final PartnersRepository partnersrepository;
     private final OrdersRepository ordersrepository;
+    private final AddressRepository addressrepository;
+    private final InvoiceRepository invoicerepository;
 
     public DatabaseLoader(DrugRepository drugrepository, PrescriptionRepository prescriptionrepository,
             StaffRepository staffrepository, CategoryRepository categoryrepository,
@@ -39,7 +41,8 @@ public class DatabaseLoader implements ApplicationRunner {
             MedicineRepository medicinerepository, DrugdataRepository drugdatarepository,
             ShowHrsRepository showHrsrepository, RecordDrugUseRepository recordDrugUserepository,
             CatalogRepository catalogrepository, PartnersRepository partnersrepository,
-            OrdersRepository ordersrepository) {
+            OrdersRepository ordersrepository, AddressRepository addressrepository,
+            InvoiceRepository invoicerepository) {
         this.drugrepository = drugrepository;
         this.prescriptionrepository = prescriptionrepository;
         this.staffrepository = staffrepository;
@@ -57,6 +60,8 @@ public class DatabaseLoader implements ApplicationRunner {
         this.catalogrepository = catalogrepository;
         this.partnersrepository = partnersrepository;
         this.ordersrepository = ordersrepository;
+        this.addressrepository = addressrepository;
+        this.invoicerepository = invoicerepository;
 
     }
 
@@ -111,11 +116,9 @@ public class DatabaseLoader implements ApplicationRunner {
         this.partnersrepository.save(new Partners("บริษัทตาโอะ"));
         this.partnersrepository.save(new Partners("บริษัทตาเอะ"));
 
-        Partners partners1  = this.partnersrepository.findBypartnersId(1L);
+        Partners partners1 = this.partnersrepository.findBypartnersId(1L);
 
-        this.ordersrepository.save(new Orders("รายการสั่งของที่1","20",partners1,catalog1));
-
-        
+        this.ordersrepository.save(new Orders("รายการสั่งของที่1", "20", partners1, catalog1));
 
         // /* end john db loader */
 
@@ -152,6 +155,17 @@ public class DatabaseLoader implements ApplicationRunner {
         this.worktimerepository.save(new Worktime("9:00-22:00", 13));
         Worktime W1 = this.worktimerepository.findBytimeId(1L);
         this.showHrsrepository.save(new ShowHrs(S1, De1, W1));
+
+        this.addressrepository.save(new Address("Bankok"));
+        this.addressrepository.save(new Address("paradire"));
+        this.addressrepository.save(new Address("Pocinki"));
+        this.addressrepository.save(new Address("Wonderland"));
+        this.addressrepository.save(new Address("Hell"));
+        this.addressrepository.save(new Address("Haven"));
+        Address address1 = this.addressrepository.findByAddressId(1L);
+
+
+
         // /* end pam dbloader */
 
         // /* gan db loader */
@@ -171,6 +185,11 @@ public class DatabaseLoader implements ApplicationRunner {
         this.recordDrugUserepository.save(new RecordDrugUse("hothead", Dru1, S1, Cu1));
 
         // /* end frame db loader */
+
+
+        // pam loader 
+        
+        this.invoicerepository.save(new Invoice(S1,Cu1,D1,address1,"20"));
 
     }
 =======
