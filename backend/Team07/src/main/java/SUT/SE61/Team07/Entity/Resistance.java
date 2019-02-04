@@ -22,7 +22,7 @@ public class Resistance {
     @SequenceGenerator(name = "resistance_seq", sequenceName = "resistance_seq")
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "resistance_seq")
 
-    @NotNull
+    @NotNull(message = "symptom  must not be null to be valid")
     private Long resistanceId;
 
     //@NotNull(message = "symptom  must not be null to be valid")
@@ -30,7 +30,7 @@ public class Resistance {
 
     //@NotNull
     //private Date date;
-
+    @NotNull
     @OneToOne
     private RecordDrugUse recordDrugUse;
 
