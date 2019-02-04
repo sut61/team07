@@ -1,27 +1,52 @@
 package SUT.SE61.Team07.Entity;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.Set;
-import javax.persistence.*;
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import lombok.*;
+import javax.validation.constraints.NotNull;
+import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Entity;
+import java.util.Date;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
+import javax.persistence.JoinColumn;
+
+import javax.persistence.FetchType;
+import javax.validation.constraints.*;
 
 @Entity
-@Getter @Setter
+@Data
 public class Receipt {
     @Id
-    @GeneratedValue(strategy= GenerationType.IDENTITY)
-    private Long id;
+    @SequenceGenerator(name = "receipt_seq", sequenceName = "receipt_seq")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "receipt_seq")
+    @NotNull(message = "receiptId must not be null to be valid")
+    private Long receiptId;
+    @NotNull
     private Date date;
 
-    @ManyToOne
-    private Staff staff;
-    
-    @OneToMany(cascade = CascadeType.ALL, mappedBy="receipt")
-    private Set<Orders> orders;
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "ordersreceiptId")
+    private OrdersReceipt ordersReceipt;
 
-    protected Receipt(){}
+    @NotNull
+    @OneToOne
+    private Staff staff;
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "drugId")
+    private Drug drug;
+
+    public Receipt() {
+    }
+
+    public Receipt(OrdersReceipt ordersReceipt,Staff staff,Drug drug) {
+        this.ordersReceipt = ordersReceipt;
+        this.staff = staff;
+        this.drug = drug;
+        this.date = new Date();
+
+    }
 
 }

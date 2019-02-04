@@ -12,7 +12,6 @@ import lombok.*;
 
 @Entity
 @Data
-@Table(name = "Partners")
 public class Partners {
     @Id
     @SequenceGenerator(name = "partners_seq", sequenceName = "partners_seq")
