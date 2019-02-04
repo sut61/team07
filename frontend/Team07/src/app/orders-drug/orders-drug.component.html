@@ -1,0 +1,89 @@
+<h2 align="center">Welcome To YaMaii</h2>
+<h2 align="center">ร้านยามั้ย ยินดีต้อนรับ</h2>
+
+<mat-card>
+
+  <div class="button-row" align="center">
+
+    <mat-card-actions>
+
+      <a mat-stroked-button routerLink="/home">
+        <mat-icon>home</mat-icon>ไปหน้าหลัก
+      </a>
+
+      <a mat-stroked-button routerLink="/register">สมัครสมาชิก</a>
+
+      <a mat-stroked-button routerLink="/login-staff">คลังยา</a>
+      <a mat-stroked-button routerLink="/login-staff">จัดหายา</a>
+
+
+      <a mat-stroked-button routerLink="/drug-data">จัดเก็บข้อมูลยา</a>
+
+      <a mat-stroked-button routerLink="/post">จัดการพนักงาน</a>
+
+      <a mat-stroked-button routerLink="/redcord-use">บันทึกการใช้ยา</a>
+      <a mat-stroked-button routerLink="/notification">แจ้งเตือนทานยา</a>
+
+
+      <!-- <a mat-stroked-button routerLink="/home">ติดต่อร้าน</a>
+
+      <a mat-stroked-button routerLink="/bill">จัดการคลังสินค้า</a> -->
+
+      <a mat-stroked-button routerLink="">ออกจากระบบ</a>
+
+
+    </mat-card-actions>
+
+  </div>
+
+</mat-card>
+
+<body>
+  <div class="flex-container">
+    <mat-tab-group>
+      <mat-tab label="จัดหายา">
+        <div class="flex-container">
+          <form align="center">
+            <br>
+            <mat-form-field>
+              <h4>เลือกผู้ขายยาที่ต้องการ</h4>
+              <mat-select [(ngModel)]="partnersselect" name="Dranss">
+                <mat-option *ngFor="let titlepartners of partners" [value]="titlepartners.partnersId">
+                  {{titlepartners.name}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+            <br>
+
+            <br>
+            <mat-form-field>
+              <h4>เลือกรายการยาที่ต้องการนำเข้า</h4>
+              <mat-select [(ngModel)]="catalogselect" name="Dran">
+                <mat-option *ngFor="let titlecatalog of catalog" [value]="titlecatalog.catalogId">
+                  {{titlecatalog.name}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+            <br>
+
+            <br>
+            <mat-form-field>
+              <h4>จำนวยยาที่ต้องการ:</h4>
+              <input matInput placeholder="" [(ngModel)]="data.amount" required name="amount" #amount>
+            </mat-form-field><br>
+
+
+            <pre align="center">
+                <button mat-raised-button color="primary"  (click)="sumbitData()">บันทึก</button>
+              </pre>
+
+          </form>
+
+
+        </div>
+      </mat-tab>
+
+
+    </mat-tab-group>
+  </div>
+</body>
