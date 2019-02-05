@@ -208,7 +208,7 @@ public class DatabaseLoader implements ApplicationRunner {
           this.timeEatrepository.save(new TimeEat("ทานก่อนนอน"));
           TimeEat Te1 = this.timeEatrepository.findByTimeEatId(1L);
   
-          this.notificationrepository.save(new Notification( Cu1,D1,Te1,"การแจ้งเตือน1","14กุมภาพันธ์62"));
+          this.notificationrepository.save(new Notification( Cu1,D1,Te1,"14กุมภาพันธ์62"));
           
            // /* end bow db loader */
 

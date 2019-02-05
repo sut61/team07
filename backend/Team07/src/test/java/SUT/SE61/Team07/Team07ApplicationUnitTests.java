@@ -53,6 +53,9 @@ public class Team07ApplicationUnitTests {
     private TestEntityManager entityManager;
     @Autowired
     private ResistanceRepository resistancerepository;
+    @Autowired
+    private NotificationRepository notificationrepository;
+
 
     private Validator validator;
 
@@ -364,5 +367,38 @@ public class Team07ApplicationUnitTests {
             assertEquals(violations.size(), 1);
         }
     }
+
+
+    // ทดสอบ save Notification ปกติ
+    public void testTestInsertNotificationDataSuccess() {
+        Notification no = new Notification();
+        no.setNotificationId(1L);
+        try {
+            entityManager.persist(no);
+            entityManager.flush();
+        } catch (javax.validation.ConstraintViolationException e) {
+            fail("Should not pass to this line");
+        }
+    }
+
+
+    // ทดสอบห้าม Notification เป็น not null
+    @Test
+    public void testTestNotificationdataNotNull() {
+        Notification no = new  Notification();
+        no.setNotificationName(null);
+        no.setDate(new Date());
+
+        try {
+            entityManager.persist(no);
+            entityManager.flush();
+            fail("Should not pass to this line");
+        } catch (javax.validation.ConstraintViolationException e) {
+            Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
+            assertEquals(violations.isEmpty(), false);
+            assertEquals(violations.size(), 1);
+        }
+
+
 
 }

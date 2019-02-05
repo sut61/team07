@@ -28,10 +28,7 @@ public class Notification {
     
     @NotNull
     private String notificationName;
-
-    @NotNull
-    private String notificationDate;
-   
+ 
     @NotNull
     private Date date;
 
@@ -54,12 +51,12 @@ public class Notification {
 
     }
 
-    public Notification(Customer customer, Drug drug, TimeEat timeEat, String  notificationName,String notificationDate) {
+    public Notification(Customer customer, Drug drug, TimeEat timeEat, String  notificationName) {
         this.customer = customer;
         this.drug = drug;
         this.timeEat = timeEat;
         this.notificationName = notificationName;
-        this.notificationDate = notificationDate;
+        
         this.date = new Date();
     }
 
