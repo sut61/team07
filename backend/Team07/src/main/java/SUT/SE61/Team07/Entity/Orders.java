@@ -22,6 +22,8 @@ public class Orders {
     @Id
     @SequenceGenerator(name = "orders_seq", sequenceName = "orders_seq")
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "orders_seq")
+    
+    
     @NotNull private Long ordersId;
 
     @NotNull(message = " name Orders must not be null to be valid")

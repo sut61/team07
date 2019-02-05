@@ -16,7 +16,7 @@ public class Team07ApplicationTests {
 	public void contextLoads() {
 	}
     /*
-    @Autowired
+    @Autowired               
     private PrescriptionRepository prescriptionrepository;
     @Autowired
     private DrugdataRepository drugdatarepository;
