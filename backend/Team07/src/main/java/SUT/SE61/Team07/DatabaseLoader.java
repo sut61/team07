@@ -199,7 +199,7 @@ public class DatabaseLoader implements ApplicationRunner {
 
           // bow loader sprint2
         
-         /* this.timeEatrepository.save(new TimeEat("ทานก่อนอาหาร30นาที"));
+          this.timeEatrepository.save(new TimeEat("ทานก่อนอาหาร30นาที"));
           this.timeEatrepository.save(new TimeEat("ทานหลังอาหาร30นาที"));
           this.timeEatrepository.save(new TimeEat("ทานทันที"));
           this.timeEatrepository.save(new TimeEat("ทานตอนเช้า"));
@@ -209,7 +209,7 @@ public class DatabaseLoader implements ApplicationRunner {
           TimeEat Te1 = this.timeEatrepository.findByTimeEatId(1L);
   
           this.notificationrepository.save(new Notification( Cu1,D1,Te1,"การแจ้งเตือน1","14กุมภาพันธ์62"));
-          */
+          
            // /* end bow db loader */
 
     }
