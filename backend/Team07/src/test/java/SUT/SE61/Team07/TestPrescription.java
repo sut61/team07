@@ -77,21 +77,5 @@ public class TestPrescription{
      }
 
 
-   // ทดสอบ pattern ไม่ตรง
-//    @Test
-//    public void testTestPackageIdDonthaveTH() {
-//     Prescription mag = new Prescription();
-//        mag.setPreId("123456789");
-//        mag.setDate(new Date());
-//        try {
-//            entityManager.persist(mag);
-//            entityManager.flush();
-//            fail("Should not pass to this line");
-//        } catch(javax.validation.ConstraintViolationException e) {
-//            Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
-//            assertEquals(violations.isEmpty(), false);
-//            assertEquals(violations.size(), 2);
-//        }
-//    }
 }
 
