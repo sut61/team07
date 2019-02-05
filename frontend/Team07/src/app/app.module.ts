@@ -51,8 +51,6 @@ import { PartnersService } from './Service/partners.service';
 
 import { CatalogService } from './Service/catalog.service';
 
-
-
 // BOW
 
 import { RegisterService } from './Service/register.service';
@@ -60,9 +58,17 @@ import { RegisterComponent } from './register/register.component';
 import { RegisterShowComponent } from './register-show/register-show.component';
 import { LoginStaffComponent } from './login-staff/login-staff.component';
 import { DrugStorageMenuComponent } from './drug-storage-menu/drug-storage-menu.component';
+
+//PomPam
 import { PostComponent } from './post/post.component';
 import { ShowComponent } from './show/show.component';
 import { PostService } from './Service/post.service';
+import { DeliveryService } from './Service/delivery.service';
+import { DeliveryComponent } from './delivery/delivery.component';
+import { DeliveryShowComponent } from './delivery-show/delivery-show.component';
+
+
+
 
 import { DrugdataComponent } from './Drugdata/drugdata.component';
 import { MedicineService } from './Service/medicine.service';
@@ -92,6 +98,9 @@ import { OrdersDrugComponent } from './orders-drug/orders-drug.component';
     RedcordUseComponent,
     NotificationComponent,
     OrdersDrugComponent,
+    DeliveryComponent,
+    DeliveryShowComponent,
+
   ],
   imports: [
     RoutingMainModule,
@@ -137,7 +146,7 @@ import { OrdersDrugComponent } from './orders-drug/orders-drug.component';
 
 
   ],
-providers: [AppserviceService,CatalogService,PartnersService,OrdersService,DrugdataService,RedcorduseService,DrugService,RegisterService,MedicineService,CategoryService,InputdrugstroageService,PostService,PrescriptionService,NotificationComponent],
+providers: [AppserviceService,CatalogService,PartnersService,OrdersService,DrugdataService,RedcorduseService,DrugService,RegisterService,MedicineService,CategoryService,InputdrugstroageService,PostService,PrescriptionService,NotificationComponent,DeliveryService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

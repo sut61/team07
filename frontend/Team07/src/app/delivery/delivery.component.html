@@ -1,3 +1,4 @@
+
 <h2 align="center">Welcome To YaMaii</h2>
 <h2 align="center">ร้านยามั้ย ยินดีต้อนรับ</h2>
 
@@ -35,7 +36,7 @@
 
 <mat-card class="post-card">
   <h1 style="text-align:center">
-      บันทึกเวลา เข้า-ออกงาน
+      บันทึกรายละเอียดใบส่งของ
     </h1>
 <mat-card-content style="text-align:center">
     <form>
@@ -50,27 +51,34 @@
   
   <form>
       <mat-form-field>
-        <mat-select placeholder="ตำแหน่ง" [(ngModel)]="detail.department" [(ngModel)]="emp.departmentSelect" name="department" #department>
-          <mat-option *ngFor="let department of departments" [value]="department.deptId">
-            {{department.deptName}}
+        <mat-select placeholder="ชื่อลูกค้า" [(ngModel)]="detail.customer" [(ngModel)]="emp.customerSelect" name="customer" #customer>
+          <mat-option *ngFor="let customer of customers" [value]="customer.customerId">
+            {{customer.customerName}}
           </mat-option>
         </mat-select>
       </mat-form-field>
-    </form>
+    </form> 
     
-  <form>
+   <form>
     <mat-form-field>
-      <mat-select placeholder="ช่วงเวลาเข้า-ออก งาน" [(ngModel)]="detail.worktime" [(ngModel)]="emp.worktimeSelect" name="worktime" #worktime>
-        <mat-option *ngFor="let worktime of worktimes" [value]="worktime.timeId">
-          {{worktime.rangeTime}}
+      <mat-select placeholder="ชื่อยา" [(ngModel)]="detail.drug" [(ngModel)]="emp.drugSelect" name="drug" #drug>
+        <mat-option *ngFor="let drug of drugs" [value]="drug.drugId">
+          {{drug.name}}
         </mat-option>
       </mat-select>
     </mat-form-field>
   </form>
+  <mat-form-field>
+  <input matInput type="number" min="1" placeholder="จำนวน">
+</mat-form-field>
 </mat-card-content>
 
+
+
 <mat-card-actions style="text-align:right">
-  <a mat-raised-button  (click)="save()" color="warn" type="submit" routerLink="/show">Confirm</a>
+  <a mat-raised-button  (click)="save()" color="warn" type="submit" routerLink="/delivery-show">Confirm</a>
   <a mat-raised-button  (click)="cancel()" color="warn"routerLink="/home">Cancel</a>
 </mat-card-actions>
 </mat-card>
+
+
