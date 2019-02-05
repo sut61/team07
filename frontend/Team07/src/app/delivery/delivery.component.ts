@@ -6,12 +6,6 @@ import {FormControl} from '@angular/forms';
 import {Observable} from 'rxjs';
 import {map, startWith} from 'rxjs/operators';
 
-export interface State {
-  flag: string;
-  name: string;
-  population: string;
-}
-
 @Component({
   selector: 'app-delivery',
   templateUrl: './delivery.component.html',
@@ -29,7 +23,13 @@ export class DeliveryComponent implements OnInit {
     customer:'',
     drug:'',
     amount:'',
-    address: '',
+    netamount: '',
+    houseno: '',
+    villageno: '',
+    subdistrict: '',
+    district: '',
+    province: '',
+    postcode: '',
 
 
 
@@ -40,7 +40,13 @@ export class DeliveryComponent implements OnInit {
     drugSelect: ''
   };
 
-
+  // showdatainput() {
+  //   console.log("initialId = " + this.initialselect)
+  //   console.log("genderselect = " + this.genderselect)
+  //   console.log("bloodTypeselect = " + this.bloodTypeselect)
+    
+    
+  // }
   constructor(private router:Router,private deliveryService: DeliveryService, private httpClient: HttpClient) { }
 
   ngOnInit() {
@@ -63,21 +69,31 @@ export class DeliveryComponent implements OnInit {
   SubmitdData(){
     console.log(this.detail)
     const data  = this.detail
-      this.router.navigate(['show',{
+      this.router.navigate(['delivery-show',{
+
         staff:        data.staff,
-        department:     data.department,
+        customer:     data.customer,
         drug:        data.drug,
-      //   initial: data.initial,
-      // firstname: data.firstname,
-      // gender: data.gender,
-      // bloodType: data.bloodType,
-      // address: data.address,
-      // phonenumber: data.phonenumber,
-      // username: data.username,
-      // password: data.password,
-      
+        amount:        data.amount,
+        netamount:        data.netamount,
+
+        houseno:        data.houseno,
+        villageno:        data.villageno,
+        subdistrict:        data.subdistrict,
+        district:        data.district,
+        province:        data.province,
+        postcode:        data.postcode,
+     
         }])
  
   }
+  // save1() {
+  //   this.httpClient.delivery('http://localhost:8080/Invoice-insert/staff/' + this.emp.staffSelect + '/customer/' + this.emp.customerSelect + '/drug/' + this.emp.drugSelect+ '/drug/' + this.emp.drugSelect  ,this.emp)
+  //   .subscribe(
+  //     data =>   {console.log('PUT Request is successful', data);},
+  //     error =>  {console.log('Error', error);}
+  //     );
+  //   }
 }
+
 

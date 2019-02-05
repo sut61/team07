@@ -68,25 +68,57 @@
       </mat-select>
     </mat-form-field>
   </form>
+  
+  <form>
+  <mat-form-field>
+  <input matInput type="number" min="1" placeholder="จำนวน">
+</mat-form-field>
+</form>
+
+
 
   <form>
-    <mat-form-field>
-    <input matInput type="number" min="1" placeholder="จำนวน">
-  </mat-form-field>
+    <mat-form-field class="example-first-last ">
+      <input matInput placeholder="ยอดสุทธิ(บาท)" [(ngModel)]="detail.netamount"required name="Netamount" #Netamount>
+    </mat-form-field>
   </form>
+ 
+
+</mat-card-content>
+
+<mat-card style="text-align:center">
+  <h2 style="text-align:left">
+    กรุณากรอกที่อยู่  
+    </h2>
+    <mat-form-field class="example-first-last ">
+      <input matInput placeholder="บ้านเลขที่" [(ngModel)]="detail.houseno"required name="Houseno" #Houseno>
+    </mat-form-field>
   
-  <form>
-      <mat-form-field class="example-first-last ">
-        <input matInput placeholder="ที่อยู่" [(ngModel)]="detail.address"required name="Address" #Address>
-      </mat-form-field>
-    </form>
-  
-  </mat-card-content>
+    <mat-form-field class="example-first-last ">
+      <input matInput placeholder="หมู่ที่" [(ngModel)]="detail.villageno"required name="Villageno" #Villageno>
+    </mat-form-field>
+
+    <mat-form-field class="example-first-last ">
+      <input matInput placeholder="ตำบล / แขวง" [(ngModel)]="detail.subdistrict"required name="Subdistrict" #Subdistrict>
+    </mat-form-field>
+
+    <mat-form-field class="example-first-last ">
+      <input matInput placeholder="อำเภอ / เขต" [(ngModel)]="detail.district"required name="District" #District>
+    </mat-form-field>
+
+    <mat-form-field class="example-first-last ">
+      <input matInput placeholder="จังหวัด" [(ngModel)]="detail.province"required name="Province" #Province>
+    </mat-form-field>
+
+    <mat-form-field class="example-first-last ">
+      <input matInput placeholder="รหัสไปรษณีย์" [(ngModel)]="detail.postcode"required name="Postalcode" #Postalcode>
+    </mat-form-field>
+</mat-card>
 
 
 
 <mat-card-actions style="text-align:right">
-  <a mat-raised-button  (click)="save1()" color="warn" type="submit" routerLink="/delivery-show">Confirm</a>
+  <a mat-raised-button  (click)="save()" color="warn" type="submit" routerLink="/delivery-show">Confirm</a>
   <a mat-raised-button  (click)="cancel()" color="warn"routerLink="/home">Cancel</a>
 </mat-card-actions>
 </mat-card>
