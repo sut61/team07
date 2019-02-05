@@ -55,27 +55,43 @@ public class TestPrescription{
             entityManager.flush();
         } catch (javax.validation.ConstraintViolationException e) {
             System.out.println(e);
-            fail("Should  testTestInsertPrescriptionDataSuccess not pass to this line");
+            fail("Should   not pass to this line");
         }
     }
 
-    // ทดสอบห้าม Prescription เป็น not null
-    @Test
-    public void testTestPrescriptionNotNull() {
+     // ทดสอบห้ามเป็น not null
+     @Test
+     public void testTestPackageIdNotNull() {
         Prescription mag = new Prescription();
         mag.setPreId(null);
         mag.setDate(new Date());
-        try {
-            entityManager.persist(mag);
-            entityManager.flush();
-            fail("Should  testTestPrescriptionNotNull not pass to this line");
-        } catch (javax.validation.ConstraintViolationException e) {
-            Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
-            assertEquals(violations.isEmpty(), false);
-            assertEquals(violations.size(), 1);
-            System.out.println(e);
-        }
-    }
+         try {
+             entityManager.persist(mag);
+             entityManager.flush();
+             fail("Should not pass to this line");
+         } catch(javax.validation.ConstraintViolationException e) {
+             Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
+             assertEquals(violations.isEmpty(), false);
+             assertEquals(violations.size(), 1);
+         }
+     }
 
+
+   // ทดสอบ pattern ไม่ตรง
+//    @Test
+//    public void testTestPackageIdDonthaveTH() {
+//     Prescription mag = new Prescription();
+//        mag.setPreId("123456789");
+//        mag.setDate(new Date());
+//        try {
+//            entityManager.persist(mag);
+//            entityManager.flush();
+//            fail("Should not pass to this line");
+//        } catch(javax.validation.ConstraintViolationException e) {
+//            Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
+//            assertEquals(violations.isEmpty(), false);
+//            assertEquals(violations.size(), 2);
+//        }
+//    }
 }
 
