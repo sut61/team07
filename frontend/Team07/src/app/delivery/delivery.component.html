@@ -68,15 +68,25 @@
       </mat-select>
     </mat-form-field>
   </form>
-  <mat-form-field>
-  <input matInput type="number" min="1" placeholder="จำนวน">
-</mat-form-field>
-</mat-card-content>
+
+  <form>
+    <mat-form-field>
+    <input matInput type="number" min="1" placeholder="จำนวน">
+  </mat-form-field>
+  </form>
+  
+  <form>
+      <mat-form-field class="example-first-last ">
+        <input matInput placeholder="ที่อยู่" [(ngModel)]="detail.address"required name="Address" #Address>
+      </mat-form-field>
+    </form>
+  
+  </mat-card-content>
 
 
 
 <mat-card-actions style="text-align:right">
-  <a mat-raised-button  (click)="save()" color="warn" type="submit" routerLink="/delivery-show">Confirm</a>
+  <a mat-raised-button  (click)="save1()" color="warn" type="submit" routerLink="/delivery-show">Confirm</a>
   <a mat-raised-button  (click)="cancel()" color="warn"routerLink="/home">Cancel</a>
 </mat-card-actions>
 </mat-card>

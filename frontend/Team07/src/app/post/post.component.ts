@@ -59,7 +59,7 @@ export class PostComponent implements OnInit {
  
   }
 
-  save() {
+  save1() {
     this.httpClient.post('http://localhost:8080/ShowHrs-insert/staff/' + this.emp.staffSelect + '/department/' + this.emp.departmentSelect + '/worktime/' + this.emp.worktimeSelect  ,this.emp)
     .subscribe(
       data =>   {console.log('PUT Request is successful', data);},
