@@ -34,7 +34,8 @@ public class DatabaseLoader implements ApplicationRunner {
     private final ResistanceRepository resistancerepository;
     private final TimeEatRepository timeEatrepository;
     private final NotificationRepository  notificationrepository;
-
+    private final ReceiptRepository receiptrepository;
+    private final OrdersReciptRepository ordersreciptRepository;
 
     public DatabaseLoader(DrugRepository drugrepository, PrescriptionRepository prescriptionrepository,
             StaffRepository staffrepository, CategoryRepository categoryrepository,
@@ -45,7 +46,8 @@ public class DatabaseLoader implements ApplicationRunner {
             ShowHrsRepository showHrsrepository, RecordDrugUseRepository recordDrugUserepository,
             CatalogRepository catalogrepository, PartnersRepository partnersrepository,
             OrdersRepository ordersrepository, AddressRepository addressrepository, InvoiceRepository invoicerepository,
-            ResistanceRepository resistancerepository,TimeEatRepository timeEatrepository,NotificationRepository  notificationrepository) {
+            ResistanceRepository resistancerepository,TimeEatRepository timeEatrepository,NotificationRepository  notificationrepository,
+            ReceiptRepository receiptrepository,OrdersReciptRepository ordersreciptRepository) {
         this.drugrepository = drugrepository;
         this.prescriptionrepository = prescriptionrepository;
         this.staffrepository = staffrepository;
@@ -68,7 +70,8 @@ public class DatabaseLoader implements ApplicationRunner {
         this.resistancerepository = resistancerepository;
         this.timeEatrepository =   timeEatrepository;
         this.notificationrepository = notificationrepository;
-
+        this.receiptrepository = receiptrepository;
+        this.ordersreciptRepository = ordersreciptRepository;
     }
 
     @Override
