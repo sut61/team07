@@ -10,6 +10,12 @@ export class DeliveryService {
 
   constructor(private http: HttpClient) {}
 
+  Deliverysumbit(staffId: number, customerId: number, drugId: number, amount: string, netamount: string): Observable<any> {
+    console.log(this.API + '/Delivery-insert/StaffId/' + staffId + '/CustomerId/' + customerId + '/DrugId/' + drugId + '/Amount/' + amount + '/Netamount/' + netamount)
+    return this.http.post(this.API + '/Delivery-insert/StaffId/' + staffId + '/CustomerId/' + customerId + '/DrugId/' + drugId + '/Amount/' + amount + '/Netamount/' + netamount, {});
+  }
+
+
   getStaffs(): Observable<any> {
     return this.http.get(this.API + '/Staff-list');
   }
