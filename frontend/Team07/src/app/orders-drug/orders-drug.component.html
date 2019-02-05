@@ -44,6 +44,12 @@
       <mat-tab label="จัดหายา">
         <div class="flex-container">
           <form align="center">
+
+              <br>
+            <mat-form-field>
+              <h4>ชื่อรายการนำเข้ายา:</h4>
+              <input matInput placeholder="" [(ngModel)]="data.nameorders" required name="nameorders" #nameorders>
+            </mat-form-field><br>
             <br>
             <mat-form-field>
               <h4>เลือกผู้ขายยาที่ต้องการ</h4>
