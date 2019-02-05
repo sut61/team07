@@ -165,12 +165,12 @@ public class DatabaseLoader implements ApplicationRunner {
         Worktime W1 = this.worktimerepository.findBytimeId(1L);
         this.showHrsrepository.save(new ShowHrs(S1, De1, W1));
 
-        this.addressrepository.save(new Address("Bankok"));
-        this.addressrepository.save(new Address("paradire"));
-        this.addressrepository.save(new Address("Pocinki"));
-        this.addressrepository.save(new Address("Wonderland"));
-        this.addressrepository.save(new Address("Hell"));
-        this.addressrepository.save(new Address("Haven"));
+        this.addressrepository.save(new Address("48/2","10","หัวสำโรง","ท่าวุ้ง","ลพบุรี","15150"));
+        // this.addressrepository.save(new Address("paradire"));
+        // this.addressrepository.save(new Address("Pocinki"));
+        // this.addressrepository.save(new Address("Wonderland"));
+        // this.addressrepository.save(new Address("Hell"));
+        // this.addressrepository.save(new Address("Haven"));
         Address address1 = this.addressrepository.findByAddressId(1L);
 
         // /* end pam dbloader */
