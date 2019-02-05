@@ -28,6 +28,9 @@ public class Notification {
     
     @NotNull
     private String notificationName;
+
+    @NotNull
+    private String notificationDate;
    
     @NotNull
     private Date date;
@@ -45,20 +48,18 @@ public class Notification {
     @JoinColumn(name = "timeEatId")
     private TimeEat timeEat;
     
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "notificationDateId")
-    private NotificationDate notificationDate;
+  
 
     public Notification() {
 
     }
 
-    public Notification(Customer customer, Drug drug, TimeEat timeEat,NotificationDate notificationDate, String  notificationName) {
+    public Notification(Customer customer, Drug drug, TimeEat timeEat, String  notificationName,String notificationDate) {
         this.customer = customer;
         this.drug = drug;
         this.timeEat = timeEat;
-        this.notificationDate = notificationDate;
         this.notificationName = notificationName;
+        this.notificationDate = notificationDate;
         this.date = new Date();
     }
 

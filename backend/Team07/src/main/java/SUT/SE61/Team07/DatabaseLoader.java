@@ -32,6 +32,9 @@ public class DatabaseLoader implements ApplicationRunner {
     private final AddressRepository addressrepository;
     private final InvoiceRepository invoicerepository;
     private final ResistanceRepository resistancerepository;
+    private final TimeEatRepository timeEatrepository;
+    private final NotificationRepository  notificationrepository;
+
 
     public DatabaseLoader(DrugRepository drugrepository, PrescriptionRepository prescriptionrepository,
             StaffRepository staffrepository, CategoryRepository categoryrepository,
@@ -42,7 +45,7 @@ public class DatabaseLoader implements ApplicationRunner {
             ShowHrsRepository showHrsrepository, RecordDrugUseRepository recordDrugUserepository,
             CatalogRepository catalogrepository, PartnersRepository partnersrepository,
             OrdersRepository ordersrepository, AddressRepository addressrepository, InvoiceRepository invoicerepository,
-            ResistanceRepository resistancerepository) {
+            ResistanceRepository resistancerepository,TimeEatRepository timeEatrepository,NotificationRepository  notificationrepository) {
         this.drugrepository = drugrepository;
         this.prescriptionrepository = prescriptionrepository;
         this.staffrepository = staffrepository;
@@ -63,6 +66,8 @@ public class DatabaseLoader implements ApplicationRunner {
         this.addressrepository = addressrepository;
         this.invoicerepository = invoicerepository;
         this.resistancerepository = resistancerepository;
+        this.timeEatrepository =   timeEatrepository;
+        this.notificationrepository = notificationrepository;
 
     }
 
@@ -190,6 +195,22 @@ public class DatabaseLoader implements ApplicationRunner {
         // pam loader
 
         this.invoicerepository.save(new Invoice(S1, Cu1, D1, address1, "20"));
+
+
+          // bow loader sprint2
+        
+          this.timeEatrepository.save(new TimeEat("ทานก่อนอาหาร30นาที"));
+          this.timeEatrepository.save(new TimeEat("ทานหลังอาหาร30นาที"));
+          this.timeEatrepository.save(new TimeEat("ทานทันที"));
+          this.timeEatrepository.save(new TimeEat("ทานตอนเช้า"));
+          this.timeEatrepository.save(new TimeEat("ทานตอนกลางวัน"));
+          this.timeEatrepository.save(new TimeEat("ทานตอนเย็น"));
+          this.timeEatrepository.save(new TimeEat("ทานก่อนนอน"));
+          TimeEat Te1 = this.timeEatrepository.findByTimeEatId(1L);
+  
+          this.notificationrepository.save(new Notification( Cu1,D1,Te1,"การแจ้งเตือน1","14กุมภาพันธ์62"));
+          
+           // /* end bow db loader */
 
     }
 }
