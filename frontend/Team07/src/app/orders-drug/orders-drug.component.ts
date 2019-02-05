@@ -29,6 +29,7 @@ export class OrdersDrugComponent implements OnInit {
   constructor(private httpClient: HttpClient,private ordersService : OrdersService,private prdersService : PartnersService,private catalogService : CatalogService) { }
 
   showdata(){
+    console.log("data.nameorders = " +this.data.nameorders)
     console.log("partnersselect = " + this.partnersselect)
 
     console.log("catalogselect = " +this.catalogselect)
