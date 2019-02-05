@@ -67,7 +67,7 @@ public class TestOrders {
         }
     }
 
-    // ทดสอบห้ามเป็น not null
+    // ทดสอบห้ามเป็น not null 
     @Test
     public void testTestOrdersnameNotNull() {
         Orders os = new Orders();

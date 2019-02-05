@@ -15,4 +15,13 @@ export class OrdersService {
   getOrders(): Observable<any> {
     return this.http.get(this.API + '/Orders-list');
   }
+
+
+
+  PostOrders(nameorders: string, partnersId: number, catalogId: number, amount: string): Observable<any> {
+ 
+    console.log(this.API + '/Orders-insert/nameorders/' + nameorders + '/partnersId/' + partnersId + '/catalogId/' + catalogId + '/amount/' + amount)
+    return this.http.post(this.API + '/Orders-insert/nameorders/' + nameorders + '/partnersId/' + partnersId + '/catalogId/' + catalogId + '/amount/' + amount,{});
+  
+  }
 }

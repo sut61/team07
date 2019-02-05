@@ -76,13 +76,13 @@
 
             <br>
             <mat-form-field>
-              <h4>จำนวยยาที่ต้องการ:</h4>
+              <h4>จำนวนยาที่ต้องการ:</h4>
               <input matInput placeholder="" [(ngModel)]="data.amount" required name="amount" #amount>
             </mat-form-field><br>
 
 
             <pre align="center">
-                <button mat-raised-button color="primary"  (click)="showdata()">บันทึก</button>
+                <button mat-raised-button color="primary"  (click)="saveOrders()">บันทึก</button>
               </pre>
 
           </form>
