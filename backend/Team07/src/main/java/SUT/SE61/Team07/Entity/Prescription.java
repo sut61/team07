@@ -22,15 +22,16 @@ public class Prescription {
     @Id
     @SequenceGenerator(name = "prescription_seq", sequenceName = "prescription_seq")
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "prescription_seq")
-    @NotNull private  Long PrescriptionId;
+    @NotNull
+    private Long PrescriptionId;
 
-    @NotNull(message="Package Id must not be null to be valid")
-    //@Pattern(regexp = "\\w{0,3}\\d{8,13}TH")
-    //@Size(min = 10, max = 20)
-    private  String preId;
+    @NotNull(message = "Package Id must not be null to be valid")
+    // @Pattern(regexp = "\\w{0,3}\\d{8,13}TH")
+    // @Size(min = 10, max = 20)
+    private String preId;
 
-    @NotNull 
-    private  Date date;
+    @NotNull
+    private Date date;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "drugId")
