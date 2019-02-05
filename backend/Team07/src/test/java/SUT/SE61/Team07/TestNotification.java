@@ -95,7 +95,7 @@ public class TestNotification{
          }
      }
 
-     // ทดสอบ  ความยาวของ Orders name  ไม่ถึง 8
+     // ทดสอบ  ความยาวของ Notification name   ไม่ถึง 8
     @Test
     public void testLengthMinimum8(){
         Notification no = new  Notification();
