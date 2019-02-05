@@ -25,9 +25,9 @@ public class Prescription {
     @NotNull
     private Long PrescriptionId;
 
-    @NotNull(message = "Package Id must not be null to be valid")
-    // @Pattern(regexp = "\\w{0,3}\\d{8,13}TH")
-    // @Size(min = 10, max = 20)
+    @NotNull(message="Package Id must not be null to be valid")
+    @Pattern(regexp = "([A-Z]{0,3}\\d{8,13})TH|(\\d{8,13})TH")
+    @Size(min = 8, max = 20)
     private String preId;
 
     @NotNull

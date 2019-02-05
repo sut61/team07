@@ -106,7 +106,7 @@ public class DatabaseLoader implements ApplicationRunner {
         this.staffrepository.save(new Staff("watsmon", "joy", "kkk", "0801231234"));
         this.staffrepository.save(new Staff("ahmouy", "mouy", "gg1234", "0960050004"));
         Staff S1 = this.staffrepository.findByStaffId(1L);
-        this.prescriptionrepository.save(new Prescription("namepre1", C1, D1, S1)); // this is bug WTF
+        this.prescriptionrepository.save(new Prescription("1234567890TH", C1, D1, S1)); // this is bug WTF
 
         this.catalogrepository.save(new Catalog("ยาหมอมี", "ยาน้ำ"));
         this.catalogrepository.save(new Catalog("ยาหมอมา", "ยาเม็ด"));
