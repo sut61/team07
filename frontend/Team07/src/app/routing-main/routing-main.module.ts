@@ -14,6 +14,8 @@ import { DrugdataComponent } from '../Drugdata/drugdata.component';
 import { from } from 'rxjs';
 import { PostComponent } from '../post/post.component';
 import { ShowComponent } from '../show/show.component';
+import { DeliveryShowComponent } from '../delivery-show/delivery-show.component';
+import { DeliveryComponent } from '../delivery/delivery.component';
 
 import { RedcordUseComponent } from '../redcord-use/redcord-use.component';
 import { NotificationComponent } from '../notification/notification.component';
@@ -42,7 +44,9 @@ const routes: Routes = [
 
   { path: 'post', component: PostComponent },
   { path: 'show', component: ShowComponent },
-  
+  { path: 'delivery', component: DeliveryComponent },
+  { path: 'delivery-show', component: DeliveryShowComponent },
+
   { path: 'notification', component: NotificationComponent},
 
 ];
