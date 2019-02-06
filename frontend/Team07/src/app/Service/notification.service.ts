@@ -28,4 +28,12 @@ getCustomerByname(customerName: String): Observable<any> {
 }
 
 
+
+getNotificationAll(): Observable<any> {
+  return this.http.get(this.API + '/Notification-list');
+}
+getTimeEatAll(): Observable<any> {
+  return this.http.get(this.API + '/TimeEat-list');
+}
+
 }

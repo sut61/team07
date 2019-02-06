@@ -8,22 +8,71 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RestController;
 import java.util.Collection;
 import java.util.stream.Collectors;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import java.util.HashMap;
+import java.util.Map;
 
 @RestController
 @CrossOrigin(origins = "http://localhost:4200")
 
 class InvoiceController {
 
-  
-    private  InvoiceRepository invoicerepository;
+    @Autowired     
+    private  InvoiceRepository invoiceRepository;
+    @Autowired     
+    private StaffRepository staffRepository;
+    @Autowired     
+    private CustomerRepository customerrepository;
+    @Autowired     
+    private DrugRepository drugrepository;
+    
+
 
     public InvoiceController(InvoiceRepository invoicerepository) {
-        this.invoicerepository = invoicerepository;
+        this.invoiceRepository = invoiceRepository;
     }
 
     @GetMapping("/Invoice-list")
     public Collection<Invoice> Invoicelist() {
-        return invoicerepository.findAll().stream().collect(Collectors.toList());
+        return invoiceRepository.findAll().stream().collect(Collectors.toList());
     }
+    // @PostMapping("Invoice-insert/StaffId/{StaffId}/customer/{customerId}/drug/{drugId}/Amount/{Amount}/Netamount/{Netamount}")
+    // public ResponseEntity<Map<String,Object>> ShowHrssubmit(@PathVariable ("StaffId") Long staffId,
+    //         @PathVariable ("customerId") Long customerId, 
+    //         @PathVariable ("drugId") Long drugId  ){             
+    
+    //   try {
+    //      Staff S = this.staffRepository.findByStaffId(staffId);
+    //      Customer C = this.customerrepository.findByCustomerId(customerId);
+    //      Drug D = this.drugrepository.findByDrugId(drugId);
+         
+    //      this.invoiceRepository.save(new Invoice(S, C, D, Amount, Netamount));
 
-}
+    //      Map<String, Object> json = new HashMap<String, Object>();
+    //      json.put("success", true);
+    //      json.put("status", "save");
+
+    //      HttpHeaders headers = new HttpHeaders();
+    //      headers.add("Content-Type", "application/json; charset=UTF-8");
+    //      headers.add("X-Fsl-Location", "/");
+    //      headers.add("X-Fsl-Response-Code", "302");
+    //      return (new ResponseEntity<Map<String, Object>>(json, headers, HttpStatus.OK));
+    //  } catch (NullPointerException e) {
+    //      Map<String, Object> json = new HashMap<String, Object>();
+    //      System.out.println("Error Save CancelReservation");
+    //      json.put("success", false);
+    //      json.put("status", "save-false");
+
+    //      HttpHeaders headers = new HttpHeaders();
+    //      headers.add("Content-Type", "application/json; charset=UTF-8");
+    //      headers.add("X-Fsl-Location", "/");
+    //      headers.add("X-Fsl-Response-Code", "500");
+    //      return (new ResponseEntity<Map<String, Object>>(json, headers, HttpStatus.INTERNAL_SERVER_ERROR));
+
+    //  }
+    // }
+ }
