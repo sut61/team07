@@ -8,5 +8,6 @@ import SUT.SE61.Team07.Entity.*;
 @RepositoryRestResource
  public interface NotificationRepository extends JpaRepository<Notification, Long> {
     Notification findByNotificationId(Long NotificationId);
+    Notification findByNotificationName(String NotificationName);
    
  }

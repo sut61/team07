@@ -10,30 +10,31 @@ export class NotificationService {
 
   constructor(private http: HttpClient) { }
 
-  postNotification(symptom: String, drugdataId: Number, staffId: Number, customerId: Number): Observable<any> {
-    console.log(this.API + '/RecordDrugUse-insert/symptom/' + symptom + '/drugdataId/' + drugdataId + '/staffId/' + staffId + '/customerId/' + customerId)
-    return this.http.post(this.API + '/RecordDrugUse-insert/symptom/' + symptom + '/drugdataId/' + drugdataId + '/staffId/' + staffId + '/customerId/' + customerId, {});
-
   
 
-}
+  postNotification(cusId: Number, drugId: Number, timeEatId: Number, notificationName: String): Observable<any> {
+    console.log(this.API + '/Notification-insert/customerId/' + cusId + '/drugId/' + drugId + '/timeEatId/' + timeEatId + '/notificationName/' + notificationName);
+
+    return this.http.post(this.API + '/Notification-insert/customerId/' + cusId + '/drugId/' + drugId + '/timeEatId/' + timeEatId + '/notificationName/' + notificationName, {});
 
 
-getCustomerById(customerId: number): Observable<any> {
-  return this.http.get(this.API + '/Customer/' + customerId);
-}
+  }
 
-getCustomerByname(customerName: String): Observable<any> {
-  return this.http.get(this.API + '/Customer/customerName/' + customerName);
-}
+  getCustomerById(customerId: number): Observable<any> {
+    return this.http.get(this.API + '/Customer/' + customerId);
+  }
+
+  getCustomerByname(customerName: String): Observable<any> {
+    return this.http.get(this.API + '/Customer/customerName/' + customerName);
+  }
 
 
 
-getNotificationAll(): Observable<any> {
-  return this.http.get(this.API + '/Notification-list');
-}
-getTimeEatAll(): Observable<any> {
-  return this.http.get(this.API + '/TimeEat-list');
-}
+  getNotificationAll(): Observable<any> {
+    return this.http.get(this.API + '/Notification-list');
+  }
+  getTimeEatAll(): Observable<any> {
+    return this.http.get(this.API + '/TimeEat-list');
+  }
 
 }

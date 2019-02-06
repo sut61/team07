@@ -53,11 +53,11 @@
            
             <mat-form-field>
               <h4>ชื่อคนไข้:</h4>
-              <input matInput placeholder="" [(ngModel)]="data.namecus"required name="namecus" #namecus value="Sushi" >
+              <input matInput placeholder="" [(ngModel)]="data.searchCustomername"required name="searchCustomername" #searchCustomername value="Sushi" >
             </mat-form-field><br>
            
             <pre align="center">
-              <button mat-raised-button color="primary"  (click)="searchCustomername()">ค้นหา</button>
+              <button mat-raised-button color="primary"  (click)="searchname()">ค้นหา</button>
             </pre>
 
 
@@ -90,7 +90,7 @@
         
             
             <pre align="center">
-                <button mat-raised-button color="primary"  (click)="showdb()">เพิ่มยา</button>
+                <button mat-raised-button color="primary"  (click)="SaveNotification()">เพิ่มยา</button>
               </pre>
        
       </form>
