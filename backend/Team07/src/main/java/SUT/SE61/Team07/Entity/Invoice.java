@@ -31,6 +31,9 @@ public class Invoice {
     @NotNull
     private String amount;
 
+    @NotNull
+    private String netamount;
+
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "customerId")
     private Customer customer;
@@ -51,12 +54,14 @@ public class Invoice {
 
     }
 
-    public Invoice(Staff staff, Customer customer, Drug drug, Address address, String amount) {
+    public Invoice(Staff staff, Customer customer,  Address address,Drug drug, String amount,String netamount) {
         this.staff = staff;
         this.customer = customer;
-        this.drug = drug;
         this.address = address;
+        this.drug = drug;
         this.amount = amount;
+        this.netamount = netamount;
+
         this.date = new Date();
     }
 
