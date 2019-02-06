@@ -38,6 +38,7 @@
   <h1 style="text-align:center">
       บันทึกรายละเอียดใบส่งของ
     </h1>
+
 <mat-card-content style="text-align:center">
     <form>
         <mat-form-field>
@@ -57,7 +58,17 @@
           </mat-option>
         </mat-select>
       </mat-form-field>
-    </form> 
+    </form>
+
+    <form>
+      <mat-form-field>
+        <mat-select placeholder="ที่อยู่" [(ngModel)]="detail.address" [(ngModel)]="emp.addressSelect" name="address" #address>
+          <mat-option *ngFor="let address of address" [value]="address.addressId">
+            {{address.addressName}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </form>
     
    <form>
     <mat-form-field>
@@ -85,36 +96,6 @@
  
 
 </mat-card-content>
-
-<mat-card style="text-align:center">
-  <h2 style="text-align:left">
-    กรุณากรอกที่อยู่  
-    </h2>
-    <mat-form-field class="example-first-last ">
-      <input matInput placeholder="บ้านเลขที่" [(ngModel)]="detail.houseno"required name="Houseno" #Houseno>
-    </mat-form-field>
-  
-    <mat-form-field class="example-first-last ">
-      <input matInput placeholder="หมู่ที่" [(ngModel)]="detail.villageno"required name="Villageno" #Villageno>
-    </mat-form-field>
-
-    <mat-form-field class="example-first-last ">
-      <input matInput placeholder="ตำบล / แขวง" [(ngModel)]="detail.subdistrict"required name="Subdistrict" #Subdistrict>
-    </mat-form-field>
-
-    <mat-form-field class="example-first-last ">
-      <input matInput placeholder="อำเภอ / เขต" [(ngModel)]="detail.district"required name="District" #District>
-    </mat-form-field>
-
-    <mat-form-field class="example-first-last ">
-      <input matInput placeholder="จังหวัด" [(ngModel)]="detail.province"required name="Province" #Province>
-    </mat-form-field>
-
-    <mat-form-field class="example-first-last ">
-      <input matInput placeholder="รหัสไปรษณีย์" [(ngModel)]="detail.postcode"required name="Postalcode" #Postalcode>
-    </mat-form-field>
-</mat-card>
-
 
 
 <mat-card-actions style="text-align:right">

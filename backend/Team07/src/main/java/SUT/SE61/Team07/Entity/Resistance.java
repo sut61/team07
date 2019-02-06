@@ -30,6 +30,9 @@ public class Resistance {
 
     //@NotNull
     //private Date date;
+
+    private String resist;
+
     @NotNull
     @OneToOne
     private RecordDrugUse recordDrugUse;
@@ -38,8 +41,9 @@ public class Resistance {
 
     }
 
-    public Resistance(RecordDrugUse recordDrugUse){
+    public Resistance(RecordDrugUse recordDrugUse,String resist){
         this.recordDrugUse = recordDrugUse;
+        this.resist = resist;
 
     }
 

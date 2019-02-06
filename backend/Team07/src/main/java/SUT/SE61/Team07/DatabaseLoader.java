@@ -191,7 +191,7 @@ public class DatabaseLoader implements ApplicationRunner {
         Customer Cu1 = this.customerrepository.findByCustomerId(1L);
         this.recordDrugUserepository.save(new RecordDrugUse("hothead", Dru1, S1, Cu1));
         RecordDrugUse recordDrugUse1 = this.recordDrugUserepository.findByRecorddrugId(1L);
-        this.resistancerepository.save(new Resistance(recordDrugUse1));
+        this.resistancerepository.save(new Resistance(recordDrugUse1,"Normal"));
 
         // /* end frame db loader */
 
