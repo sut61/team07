@@ -17,7 +17,8 @@ export class DeliveryComponent implements OnInit {
   staffs: Array<any>;
   customers: Array<any>;
   drugs: Array<any>;
-  address: Array<any>;
+  addresss: Array<any>;
+   addressselect ='';
 
   detail: any = {
     staff:'',
@@ -25,7 +26,7 @@ export class DeliveryComponent implements OnInit {
     drug:'',
     amount:'',
     netamount: '',
-    address: '',
+    //address: '',
 
 
 
@@ -33,8 +34,9 @@ export class DeliveryComponent implements OnInit {
   emp: any = {
     staffSelect: '',
     customerSelect: '',
+   // addressSelect: '',
     drugSelect: '',
-    addressSelect: ''
+    
   };
 
   // showdatainput() {
@@ -51,15 +53,17 @@ export class DeliveryComponent implements OnInit {
       this.staffs = data;
       console.log(this.staffs);
     });
+
+    
   
     this.deliveryService.getCustomers().subscribe(data => {
       this.customers = data;
       console.log(this.customers);
     });
-    // this.deliveryService.getAddress().subscribe(data => {
-    //   this.address = data;
-    //   console.log(this.address);
-    // });
+    this.deliveryService.getAddress().subscribe(data => {
+      this.addresss = data;
+      console.log(this.addresss);
+    });
     this.deliveryService.getDrugs().subscribe(data => {
     this.drugs = data;
     console.log(this.drugs);
@@ -82,13 +86,13 @@ export class DeliveryComponent implements OnInit {
         }])
  
   }
-  // save() {
-  //   this.httpClient.delivery('http://localhost:8080/Invoice-insert/staff/' + this.emp.staffSelect + '/customer/' + this.emp.customerSelect +'/address/' + this.emp.addressSelect + '/drug/' + this.emp.drugSelect+ '/drug/' + this.emp.drugSelect+'/invoice/'+this.detail.amount+'/invoice/'+this.detail.netamount  ,this.emp)
-  //   .subscribe(
-  //     data =>   {console.log('PUT Request is successful', data);},
-  //     error =>  {console.log('Error', error);}
-  //     );
-  //   }
+  save() {
+    this.httpClient.post('http://localhost:8080/Invoice-insert/staff/' + this.emp.staffSelect + '/customer/' + this.emp.customerSelect +'/address/' + this.emp.addressSelect + '/drug/' + this.emp.drugSelect+'/invoice/'+this.detail.amount+'/invoice/'+this.detail.netamount  ,this.emp)
+    .subscribe(
+      data =>   {console.log('PUT Request is successful', data);},
+      error =>  {console.log('Error', error);}
+      );
+    }
 }
 
 

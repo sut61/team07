@@ -1,4 +1,5 @@
 package SUT.SE61.Team07.Controller;
+
 import SUT.SE61.Team07.Entity.*;
 import SUT.SE61.Team07.Repository.*;
 
@@ -21,58 +22,68 @@ import java.util.Map;
 
 class InvoiceController {
 
-    @Autowired     
-    private  InvoiceRepository invoiceRepository;
-    @Autowired     
-    private StaffRepository staffRepository;
-    @Autowired     
+    @Autowired
+    private InvoiceRepository invoiceRepository;
+    @Autowired
+    private StaffRepository staffrepository;
+    @Autowired
     private CustomerRepository customerrepository;
-    @Autowired     
+    @Autowired
+    private AddressRepository addressrepository;
+    @Autowired
     private DrugRepository drugrepository;
-    
 
-
-    public InvoiceController(InvoiceRepository invoicerepository) {
+    public InvoiceController(InvoiceRepository invoiceRepository, StaffRepository staffrepository,
+            CustomerRepository cusotmerrepository,AddressRepository addressrrepository, DrugRepository drugrepository
+            ) {
         this.invoiceRepository = invoiceRepository;
+        this.staffrepository = staffrepository;
+        this.customerrepository = cusotmerrepository;
+        this.addressrepository = addressrepository;
+        this.drugrepository = drugrepository;
+
     }
 
     @GetMapping("/Invoice-list")
-    public Collection<Invoice> Invoicelist() {
+    public Collection<Invoice> InvoiceList() {
         return invoiceRepository.findAll().stream().collect(Collectors.toList());
     }
-    // @PostMapping("Invoice-insert/StaffId/{StaffId}/customer/{customerId}/drug/{drugId}/Amount/{Amount}/Netamount/{Netamount}")
-    // public ResponseEntity<Map<String,Object>> ShowHrssubmit(@PathVariable ("StaffId") Long staffId,
-    //         @PathVariable ("customerId") Long customerId, 
-    //         @PathVariable ("drugId") Long drugId  ){             
-    
-    //   try {
-    //      Staff S = this.staffRepository.findByStaffId(staffId);
-    //      Customer C = this.customerrepository.findByCustomerId(customerId);
-    //      Drug D = this.drugrepository.findByDrugId(drugId);
-         
-    //      this.invoiceRepository.save(new Invoice(S, C, D, Amount, Netamount));
 
-    //      Map<String, Object> json = new HashMap<String, Object>();
-    //      json.put("success", true);
-    //      json.put("status", "save");
+    @PostMapping("Invoice-insert/StaffId/{StaffId}/customer/{customerId}/address/{addressId}/drug/{drugId}/Amount/{Amount}/Netamount/{Netamount}")
+    public ResponseEntity<Map<String, Object>> ShowHrssubmit(@PathVariable("StaffId") Long staffId,
+            @PathVariable("customerId") Long customerId, @PathVariable("addressId") Long addressId,
+            @PathVariable("drugId") Long drugId, @PathVariable("Amount") String amount,
+            @PathVariable("Netmount") String netamount) {
 
-    //      HttpHeaders headers = new HttpHeaders();
-    //      headers.add("Content-Type", "application/json; charset=UTF-8");
-    //      headers.add("X-Fsl-Location", "/");
-    //      headers.add("X-Fsl-Response-Code", "302");
-    //      return (new ResponseEntity<Map<String, Object>>(json, headers, HttpStatus.OK));
-    //  } catch (NullPointerException e) {
-    //      Map<String, Object> json = new HashMap<String, Object>();
-    //      System.out.println("Error Save CancelReservation");
-    //      json.put("success", false);
-    //      json.put("status", "save-false");
+        try {
+            Staff S = this.staffrepository.findByStaffId(staffId);
+            Customer C = this.customerrepository.findByCustomerId(customerId);
+            Address A = this.addressrepository.findByAddressId(addressId);
+            Drug D = this.drugrepository.findByDrugId(drugId);
 
-    //      HttpHeaders headers = new HttpHeaders();
-    //      headers.add("Content-Type", "application/json; charset=UTF-8");
-    //      headers.add("X-Fsl-Location", "/");
-    //      headers.add("X-Fsl-Response-Code", "500");
-    //      return (new ResponseEntity<Map<String, Object>>(json, headers, HttpStatus.INTERNAL_SERVER_ERROR));
+            this.invoiceRepository.save(new Invoice(S, C, A, D, amount, netamount));
 
-    //  }
-    // }
- }
+            Map<String, Object> json = new HashMap<String, Object>();
+            json.put("success", true);
+            json.put("status", "save");
+
+            HttpHeaders headers = new HttpHeaders();
+            headers.add("Content-Type", "application/json; charset=UTF-8");
+            headers.add("X-Fsl-Location", "/");
+            headers.add("X-Fsl-Response-Code", "302");
+            return (new ResponseEntity<Map<String, Object>>(json, headers, HttpStatus.OK));
+        } catch (NullPointerException e) {
+            Map<String, Object> json = new HashMap<String, Object>();
+            System.out.println("Error Save CancelReservation");
+            json.put("success", false);
+            json.put("status", "save-false");
+
+            HttpHeaders headers = new HttpHeaders();
+            headers.add("Content-Type", "application/json; charset=UTF-8");
+            headers.add("X-Fsl-Location", "/");
+            headers.add("X-Fsl-Response-Code", "500");
+            return (new ResponseEntity<Map<String, Object>>(json, headers, HttpStatus.INTERNAL_SERVER_ERROR));
+
+        }
+    }
+}

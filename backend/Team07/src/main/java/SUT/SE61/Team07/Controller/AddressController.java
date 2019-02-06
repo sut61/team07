@@ -23,7 +23,7 @@ class AddressController {
     }
 
     @GetMapping("/Address-list")
-    public Collection<Address> addresslist() {
+    public Collection<Address> addressList() {
         return addressrepository.findAll().stream().collect(Collectors.toList());
 
     }

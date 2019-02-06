@@ -165,13 +165,12 @@ public class DatabaseLoader implements ApplicationRunner {
         Worktime W1 = this.worktimerepository.findBytimeId(1L);
         this.showHrsrepository.save(new ShowHrs(S1, De1, W1));
 
-        this.addressrepository.save(new Address("48/2","10","หัวสำโรง","ท่าวุ้ง","ลพบุรี","15150"));
-        // this.addressrepository.save(new Address("paradire"));
-        // this.addressrepository.save(new Address("Pocinki"));
-        // this.addressrepository.save(new Address("Wonderland"));
-        // this.addressrepository.save(new Address("Hell"));
-        // this.addressrepository.save(new Address("Haven"));
-        Address address1 = this.addressrepository.findByAddressId(1L);
+        this.addressrepository.save(new Address("48/2 หมู่10 ต.หัวสำโรง อ.ท่าวุ้ง จ.ลพบุรี 15150"));
+        this.addressrepository.save(new Address("Pocinki"));
+        this.addressrepository.save(new Address("Wonderland"));
+        this.addressrepository.save(new Address("Hell"));
+        this.addressrepository.save(new Address("Haven"));
+        Address A1 = this.addressrepository.findByAddressId(1L);
 
         // /* end pam dbloader */
 
@@ -197,7 +196,7 @@ public class DatabaseLoader implements ApplicationRunner {
 
         // pam loader
 
-        this.invoicerepository.save(new Invoice(S1, Cu1, D1, address1, "20"));
+        this.invoicerepository.save(new Invoice(S1, Cu1,A1 , D1, "4","150"));
 
 
           // bow loader sprint2
