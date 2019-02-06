@@ -84,6 +84,7 @@ import { DrugdataService } from './Service/drugdata.service';
 import { RedcorduseService } from './Service/redcorduse.service';
 import { NotificationComponent } from './notification/notification.component';
 import { OrdersDrugComponent } from './orders-drug/orders-drug.component';
+import { ResistanceComponent } from './resistance/resistance.component';
 
 @NgModule({
   declarations: [
@@ -100,6 +101,7 @@ import { OrdersDrugComponent } from './orders-drug/orders-drug.component';
     OrdersDrugComponent,
     DeliveryComponent,
     DeliveryShowComponent,
+    ResistanceComponent,
 
   ],
   imports: [

@@ -21,11 +21,14 @@ import { RedcordUseComponent } from '../redcord-use/redcord-use.component';
 import { NotificationComponent } from '../notification/notification.component';
 
 import { OrdersDrugComponent } from '../orders-drug/orders-drug.component';
+
+import { ResistanceComponent } from '../resistance/resistance.component';
 const routes: Routes = [
   //JOHN
   { path: 'login-staff', component: LoginStaffComponent },
   { path: 'drug-stroagemenu', component: DrugStorageMenuComponent },
   { path: 'orders-drug', component: OrdersDrugComponent },
+  { path: 'resistance-drug', component: ResistanceComponent },
  
   
 
