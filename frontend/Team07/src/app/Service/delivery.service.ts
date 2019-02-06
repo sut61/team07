@@ -10,9 +10,9 @@ export class DeliveryService {
 
   constructor(private http: HttpClient) {}
 
-  Deliverysumbit(staffId: number, customerId: number, drugId: number, amount: string, netamount: string): Observable<any> {
-    console.log(this.API + '/Delivery-insert/StaffId/' + staffId + '/CustomerId/' + customerId + '/DrugId/' + drugId + '/Amount/' + amount + '/Netamount/' + netamount)
-    return this.http.post(this.API + '/Delivery-insert/StaffId/' + staffId + '/CustomerId/' + customerId + '/DrugId/' + drugId + '/Amount/' + amount + '/Netamount/' + netamount, {});
+  Deliverysumbit(staffId: number, customerId: number, addressId: string,drugId: number, amount: string, netamount: string): Observable<any> {
+    console.log(this.API + '/Delivery-insert/StaffId/' + staffId + '/CustomerId/' + customerId + '/AddressId/' + addressId + '/DrugId/' + drugId + '/Amount/' + amount + '/Netamount/' + netamount)
+    return this.http.post(this.API + '/Delivery-insert/StaffId/' + staffId + '/CustomerId/' + customerId + '/AddressId/' + addressId + '/DrugId/' + drugId + '/Amount/' + amount + '/Netamount/' + netamount, {});
   }
 
 
@@ -21,6 +21,9 @@ export class DeliveryService {
   }
   getCustomers(): Observable<any> {
     return this.http.get(this.API + '/Customer-list');
+  }
+  getAddress(): Observable<any> {
+    return this.http.get(this.API + '/Address-list');
   }
   getDrugs(): Observable<any> {
     return this.http.get(this.API + '/Stroage-drug');
