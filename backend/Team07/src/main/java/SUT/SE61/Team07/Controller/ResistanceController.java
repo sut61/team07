@@ -22,47 +22,49 @@ import SUT.SE61.Team07.Entity.*;
 class ResistanceController {
     private ResistanceRepository resistanceRepository;
     private RecordDrugUseRepository recordDrugUserepository;
-    private CustomerRepository customerrepository;
+   /* private CustomerRepository customerrepository;
     private BloodTypeRepository bloodTypeRepository;
     private DrugRepository drugRepository;
     private DrugdataRepository drugdatarepository;
-    private StaffRepository staffrepository;
+    private StaffRepository staffrepository;*/
 
     public ResistanceController( ResistanceRepository resistanceRepository,
-                                    RecordDrugUseRepository recordDrugUserepository,
-                                    CustomerRepository customerrepository,
+                                    RecordDrugUseRepository recordDrugUserepository
+                                    /*CustomerRepository customerrepository,
                                     BloodTypeRepository bloodTypeRepository,
                                     DrugRepository drugRepository,
                                     DrugdataRepository drugdatarepository, 
-                                    StaffRepository staffrepository
+                                    StaffRepository staffrepository*/
                                    ) {
 
         this.resistanceRepository = resistanceRepository;
         this.recordDrugUserepository = recordDrugUserepository;
-        this.customerrepository = customerrepository;
+        /*this.customerrepository = customerrepository;
         this.bloodTypeRepository = bloodTypeRepository;
         this.drugRepository = drugRepository;
         this.drugdatarepository = drugdatarepository;
-        this.staffrepository = staffrepository;
+        this.staffrepository = staffrepository;*/
     }
 
     @GetMapping("/Resistance-list")
-    public Collection<Resistance> records() {
+    public Collection<Resistance> res() {
         return resistanceRepository.findAll().stream().collect(Collectors.toList());
     }
 
-    /*@PostMapping("Resistance/{Resistance}/RecordDrugUseId/{RecordDrugUseId}/customerId/{customerId}/bloodTypeId/{bloodTypeId}/drugId/{drugId}/drugdataId/{drugdataId}/symptom/{symptom}/staffId/{staffId}")
-    public ResponseEntity<Map<String, Object>> RedcordSumbit(   @PathVariable("symptom") String symptom,
+    @PostMapping("Resistance/{Resistance}/RecordDrugUseId/{RecordDrugUseId}/customerId/{customerId}/bloodTypeId/{bloodTypeId}/drugId/{drugId}/drugdataId/{drugdataId}/symptom/{symptom}/resist/{resist}/staffId/{staffId}")
+    public ResponseEntity<Map<String, Object>> RedcordSumbit(   @PathVariable("RecordDrugUseId") Long recorddrugId,
+                                                                /*@PathVariable("symptom") String symptom,
                                                                 @PathVariable("drugdataId") Long drugdataId, 
                                                                 @PathVariable("staffId") Long staffId,
-                                                                @PathVariable("customerId") Long customerId) {
+                                                                @PathVariable("customerId") Long customerId,*/
+                                                                @PathVariable("resist") String resist) {
         try {
+            RecordDrugUse Rdu = this.recordDrugUserepository.findByRecorddrugId(recorddrugId);
+            /*Drugdata        Dd  = this.drugdatarepository.findByDrugdataId(drugdataId);
+            Staff           Ss  = this.staffrepository.findByStaffId(staffId);
+            Customer        Cc  = this.customerrepository.findByCustomerId(customerId);*/
 
-            Drugdata Dd = this.drugdatarepository.findByDrugdataId(drugdataId);
-            Staff Ss = this.staffrepository.findByStaffId(staffId);
-            Customer Cc = this.customerrepository.findByCustomerId(customerId);
-
-            this.recordDrugUserepository.save(new RecordDrugUse(symptom, Dd, Ss, Cc));
+            this.resistanceRepository.save(new Resistance(Rdu,resist));
 
             Map<String, Object> json = new HashMap<String, Object>();
             json.put("success", true);
@@ -85,7 +87,7 @@ class ResistanceController {
             headers.add("X-Fsl-Response-Code", "500");
             return (new ResponseEntity<Map<String, Object>>(json, headers, HttpStatus.INTERNAL_SERVER_ERROR));
 
-        }*/
-    //}
+        }
+    }
 
 }
