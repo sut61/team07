@@ -40,64 +40,115 @@
 
 </mat-card>
 
+  
+<body>
+  <div class="flex-container">
+    <mat-tab-group>
+      <mat-tab label="กรอกข้อมูลการแจ้งเตือนทานยา">
+
         <div class="flex-container">
           <form align="center">
             <h2> แจ้งเตือนทานยา </h2>
-
-
-           <!-- ยังไม่ได้เปลี่ยนข้างในพวกเก็บdata -->
             <br>
-            <br>
+           
             <mat-form-field>
               <h4>ชื่อคนไข้:</h4>
               <input matInput placeholder="" [(ngModel)]="data.namecus"required name="namecus" #namecus value="Sushi" >
             </mat-form-field><br>
+           
             <pre align="center">
               <button mat-raised-button color="primary"  (click)="searchCustomername()">ค้นหา</button>
             </pre>
 
 
          
-
-           <mat-form-field>
-            
+            <br>
+           <mat-form-field>  
               <h4>เลือกยา</h4>
-              <mat-select [(ngModel)]="categoryselect" name="Dran">
-                <mat-option *ngFor="let titlecat of category" [value]="titlecat.categoryId">
-                  {{titlecat.categoryname}}
+              <mat-select [(ngModel)]="drugselect" name="Dran">
+                <mat-option *ngFor="let titlecat of drug" [value]="titlecat.drugId">
+                  {{titlecat.name}}
                 </mat-option>
               </mat-select>
             </mat-form-field>&nbsp;
                
-
-            <br>
             <br> 
-
-            <mat-form-field>
+             <mat-form-field>
               <h4>ช่วงเวลาที่ทานยา</h4>
-              <mat-select [(ngModel)]="categoryselect" name="Dran">
-                <mat-option *ngFor="let titlecat of category" [value]="titlecat.categoryId">
-                  {{titlecat.categoryname}}
+              <mat-select [(ngModel)]="timeEatselect" name="Drans">
+                <mat-option *ngFor="let titletime of timeEat" [value]="titletime.timeEatId">
+                  {{titletime.timeEatName}}
                 </mat-option>
               </mat-select>
             </mat-form-field>
+             <br>
 
-            <h4>วันที่เริ่มทานยา</h4>
-            <mat-form-field class="example-first-last ">
-              <input matInput placeholder="วันที่เริ่มทานยา" type="password" [(ngModel)]="data.password" required name="Password"
-                #Password>
-            </mat-form-field>
+            <mat-form-field>
+              <h4>วันที่เริ่มทานยา:</h4>
+              <input matInput placeholder="" [(ngModel)]="data.timestartEat"required name="timestartEat" #timestartEat value="Sushi" >
+            </mat-form-field><br>
         
             
             <pre align="center">
-                <button mat-raised-button color="primary"  (click)="searchCustomername()">เพิ่มยา</button>
+                <button mat-raised-button color="primary"  (click)="showdb()">เพิ่มยา</button>
               </pre>
        
-            
-           
-  </form>
+      </form>
 
-
-        </div>
-
+    </div>
+  </mat-tab>
       
+
+  <mat-tab label="ข้อมูลการแจ้งเตือนทานยา">
+    <div class="mat-elevation-z8">
+        <div class="flex-container">
+          </div>
+      <table mat-table [dataSource]="notification">
+
+        <!-- Position Column -->
+        <ng-container matColumnDef="position">
+          <th mat-header-cell *matHeaderCellDef> No. </th>
+          <td mat-cell *matCellDef="let element"> {{element.notificationId}} </td>
+        </ng-container>
+
+        <!-- Name Column -->
+        <ng-container matColumnDef="customername">
+          <th mat-header-cell *matHeaderCellDef> Name </th>
+          <td mat-cell *matCellDef="let element"> {{element.customer.customerName}} </td>
+        </ng-container>
+
+        <!-- Weight Column -->
+        <ng-container matColumnDef="drugname">
+          <th mat-header-cell *matHeaderCellDef> drugname </th>
+          <td mat-cell *matCellDef="let element"> {{element.drug.name}} </td>
+        </ng-container>
+
+        <!-- Symbol Column -->
+        <ng-container matColumnDef="timeEat">
+          <th mat-header-cell *matHeaderCellDef> timeEat </th>
+          <td mat-cell *matCellDef="let element"> {{element.timeEat.timeEatName}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="Notification">
+          <th mat-header-cell *matHeaderCellDef> Notification </th>
+          <td mat-cell *matCellDef="let element"> {{element.notificationName}} </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+
+
+    </div>
+
+  </mat-tab>
+  <!--   
+  <mat-tab label="ดูข้อมูลยา"> 
+    <div class="flex-container">
+      ดูข้อมูลยา 
+    </div>
+  </mat-tab>
+-->
+</mat-tab-group>
+</div>
+</body>
