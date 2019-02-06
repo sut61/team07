@@ -28,6 +28,13 @@ export class RedcorduseService {
   }
 
 
+  
+  getRedcorduseAll(): Observable<any> {
+    return this.http.get(this.API + '/RecordDrugUse-list/');
+  }
+
+
+
 
 
 }
