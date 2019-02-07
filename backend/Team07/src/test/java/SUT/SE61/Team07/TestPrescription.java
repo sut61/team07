@@ -49,6 +49,11 @@ public class TestPrescription {
         validator = factory.getValidator();
     }
 
+    @Test
+    public void contextLoads() {
+        System.out.println("Test Successful");
+    }
+
     // ทดสอบ save data Prescription ปกติ
     @Test
     public void testTestInsertPrescriptionDataSuccess() {
@@ -65,11 +70,180 @@ public class TestPrescription {
             entityManager.persist(mag);
             entityManager.flush();
         } catch (javax.validation.ConstraintViolationException e) {
-            System.out.println(e);
-            fail("Should   not pass to this line");
+
+            System.out.println("================ from testSuccess =================");
+            System.out.println(e.getMessage());
+            Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
+            assertEquals(violations.isEmpty(), false);
+            assertEquals(violations.size(), 1);
+
         }
     }
 
-    
+    // ทดสอบห้ามเป็น not null
+    @Test
+    public void testNameNull() {
+        Prescription mag = new Prescription();
+        Drug D = this.drugrepository.findByDrugId(1L);
+        Category C = this.categoryrepository.findByCategoryId(1L);
+        Staff S = this.staffrepository.findByStaffId(1L);
+        mag.setPreId(null);
+        mag.setDrug(D);
+        mag.setCategory(C);
+        mag.setStaff(S);
+        mag.setDate(new Date());
+        try {
+            entityManager.persist(mag);
+            entityManager.flush();
+            fail("Should not pass to this line");
+        } catch (javax.validation.ConstraintViolationException e) {
+            System.out.println();
+            System.out.println();
+            System.out.println();
+            System.out.println(
+                    "============================================================ from testNameNull =============================================================");
+            System.out.println(e);
+            System.out.println();
+            System.out.println();
+            Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
+            assertEquals(violations.isEmpty(), false);
+            assertEquals(violations.size(), 1);
+        }
+    }
+
+    // ทดสอบ first Prescription name ไม่ใช่ตัว P
+    @Test
+    public void testPatternNameOrders() {
+        Prescription mag = new Prescription();
+        Drug D = this.drugrepository.findByDrugId(1L);
+        Category C = this.categoryrepository.findByCategoryId(1L);
+        Staff S = this.staffrepository.findByStaffId(1L);
+        mag.setPreId("A12345678");
+        mag.setDrug(D);
+        mag.setCategory(C);
+        mag.setStaff(S);
+        mag.setDate(new Date());
+        try {
+            entityManager.persist(mag);
+            entityManager.flush();
+
+            fail("Should not pass to this line");
+        } catch (javax.validation.ConstraintViolationException e) {
+            System.out.println();
+            System.out.println();
+            System.out.println();
+            System.out.println(
+                    "============================================================ from testPatternNamePrescription =============================================================");
+            System.out.println(e);
+            System.out.println();
+            System.out.println();
+            Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
+            assertEquals(violations.isEmpty(), false);
+            assertEquals(violations.size(), 1);
+        }
+    }
+
+    // ทดสอบ ความยาวของ Prescription ไม่ถึง 8
+    @Test
+    public void testMaxPrescriptionsize8() {
+        Prescription mag = new Prescription();
+        Drug D = this.drugrepository.findByDrugId(1L);
+        Category C = this.categoryrepository.findByCategoryId(1L);
+        Staff S = this.staffrepository.findByStaffId(1L);
+        mag.setPreId("P12345");
+        mag.setDrug(D);
+        mag.setCategory(C);
+        mag.setStaff(S);
+        mag.setDate(new Date());
+        try {
+            entityManager.persist(mag);
+            entityManager.flush();
+            fail("Should not pass to this line");
+        } catch (javax.validation.ConstraintViolationException e) {
+            System.out.println();
+            System.out.println();
+            System.out.println();
+            System.out.println(
+                    "============================================================ from testMinPrescriptionsize8  =============================================================");
+            System.out.println(e);
+            System.out.println();
+            System.out.println();
+            Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
+            assertEquals(violations.isEmpty(), false);
+            assertEquals(violations.size(), 2);
+        }
+    }
+
+    // ทดสอบ ความยาวของ testMaxPrescriptionsize13 name มากกว่า 13
+    @Test
+    public void testMaxPrescriptionsize13() {
+        Prescription mag = new Prescription();
+        Drug D = this.drugrepository.findByDrugId(1L);
+        Category C = this.categoryrepository.findByCategoryId(1L);
+        Staff S = this.staffrepository.findByStaffId(1L);
+        mag.setPreId("P1234567890123412345678901234");
+        mag.setDrug(D);
+        mag.setCategory(C);
+        mag.setStaff(S);
+        mag.setDate(new Date());
+        try {
+            entityManager.persist(mag);
+            entityManager.flush();
+            fail("Should not pass to this line");
+        } catch (javax.validation.ConstraintViolationException e) {
+            System.out.println();
+            System.out.println();
+            System.out.println();
+            System.out.println(
+                    "============================================================ from testMaxPrescriptionsize13   =============================================================");
+            System.out.println(e);
+            System.out.println();
+            System.out.println();
+            Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
+            assertEquals(violations.isEmpty(), false);
+            assertEquals(violations.size(), 2);
+        }
+    }
+
+    public void testPrescriptionUnique() {
+        Prescription mag = new Prescription();
+        Drug D = this.drugrepository.findByDrugId(1L);
+        Category C = this.categoryrepository.findByCategoryId(1L);
+        Staff S = this.staffrepository.findByStaffId(1L);
+        mag.setPreId("P1234567890");
+        mag.setDrug(D);
+        mag.setCategory(C);
+        mag.setStaff(S);
+        mag.setDate(new Date());
+
+        Prescription mag2 = new Prescription();
+        mag.setPreId("P1234567890");
+        mag.setDrug(D);
+        mag.setCategory(C);
+        mag.setStaff(S);
+        mag.setDate(new Date());
+
+        try {
+            entityManager.persist(mag2);
+            entityManager.flush();
+
+            fail("Should not pass to this line");
+        } catch (javax.validation.ConstraintViolationException e) {
+            Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
+            System.out.println();
+            System.out.println();
+            System.out.println();
+            System.out.println("=======================================================================FROM testPrescriptionUnique========================================================================");
+            System.out.println();
+            System.out.println();
+            System.out.println();
+            System.out.println(e);
+            assertEquals(violations.isEmpty(), false);
+            assertEquals(violations.size(), 1);
+        } catch (javax.persistence.PersistenceException e) {
+            e.printStackTrace();
+            
+        }
+    }
 
 }
