@@ -12,6 +12,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.JoinColumn;
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.FetchType;
 import javax.validation.constraints.*;
 
@@ -27,7 +28,8 @@ public class Prescription {
 
     @NotNull(message="Package Id must not be null to be valid")
     @Pattern(regexp = "(^P{1}[0-9]{8,13}$)")
-    @Size(min = 8, max = 20)
+    @Size(min = 8, max = 13)
+    @Column(unique = true)
     private String preId;
 
     @NotNull
