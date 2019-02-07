@@ -15,13 +15,14 @@
 
       <a mat-stroked-button routerLink="/login-staff">คลังยา</a>
       <a mat-stroked-button routerLink="/login-orders">จัดหายา</a>
-      
+
 
       <a mat-stroked-button routerLink="/drug-data">จัดเก็บข้อมูลยา</a>
 
       <a mat-stroked-button routerLink="/post">จัดการพนักงาน</a>
 
       <a mat-stroked-button routerLink="/redcord-use">บันทึกการใช้ยา</a>
+      <a mat-stroked-button routerLink="/resistance">บันทึกการดื้อยา</a>
       <a mat-stroked-button routerLink="/delivery">บันทึกใบส่งของ</a>
 
       <a mat-stroked-button routerLink="/notification">แจ้งเตือนทานยา</a>
@@ -98,7 +99,7 @@
             <h4>เพิ่มตัวยาสำคัญ:</h4>
             <input matInput placeholder="" [(ngModel)]="data.medicinex" required name="medicinex" #medicinex>
           </mat-form-field><br><br>
-          
+
           <button mat-raised-button color="primary" (click)="Savemedicine()">บันทึก</button>
           <br>
 
@@ -107,10 +108,10 @@
 
         </div>
       </mat-tab>
-      <!--   
-      <mat-tab label="ดูข้อมูลยา"> 
+      <!--
+      <mat-tab label="ดูข้อมูลยา">
         <div class="flex-container">
-          ดูข้อมูลยา 
+          ดูข้อมูลยา
         </div>
       </mat-tab>
     -->

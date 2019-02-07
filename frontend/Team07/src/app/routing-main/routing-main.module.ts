@@ -38,6 +38,7 @@ const routes: Routes = [
 
 
   { path: 'redcord-use', component: RedcordUseComponent },
+  { path: 'resistance', component: ResistanceComponent },
 
   { path: 'home', component: HomeComponent },
 
