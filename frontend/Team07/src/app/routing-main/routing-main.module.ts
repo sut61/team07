@@ -23,14 +23,18 @@ import { NotificationComponent } from '../notification/notification.component';
 import { OrdersDrugComponent } from '../orders-drug/orders-drug.component';
 
 import { ResistanceComponent } from '../resistance/resistance.component';
+
+
+import { LoginorderComponent } from '../loginorder/loginorder.component';
 const routes: Routes = [
   //JOHN
   { path: 'login-staff', component: LoginStaffComponent },
   { path: 'drug-stroagemenu', component: DrugStorageMenuComponent },
   { path: 'orders-drug', component: OrdersDrugComponent },
   { path: 'resistance-drug', component: ResistanceComponent },
- 
-  
+  { path: 'login-orders', component: LoginorderComponent },
+
+
 
 
   { path: 'redcord-use', component: RedcordUseComponent },
@@ -41,7 +45,7 @@ const routes: Routes = [
 
   { path: 'register', component: RegisterComponent },
   { path: 'register-show', component: RegisterShowComponent },
-   
+
 
   { path: 'drug-data', component: DrugdataComponent },
 
@@ -50,7 +54,7 @@ const routes: Routes = [
   { path: 'delivery', component: DeliveryComponent },
   { path: 'delivery-show', component: DeliveryShowComponent },
 
-  { path: 'notification', component: NotificationComponent},
+  { path: 'notification', component: NotificationComponent },
 
 ];
 
