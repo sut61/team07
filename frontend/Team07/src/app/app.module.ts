@@ -85,6 +85,7 @@ import { RedcorduseService } from './Service/redcorduse.service';
 import { NotificationComponent } from './notification/notification.component';
 import { OrdersDrugComponent } from './orders-drug/orders-drug.component';
 import { ResistanceComponent } from './resistance/resistance.component';
+import { LoginorderComponent } from './loginorder/loginorder.component';
 
 @NgModule({
   declarations: [
@@ -102,6 +103,7 @@ import { ResistanceComponent } from './resistance/resistance.component';
     DeliveryComponent,
     DeliveryShowComponent,
     ResistanceComponent,
+    LoginorderComponent,
 
   ],
   imports: [
