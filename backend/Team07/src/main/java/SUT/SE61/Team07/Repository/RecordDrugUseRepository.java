@@ -6,6 +6,6 @@ import SUT.SE61.Team07.Entity.*;
 
 @RepositoryRestResource
 public interface RecordDrugUseRepository extends JpaRepository<RecordDrugUse, Long> {
-    RecordDrugUse findByRecorddrugId(Long recorddrugId);
+    RecordDrugUse findByRecordDrugUseId(Long recordDrugUseId);
     
 }

@@ -23,7 +23,7 @@ public class RecordDrugUse {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "recorddrug_seq")
 
     @NotNull
-    private Long recorddrugId;
+    private Long recordDrugUseId;
 
     @NotNull(message = "symptom  must not be null to be valid")
    // @Pattern(regexp = "\\w{0,3}\\d{8,13}")

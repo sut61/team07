@@ -182,14 +182,14 @@ public class DatabaseLoader implements ApplicationRunner {
         this.medicinerepository.save(new Medicine("ยาจำพวกแอดรีเนอร์ยิค"));
         this.medicinerepository.save(new Medicine("ยาจำพวกกระตุ้นกล้ามเนื้อเรียบ"));
         Medicine M1 = this.medicinerepository.findBymedicineId(1L);
-        this.drugdatarepository.save(new Drugdata("name1", D1, S1, C1, M1));
+        this.drugdatarepository.save(new Drugdata("John", D1, S1, C1, M1));
         // /* end gan dbloader */
 
         // /* frame db loader */
         Drugdata Dru1 = this.drugdatarepository.findByDrugdataId(1L);
         Customer Cu1 = this.customerrepository.findByCustomerId(1L);
         this.recordDrugUserepository.save(new RecordDrugUse("hothead", Dru1, S1, Cu1));
-        RecordDrugUse recordDrugUse1 = this.recordDrugUserepository.findByRecorddrugId(1L);
+        RecordDrugUse recordDrugUse1 = this.recordDrugUserepository.findByRecordDrugUseId(1L);
         this.resistancerepository.save(new Resistance(recordDrugUse1,"Normal"));
 
         // /* end frame db loader */
