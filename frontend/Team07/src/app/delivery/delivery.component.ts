@@ -152,11 +152,8 @@ export class DeliveryComponent implements OnInit {
         );
       this.SubmitdData();
     }else{
-      alert("no")
+      alert("กรุณากรอกข้อมูลให้ครบถ้วน")
     }
-  
-
-
   }
 }
 
