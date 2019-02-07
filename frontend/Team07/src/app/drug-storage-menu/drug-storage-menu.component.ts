@@ -48,14 +48,21 @@ export class DrugStorageMenuComponent implements OnInit {
         }
       }
     } else {
-      this.inputdrugstroageService.summbituyPrescription(String(this.data.namepre), Number(this.categoryselect), Number(this.drugselect), Number(1)).subscribe(datas => {
-        console.log(datas)
-        if (datas.status == "save") {
-          alert("บันทึกสำเร็จ")
-        } else if (datas.status == "save-false") {
-          alert("บันทึกไม่สำเร็จ")
-        }
-      })
+      let re = /(^P{1})(\d{8,13}$)/g
+      if (re.test(this.data.namepre)) {
+
+        this.inputdrugstroageService.summbituyPrescription(String(this.data.namepre), Number(this.categoryselect), Number(this.drugselect), Number(1)).subscribe(datas => {
+          console.log(datas)
+          if (datas.status == "save") {
+            alert("บันทึกสำเร็จ")
+          } else if (datas.status == "save-false") {
+            alert("บันทึกไม่สำเร็จ")
+          }
+        })
+      } else {
+        alert("ตัวแรกต้องเป็น P และตามด้วยหมายเลข สั้นที่สุดคือ 8 ยาวสุดคือ 13");
+      }
+
     }
 
 

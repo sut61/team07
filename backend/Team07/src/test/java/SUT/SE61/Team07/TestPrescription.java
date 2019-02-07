@@ -28,27 +28,38 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 
 @RunWith(SpringRunner.class)
 @DataJpaTest
-public class TestPrescription{
+public class TestPrescription {
     @Autowired
     private PrescriptionRepository prescriptionrepository;
+    @Autowired
+    private DrugRepository drugrepository;
+    @Autowired
+    private StaffRepository staffrepository;
+    @Autowired
+    private CategoryRepository categoryrepository;
 
     @Autowired
     private TestEntityManager entityManager;
 
     private Validator validator;
-	
-	@Before
+
+    @Before
     public void setup() {
         ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
         validator = factory.getValidator();
     }
 
-
     // ทดสอบ save data Prescription ปกติ
     @Test
     public void testTestInsertPrescriptionDataSuccess() {
         Prescription mag = new Prescription();
-        mag.setPreId("1234567890TH");
+        Drug D = this.drugrepository.findByDrugId(1L);
+        Category C = this.categoryrepository.findByCategoryId(1L);
+        Staff S = this.staffrepository.findByStaffId(1L);
+        mag.setPreId("P12345678");
+        mag.setDrug(D);
+        mag.setCategory(C);
+        mag.setStaff(S);
         mag.setDate(new Date());
         try {
             entityManager.persist(mag);
@@ -59,23 +70,6 @@ public class TestPrescription{
         }
     }
 
-     // ทดสอบห้ามเป็น not null
-     @Test
-     public void testTestPackageIdNotNull() {
-        Prescription mag = new Prescription();
-        mag.setPreId(null);
-        mag.setDate(new Date());
-         try {
-             entityManager.persist(mag);
-             entityManager.flush();
-             fail("Should not pass to this line");
-         } catch(javax.validation.ConstraintViolationException e) {
-             Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
-             assertEquals(violations.isEmpty(), false);
-             assertEquals(violations.size(), 1);
-         }
-     }
-
+    
 
 }
-
