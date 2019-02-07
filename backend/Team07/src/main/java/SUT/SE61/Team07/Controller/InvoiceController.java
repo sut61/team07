@@ -49,11 +49,11 @@ class InvoiceController {
         return invoiceRepository.findAll().stream().collect(Collectors.toList());
     }
 
-    @PostMapping("Invoice-insert/StaffId/{StaffId}/customer/{customerId}/address/{addressId}/drug/{drugId}/Amount/{Amount}/Netamount/{Netamount}")
+    @PostMapping("/Invoice-insert/StaffId/{StaffId}/customerId/{customerId}/addressId/{addressId}/drugId/{drugId}/Amount/{Amount}/Netamount/{Netamount}")
     public ResponseEntity<Map<String, Object>> ShowHrssubmit(@PathVariable("StaffId") Long staffId,
             @PathVariable("customerId") Long customerId, @PathVariable("addressId") Long addressId,
-            @PathVariable("drugId") Long drugId, @PathVariable("Amount") String amount,
-            @PathVariable("Netmount") String netamount) {
+            @PathVariable("drugId") Long drugId, @PathVariable("Amount") String Amount,
+            @PathVariable("Netamount") String Netamount) {
 
         try {
             Staff S = this.staffrepository.findByStaffId(staffId);
@@ -61,7 +61,7 @@ class InvoiceController {
             Address A = this.addressrepository.findByAddressId(addressId);
             Drug D = this.drugrepository.findByDrugId(drugId);
 
-            this.invoiceRepository.save(new Invoice(S, C, A, D, amount, netamount));
+            this.invoiceRepository.save(new Invoice(S, C, A, D, Amount, Netamount));
 
             Map<String, Object> json = new HashMap<String, Object>();
             json.put("success", true);
