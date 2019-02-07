@@ -36,6 +36,13 @@ class StaffController {
     }
 
     
+    @GetMapping("/Staff/{staffId}")
+    public Staff staffFind(@PathVariable("staffId") Long id) {
+        return staffrepository.findByStaffId(id);
+    }
+
+
+    
     @GetMapping("/Staffuser/{staffUser}")
      public Staff staffuser(@PathVariable("staffUser")String staffUser){
          return staffrepository.findByStaffUser(staffUser);

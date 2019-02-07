@@ -59,7 +59,7 @@ class ResistanceController {
                                                                 @PathVariable("customerId") Long customerId,*/
                                                                 @PathVariable("resist") String resist) {
         try {
-            RecordDrugUse Rdu = this.recordDrugUserepository.findByRecorddrugId(recorddrugId);
+            RecordDrugUse Rdu = this.recordDrugUserepository.findByRecordDrugUseId(recorddrugId);
             /*Drugdata        Dd  = this.drugdatarepository.findByDrugdataId(drugdataId);
             Staff           Ss  = this.staffrepository.findByStaffId(staffId);
             Customer        Cc  = this.customerrepository.findByCustomerId(customerId);*/

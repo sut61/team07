@@ -28,4 +28,12 @@ class AddressController {
 
     }
 
+
+    
+    
+    @GetMapping("/Address/{addressId}")
+    public Address addressFind(@PathVariable("addressId") Long id) {
+        return addressrepository.findByAddressId(id);
+    }
+
 }

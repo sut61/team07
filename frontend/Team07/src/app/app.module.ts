@@ -82,6 +82,7 @@ import { DrugService } from './Service/drug.service';
 
 import { DrugdataService } from './Service/drugdata.service';
 import { RedcorduseService } from './Service/redcorduse.service';
+import { ResistanceService } from './Service/resistance.service';
 import { NotificationComponent } from './notification/notification.component';
 import { OrdersDrugComponent } from './orders-drug/orders-drug.component';
 import { ResistanceComponent } from './resistance/resistance.component';

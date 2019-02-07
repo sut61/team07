@@ -15,13 +15,14 @@
 
       <a mat-stroked-button routerLink="/login-staff">คลังยา</a>
       <a mat-stroked-button routerLink="/login-orders">จัดหายา</a>
-      
+
 
       <a mat-stroked-button routerLink="/drug-data">จัดเก็บข้อมูลยา</a>
 
       <a mat-stroked-button routerLink="/post">จัดการพนักงาน</a>
 
       <a mat-stroked-button routerLink="/redcord-use">บันทึกการใช้ยา</a>
+      <a mat-stroked-button routerLink="/resistance">บันทึกการดื้อยา</a>
       <a mat-stroked-button routerLink="/delivery">บันทึกใบส่งของ</a>
 
       <a mat-stroked-button routerLink="/notification">แจ้งเตือนทานยา</a>
@@ -37,7 +38,6 @@
     </mat-card-actions>
 
   </div>
-
 </mat-card>
 
 <mat-card class="post-card">
@@ -92,20 +92,17 @@
       </mat-form-field>
     </form>
 
-
-
     <form>
       <mat-form-field class="example-first-last ">
         <input matInput placeholder="ยอดสุทธิ(บาท)" [(ngModel)]="detail.netamount" required name="Netamount" #Netamount>
       </mat-form-field>
     </form>
 
-
   </mat-card-content>
 
 
   <mat-card-actions style="text-align:right">
-    <a mat-raised-button (click)="save()" color="warn" type="submit" routerLink="/delivery-show">Confirm</a>
+    <a mat-raised-button (click)="save()" color="warn" type="submit" >Confirm</a>
     <a mat-raised-button (click)="cancel()" color="warn" routerLink="/home">Cancel</a>
   </mat-card-actions>
 </mat-card>

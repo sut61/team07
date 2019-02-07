@@ -26,7 +26,7 @@ public class Prescription {
     private Long PrescriptionId;
 
     @NotNull(message="Package Id must not be null to be valid")
-    @Pattern(regexp = "([A-Z]{0,3}\\d{8,13})TH|(\\d{8,13})TH")
+    @Pattern(regexp = "(^P{1}[0-9]{8,13}$)")
     @Size(min = 8, max = 20)
     private String preId;
 
