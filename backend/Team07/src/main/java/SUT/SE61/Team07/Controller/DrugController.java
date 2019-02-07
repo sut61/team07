@@ -30,6 +30,10 @@ class DrugController {
     public Collection<Drug> drugs() {
         return drugrepository.findAll().stream().collect(Collectors.toList());
     }
+    @GetMapping("/Drug/{drugId}")
+    public Drug drugFind(@PathVariable("drugId") Long id) {
+        return drugrepository.findByDrugId(id);
+    }
 
 }
   // ไว้เพิ่มยาเข้าคลัง 

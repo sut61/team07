@@ -37,7 +37,6 @@
     </mat-card-actions>
 
   </div>
-
 </mat-card>
 
 <mat-card class="post-card">
@@ -92,20 +91,17 @@
       </mat-form-field>
     </form>
 
-
-
     <form>
       <mat-form-field class="example-first-last ">
         <input matInput placeholder="ยอดสุทธิ(บาท)" [(ngModel)]="detail.netamount" required name="Netamount" #Netamount>
       </mat-form-field>
     </form>
 
-
   </mat-card-content>
 
 
   <mat-card-actions style="text-align:right">
-    <a mat-raised-button (click)="save()" color="warn" type="submit" routerLink="/delivery-show">Confirm</a>
+    <a mat-raised-button (click)="save()" color="warn" type="submit" >Confirm</a>
     <a mat-raised-button (click)="cancel()" color="warn" routerLink="/home">Cancel</a>
   </mat-card-actions>
 </mat-card>

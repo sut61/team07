@@ -2,9 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from "@angular/router";
 import { DeliveryService } from '../Service/delivery.service';
 import { HttpClient } from '@angular/common/http';
-import { FormControl } from '@angular/forms';
-import { Observable } from 'rxjs';
-import { map, startWith } from 'rxjs/operators';
 
 @Component({
   selector: 'app-delivery',
@@ -15,37 +12,43 @@ import { map, startWith } from 'rxjs/operators';
 })
 export class DeliveryComponent implements OnInit {
   staffs: Array<any>;
+  staffselect = '';
   customers: Array<any>;
-  drugs: Array<any>;
+  customerselect = '';
   addresss: Array<any>;
   addressselect = '';
+   drugs: Array<any>;
+   drugselect  = '';
 
   detail: any = {
     staff: '',
     customer: '',
+    address: '',
     drug: '',
+    
     amount: '',
     netamount: '',
-    //address: '',
-
 
 
   };
   emp: any = {
     staffSelect: '',
     customerSelect: '',
-    // addressSelect: '',
+    addressSelect: '',
     drugSelect: '',
 
   };
 
-  // showdatainput() {
-  //   console.log("initialId = " + this.initialselect)
-  //   console.log("genderselect = " + this.genderselect)
-  //   console.log("bloodTypeselect = " + this.bloodTypeselect)
+  showdatainput() {
+    console.log("staffselect = " + this. staffselect)
+    console.log("customerselect = " + this.customerselect)
+    console.log("addressselect = " + this.addressselect)
+    console.log("drugselect = " + this.drugselect)
+    
 
+    
 
-  // }
+  }
   constructor(private router: Router, private deliveryService: DeliveryService, private httpClient: HttpClient) { }
 
   ngOnInit() {
@@ -72,12 +75,12 @@ export class DeliveryComponent implements OnInit {
 
   SubmitdData() {
     console.log(this.detail)
-    const data = this.detail
+   const data = this.detail
     this.router.navigate(['delivery-show', {
-
+    
       staff: data.staff,
       customer: data.customer,
-      address: data.address,
+      address: this.addressselect,
 
       drug: data.drug,
       amount: data.amount,
@@ -87,11 +90,14 @@ export class DeliveryComponent implements OnInit {
 
   }
   save() {
+    this.detail.addressSelect = this.addressselect;
     this.httpClient.post('http://localhost:8080/Invoice-insert/StaffId/' + this.emp.staffSelect + '/customerId/' + this.emp.customerSelect + '/addressId/' + this.addressselect + '/drugId/' + this.emp.drugSelect + '/Amount/' + String(this.detail.amount) + '/Netamount/' + String(this.detail.netamount), this.emp)
       .subscribe(
         data => { console.log('PUT Request is successful', data); },
         error => { console.log('Error', error); }
       );
+      this.SubmitdData();
+
   }
 }
 

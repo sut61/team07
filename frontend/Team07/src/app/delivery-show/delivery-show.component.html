@@ -1,16 +1,31 @@
-&nbsp;
+
 <mat-card class="time-card">
-    <h1 style="text-align:center">
-      บันทึกรายละเอียดใบส่งของ  สำเร็จ!
-      </h1>
-  <!-- <p>ชื่อ:&nbsp;&nbsp;&nbsp; {{this.detail.staff}}</p>
-  <p>ตำแหน่ง:&nbsp;&nbsp;&nbsp; {{this.detail.department}}</p>
-  <p>ช่วงเวลาที่เข้า-ออก งาน:&nbsp;&nbsp;&nbsp; {{this.detail.worktime}}</p>
-  
-   -->
-  <mat-card-actions style="text-align:center">
-    <a mat-stroked-button routerLink="/delivery">กลับ</a>
+  <h1 style="text-align:center">
+    บันทึกรายละเอียดใบส่งของ  สำเร็จ!
+    </h1>
+<!-- <p>ชื่อ:&nbsp;&nbsp;&nbsp; {{this.detail.staff}}</p>
+<p>ตำแหน่ง:&nbsp;&nbsp;&nbsp; {{this.detail.department}}</p>
+<p>ช่วงเวลาที่เข้า-ออก งาน:&nbsp;&nbsp;&nbsp; {{this.detail.worktime}}</p>
 
-  </mat-card-actions>
-
+ -->
 </mat-card>
+
+&nbsp;
+<mat-card class="payment-card">
+    <p>ชื่อพนักงาน:&nbsp;&nbsp;&nbsp; {{this.staffName}}</p>
+    <p>ชื่อลูกค้า:&nbsp;&nbsp;&nbsp; {{this.customerName}}</p>
+    <p>ที่อยู่:&nbsp;&nbsp;&nbsp; {{this.address}}</p>
+    <p>ชื่อยา:&nbsp;&nbsp;&nbsp; {{this.drugName}}</p>
+    <p>จำนวนยา:&nbsp;&nbsp;&nbsp; {{this.data.amount}}</p>
+    <p>ยอดสุทธิ:&nbsp;&nbsp;&nbsp; {{this.data.netamount}}</p>
+    
+  
+
+  <mat-card-actions style="text-align:center">
+  <a mat-stroked-button routerLink="/delivery">กลับ</a>
+
+</mat-card-actions>
+  </mat-card>
+  
+
+
