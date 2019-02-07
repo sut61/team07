@@ -87,7 +87,7 @@ export class DeliveryComponent implements OnInit {
 
   }
   save() {
-    this.httpClient.post('http://localhost:8080/Invoice-insert/StaffId/' + this.emp.staffSelect + '/customerId/' + this.emp.customerSelect + '/addressId/' + this.addressselect + '/drugId/' + this.emp.drugSelect + '/Amount/' + String(this.detail.netamount) + '/Netamount/' + String(this.detail.netamount), this.emp)
+    this.httpClient.post('http://localhost:8080/Invoice-insert/StaffId/' + this.emp.staffSelect + '/customerId/' + this.emp.customerSelect + '/addressId/' + this.addressselect + '/drugId/' + this.emp.drugSelect + '/Amount/' + String(this.detail.amount) + '/Netamount/' + String(this.detail.netamount), this.emp)
       .subscribe(
         data => { console.log('PUT Request is successful', data); },
         error => { console.log('Error', error); }
