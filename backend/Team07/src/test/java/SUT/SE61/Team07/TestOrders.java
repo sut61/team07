@@ -7,11 +7,13 @@ import org.springframework.test.context.junit4.SpringRunner;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
 
-import java.util.Collections;
-import java.util.OptionalInt;
+import javax.validation.ConstraintViolation;
+import javax.validation.Validation;
+import javax.validation.Validator;
+import javax.validation.ValidatorFactory;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Set;
-import java.util.Date;
-
 import javax.persistence.PersistenceException;
 import javax.validation.ConstraintViolation;
 import javax.validation.Validation;
@@ -35,7 +37,10 @@ public class TestOrders {
 
     @Autowired
     private OrdersRepository ordersrepository;
-
+    @Autowired
+    private PartnersRepository partnersrepository;
+    @Autowired
+    private CatalogRepository catalogrepository;
     @Autowired
     private TestEntityManager entityManager;
 
@@ -47,151 +52,152 @@ public class TestOrders {
         validator = factory.getValidator();
     }
 
-    // ทดสอบ save data Orders ปกติ
-    public void testTestInsertOrdersSuccess() {
-        Orders os = new Orders();
-        os.setName("O1234567");
-        os.setAmount("20");
-        os.setPartners(null);
-        os.setCatalog(null);
-
-        try {
-            entityManager.persist(os);
-            entityManager.flush();
-            System.out.println(
-                    "------------------------------------------------------------------------------------------------------------------------------------------------Test Case 1 Succuess------------------------------------------------------------------------------------------------------------------------------------------------");
-
-        } catch (javax.validation.ConstraintViolationException e) {
-
-            fail("Should not pass to this line");
-        }
+    @Test
+    public void contextLoads() {
+        System.out.println("Test Successful");
     }
 
-    // ทดสอบห้ามเป็น not null 
-    @Test
-    public void testTestOrdersnameNotNull() {
+    public void testSuccess() {
         Orders os = new Orders();
-        os.setName(null);
+        Partners P = this.partnersrepository.findBypartnersId(1L);
+        Catalog C = this.catalogrepository.findByCatalogId(1L);
+        os.setName("O1234567");
         os.setAmount("20");
-        os.setPartners(null);
-        os.setCatalog(null);
+        os.setPartners(P);
+        os.setCatalog(C);
+
         try {
             entityManager.persist(os);
             entityManager.flush();
 
-            fail("Should not pass to this line");
         } catch (javax.validation.ConstraintViolationException e) {
+
+            System.out.println("================ from testSuccess =================");
+            System.out.println(e.getMessage());
             Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
             assertEquals(violations.isEmpty(), false);
             assertEquals(violations.size(), 1);
-            System.out.print("2.1  Test testTestPackageIdNotNull >> ");
-            System.out.println(e.getMessage()
-                    + "------------------------------------------------------------------------------------------------------------------------------------------------Test Case 2.1 Succuess------------------------------------------------------------------------------------------------------------------------------------------------");
 
+            // fail("Should not pass to this line");
+        }
+    }
+
+    // ทดสอบห้ามเป็น not null
+    @Test
+    public void testNameNull() {
+        Orders os = new Orders();
+        Partners P = this.partnersrepository.findBypartnersId(1L);
+        Catalog C = this.catalogrepository.findByCatalogId(1L);
+        os.setName(null);
+        os.setAmount("20");
+        os.setPartners(P);
+        os.setCatalog(C);
+        try {
+            entityManager.persist(os);
+            entityManager.flush();
+            fail("Should not pass to this line");
+        } catch (javax.validation.ConstraintViolationException e) {
+            System.out.println();
+            System.out.println();
+            System.out.println();
+            System.out.println(
+                    "============================================================ from testNameNull =============================================================");
+            System.out.println(e);
+            System.out.println();
+            System.out.println();
+            Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
+            assertEquals(violations.isEmpty(), false);
+            assertEquals(violations.size(), 1);
         }
     }
 
     // ทดสอบ first Orders name ไม่ใช่ตัว O
     @Test
-    public void testFistAmountNotO() {
+    public void testPatternNameOrders() {
         Orders os = new Orders();
+        Partners P = this.partnersrepository.findBypartnersId(1L);
+        Catalog C = this.catalogrepository.findByCatalogId(1L);
         os.setName("A1234567");
         os.setAmount("20");
-        os.setPartners(null);
-        os.setCatalog(null);
+        os.setPartners(P);
+        os.setCatalog(C);
         try {
             entityManager.persist(os);
             entityManager.flush();
 
             fail("Should not pass to this line");
         } catch (javax.validation.ConstraintViolationException e) {
+            System.out.println();
+            System.out.println();
+            System.out.println();
+            System.out.println(
+                    "============================================================ from testPatternNameOrders =============================================================");
+            System.out.println(e);
+            System.out.println();
+            System.out.println();
             Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
             assertEquals(violations.isEmpty(), false);
             assertEquals(violations.size(), 1);
-            System.out.print("2.4  Test testTestPackageIdNotNull >> ");
-            System.out.println(e.getMessage()
-                    + "------------------------------------------------------------------------------------------------------------------------------------------------Test Case 2.4 Succuess------------------------------------------------------------------------------------------------------------------------------------------------");
-
         }
     }
 
     // ทดสอบ ความยาวของ Orders name ไม่ถึง 8
     @Test
-    public void testLengthMinimum8() {
+    public void testMinsize8() {
         Orders os = new Orders();
+        Partners P = this.partnersrepository.findBypartnersId(1L);
+        Catalog C = this.catalogrepository.findByCatalogId(1L);
         os.setName("O123456");
         os.setAmount("20");
-        os.setPartners(null);
-        os.setCatalog(null);
+        os.setPartners(P);
+        os.setCatalog(C);
         try {
             entityManager.persist(os);
             entityManager.flush();
-
             fail("Should not pass to this line");
         } catch (javax.validation.ConstraintViolationException e) {
+            System.out.println();
+            System.out.println();
+            System.out.println();
+            System.out.println(
+                    "============================================================ from testMinsize8  =============================================================");
+            System.out.println(e);
+            System.out.println();
+            System.out.println();
             Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
             assertEquals(violations.isEmpty(), false);
             assertEquals(violations.size(), 2);
-            System.out.print("2.3  Test testTestPackageIdNotNull >> ");
-            System.out.println(e.getMessage()
-                    + "------------------------------------------------------------------------------------------------------------------------------------------------Test Case 2.3 Succuess------------------------------------------------------------------------------------------------------------------------------------------------");
-
         }
     }
 
     // ทดสอบ ความยาวของ Orders name มากกว่า 10
     @Test
-    public void testLengthNotEquals10() {
+    public void testMaxsize10() {
         Orders os = new Orders();
-        os.setName("O1234567891");
+        Partners P = this.partnersrepository.findBypartnersId(1L);
+        Catalog C = this.catalogrepository.findByCatalogId(1L);
+        os.setName("O12345678910");
         os.setAmount("20");
-        os.setPartners(null);
-        os.setCatalog(null);
+        os.setPartners(P);
+        os.setCatalog(C);
         try {
             entityManager.persist(os);
             entityManager.flush();
-
             fail("Should not pass to this line");
         } catch (javax.validation.ConstraintViolationException e) {
+            System.out.println();
+            System.out.println();
+            System.out.println();
+            System.out.println(
+                    "============================================================ from testMaxsize10   =============================================================");
+            System.out.println(e);
+            System.out.println();
+            System.out.println();
             Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
             assertEquals(violations.isEmpty(), false);
             assertEquals(violations.size(), 2);
-            System.out.print("2.2  Test testTestPackageIdNotNull >> ");
-            System.out.println(e.getMessage()
-                    + "------------------------------------------------------------------------------------------------------------------------------------------------Test Case 2.2 Succuess------------------------------------------------------------------------------------------------------------------------------------------------");
-
         }
     }
-
-    public void testIdMustBeUnique() {
-        Orders os = new Orders();
-        os.setName("O12345678");
-        os.setAmount("20");
-        os.setPartners(null);
-        os.setCatalog(null);
-        entityManager.persist(os);
-        entityManager.flush();
-
-        Orders os2 = new Orders();
-        os.setName("O12345678");
-        os.setAmount("20");
-        os.setPartners(null);
-        os.setCatalog(null);
-
-        try {
-
-            entityManager.persist(os2);
-            entityManager.flush();
-            fail("Should not pass to this line");
-        } catch (PersistenceException e) {
-            
-
-            System.out.print("2.5  Test testIdMustBeUnique >> ");
-            System.out.println(e.getMessage()
-                    + "------------------------------------------------------------------------------------------------------------------------------------------------Test Case 2.5 Succuess------------------------------------------------------------------------------------------------------------------------------------------------");
-
-        }
-
-    }
+    
 
 }
