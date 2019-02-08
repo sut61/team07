@@ -1,4 +1,5 @@
 package SUT.SE61.Team07.Controller;
+
 import SUT.SE61.Team07.Entity.*;
 import SUT.SE61.Team07.Repository.*;
 
@@ -17,24 +18,21 @@ import java.util.stream.Collectors;
 import SUT.SE61.Team07.Repository.*;
 import SUT.SE61.Team07.Entity.*;
 
-
 @RestController
 @CrossOrigin(origins = "http://localhost:4200")
 
 class NotificationController {
     NotificationRepository notificationrepository;
-    CustomerRepository  customerrepository;
-    DrugRepository      drugrepository;
-    TimeEatRepository   timeEatrepository;
-  
-   
+    CustomerRepository customerrepository;
+    DrugRepository drugrepository;
+    TimeEatRepository timeEatrepository;
 
-    public NotificationController(NotificationRepository notificationrepository,CustomerRepository  customerrepository,
-           DrugRepository  drugrepository,TimeEatRepository   timeEatrepository) {
+    public NotificationController(NotificationRepository notificationrepository, CustomerRepository customerrepository,
+            DrugRepository drugrepository, TimeEatRepository timeEatrepository) {
         this.notificationrepository = notificationrepository;
         this.customerrepository = customerrepository;
-        this.drugrepository     = drugrepository;
-        this.timeEatrepository  = timeEatrepository;
+        this.drugrepository = drugrepository;
+        this.timeEatrepository = timeEatrepository;
     }
 
     @GetMapping("/Notification-list")
@@ -48,14 +46,15 @@ class NotificationController {
     }
 
     @PostMapping("/Notification-insert/customerId/{customerId}/drugId/{drugId}/timeEatId/{timeEatId}/notificationName/{notificationName}")
-    public ResponseEntity<Map<String, Object>> Orderssumbit(@PathVariable("customerId") Long customerId,@PathVariable("drugId") Long drugId,
-           @PathVariable("timeEatId") Long timeEatId,@PathVariable("notificationName") String notificationName) {
+    public ResponseEntity<Map<String, Object>> Orderssumbit(@PathVariable("customerId") Long customerId,
+            @PathVariable("drugId") Long drugId, @PathVariable("timeEatId") Long timeEatId,
+            @PathVariable("notificationName") String notificationName) {
         try {
             Customer C = this.customerrepository.findByCustomerId(customerId);
             Drug D = this.drugrepository.findByDrugId(drugId);
             TimeEat T = this.timeEatrepository.findByTimeEatId(timeEatId);
 
-            this.notificationrepository.save(new Notification(C,D,T,notificationName));
+            this.notificationrepository.save(new Notification(notificationName, C, D, T));
 
             Map<String, Object> json = new HashMap<String, Object>();
             json.put("success", true);

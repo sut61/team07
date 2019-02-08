@@ -12,6 +12,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.JoinColumn;
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.FetchType;
 import javax.validation.constraints.*;
 
@@ -23,15 +24,16 @@ public class Notification {
     @SequenceGenerator(name = "notification_seq", sequenceName = "notification_seq")
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "notification_seq")
 
-    @NotNull(message = "data Invoice must not be null to be valid")
+    @NotNull(message = "data notificationId must not be null to be valid")
     private Long notificationId;
-    
+
     @NotNull
+    @Size(min = 13, max = 20)
+    @Column(unique = true)
     private String notificationName;
- 
+
     @NotNull
     private Date date;
-
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "customerId")
@@ -40,23 +42,21 @@ public class Notification {
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "drugId")
     private Drug drug;
-    
+
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "timeEatId")
     private TimeEat timeEat;
-    
-  
 
     public Notification() {
 
     }
 
-    public Notification(Customer customer, Drug drug, TimeEat timeEat, String  notificationName) {
+    public Notification(String notificationName, Customer customer, Drug drug, TimeEat timeEat) {
+
+        this.notificationName = notificationName;
         this.customer = customer;
         this.drug = drug;
         this.timeEat = timeEat;
-        this.notificationName = notificationName;
-        
         this.date = new Date();
     }
 

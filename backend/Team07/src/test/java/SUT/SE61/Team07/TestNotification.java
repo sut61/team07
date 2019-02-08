@@ -7,6 +7,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
 
+import java.sql.Time;
 import java.util.Collections;
 import java.util.OptionalInt;
 import java.util.Set;
@@ -29,41 +30,94 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 @RunWith(SpringRunner.class)
 @DataJpaTest
 
-public class TestNotification{
+public class TestNotification {
 
     @Autowired
     private NotificationRepository notificationrepository;
-   
+    @Autowired
+    private CustomerRepository customerrepository;
+    @Autowired
+    private DrugRepository drugrepository;
+     
+    
+      
+    @Autowired
+    private TimeEatRepository timeEatrepository;
+
     @Autowired
     private TestEntityManager entityManager;
 
     private Validator validator;
-	
-	@Before
+   
+       
+
+    @Before
     public void setup() {
         ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
         validator = factory.getValidator();
     }
 
-    
+    @Test
+    public void contextLoads() {
+        System.out.println("Test Successful");
+    }
+
     // ทดสอบ save Notification ปกติ
+    @Test
     public void testTestInsertNotificationDataSuccess() {
+        
+    
+        Customer C = this.customerrepository.findByCustomerId(1L);
+        Drug D = this.drugrepository.findByDrugId(1L);
+        TimeEat T = this.timeEatrepository.findByTimeEatId(1L);
+
         Notification no = new Notification();
-        no.setNotificationId(1L);
+        no.setNotificationName("16 กุมภาพันธ์ 2562");
+        no.setCustomer(C);
+        no.setDrug(D);
+        no.setTimeEat(T);
+        no.setDate(new Date());
+
         try {
             entityManager.persist(no);
             entityManager.flush();
         } catch (javax.validation.ConstraintViolationException e) {
-            fail("Should not pass to this line");
+            System.out.println();
+            System.out.println();
+            System.out.println();
+            System.out.println();
+            System.out.println();
+            System.out.println();
+            System.out.println("================ from testTestInsertNotificationDataSuccess =================");
+            System.out.println(e.getMessage());
+            System.out.println();
+            System.out.println();
+            System.out.println();
+            System.out.println();
+            System.out.println();
+            System.out.println();
+            Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
+            assertEquals(violations.isEmpty(), false);
+            assertEquals(violations.size(), 1);
+
         }
     }
 
+    // ทดสอบ save Notification ห้ามเป็น null
 
-    // ทดสอบห้าม Notification เป็น not null
     @Test
     public void testTestNotificationdataNotNull() {
-        Notification no = new  Notification();
+
+        Customer C = this.customerrepository.findByCustomerId(1L);
+        Drug D = this.drugrepository.findByDrugId(1L);
+        TimeEat T = this.timeEatrepository.findByTimeEatId(1L);
+
+        Notification no = new Notification();
+
         no.setNotificationName(null);
+        no.setCustomer(C);
+        no.setDrug(D);
+        no.setTimeEat(T);
         no.setDate(new Date());
 
         try {
@@ -71,66 +125,73 @@ public class TestNotification{
             entityManager.flush();
             fail("Should not pass to this line");
         } catch (javax.validation.ConstraintViolationException e) {
+            System.out.println();
+            System.out.println();
+            System.out.println();
+            System.out.println(
+                    "============================================================ from testTestNotificationdataNotNull =============================================================");
+            System.out.println(e);
+            System.out.println();
+            System.out.println();
             Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
             assertEquals(violations.isEmpty(), false);
             assertEquals(violations.size(), 1);
         }
     }
 
-     // ทดสอบ  ความยาวของ Notification name  มากกว่า 10
-     /*@Test
-     public void testLengthNotEquals10(){
-         Notification no = new  Notification();
-         no.setNotificationName("O1234567891");
-         no.setDate(new Date());
-          try {
-             entityManager.persist(no);
-             entityManager.flush();
- 
-             fail("Should not pass to this line");
-         } catch(javax.validation.ConstraintViolationException e) {
-             Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
-             assertEquals(violations.isEmpty(), false);
-             assertEquals(violations.size(),2);
-         }
-     }
+   
+    // // ทดสอบห้าม Notification เป็น not null
+    // @Test
+    // public void testTestNotificationdataNotNull() {
+    // Notification no = new Notification();
+    // no.setNotificationName(null);
+    // no.setDate(new Date());
 
-     // ทดสอบ  ความยาวของ Notification name   ไม่ถึง 8
-    @Test
-    public void testLengthMinimum8(){
-        Notification no = new  Notification();
-        no.setNotificationName("O123456");
-        no.setDate(new Date());
-         try {
-            entityManager.persist(no);
-            entityManager.flush();
+    // try {
+    // entityManager.persist(no);
+    // entityManager.flush();
+    // fail("Should not pass to this line");
+    // } catch (javax.validation.ConstraintViolationException e) {
+    // Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
+    // assertEquals(violations.isEmpty(), false);
+    // assertEquals(violations.size(), 1);
+    // }
+    // }
 
-            fail("Should not pass to this line");
-        } catch(javax.validation.ConstraintViolationException e) {
-            Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
-            assertEquals(violations.isEmpty(), false);
-            assertEquals(violations.size(),2);
-        }
-    }
-
-    // ทดสอบ pattern ไม่ตรง
-   @Test
-	public void testTestPackageIdDonthaveTH() {
-        Notification no = new  Notification();
-        no.setNotificationName("123456789");
-        no.setDate(new Date());
-        try {
-            entityManager.persist(no);
-            entityManager.flush();
-            fail("Should not pass to this line");
-        } catch(javax.validation.ConstraintViolationException e) {
-            Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
-            assertEquals(violations.isEmpty(), false);
-            assertEquals(violations.size(), 2);
-        }
-    }
- */
-    
-
+    // ทดสอบ ความยาวของ Notification name มากกว่า 10
+    /*
+     * @Test public void testLengthNotEquals10(){ Notification no = new
+     * Notification(); no.setNotificationName("O1234567891"); no.setDate(new
+     * Date()); try { entityManager.persist(no); entityManager.flush();
+     * 
+     * fail("Should not pass to this line"); }
+     * catch(javax.validation.ConstraintViolationException e) {
+     * Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
+     * assertEquals(violations.isEmpty(), false); assertEquals(violations.size(),2);
+     * } }
+     * 
+     * // ทดสอบ ความยาวของ Notification name ไม่ถึง 8
+     * 
+     * @Test public void testLengthMinimum8(){ Notification no = new Notification();
+     * no.setNotificationName("O123456"); no.setDate(new Date()); try {
+     * entityManager.persist(no); entityManager.flush();
+     * 
+     * fail("Should not pass to this line"); }
+     * catch(javax.validation.ConstraintViolationException e) {
+     * Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
+     * assertEquals(violations.isEmpty(), false); assertEquals(violations.size(),2);
+     * } }
+     * 
+     * // ทดสอบ pattern ไม่ตรง
+     * 
+     * @Test public void testTestPackageIdDonthaveTH() { Notification no = new
+     * Notification(); no.setNotificationName("123456789"); no.setDate(new Date());
+     * try { entityManager.persist(no); entityManager.flush();
+     * fail("Should not pass to this line"); }
+     * catch(javax.validation.ConstraintViolationException e) {
+     * Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
+     * assertEquals(violations.isEmpty(), false); assertEquals(violations.size(),
+     * 2); } }
+     */
 
 }
