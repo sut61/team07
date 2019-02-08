@@ -33,7 +33,7 @@ public class DatabaseLoader implements ApplicationRunner {
     private final InvoiceRepository invoicerepository;
     private final ResistanceRepository resistancerepository;
     private final TimeEatRepository timeEatrepository;
-    private final NotificationRepository  notificationrepository;
+    private final NotificationRepository notificationrepository;
     private final ReceiptRepository receiptrepository;
     private final OrdersReciptRepository ordersreciptRepository;
 
@@ -46,8 +46,9 @@ public class DatabaseLoader implements ApplicationRunner {
             ShowHrsRepository showHrsrepository, RecordDrugUseRepository recordDrugUserepository,
             CatalogRepository catalogrepository, PartnersRepository partnersrepository,
             OrdersRepository ordersrepository, AddressRepository addressrepository, InvoiceRepository invoicerepository,
-            ResistanceRepository resistancerepository,TimeEatRepository timeEatrepository,NotificationRepository  notificationrepository,
-            ReceiptRepository receiptrepository,OrdersReciptRepository ordersreciptRepository) {
+            ResistanceRepository resistancerepository, TimeEatRepository timeEatrepository,
+            NotificationRepository notificationrepository, ReceiptRepository receiptrepository,
+            OrdersReciptRepository ordersreciptRepository) {
         this.drugrepository = drugrepository;
         this.prescriptionrepository = prescriptionrepository;
         this.staffrepository = staffrepository;
@@ -68,7 +69,7 @@ public class DatabaseLoader implements ApplicationRunner {
         this.addressrepository = addressrepository;
         this.invoicerepository = invoicerepository;
         this.resistancerepository = resistancerepository;
-        this.timeEatrepository =   timeEatrepository;
+        this.timeEatrepository = timeEatrepository;
         this.notificationrepository = notificationrepository;
         this.receiptrepository = receiptrepository;
         this.ordersreciptRepository = ordersreciptRepository;
@@ -110,7 +111,7 @@ public class DatabaseLoader implements ApplicationRunner {
         this.staffrepository.save(new Staff("ahmouy", "mouy", "gg1234", "0960050004"));
         Staff S1 = this.staffrepository.findByStaffId(1L);
         this.prescriptionrepository.save(new Prescription("P1234567890", C1, D1, S1)); // this is bug WTF
-     
+
         this.catalogrepository.save(new Catalog("ยาหมอมี", "ยาน้ำ"));
         this.catalogrepository.save(new Catalog("ยาหมอมา", "ยาเม็ด"));
         this.catalogrepository.save(new Catalog("ยาหมอแมว", "ยาผง"));
@@ -147,9 +148,10 @@ public class DatabaseLoader implements ApplicationRunner {
         this.bloodTyperepository.save(new BloodType("O"));
         this.bloodTyperepository.save(new BloodType("AB"));
         BloodType blood1 = this.bloodTyperepository.findByBloodTypeId(1L);
-        this.customerrepository.save(new Customer(in1, "Bowling", ge1, blood1, "5/7", "0651472525", "Tuntika", "12345")); // การกรอกข้อมูลในcustomer
-                                                                                                                        // คนทีี่
-                                                                                                                        // 1
+        this.customerrepository
+                .save(new Customer(in1, "Bowling", ge1, blood1, "5/7", "0651472525", "Tuntika", "12345")); // การกรอกข้อมูลในcustomer
+                                                                                                           // คนทีี่
+                                                                                                           // 1
         this.customerrepository.save(new Customer(in1, "John", ge1, blood1, "6/9", "0935479424", "john", "nonphala")); // การกรอกข้อมูลในcustomer
         // // คนที่
         // // 2
@@ -183,6 +185,10 @@ public class DatabaseLoader implements ApplicationRunner {
         this.medicinerepository.save(new Medicine("ยาจำพวกกระตุ้นกล้ามเนื้อเรียบ"));
         Medicine M1 = this.medicinerepository.findBymedicineId(1L);
         this.drugdatarepository.save(new Drugdata("John", D1, S1, C1, M1));
+
+        this.ordersreciptRepository.save(new OrdersReceipt(10));
+        OrdersReceipt Ord1 = this.ordersreciptRepository.findByordersreceiptId(1L);
+        this.receiptrepository.save(new Receipt(Ord1,S1,D1,"13 กุมภาพันธ์62"));
         // /* end gan dbloader */
 
         // /* frame db loader */
@@ -190,32 +196,31 @@ public class DatabaseLoader implements ApplicationRunner {
         Customer Cu1 = this.customerrepository.findByCustomerId(1L);
         this.recordDrugUserepository.save(new RecordDrugUse("hothead", Dru1, S1, Cu1));
         RecordDrugUse recordDrugUse1 = this.recordDrugUserepository.findByRecordDrugUseId(1L);
-        this.resistancerepository.save(new Resistance(recordDrugUse1,"Normal"));
+        this.resistancerepository.save(new Resistance(recordDrugUse1, "Normal"));
 
         // /* end frame db loader */
 
         // pam loader
 
-        this.invoicerepository.save(new Invoice(S1, Cu1,A1 , D1, "4","150"));
+        this.invoicerepository.save(new Invoice(S1, Cu1, A1, D1, "4", "150"));
 
+        // bow loader sprint2
 
-          // bow loader sprint2
-        
-          this.timeEatrepository.save(new TimeEat("ทานก่อนอาหาร30นาที"));
-          this.timeEatrepository.save(new TimeEat("ทานหลังอาหาร30นาที"));
-          this.timeEatrepository.save(new TimeEat("ทานทันที"));
-          this.timeEatrepository.save(new TimeEat("ทานตอนเช้า"));
-          this.timeEatrepository.save(new TimeEat("ทานตอนกลางวัน"));
-          this.timeEatrepository.save(new TimeEat("ทานตอนเย็น"));
-          this.timeEatrepository.save(new TimeEat("ทานก่อนนอน"));
-          TimeEat Te1 = this.timeEatrepository.findByTimeEatId(1L);
-  
-          this.notificationrepository.save(new Notification("14 กุมภาพันธ์62",Cu1,D1,Te1));
-          this.notificationrepository.save(new Notification("15 กุมภาพันธ์62",Cu1,D1,Te1));
-          this.notificationrepository.save(new Notification("16 กุมภาพันธ์62",Cu1,D1,Te1));
-          this.notificationrepository.save(new Notification("17 กุมภาพันธ์62",Cu1,D1,Te1));
-          this.notificationrepository.save(new Notification("18 กุมภาพันธ์62",Cu1,D1,Te1));
-           // /* end bow db loader */
+        this.timeEatrepository.save(new TimeEat("ทานก่อนอาหาร30นาที"));
+        this.timeEatrepository.save(new TimeEat("ทานหลังอาหาร30นาที"));
+        this.timeEatrepository.save(new TimeEat("ทานทันที"));
+        this.timeEatrepository.save(new TimeEat("ทานตอนเช้า"));
+        this.timeEatrepository.save(new TimeEat("ทานตอนกลางวัน"));
+        this.timeEatrepository.save(new TimeEat("ทานตอนเย็น"));
+        this.timeEatrepository.save(new TimeEat("ทานก่อนนอน"));
+        TimeEat Te1 = this.timeEatrepository.findByTimeEatId(1L);
+
+        this.notificationrepository.save(new Notification("14 กุมภาพันธ์62", Cu1, D1, Te1));
+        this.notificationrepository.save(new Notification("15 กุมภาพันธ์62", Cu1, D1, Te1));
+        this.notificationrepository.save(new Notification("16 กุมภาพันธ์62", Cu1, D1, Te1));
+        this.notificationrepository.save(new Notification("17 กุมภาพันธ์62", Cu1, D1, Te1));
+        this.notificationrepository.save(new Notification("18 กุมภาพันธ์62", Cu1, D1, Te1));
+        // /* end bow db loader */
 
     }
 }

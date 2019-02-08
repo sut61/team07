@@ -24,14 +24,14 @@ public class Receipt {
     @NotNull(message = "receiptId must not be null to be valid")
     private Long receiptId;
     @NotNull
-    private Date date;
+    private String dates;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "ordersreceiptId")
     private OrdersReceipt ordersReceipt;
 
-    @NotNull
-    @OneToOne
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "staffId")
     private Staff staff;
 
     @ManyToOne(fetch = FetchType.EAGER)
@@ -41,11 +41,11 @@ public class Receipt {
     public Receipt() {
     }
 
-    public Receipt(OrdersReceipt ordersReceipt,Staff staff,Drug drug) {
+    public Receipt(OrdersReceipt ordersReceipt, Staff staff, Drug drug, String dates) {
         this.ordersReceipt = ordersReceipt;
         this.staff = staff;
         this.drug = drug;
-        this.date = new Date();
+        this.dates = dates;
 
     }
 
