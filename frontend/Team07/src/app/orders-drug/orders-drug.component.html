@@ -22,7 +22,7 @@
 
       <a mat-stroked-button routerLink="/redcord-use">บันทึกการใช้ยา</a>
       <a mat-stroked-button routerLink="/resistance">บันทึกการดื้อยา</a>
-      
+
       <a mat-stroked-button routerLink="/delivery">บันทึกใบส่งของ</a>
 
       <a mat-stroked-button routerLink="/notification">แจ้งเตือนทานยา</a>
@@ -40,6 +40,8 @@
   </div>
 
 </mat-card>
+<h3 align="center">
+ ผู้ใช้ที่กำลังอยู่ในระบบจัดหายา :  {{this.names}}</h3>
 
 <body>
   <div class="flex-container">
@@ -48,7 +50,7 @@
         <div class="flex-container">
           <form align="center">
 
-              <br>
+            <br>
             <mat-form-field>
               <h4>ชื่อรายการนำเข้ายา:</h4>
               <input matInput placeholder="" [(ngModel)]="data.nameorders" required name="nameorders" #nameorders>
