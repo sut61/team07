@@ -7,6 +7,7 @@ import { PartnersService } from '../Service/partners.service';
 import { CatalogService } from '../Service/catalog.service';
 
 
+
 @Component({
   selector: 'app-orders-drug',
   templateUrl: './orders-drug.component.html',
@@ -24,8 +25,9 @@ export class OrdersDrugComponent implements OnInit {
   data: any = {}
   datas: any = {}
   count: 0;
+  names:any;
 
-  constructor(private httpClient: HttpClient, private ordersService: OrdersService, private prdersService: PartnersService, private catalogService: CatalogService) { }
+  constructor(private route:ActivatedRoute,private httpClient: HttpClient, private ordersService: OrdersService, private prdersService: PartnersService, private catalogService: CatalogService) { }
 
   saveOrders() {
     let re = /(^O{1})(\d{7}$)/g
@@ -82,6 +84,11 @@ export class OrdersDrugComponent implements OnInit {
   }
 
   ngOnInit() {
+
+    this.route.params.subscribe(prams=>{
+      this.names = prams.name
+      console.log(prams)
+    })
     this.ordersService.getOrders().subscribe(data => {
       this.orders = data;
       console.log(this.orders)
