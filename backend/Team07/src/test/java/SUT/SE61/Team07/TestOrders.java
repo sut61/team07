@@ -56,7 +56,8 @@ public class TestOrders {
     public void contextLoads() {
         System.out.println("Test Successful");
     }
-
+    
+    @Test
     public void testSuccess() {
         Orders os = new Orders();
         Partners P = this.partnersrepository.findBypartnersId(1L);
