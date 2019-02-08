@@ -61,7 +61,7 @@ public class TestPrescription {
         Drug D = this.drugrepository.findByDrugId(1L);
         Category C = this.categoryrepository.findByCategoryId(1L);
         Staff S = this.staffrepository.findByStaffId(1L);
-        mag.setPreId("P12345678");
+        mag.setNamepre("P12345678");
         mag.setDrug(D);
         mag.setCategory(C);
         mag.setStaff(S);
@@ -87,7 +87,7 @@ public class TestPrescription {
         Drug D = this.drugrepository.findByDrugId(1L);
         Category C = this.categoryrepository.findByCategoryId(1L);
         Staff S = this.staffrepository.findByStaffId(1L);
-        mag.setPreId(null);
+        mag.setNamepre(null);
         mag.setDrug(D);
         mag.setCategory(C);
         mag.setStaff(S);
@@ -118,7 +118,7 @@ public class TestPrescription {
         Drug D = this.drugrepository.findByDrugId(1L);
         Category C = this.categoryrepository.findByCategoryId(1L);
         Staff S = this.staffrepository.findByStaffId(1L);
-        mag.setPreId("A12345678");
+        mag.setNamepre("A12345678");
         mag.setDrug(D);
         mag.setCategory(C);
         mag.setStaff(S);
@@ -150,7 +150,7 @@ public class TestPrescription {
         Drug D = this.drugrepository.findByDrugId(1L);
         Category C = this.categoryrepository.findByCategoryId(1L);
         Staff S = this.staffrepository.findByStaffId(1L);
-        mag.setPreId("P12345");
+        mag.setNamepre("P12345");
         mag.setDrug(D);
         mag.setCategory(C);
         mag.setStaff(S);
@@ -181,7 +181,7 @@ public class TestPrescription {
         Drug D = this.drugrepository.findByDrugId(1L);
         Category C = this.categoryrepository.findByCategoryId(1L);
         Staff S = this.staffrepository.findByStaffId(1L);
-        mag.setPreId("P1234567890123412345678901234");
+        mag.setNamepre("P1234567890123412345678901234");
         mag.setDrug(D);
         mag.setCategory(C);
         mag.setStaff(S);
@@ -211,14 +211,14 @@ public class TestPrescription {
         Drug D = this.drugrepository.findByDrugId(1L);
         Category C = this.categoryrepository.findByCategoryId(1L);
         Staff S = this.staffrepository.findByStaffId(1L);
-        mag.setPreId("P1234567890");
+        mag.setNamepre("P1234567890");
         mag.setDrug(D);
         mag.setCategory(C);
         mag.setStaff(S);
         mag.setDate(new Date());
 
         Prescription mag2 = new Prescription();
-        mag.setPreId("P1234567890");
+        mag.setNamepre("P1234567890");
         mag.setDrug(D);
         mag.setCategory(C);
         mag.setStaff(S);

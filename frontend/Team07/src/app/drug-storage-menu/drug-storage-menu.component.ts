@@ -60,11 +60,11 @@ export class DrugStorageMenuComponent implements OnInit {
     }
     if (this.count >= 3) {
       if (re.test(this.data.namepre)) {
-        this.inputdrugstroageService.summbituyPrescription(String(this.data.namepre), Number(this.categoryselect), Number(this.drugselect), Number(1)).subscribe(datas => {
-          if (datas.status == "save") {
+        this.inputdrugstroageService.summbituyPrescription(String(this.data.namepre), Number(this.categoryselect), Number(this.drugselect),String(this.names)).subscribe(dss => {
+          if (dss.status == "save") {
             alert("บันทึกสำเร็จ")
-          } else if (datas.status == "save-false") {
-            alert(datas.status)
+          } else if (dss.status == "save-false") {
+            alert(dss.status)
           }
         })
       } else {
@@ -78,47 +78,11 @@ export class DrugStorageMenuComponent implements OnInit {
 
 
 
-    // if (this.count >= 3){
-    //   if (re.test(this.data.namepre))
-
-    //   }
-    // }
-
-
-
-    // if (this.data.namepre === undefined || this.data.namepre === null) {
-    //   alert("ใส่ชื่อยา")
-    //   if (this.drugselect === undefined || this.drugselect === null || this.drugselect === "") {
-    //     alert("เลือกยา")
-    //     if (this.categoryselect === undefined || this.categoryselect === null || this.categoryselect === "") {
-    //       alert("เลือกประเภทยา")
-    //     }
-    //   }
-    // } else {
-    //   let re = /(^P{1})(\d{8,13}$)/g
-    //   if (re.test(this.data.namepre)) {
-
-    //     this.inputdrugstroageService.summbituyPrescription(String(this.data.namepre), Number(this.categoryselect), Number(this.drugselect), Number(1)).subscribe(datas => {
-    //       console.log(datas)
-    //       if (datas.status == "save") {
-    //         alert("บันทึกสำเร็จ")
-    //       } else if (datas.status == "save-false") {
-    //         alert("บันทึกไม่สำเร็จ")
-    //       }
-    //     })
-    //   } else {
-    //     alert("ตัวแรกต้องเป็น P และตามด้วยหมายเลข สั้นที่สุดคือ 8 ยาวสุดคือ 13");
-    //   }
-
-    // }
-
 
 
   }
 
-  // this.ordersService.PostOrders(String(this.data.nameorders), Number(this.partnersselect), Number(this.catalogselect), String(this.data.amount)).subscribe(datas => {
-  //   console.log(datas)
-  // })
+ 
 
 
   ngOnInit() {
@@ -135,10 +99,7 @@ export class DrugStorageMenuComponent implements OnInit {
       this.prescription = data;
       this.preId = this.prescription.length;
       console.log(this.prescription);
-      if (this.preId == "undefined") {
-        this.preId == 1;
-      }
-
+      
     })
     this.drugService.getDrug().subscribe(data => {
       this.drug = data;

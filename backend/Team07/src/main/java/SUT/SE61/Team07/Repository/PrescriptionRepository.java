@@ -6,4 +6,7 @@ import SUT.SE61.Team07.Entity.*;
 
 @RepositoryRestResource
 public interface PrescriptionRepository extends JpaRepository<Prescription, Long> {
+    Prescription findByPreId(Long preId);
+    Prescription findByNamepre(String namepre);
+
 }

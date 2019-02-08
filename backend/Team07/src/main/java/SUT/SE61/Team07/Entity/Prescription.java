@@ -24,13 +24,13 @@ public class Prescription {
     @SequenceGenerator(name = "prescription_seq", sequenceName = "prescription_seq")
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "prescription_seq")
     @NotNull
-    private Long PrescriptionId;
+    private Long preId;
 
     @NotNull(message="Package Id must not be null to be valid")
     @Pattern(regexp = "(^P{1}[0-9]{8,13}$)")
     @Size(min = 8, max = 13)
     @Column(unique = true)
-    private String preId;
+    private String namepre;
 
     @NotNull
     private Date date;
@@ -50,9 +50,9 @@ public class Prescription {
     public Prescription() {
     }
 
-    public Prescription(String preId, Category category, Drug drug, Staff staff) {
+    public Prescription(String namepre, Category category, Drug drug, Staff staff) {
 
-        this.preId = preId;
+        this.namepre = namepre;
         this.category = category;
         this.drug = drug;
         this.staff = staff;
