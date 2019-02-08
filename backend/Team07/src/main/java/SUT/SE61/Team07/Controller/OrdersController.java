@@ -46,35 +46,53 @@ class OrdersController {
     public ResponseEntity<Map<String, Object>> Orderssumbit(@PathVariable("nameorders") String nameorders,
             @PathVariable("partnersId") Long partnersId, @PathVariable("catalogId") Long catalogId,
             @PathVariable("amount") String amount) {
-        try {
-            Partners P = this.partnersrepository.findBypartnersId(partnersId);
-            Catalog C = this.catalogrepository.findByCatalogId(catalogId);
 
-            this.ordersrepository.save(new Orders(nameorders,amount,P,C));
+        Orders O = this.ordersrepository.findByname(nameorders);
+        if (O == null) {
+            try {
 
+                Partners P = this.partnersrepository.findBypartnersId(partnersId);
+                Catalog C = this.catalogrepository.findByCatalogId(catalogId);
+
+                this.ordersrepository.save(new Orders(nameorders, amount, P, C));
+
+                Map<String, Object> json = new HashMap<String, Object>();
+                json.put("success", true);
+                json.put("status", "save");
+
+                HttpHeaders headers = new HttpHeaders();
+                headers.add("Content-Type", "application/json; charset=UTF-8");
+                headers.add("X-Fsl-Location", "/");
+                headers.add("X-Fsl-Response-Code", "302");
+                return (new ResponseEntity<Map<String, Object>>(json, headers, HttpStatus.OK));
+
+            } catch (NullPointerException e) {
+                Map<String, Object> json = new HashMap<String, Object>();
+                System.out.println("Error Save CancelReservation");
+                json.put("success", false);
+                json.put("status", "save-false");
+
+                HttpHeaders headers = new HttpHeaders();
+                headers.add("Content-Type", "application/json; charset=UTF-8");
+                headers.add("X-Fsl-Location", "/");
+                headers.add("X-Fsl-Response-Code", "500");
+                return (new ResponseEntity<Map<String, Object>>(json, headers, HttpStatus.INTERNAL_SERVER_ERROR));
+
+            }
+
+        } else {
             Map<String, Object> json = new HashMap<String, Object>();
-            json.put("success", true);
-            json.put("status", "save");
+            json.put("success", false);
+            json.put("status", "หมายเลขรายการนำเข้ายาซ้ำซ้อน กรุณากรอกข้อมูลใหม่");
 
             HttpHeaders headers = new HttpHeaders();
             headers.add("Content-Type", "application/json; charset=UTF-8");
             headers.add("X-Fsl-Location", "/");
-            headers.add("X-Fsl-Response-Code", "302");
+            headers.add("X-Fsl-Response-Code", "404");
             return (new ResponseEntity<Map<String, Object>>(json, headers, HttpStatus.OK));
 
-        } catch (NullPointerException e) {
-            Map<String, Object> json = new HashMap<String, Object>();
-            System.out.println("Error Save CancelReservation");
-            json.put("success", false);
-            json.put("status", "save-false");
-
-            HttpHeaders headers = new HttpHeaders();
-            headers.add("Content-Type", "application/json; charset=UTF-8");
-            headers.add("X-Fsl-Location", "/");
-            headers.add("X-Fsl-Response-Code", "500");
-            return (new ResponseEntity<Map<String, Object>>(json, headers, HttpStatus.INTERNAL_SERVER_ERROR));
-
         }
+
     }
 
 }

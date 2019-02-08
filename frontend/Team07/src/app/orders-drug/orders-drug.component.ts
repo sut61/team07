@@ -74,8 +74,9 @@ export class OrdersDrugComponent implements OnInit {
         this.ordersService.PostOrders(String(this.data.nameorders), Number(this.partnersselect), Number(this.catalogselect), String(this.data.amount)).subscribe(datas => {
           if (datas.status == "save") {
             alert("บันทึกสำเร็จ")
-          } else if (datas.status == "save-false") {
-            alert("บันทึกไม่สำเร็จ")
+          } else  {
+            //console.log(datas)
+            alert(datas.status)
           }
         })
 
