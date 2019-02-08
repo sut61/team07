@@ -28,8 +28,8 @@ public class Invoice {
     @NotNull
     private Date date;
 
-    @Pattern(regexp = "[\\d+]")
-    @Size(min = 1,max = 8)
+    @Pattern(regexp = "(\\d{1,8})")
+    @Size(min = 1, max = 8)
     @NotNull
     private String amount;
 

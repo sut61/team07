@@ -42,10 +42,8 @@ export class DeliveryComponent implements OnInit {
   };
 
   showdatainput() {
-    console.log("staffselect = " + this.staffselect)
-    console.log("customerselect = " + this.customerselect)
-    console.log("addressselect = " + this.addressselect)
-    console.log("drugselect = " + this.drugselect)
+    console.log("all = ", this.detail)
+
 
 
 
@@ -91,67 +89,86 @@ export class DeliveryComponent implements OnInit {
     }])
 
   }
+
+
+
+
   save() {
+    let rs = /[d{0-9}$]/;
+    this.count = 0;
     this.detail.addressSelect = this.addressselect;
 
-    if (this.emp.staffSelect === undefined || this.emp.staffSelect === "" || this.emp.staffSelect == null) {
+    if (this.detail.staff === undefined || this.detail.staff === "" || this.detail.staff == null) {
 
       this.count = 0;
     } else {
 
       this.count += 1;
     }
-    if (this.emp.customerSelect === undefined || this.emp.customerSelect === "" || this.emp.customerSelect == null) {
+    if (this.detail.customer === undefined || this.detail.customer === "" || this.detail.customer == null) {
 
       this.count = 0;
     } else {
 
       this.count += 1;
     }
-    if (this.emp.drugSelect === undefined || this.emp.drugSelect === "" || this.emp.drugSelect == null) {
-
-      this.count = 0;
-    } else {
-      this.count += 1;
-    }
-    if (this.addressselect === undefined || this.addressselect === "" || this.addressselect == null) {
+    if (this.detail.drug === undefined || this.detail.drug === "" || this.detail.drug == null) {
 
       this.count = 0;
     } else {
       this.count += 1;
     }
 
-    if (this.addressselect === undefined || this.addressselect === "" || this.addressselect == null) {
+    if (this.detail.addressSelect === undefined || this.detail.addressSelect === "" || this.detail.addressSelect == null) {
 
       this.count = 0;
     } else {
       this.count += 1;
     }
-    
+
     if (this.detail.amount === undefined || this.detail.amount === "" || this.detail.amount == null) {
 
       this.count = 0;
     } else {
-      this.count += 1;
+
+      if (rs.test(this.detail.amount)) {
+        // this.count += 1;
+        if (String(this.detail.amount).length >= 8) {
+          alert("จำนวนยาเกินกว่าที่มีใน Database ")
+        } else {
+          this.count += 1;
+        }
+      } else {
+        this.count = 0;
+        alert("ใส่ยอดสุทธิเป็นตัวเลขเท่านั้น")
+      }
     }
     if (this.detail.netamount === undefined || this.detail.netamount === "" || this.detail.netamount == null) {
-
       this.count = 0;
     } else {
-      this.count += 1;
+      if (rs.test(this.detail.netamount)) {
+        this.count += 1;
+      } else {
+        this.count = 0;
+        alert("ใส่เป็นตัวเลขเท่านั้น")
+      }
+      //this.count += 1;
     }
 
 
-    if(this.count >=6){ 
-      //
+
+    if (this.count >= 6) {
       this.detail.addressSelect = this.addressselect;
-      this.httpClient.post('http://localhost:8080/Invoice-insert/StaffId/' + this.emp.staffSelect + '/customerId/' + this.emp.customerSelect + '/addressId/' + this.addressselect + '/drugId/' + this.emp.drugSelect + '/Amount/' + String(this.detail.amount) + '/Netamount/' + String(this.detail.netamount), this.emp)
+      this.httpClient.post('http://localhost:8080/Invoice-insert/StaffId/' + this.detail.staff + '/customerId/' + this.detail.customer + '/addressId/' + this.detail.addressSelect + '/drugId/' + this.detail.drug + '/Amount/' + String(parseInt(this.detail.amount)) + '/Netamount/' + String(this.detail.netamount), this.emp)
         .subscribe(
-          data => { console.log('PUT Request is successful', data); },
+          datas => { console.log('PUT Request is successful', datas); },
           error => { console.log('Error', error); }
         );
+
       this.SubmitdData();
-    }else{
+
+    } else {
+      this.count = 0;
       alert("กรุณากรอกข้อมูลให้ครบถ้วน")
     }
   }
