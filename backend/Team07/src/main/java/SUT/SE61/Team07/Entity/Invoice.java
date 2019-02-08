@@ -24,10 +24,12 @@ public class Invoice {
 
     @NotNull(message = "data Invoice must not be null to be valid")
     private Long invoiceId;
-    
+
     @NotNull
     private Date date;
 
+    @Pattern(regexp = "[\\d+]")
+    @Size(min = 1,max = 8)
     @NotNull
     private String amount;
 
@@ -54,7 +56,7 @@ public class Invoice {
 
     }
 
-    public Invoice(Staff staff, Customer customer,  Address address,Drug drug, String amount,String netamount) {
+    public Invoice(Staff staff, Customer customer, Address address, Drug drug, String amount, String netamount) {
         this.staff = staff;
         this.customer = customer;
         this.address = address;
