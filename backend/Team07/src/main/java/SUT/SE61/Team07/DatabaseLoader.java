@@ -212,7 +212,9 @@ public class DatabaseLoader implements ApplicationRunner {
   
           this.notificationrepository.save(new Notification("14 กุมภาพันธ์62",Cu1,D1,Te1));
           this.notificationrepository.save(new Notification("15 กุมภาพันธ์62",Cu1,D1,Te1));
-        
+          this.notificationrepository.save(new Notification("16 กุมภาพันธ์62",Cu1,D1,Te1));
+          this.notificationrepository.save(new Notification("17 กุมภาพันธ์62",Cu1,D1,Te1));
+          this.notificationrepository.save(new Notification("18 กุมภาพันธ์62",Cu1,D1,Te1));
            // /* end bow db loader */
 
     }
