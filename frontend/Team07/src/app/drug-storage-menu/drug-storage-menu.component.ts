@@ -23,7 +23,7 @@ export class DrugStorageMenuComponent implements OnInit {
   data: any = {}
   datas: any = {}
   count: 0;
-  names:any;
+  names: any;
 
   constructor(private drugService: DrugService, private route: ActivatedRoute, private router: Router, private categoryService: CategoryService, private httpClient: HttpClient, private inputdrugstroageService: InputdrugstroageService, private pre: PrescriptionService) { }
   displayedColumns: string[] = ['position', 'name', 'drugname', 'category', 'staff'];
@@ -60,15 +60,15 @@ export class DrugStorageMenuComponent implements OnInit {
     }
     if (this.count >= 3) {
       if (re.test(this.data.namepre)) {
-        this.inputdrugstroageService.summbituyPrescription(String(this.data.namepre), Number(this.categoryselect), Number(this.drugselect),String(this.names)).subscribe(dss => {
+        this.inputdrugstroageService.summbituyPrescription(String(this.data.namepre), Number(this.categoryselect), Number(this.drugselect), String(this.names)).subscribe(dss => {
           if (dss.status == "save") {
             alert("บันทึกสำเร็จ")
           } else if (dss.status == "save-false") {
-            alert(dss.status)
+            alert(dss.statuss)
           }
         })
       } else {
-        alert("ตัวแรกต้องเป็น P และตามด้วยหมายเลข  7 ตัว ");
+        alert("ตัวแรกต้องเป็น P และตามด้วยหมายเลข  8-12 ตัว ");
       }
 
 
@@ -82,7 +82,7 @@ export class DrugStorageMenuComponent implements OnInit {
 
   }
 
- 
+
 
 
   ngOnInit() {
@@ -99,7 +99,7 @@ export class DrugStorageMenuComponent implements OnInit {
       this.prescription = data;
       this.preId = this.prescription.length;
       console.log(this.prescription);
-      
+
     })
     this.drugService.getDrug().subscribe(data => {
       this.drug = data;

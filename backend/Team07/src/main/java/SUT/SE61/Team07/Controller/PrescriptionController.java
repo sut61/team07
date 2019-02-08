@@ -49,12 +49,24 @@ class PrescriptionController {
             @PathVariable("staff") String staff) {
 
         Prescription P = this.prescriptionrepository.findByNamepre(nameprescription);
-        Staff S = this.staffrepository.findByStaffUser(staff);
-        Drug D = this.drugrepository.findByDrugId(DrugId);
-        Category C = this.categoryrepository.findByCategoryId(CategoryId);
+        if (P != null) {
+            Map<String, Object> json = new HashMap<String, Object>();
+            json.put("success", false);
+            json.put("status", "save-false");
+            json.put("statuss", "ข้อมูลหมายเลขใบสั่งยาซ้ำกัน กรุณากรอกใหม่อีกครั้ง");
 
-        if (P == null) {
+            HttpHeaders headers = new HttpHeaders();
+            headers.add("Content-Type", "application/json; charset=UTF-8");
+            headers.add("X-Fsl-Location", "/");
+            headers.add("X-Fsl-Response-Code", "302");
+            return (new ResponseEntity<Map<String, Object>>(json, headers, HttpStatus.OK));
+
+        } else {
             try {
+
+                Staff S = this.staffrepository.findByStaffUser(staff);
+                Drug D = this.drugrepository.findByDrugId(DrugId);
+                Category C = this.categoryrepository.findByCategoryId(CategoryId);
 
                 this.prescriptionrepository.save(new Prescription(nameprescription, C, D, S));
 
@@ -81,15 +93,7 @@ class PrescriptionController {
                 return (new ResponseEntity<Map<String, Object>>(json, headers, HttpStatus.INTERNAL_SERVER_ERROR));
 
             }
-        } else {
-            Map<String, Object> json = new HashMap<String, Object>();
-            json.put("success", false);
-            json.put("status", "หมายเลขรายการนำเข้ายาซ้ำซ้อน กรุณากรอกข้อมูลใหม่");
-            HttpHeaders headers = new HttpHeaders();
-            headers.add("Content-Type", "application/json; charset=UTF-8");
-            headers.add("X-Fsl-Location", "/");
-            headers.add("X-Fsl-Response-Code", "404");
-            return (new ResponseEntity<Map<String, Object>>(json, headers, HttpStatus.OK));
+
         }
 
     }
