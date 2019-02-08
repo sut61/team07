@@ -87,6 +87,8 @@ import { NotificationComponent } from './notification/notification.component';
 import { OrdersDrugComponent } from './orders-drug/orders-drug.component';
 import { ResistanceComponent } from './resistance/resistance.component';
 import { LoginorderComponent } from './loginorder/loginorder.component';
+import { SalenoteComponent } from './salenote/salenote.component';
+import { SalenoteShowComponent } from './salenote-show/salenote-show.component';
 
 @NgModule({
   declarations: [
@@ -105,6 +107,8 @@ import { LoginorderComponent } from './loginorder/loginorder.component';
     DeliveryShowComponent,
     ResistanceComponent,
     LoginorderComponent,
+    SalenoteComponent,
+    SalenoteShowComponent,
 
   ],
   imports: [

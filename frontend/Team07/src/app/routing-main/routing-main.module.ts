@@ -17,6 +17,9 @@ import { ShowComponent } from '../show/show.component';
 import { DeliveryShowComponent } from '../delivery-show/delivery-show.component';
 import { DeliveryComponent } from '../delivery/delivery.component';
 
+import { SalenoteComponent } from '../salenote/salenote.component';
+import { SalenoteShowComponent } from '../salenote-show/salenote-show.component';
+
 import { RedcordUseComponent } from '../redcord-use/redcord-use.component';
 import { NotificationComponent } from '../notification/notification.component';
 
@@ -36,9 +39,9 @@ const routes: Routes = [
 
 
 
-
+  { path: 'salenote', component: SalenoteComponent },
+  { path: 'salenote-show', component: SalenoteShowComponent},
   { path: 'redcord-use', component: RedcordUseComponent },
-  { path: 'resistance', component: ResistanceComponent },
 
   { path: 'home', component: HomeComponent },
 
