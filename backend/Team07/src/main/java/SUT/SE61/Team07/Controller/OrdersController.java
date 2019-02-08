@@ -84,7 +84,6 @@ class OrdersController {
             Map<String, Object> json = new HashMap<String, Object>();
             json.put("success", false);
             json.put("status", "หมายเลขรายการนำเข้ายาซ้ำซ้อน กรุณากรอกข้อมูลใหม่");
-
             HttpHeaders headers = new HttpHeaders();
             headers.add("Content-Type", "application/json; charset=UTF-8");
             headers.add("X-Fsl-Location", "/");

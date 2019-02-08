@@ -5,7 +5,7 @@ import { ActivatedRoute } from "@angular/router";
 import { OrdersService } from '../Service/orders.service';
 import { PartnersService } from '../Service/partners.service';
 import { CatalogService } from '../Service/catalog.service';
-import { DrugService } from '../Service/drug.service';
+
 
 @Component({
   selector: 'app-orders-drug',
@@ -23,20 +23,13 @@ export class OrdersDrugComponent implements OnInit {
   drugselect = '';
   data: any = {}
   datas: any = {}
-
   count: 0;
 
-
   constructor(private httpClient: HttpClient, private ordersService: OrdersService, private prdersService: PartnersService, private catalogService: CatalogService) { }
-
-
-
-
 
   saveOrders() {
     let re = /(^O{1})(\d{7}$)/g
     let rs = /[d{0-9}$]/;
-
     this.count = 0;
 
     if (this.data.nameorders === undefined || this.data.nameorders === null) {
@@ -74,8 +67,7 @@ export class OrdersDrugComponent implements OnInit {
         this.ordersService.PostOrders(String(this.data.nameorders), Number(this.partnersselect), Number(this.catalogselect), String(this.data.amount)).subscribe(datas => {
           if (datas.status == "save") {
             alert("บันทึกสำเร็จ")
-          } else  {
-            //console.log(datas)
+          } else {
             alert(datas.status)
           }
         })
