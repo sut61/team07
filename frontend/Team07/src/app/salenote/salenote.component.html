@@ -1,0 +1,73 @@
+<h2 align="center">Welcome To YaMaii</h2>
+<h2 align="center">ร้านยามั้ย ยินดีต้อนรับ</h2>
+
+<mat-card>
+
+  <div class="button-row" align="center">
+
+    <mat-card-actions>
+
+      <a mat-stroked-button routerLink="/home">
+        <mat-icon>home</mat-icon>ไปหน้าหลัก
+      </a>
+
+      <a mat-stroked-button routerLink="/register">สมัครสมาชิก</a>
+      <a mat-stroked-button routerLink="/login-staff">คลังยา</a>
+      <a mat-stroked-button routerLink="/login-orders">จัดหายา</a>
+      <a mat-stroked-button routerLink="/drug-drug-orderreceip">จัดเก็บข้อมูลยา</a>
+      <a mat-stroked-button routerLink="/post">จัดการพนักงาน</a>
+      <a mat-stroked-button routerLink="/redcord-use">บันทึกการใช้ยา</a>
+      <a mat-stroked-button routerLink="/delivery">บันทึกใบส่งของ</a>
+      <a mat-stroked-button routerLink="/notification">แจ้งเตือนทานยา</a>
+      <a mat-stroked-button routerLink="/salenote">บันทึกการขาย</a>
+
+      <!-- <a mat-stroked-button routerLink="/home">ติดต่อร้าน</a>
+
+      <a mat-stroked-button routerLink="/bill">จัดการคลังสินค้า</a> -->
+
+      <a mat-stroked-button routerLink="">ออกจากระบบ</a>
+
+
+    </mat-card-actions>
+
+  </div>
+
+</mat-card>
+<mat-card-content style="text-align:center">
+<h1>
+  รายการจำหน่ายสินค้า
+</h1>
+<div class="row center-lg center-md start-sm start-xs">
+  <div class="col-lg col-md col-sm col-xs">
+    <form #order="ngForm" (ngSubmit)="onClickSubmit(order.value)" align="center" >
+
+      <mat-form-field>
+        <h4>เลือกยาที่ต้องการ :</h4>
+        <mat-select [(ngModel)]="drugselect" name="Dranss">
+          <mat-option *ngFor="let titledrug of drug" [value]="titledrug.drugId">
+            {{titledrug.name}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+     
+
+
+      <form class="example-form" >
+          <mat-form-field class="example-full-width" align="center">
+              <input matInput placeholder="Amount" [(ngModel)]="data.Amount" required name="Amount" #Amount>
+          </mat-form-field>
+      </form>
+
+      <br><br><br>
+
+      <mat-card-actions style="text-align:center" align="center">
+        <button type="save" mat-stroked-button color="primary" routerLink="/salenote">Add Order</button>
+          &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+        <button type="submit" mat-stroked-button color="primary" routerLink="/salenote-show">completed</button>
+      </mat-card-actions>
+
+    </form>
+    <br><br><br>
+    
+  </div>
+</div>
