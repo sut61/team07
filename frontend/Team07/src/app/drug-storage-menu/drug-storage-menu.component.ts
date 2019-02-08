@@ -22,6 +22,8 @@ export class DrugStorageMenuComponent implements OnInit {
   preId: any;
   data: any = {}
   datas: any = {}
+  count: 0;
+  names:any;
 
   constructor(private drugService: DrugService, private route: ActivatedRoute, private router: Router, private categoryService: CategoryService, private httpClient: HttpClient, private inputdrugstroageService: InputdrugstroageService, private pre: PrescriptionService) { }
   displayedColumns: string[] = ['position', 'name', 'drugname', 'category', 'staff'];
@@ -37,46 +39,91 @@ export class DrugStorageMenuComponent implements OnInit {
   }
 
   sumbitData() {
-    console.log(this.categoryselect)
+
+    let re = /(^P{1})(\d{8,13}$)/g
+    this.count = 0;
 
     if (this.data.namepre === undefined || this.data.namepre === null) {
-      alert("ใส่ชื่อยา")
-      if (this.drugselect === undefined || this.drugselect === null || this.drugselect === "") {
-        alert("เลือกยา")
-        if (this.categoryselect === undefined || this.categoryselect === null || this.categoryselect === "") {
-          alert("เลือกประเภทยา")
-        }
-      }
+      this.count = 0;
     } else {
-      let re = /(^P{1})(\d{8,13}$)/g
+      this.count += 1;
+    }
+    if (this.drugselect === undefined || this.drugselect === null || this.drugselect === "") {
+      this.count = 0;
+    } else {
+      this.count += 1;
+    }
+    if (this.categoryselect === undefined || this.categoryselect === null || this.categoryselect === "") {
+      this.count = 0;
+    } else {
+      this.count += 1;
+    }
+    if (this.count >= 3) {
       if (re.test(this.data.namepre)) {
-
         this.inputdrugstroageService.summbituyPrescription(String(this.data.namepre), Number(this.categoryselect), Number(this.drugselect), Number(1)).subscribe(datas => {
-          console.log(datas)
           if (datas.status == "save") {
             alert("บันทึกสำเร็จ")
           } else if (datas.status == "save-false") {
-            alert("บันทึกไม่สำเร็จ")
+            alert(datas.status)
           }
         })
       } else {
-        alert("ตัวแรกต้องเป็น P และตามด้วยหมายเลข สั้นที่สุดคือ 8 ยาวสุดคือ 13");
+        alert("ตัวแรกต้องเป็น P และตามด้วยหมายเลข  7 ตัว ");
       }
 
+
+    } else {
+      alert("กรุณากรอกข้อมูลให้ครบถ้วน")
     }
+
+
+
+    // if (this.count >= 3){
+    //   if (re.test(this.data.namepre))
+
+    //   }
+    // }
+
+
+
+    // if (this.data.namepre === undefined || this.data.namepre === null) {
+    //   alert("ใส่ชื่อยา")
+    //   if (this.drugselect === undefined || this.drugselect === null || this.drugselect === "") {
+    //     alert("เลือกยา")
+    //     if (this.categoryselect === undefined || this.categoryselect === null || this.categoryselect === "") {
+    //       alert("เลือกประเภทยา")
+    //     }
+    //   }
+    // } else {
+    //   let re = /(^P{1})(\d{8,13}$)/g
+    //   if (re.test(this.data.namepre)) {
+
+    //     this.inputdrugstroageService.summbituyPrescription(String(this.data.namepre), Number(this.categoryselect), Number(this.drugselect), Number(1)).subscribe(datas => {
+    //       console.log(datas)
+    //       if (datas.status == "save") {
+    //         alert("บันทึกสำเร็จ")
+    //       } else if (datas.status == "save-false") {
+    //         alert("บันทึกไม่สำเร็จ")
+    //       }
+    //     })
+    //   } else {
+    //     alert("ตัวแรกต้องเป็น P และตามด้วยหมายเลข สั้นที่สุดคือ 8 ยาวสุดคือ 13");
+    //   }
+
+    // }
 
 
 
   }
 
-// this.ordersService.PostOrders(String(this.data.nameorders), Number(this.partnersselect), Number(this.catalogselect), String(this.data.amount)).subscribe(datas => {
-      //   console.log(datas)
-      // })
+  // this.ordersService.PostOrders(String(this.data.nameorders), Number(this.partnersselect), Number(this.catalogselect), String(this.data.amount)).subscribe(datas => {
+  //   console.log(datas)
+  // })
 
 
   ngOnInit() {
     this.route.params.subscribe(prams => {
-      this.datas = prams
+      this.names = prams.name;
       console.log(prams)
     })
     this.categoryService.getCategory().subscribe(data => {
