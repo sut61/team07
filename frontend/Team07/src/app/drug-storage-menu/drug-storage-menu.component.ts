@@ -69,7 +69,9 @@ export class DrugStorageMenuComponent implements OnInit {
 
   }
 
-
+// this.ordersService.PostOrders(String(this.data.nameorders), Number(this.partnersselect), Number(this.catalogselect), String(this.data.amount)).subscribe(datas => {
+      //   console.log(datas)
+      // })
 
 
   ngOnInit() {

@@ -24,37 +24,68 @@ export class OrdersDrugComponent implements OnInit {
   data: any = {}
   datas: any = {}
 
+  count: 0;
+
 
   constructor(private httpClient: HttpClient, private ordersService: OrdersService, private prdersService: PartnersService, private catalogService: CatalogService) { }
 
-  // showdata() {
-  //   console.log("data.nameorders = " + this.data.nameorders)
-  //   console.log("partnersselect = " + this.partnersselect)
 
-  //   console.log("catalogselect = " + this.catalogselect)
-  //   console.log("data.amount = " + this.data.amount)
 
-  // }
+
 
   saveOrders() {
+    let re = /(^O{1})(\d{7}$)/g
+    let rs = /[d{0-9}$]/;
+
+    this.count = 0;
+
     if (this.data.nameorders === undefined || this.data.nameorders === null) {
-      alert("ใส่ชื่อใบสั่ง")
+      this.count = 0;
+    } else {
+      this.count += 1;
     }
     if (this.partnersselect === undefined || this.partnersselect === null || this.partnersselect === "") {
-      alert("เลือกผู้ขาย")
+      this.count = 0;
+    } else {
+      this.count += 1;
     }
     if (this.catalogselect === undefined || this.catalogselect === null || this.catalogselect === "") {
-      alert("เลือกรายการยา")
+      this.count = 0;
+    } else {
+      this.count += 1;
+    }
+    if (this.data.amount === undefined || this.data.amount === null || this.data.amount === "") {
+      this.count = 0;
+    }
+    else {
+      if (rs.test(this.data.amount)) {
+        this.count += 1;
+      } else {
+        this.count = 0;
+        alert("ใส่เป็นตัวเลขเท่านั้น")
+      }
+
     }
 
-    if (this.data.amount === undefined || this.data.amount === null || this.data.amount === "") {
-      alert("ใส่จำนวน")
+    if (this.count >= 4) {
+
+      if (re.test(this.data.nameorders)) {
+
+        this.ordersService.PostOrders(String(this.data.nameorders), Number(this.partnersselect), Number(this.catalogselect), String(this.data.amount)).subscribe(datas => {
+          if (datas.status == "save") {
+            alert("บันทึกสำเร็จ")
+          } else if (datas.status == "save-false") {
+            alert("บันทึกไม่สำเร็จ")
+          }
+        })
+
+      } else {
+        alert("ตัวแรกต้องเป็น O และตามด้วยหมายเลข  7 ตัว ");
+      }
+    } else {
+      alert("กรุณากรอกข้อมูลให้ครบถ้วน")
     }
-    else  {
-      this.ordersService.PostOrders(String(this.data.nameorders), Number(this.partnersselect), Number(this.catalogselect), String(this.data.amount)).subscribe(datas => {
-        console.log(datas)
-      })
-    }
+
   }
 
   ngOnInit() {
