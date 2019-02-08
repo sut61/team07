@@ -172,6 +172,7 @@ public class TestInvoice {
         In.setAmount("1234567890123456785852422");
         In.setNetamount("20");
         In.setDate(new Date());
+        
         try {
             entityManager.persist(In);
             entityManager.flush();
