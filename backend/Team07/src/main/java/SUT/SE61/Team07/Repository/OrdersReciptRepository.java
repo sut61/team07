@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import SUT.SE61.Team07.Entity.*;
 @RepositoryRestResource
 @CrossOrigin("http://localhost:4200")
-public interface OrdersReciptRepository extends JpaRepository<Orders, Long> {
-    
+public interface OrdersReciptRepository extends JpaRepository<OrdersReceipt, Long> {
+    OrdersReceipt findByordersreceiptId(Long ordersreceiptId);
+	 
 }
