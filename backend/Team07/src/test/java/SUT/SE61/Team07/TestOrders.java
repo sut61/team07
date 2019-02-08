@@ -198,6 +198,45 @@ public class TestOrders {
             assertEquals(violations.size(), 2);
         }
     }
+
+    @Test
+    public void testOrdersUnique() {
+        Orders os = new Orders();
+        Partners P = this.partnersrepository.findBypartnersId(1L);
+        Catalog C = this.catalogrepository.findByCatalogId(1L);
+        os.setName("O12345678910");
+        os.setAmount("20");
+        os.setPartners(P);
+        os.setCatalog(C);
+
+        Orders os2 = new Orders();
+        os2.setName("O12345678910");
+        os.setAmount("20");
+        os.setPartners(P);
+        os.setCatalog(C);
+
+        try {
+            entityManager.persist(os2);
+            entityManager.flush();
+
+            fail("Should not pass to this line");
+        } catch (javax.validation.ConstraintViolationException e) {
+            Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
+            System.out.println();
+            System.out.println();
+            System.out.println();
+            System.out.println("=======================================================================FROM testOrdersUnique========================================================================");
+            System.out.println();
+            System.out.println();
+            System.out.println();
+            System.out.println(e);
+            assertEquals(violations.isEmpty(), false);
+            assertEquals(violations.size(),2);
+        } catch (javax.persistence.PersistenceException e) {
+            e.printStackTrace();
+            
+        }
+    }
     
 
 }

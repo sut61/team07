@@ -205,6 +205,7 @@ public class TestPrescription {
         }
     }
 
+    @Test
     public void testPrescriptionUnique() {
         Prescription mag = new Prescription();
         Drug D = this.drugrepository.findByDrugId(1L);
@@ -239,7 +240,7 @@ public class TestPrescription {
             System.out.println();
             System.out.println(e);
             assertEquals(violations.isEmpty(), false);
-            assertEquals(violations.size(), 1);
+            assertEquals(violations.size(),2);
         } catch (javax.persistence.PersistenceException e) {
             e.printStackTrace();
             
