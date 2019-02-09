@@ -25,6 +25,8 @@ public class Receipt {
     private Long receiptId;
 
     @NotNull
+    @Pattern(regexp = "(^M{1}[0-9]{7,10}$)")
+    @Size(min = 7,max = 10)
     private String noBill;
 
     @NotNull
