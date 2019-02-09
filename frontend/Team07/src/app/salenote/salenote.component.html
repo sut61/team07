@@ -17,6 +17,7 @@
       <a mat-stroked-button routerLink="/drug-drug-orderreceip">จัดเก็บข้อมูลยา</a>
       <a mat-stroked-button routerLink="/post">จัดการพนักงาน</a>
       <a mat-stroked-button routerLink="/redcord-use">บันทึกการใช้ยา</a>
+      <a mat-stroked-button routerLink="/resistance">บันทึกการดื้อยา</a>
       <a mat-stroked-button routerLink="/delivery">บันทึกใบส่งของ</a>
       <a mat-stroked-button routerLink="/notification">แจ้งเตือนทานยา</a>
       <a mat-stroked-button routerLink="/salenote">บันทึกการขาย</a>
@@ -33,41 +34,60 @@
   </div>
 
 </mat-card>
-<mat-card-content style="text-align:center">
-<h1>
-  รายการจำหน่ายสินค้า
-</h1>
-<div class="row center-lg center-md start-sm start-xs">
-  <div class="col-lg col-md col-sm col-xs">
-    <form #order="ngForm" (ngSubmit)="onClickSubmit(order.value)" align="center" >
 
-      <mat-form-field>
-        <h4>เลือกยาที่ต้องการ :</h4>
-        <mat-select [(ngModel)]="drugselect" name="Dranss">
-          <mat-option *ngFor="let titledrug of drug" [value]="titledrug.drugId">
-            {{titledrug.name}}
-          </mat-option>
-        </mat-select>
-      </mat-form-field>
-     
+<body>
+    <div>
+      <mat-tab-group>
+        <mat-tab label="รายการจำหน่ายสินค้า">
+          <div >
+            <form align="center">
+              <h2>รายการจำหน่ายสินค้า</h2>
+                <p>
+                  <mat-form-field  align="center">
+                    <h4>เลขที่ใบเสร็จ :</h4>
+                      <input matInput placeholder="" [(ngModel)]="data.Receipt" required name="Receipt" #Receipt>
+                  </mat-form-field>
+                </p>
+
+                  <mat-form-field>
+                    <h4>เลือกยาที่ต้องการ :</h4>
+                      <mat-select [(ngModel)]="drugselect" name="Dranss">
+                        <mat-option *ngFor="let titledrug of drug" [value]="titledrug.drugId">
+                          {{titledrug.name}}
+                        </mat-option>
+                      </mat-select>
+                  </mat-form-field>
+
+                  <p>
+                    <mat-form-field  align="center">
+                      <h4>จำนวน :</h4>
+                      <input matInput placeholder="" [(ngModel)]="data.Amount" required name="Amount" #Amount>
+                    </mat-form-field>
+                    <br>
+                  </p>
+
+                  <p>
+                      <mat-form-field  align="center">
+                        <h4>วันที่ :</h4>
+                          <input matInput placeholder="" [(ngModel)]="data.Date" required name="Date" #Date>
+                      </mat-form-field>
+                    </p>
+
+                <mat-card>
+                  <button type="save" mat-stroked-button color="primary" routerLink="/salenote">Add Order</button>
+                    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+                  <button type="submit" mat-stroked-button color="primary" routerLink="/salenote-show">completed</button>
+                </mat-card>
+              <br><br><br>
+
+            </form>
+          </div>
+        </mat-tab>
 
 
-      <form class="example-form" >
-          <mat-form-field class="example-full-width" align="center">
-              <input matInput placeholder="Amount" [(ngModel)]="data.Amount" required name="Amount" #Amount>
-          </mat-form-field>
-      </form>
 
-      <br><br><br>
+      </mat-tab-group>
+    </div>
+</body>
 
-      <mat-card-actions style="text-align:center" align="center">
-        <button type="save" mat-stroked-button color="primary" routerLink="/salenote">Add Order</button>
-          &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-        <button type="submit" mat-stroked-button color="primary" routerLink="/salenote-show">completed</button>
-      </mat-card-actions>
 
-    </form>
-    <br><br><br>
-    
-  </div>
-</div>
