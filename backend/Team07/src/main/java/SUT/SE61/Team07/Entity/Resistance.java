@@ -22,32 +22,26 @@ public class Resistance {
     @SequenceGenerator(name = "resistance_seq", sequenceName = "resistance_seq")
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "resistance_seq")
 
-    @NotNull(message = "symptom  must not be null to be valid")
+    @NotNull
     private Long resistanceId;
 
-    //@NotNull(message = "symptom  must not be null to be valid")
-   // private String symptom;
-
-    //@NotNull
-    //private Date date;
-
+    @NotNull(message = "resist  must not be null to be valid")
+    @Size(min = 6, max = 8)
+    @Pattern(regexp = "[NR][A-Za-z]{5,8}")
     private String resist;
 
-    @NotNull
-    @OneToOne
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "recordDrugUseId")
     private RecordDrugUse recordDrugUse;
 
-    public Resistance(){
+    public Resistance() {
 
     }
 
-    public Resistance(RecordDrugUse recordDrugUse,String resist){
+    public Resistance(RecordDrugUse recordDrugUse, String resist) {
         this.recordDrugUse = recordDrugUse;
         this.resist = resist;
 
     }
-
-
-    
 
 }
