@@ -38,8 +38,7 @@ public class Receipt {
     @JoinColumn(name = "drugId")
     private Drug drug;
 
-    public Receipt() {
-    }
+    public Receipt() {}
 
     public Receipt(OrdersReceipt ordersReceipt, Staff staff, Drug drug, String dates) {
         this.ordersReceipt = ordersReceipt;

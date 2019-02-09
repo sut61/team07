@@ -23,8 +23,7 @@ public class OrdersReceipt {
     private Integer amount;
     private Integer priceorder;
 
-    public OrdersReceipt() {
-    }
+    public OrdersReceipt() {}
 
     public OrdersReceipt(Integer amount,Integer priceorder) {
         this.amount = amount;
