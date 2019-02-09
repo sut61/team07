@@ -188,7 +188,7 @@ public class DatabaseLoader implements ApplicationRunner {
 
         this.ordersreciptRepository.save(new OrdersReceipt(10));
         OrdersReceipt Ord1 = this.ordersreciptRepository.findByordersreceiptId(1L);
-        this.receiptrepository.save(new Receipt(Ord1,S1,D1,"13 กุมภาพันธ์62","M123456"));
+        this.receiptrepository.save(new Receipt(Ord1,S1,D1,"13 กุมภาพันธ์62","M1234567"));
         // /* end gan dbloader */
 
         // /* frame db loader */
