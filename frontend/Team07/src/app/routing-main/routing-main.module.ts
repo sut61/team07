@@ -34,7 +34,7 @@ const routes: Routes = [
   { path: 'login-staff', component: LoginStaffComponent },
   { path: 'drug-stroagemenu', component: DrugStorageMenuComponent },
   { path: 'orders-drug', component: OrdersDrugComponent },
-  { path: 'resistance-drug', component: ResistanceComponent },
+  { path: 'resistance', component: ResistanceComponent },
   { path: 'login-orders', component: LoginorderComponent },
 
 
