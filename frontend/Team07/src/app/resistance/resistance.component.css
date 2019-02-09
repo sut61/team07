@@ -13,6 +13,24 @@ h2{
   font-size: 110%;
 }
 
+h4{
+  align: "center" ;
+}
+
 table {
   width: 100%;
 }
+.example-radio-group {
+  display: inline-flex;
+
+}
+
+.example-radio-button {
+  margin: 5px;
+}
+
+.example-selected-value {
+  margin: 15px 0;
+}
+
+

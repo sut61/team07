@@ -62,6 +62,12 @@ export class DrugStorageMenuComponent implements OnInit {
       if (re.test(this.data.namepre)) {
         this.inputdrugstroageService.summbituyPrescription(String(this.data.namepre), Number(this.categoryselect), Number(this.drugselect), String(this.names)).subscribe(dss => {
           if (dss.status == "save") {
+            this.pre.getPrescription().subscribe(data => {
+              this.prescription = data;
+              this.preId = this.prescription.length;
+              console.log(this.prescription);
+
+            })
             alert("บันทึกสำเร็จ")
           } else if (dss.status == "save-false") {
             alert(dss.statuss)
