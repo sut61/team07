@@ -10,6 +10,8 @@ import lombok.*;
 @Entity
 @Data
 
+
+
 public class Address {
     @Id
     @SequenceGenerator(name = "address_seq", sequenceName = "address_seq_seq")
