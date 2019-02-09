@@ -82,7 +82,7 @@ public class TestResistance {
         }
     }
 
-    // ทดสอบห้าม Resistance เป็น not null
+    // ทดสอบห้าม Resistance เป็น null
     @Test
     public void testNameResistanceNull() {
         Resistance res = new Resistance();
@@ -99,7 +99,7 @@ public class TestResistance {
             System.out.println();
             System.out.println();
             System.out.println(
-                    "============================================================ from testNameResistanceNull =============================================================");
+                    "=============================== from testNameResistanceNull ======================================");
             System.out.println(e);
             System.out.println();
             System.out.println();
@@ -109,7 +109,7 @@ public class TestResistance {
         }
     }
 
-    // ทดสอบ first Resistance name ไม่ใช่ตัว N หรือ R
+    // ทดสอบ first char Resist ไม่ใช่ N หรือ R
     @Test
     public void testPatternNameResistance() {
         Resistance res = new Resistance();
@@ -126,7 +126,7 @@ public class TestResistance {
             System.out.println();
             System.out.println();
             System.out.println(
-                    "============================================================ from testPatternNameResistance =============================================================");
+                    "================================= from testPatternFirstCharResistance ===================================");
             System.out.println(e);
             System.out.println();
             System.out.println();
@@ -136,7 +136,7 @@ public class TestResistance {
         }
     }
 
-      // ทดสอบ ความยาวของ Resistance เกิน 8
+      // ทดสอบ ความยาวของ Resist มากกว่า 8
     @Test
     public void testMaxResistancesize8() {
         Resistance res = new Resistance();
@@ -153,7 +153,7 @@ public class TestResistance {
             System.out.println();
             System.out.println();
             System.out.println(
-                    "============================================================ from testMaxResistancesize8   =============================================================");
+                    "=============================== from testMaxResistancesize8   =====================================");
             System.out.println(e);
             System.out.println();
             System.out.println();
@@ -163,7 +163,7 @@ public class TestResistance {
         }
     }
 
-    // ทดสอบ Resistance ยาวไม่ถึง 6
+    // ทดสอบ ความยาวของ Resist น้อยกว่า 6
     @Test
     public void testResistanceMinsize6() {
         Resistance res = new Resistance();
@@ -179,7 +179,7 @@ public class TestResistance {
             System.out.println();
             System.out.println();
             System.out.println(
-                    "============================================================ from testResistanceMinsize6  =============================================================");
+                    "=============================== from testResistanceMinsize6  ===================================");
             System.out.println(e);
             System.out.println();
             System.out.println();
