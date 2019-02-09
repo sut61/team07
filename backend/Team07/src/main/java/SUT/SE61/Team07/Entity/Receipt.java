@@ -23,6 +23,10 @@ public class Receipt {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "receipt_seq")
     @NotNull(message = "receiptId must not be null to be valid")
     private Long receiptId;
+
+    @NotNull
+    private String noBill;
+
     @NotNull
     private String dates;
 
@@ -38,13 +42,15 @@ public class Receipt {
     @JoinColumn(name = "drugId")
     private Drug drug;
 
-    public Receipt() {}
+    public Receipt() {
+    }
 
-    public Receipt(OrdersReceipt ordersReceipt, Staff staff, Drug drug, String dates) {
+    public Receipt(OrdersReceipt ordersReceipt, Staff staff, Drug drug,String dates, String noBill) {
         this.ordersReceipt = ordersReceipt;
         this.staff = staff;
         this.drug = drug;
         this.dates = dates;
+        this.noBill = noBill;
 
     }
 
