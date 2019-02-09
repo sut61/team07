@@ -27,9 +27,9 @@ public class Notification {
     @NotNull(message = "data notificationId must not be null to be valid")
     private Long notificationId;
 
-    @NotNull
-    @Size(min = 13, max = 20)
-    @Column(unique = true)
+    @NotNull(message = "notificationName not null")
+    @Size(min = 10, max = 20)
+    @Pattern(regexp = "[0-9]{1,2}\\s(กุมภาพันธ์|มกราคม|มีนาคม|เมษายน|พฤษภาคม|มิถุนายน|กรกฎาคม|สิงหาคม|กันยายน|ตุลาคม|พฤษจิกายน|ธันวาคม)\\s[0-9]{2,4}")
     private String notificationName;
 
     @NotNull

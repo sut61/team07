@@ -38,9 +38,7 @@ public class TestNotification {
     private CustomerRepository customerrepository;
     @Autowired
     private DrugRepository drugrepository;
-     
-    
-      
+
     @Autowired
     private TimeEatRepository timeEatrepository;
 
@@ -48,8 +46,6 @@ public class TestNotification {
     private TestEntityManager entityManager;
 
     private Validator validator;
-   
-       
 
     @Before
     public void setup() {
@@ -65,8 +61,7 @@ public class TestNotification {
     // ทดสอบ save Notification ปกติ
     @Test
     public void testTestInsertNotificationDataSuccess() {
-        
-    
+
         Customer C = this.customerrepository.findByCustomerId(1L);
         Drug D = this.drugrepository.findByDrugId(1L);
         TimeEat T = this.timeEatrepository.findByTimeEatId(1L);
@@ -139,59 +134,106 @@ public class TestNotification {
         }
     }
 
-   
-    // // ทดสอบห้าม Notification เป็น not null
-    // @Test
-    // public void testTestNotificationdataNotNull() {
-    // Notification no = new Notification();
-    // no.setNotificationName(null);
-    // no.setDate(new Date());
+    // test pattern ไม่ตรง
+    @Test
+    public void testNotificationNamepattern() {
+        Customer C = this.customerrepository.findByCustomerId(1L);
+        Drug D = this.drugrepository.findByDrugId(1L);
+        TimeEat T = this.timeEatrepository.findByTimeEatId(1L);
 
-    // try {
-    // entityManager.persist(no);
-    // entityManager.flush();
-    // fail("Should not pass to this line");
-    // } catch (javax.validation.ConstraintViolationException e) {
-    // Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
-    // assertEquals(violations.isEmpty(), false);
-    // assertEquals(violations.size(), 1);
-    // }
-    // }
+        Notification no = new Notification();
 
-    // ทดสอบ ความยาวของ Notification name มากกว่า 10
-    /*
-     * @Test public void testLengthNotEquals10(){ Notification no = new
-     * Notification(); no.setNotificationName("O1234567891"); no.setDate(new
-     * Date()); try { entityManager.persist(no); entityManager.flush();
-     * 
-     * fail("Should not pass to this line"); }
-     * catch(javax.validation.ConstraintViolationException e) {
-     * Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
-     * assertEquals(violations.isEmpty(), false); assertEquals(violations.size(),2);
-     * } }
-     * 
-     * // ทดสอบ ความยาวของ Notification name ไม่ถึง 8
-     * 
-     * @Test public void testLengthMinimum8(){ Notification no = new Notification();
-     * no.setNotificationName("O123456"); no.setDate(new Date()); try {
-     * entityManager.persist(no); entityManager.flush();
-     * 
-     * fail("Should not pass to this line"); }
-     * catch(javax.validation.ConstraintViolationException e) {
-     * Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
-     * assertEquals(violations.isEmpty(), false); assertEquals(violations.size(),2);
-     * } }
-     * 
-     * // ทดสอบ pattern ไม่ตรง
-     * 
-     * @Test public void testTestPackageIdDonthaveTH() { Notification no = new
-     * Notification(); no.setNotificationName("123456789"); no.setDate(new Date());
-     * try { entityManager.persist(no); entityManager.flush();
-     * fail("Should not pass to this line"); }
-     * catch(javax.validation.ConstraintViolationException e) {
-     * Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
-     * assertEquals(violations.isEmpty(), false); assertEquals(violations.size(),
-     * 2); } }
-     */
+        no.setNotificationName("16 january 1996");
+        no.setCustomer(C);
+        no.setDrug(D);
+        no.setTimeEat(T);
+        no.setDate(new Date());
+
+        try {
+            entityManager.persist(no);
+            entityManager.flush();
+
+            fail("Should not pass to this line");
+        } catch (javax.validation.ConstraintViolationException e) {
+            System.out.println();
+            System.out.println();
+            System.out.println();
+            System.out.println(
+                    "============================================================ from testNotificationNamepattern =============================================================");
+            System.out.println(e);
+            System.out.println();
+            System.out.println();
+            Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
+            assertEquals(violations.isEmpty(), false);
+            assertEquals(violations.size(), 1);
+        }
+    }
+
+    // ทดสอบ ความยาวของ Notification เกิน 20
+    @Test
+    public void testMaxNotificationsize20() {
+        Customer C = this.customerrepository.findByCustomerId(1L);
+        Drug D = this.drugrepository.findByDrugId(1L);
+        TimeEat T = this.timeEatrepository.findByTimeEatId(1L);
+
+        Notification no = new Notification();
+
+        no.setNotificationName("1666666666 กุมภาพันธ์ 2562222222222");
+
+        no.setCustomer(C);
+        no.setDrug(D);
+        no.setTimeEat(T);
+        no.setDate(new Date());
+
+        try {
+            entityManager.persist(no);
+            entityManager.flush();
+            fail("Should not pass to this line");
+        } catch (javax.validation.ConstraintViolationException e) {
+            System.out.println();
+            System.out.println();
+            System.out.println();
+            System.out.println(
+                    "============================================================ from testMaxNotificationsize20   =============================================================");
+            System.out.println(e);
+            System.out.println();
+            System.out.println();
+            Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
+            assertEquals(violations.isEmpty(), false);
+            assertEquals(violations.size(), 2);
+        }
+    }
+
+    // ทดสอบ ความยาวของ Notification ไม่ถึง 10
+    @Test
+    public void testMinNotificationsize10() {
+        Customer C = this.customerrepository.findByCustomerId(1L);
+        Drug D = this.drugrepository.findByDrugId(1L);
+        TimeEat T = this.timeEatrepository.findByTimeEatId(1L);
+        Notification no = new Notification();
+        no.setNotificationName("กุมภา");
+        no.setCustomer(C);
+        no.setDrug(D);
+        no.setTimeEat(T);
+        no.setDate(new Date());
+
+        try {
+            entityManager.persist(no);
+            entityManager.flush();
+            fail("Should not pass to this line");
+        } catch (javax.validation.ConstraintViolationException e) {
+            System.out.println();
+            System.out.println();
+            System.out.println();
+            System.out.println(
+                    "============================================================ from testMinNotificationsize10  =============================================================");
+            System.out.println(e);
+            System.out.println();
+            System.out.println();
+            Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
+            assertEquals(violations.isEmpty(), false);
+            assertEquals(violations.size(), 2);
+        }
+    }
 
 }
