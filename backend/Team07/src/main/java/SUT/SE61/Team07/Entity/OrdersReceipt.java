@@ -21,12 +21,14 @@ public class OrdersReceipt {
     @NotNull
     private Long ordersreceiptId;
     private Integer amount;
+    private Integer priceorder;
 
     public OrdersReceipt() {
     }
 
-    public OrdersReceipt(Integer amount) {
+    public OrdersReceipt(Integer amount,Integer priceorder) {
         this.amount = amount;
+        this.priceorder = priceorder;
     }
 
 }
