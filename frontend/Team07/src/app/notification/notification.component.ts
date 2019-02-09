@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Router } from "@angular/router";
 import { ActivatedRoute } from "@angular/router";
 
-// import service 
+// import service
 import { DrugService } from '../Service/drug.service';
 import { NotificationService } from '../Service/notification.service';
 
@@ -13,7 +13,7 @@ import { NotificationService } from '../Service/notification.service';
   styleUrls: ['./notification.component.css']
 })
 export class NotificationComponent implements OnInit {
-  // get data from db  
+  // get data from db
   drug: Array<any>;
   drugselect = '';
   notification :Array<any>;
@@ -29,7 +29,7 @@ export class NotificationComponent implements OnInit {
     initial: { initialId: Number, name: String },
     gender: { genderId: Number, sex: String },
     bloodType: { bloodTypeId: Number, name: Number }
-  };  // customer by name 
+  };  // customer by name
   //customerselect = '';
 
   data: any = {}
@@ -37,36 +37,43 @@ export class NotificationComponent implements OnInit {
 
   constructor(private route: ActivatedRoute, private drugService: DrugService, private notificationservice: NotificationService, private router: Router, private httpClient: HttpClient) { }
   displayedColumns: string[] = ['position', 'customername', 'drugname', 'timeEat', 'Notification'];
-  
-  
+
+
   showdata() {
       console.log("data.searchCustomername = " + this.customer.customerId)
-      
+
       console.log("timestartEat = " + this.data.timestartEat)
        console.log("drugselect = " + this.drugselect)
-  
+
        console.log("timeEatselect = " + this.timeEatselect)
        console.log("data.timestartEat = " + this.data.timestartEat)
   }
- 
+
 
   SaveNotification() {
-    
+
     if (this.status === undefined || this.status == "" || this.status == "") {
       alert("ไม่พบผู้ใช้ที่ท่านค้นหา")
-    } else {  
+    } else {
     this.notificationservice.postNotification(Number(this.customer.customerId),Number(this.drugselect),Number(this.timeEatselect),String(this.data.timestartEat)).subscribe(data=>{
       console.log(data);
+
     })
 
-   
+
+    this.notificationservice.getNotificationAll().subscribe(data=>{
+      this.notification = data;
+      console.log(this.notification)
+    })
+
+
   }
-    
+
 
   }
 
   searchname() {
-   
+
     if (this.data.searchCustomername === undefined || this.data.searchCustomername == "") {
       alert("กรุณาใส่ชื่อ")
     } else {
@@ -86,7 +93,7 @@ export class NotificationComponent implements OnInit {
   }
 
   ngOnInit() {
-   
+
     this.drugService.getDrug().subscribe(data => {
       this.drug = data;
       console.log(this.drug)
@@ -95,7 +102,7 @@ export class NotificationComponent implements OnInit {
     this.notificationservice.getNotificationAll().subscribe(data=>{
       this.notification = data;
       console.log(this.notification)
-    }) 
+    })
 
     this.notificationservice.getTimeEatAll().subscribe(data=>{
       this.timeEat = data;
