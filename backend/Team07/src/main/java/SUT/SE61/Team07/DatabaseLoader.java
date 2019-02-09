@@ -186,9 +186,9 @@ public class DatabaseLoader implements ApplicationRunner {
         Medicine M1 = this.medicinerepository.findBymedicineId(1L);
         this.drugdatarepository.save(new Drugdata("John", D1, S1, C1, M1));
 
-        this.ordersreciptRepository.save(new OrdersReceipt(10,20));
+        this.ordersreciptRepository.save(new OrdersReceipt(10));
         OrdersReceipt Ord1 = this.ordersreciptRepository.findByordersreceiptId(1L);
-        this.receiptrepository.save(new Receipt(Ord1,S1,D1,"13 กุมภาพันธ์62"));
+        this.receiptrepository.save(new Receipt(Ord1,S1,D1,"13 กุมภาพันธ์62","M123456"));
         // /* end gan dbloader */
 
         // /* frame db loader */

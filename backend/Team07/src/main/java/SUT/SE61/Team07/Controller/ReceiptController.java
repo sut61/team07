@@ -39,16 +39,16 @@ class ReceiptController {
         return receiptrepository.findAll().stream().collect(Collectors.toList());
     }
 
-    @PostMapping("/Receipt-insert/orderreceiptId/{orderreceiptId}/staffId/{staffId}/drugId/{drugId}/dates/{dates}")
+    @PostMapping("/Receipt-insert/orderreceiptId/{orderreceiptId}/staffId/{staffId}/drugId/{drugId}/dates/{dates}/noBill/{noBill}")
     public ResponseEntity<Map<String, Object>> savessreceipt(@PathVariable("orderreceiptId") Long orderreceiptId,
             @PathVariable("staffId") Long staffId, @PathVariable("drugId") Long drugId,
-            @PathVariable("dates") String dates) {
+            @PathVariable("dates") String dates, @PathVariable("noBil") String noBill) {
 
         try {
             OrdersReceipt Or = this.ordersReciptrepository.findByordersreceiptId(orderreceiptId);
             Staff S = this.staffrepository.findByStaffId(staffId);
             Drug D = this.drugrepository.findByDrugId(drugId);
-            this.receiptrepository.save(new Receipt(Or, S, D, dates));
+            this.receiptrepository.save(new Receipt(Or, S, D, dates,noBill));
             Map<String, Object> json = new HashMap<String, Object>();
             json.put("success", true);
             json.put("status", "save");
