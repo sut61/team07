@@ -139,7 +139,7 @@ export class DeliveryComponent implements OnInit {
         }
       } else {
         this.count = 0;
-        alert("ใส่ยอดสุทธิเป็นตัวเลขเท่านั้น")
+        alert("กรอกยอดสุทธิเป็นตัวเลขเท่านั้น")
       }
     }
     if (this.detail.netamount === undefined || this.detail.netamount === "" || this.detail.netamount == null) {
@@ -149,7 +149,7 @@ export class DeliveryComponent implements OnInit {
         this.count += 1;
       } else {
         this.count = 0;
-        alert("ใส่เป็นตัวเลขเท่านั้น")
+        alert("กรอกยอดสุทธิเป็นตัวเลขเท่านั้น")
       }
       //this.count += 1;
     }
