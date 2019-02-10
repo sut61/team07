@@ -91,7 +91,6 @@ public class TestReceipt {
         }
     }
 
-
       // ทดสอบห้าม Receipt เป็น not null
       @Test
       public void testNameReceiptNull() {
@@ -219,9 +218,5 @@ public class TestReceipt {
             assertEquals(violations.size(), 2);
         }
     }
-
-
-
-  
 
 }
