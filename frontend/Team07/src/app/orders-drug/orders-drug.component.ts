@@ -75,7 +75,7 @@ export class OrdersDrugComponent implements OnInit {
         })
 
       } else {
-        alert("ตัวแรกต้องเป็น O และตามด้วยหมายเลข  7 ตัว ");
+        alert("ตัวแรกต้องเป็น O และตามด้วยหมายเลข  7 ตัวเท่านั้น ");
       }
     } else {
       alert("กรุณากรอกข้อมูลให้ครบถ้วน")
