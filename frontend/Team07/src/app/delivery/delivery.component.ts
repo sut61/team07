@@ -27,7 +27,6 @@ export class DeliveryComponent implements OnInit {
     customer: '',
     address: '',
     drug: '',
-
     amount: '',
     netamount: '',
 
