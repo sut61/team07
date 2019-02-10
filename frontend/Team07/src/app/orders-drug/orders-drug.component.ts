@@ -25,16 +25,16 @@ export class OrdersDrugComponent implements OnInit {
   data: any = {}
   datas: any = {}
   count: 0;
-  names:any;
+  names: any;
 
-  constructor(private route:ActivatedRoute,private httpClient: HttpClient, private ordersService: OrdersService, private prdersService: PartnersService, private catalogService: CatalogService) { }
-
+  constructor(private route: ActivatedRoute, private httpClient: HttpClient, private ordersService: OrdersService, private prdersService: PartnersService, private catalogService: CatalogService) { }
   saveOrders() {
     let re = /(^O{1})(\d{7}$)/g
     let rs = /[d{0-9}$]/;
     this.count = 0;
 
     if (this.data.nameorders === undefined || this.data.nameorders === null) {
+
       this.count = 0;
     } else {
       this.count += 1;
@@ -85,7 +85,7 @@ export class OrdersDrugComponent implements OnInit {
 
   ngOnInit() {
 
-    this.route.params.subscribe(prams=>{
+    this.route.params.subscribe(prams => {
       this.names = prams.name
       console.log(prams)
     })
