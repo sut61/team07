@@ -42,7 +42,7 @@ class ReceiptController {
     @PostMapping("/Receipt-insert/orderreceiptId/{orderreceiptId}/staffId/{staffId}/drugId/{drugId}/dates/{dates}/noBill/{noBill}")
     public ResponseEntity<Map<String, Object>> savessreceipt(@PathVariable("orderreceiptId") Long orderreceiptId,
             @PathVariable("staffId") Long staffId, @PathVariable("drugId") Long drugId,
-            @PathVariable("dates") String dates, @PathVariable("noBil") String noBill) {
+            @PathVariable("dates") String dates, @PathVariable("noBill") String noBill) {
 
         try {
             OrdersReceipt Or = this.ordersReciptrepository.findByordersreceiptId(orderreceiptId);
