@@ -51,15 +51,20 @@ export class NotificationComponent implements OnInit {
 
 
   SaveNotification() {
-
+    let rt = /[0-9]{1,2}\s(กุมภาพันธ์|มกราคม|มีนาคม|เมษายน|พฤษภาคม|มิถุนายน|กรกฎาคม|สิงหาคม|กันยายน|ตุลาคม|พฤษจิกายน|ธันวาคม)\s[0-9]{2,4}/
     if (this.status === undefined || this.status == "" || this.status == "") {
       alert("ไม่พบผู้ใช้ที่ท่านค้นหา")
     } else {
-    this.notificationservice.postNotification(Number(this.customer.customerId),Number(this.drugselect),Number(this.timeEatselect),String(this.data.timestartEat)).subscribe(data=>{
-      console.log(data);
-
-    })
-
+      if(rt.test(this.data.Date)){
+        this.notificationservice.postNotification(Number(this.customer.customerId),Number(this.drugselect),Number(this.timeEatselect),String(this.data.timestartEat)).subscribe(data=>{
+          console.log(data);
+    
+        })
+      }else{
+        
+        alert("ใส่เป็นเดือน เช่น 14 กุมภาพันธ์ 2562")
+      }
+   
 
     this.notificationservice.getNotificationAll().subscribe(data=>{
       this.notification = data;
