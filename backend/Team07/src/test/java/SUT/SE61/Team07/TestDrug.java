@@ -47,16 +47,12 @@ public class TestDrug {
         System.out.println("Test Successful");
     }
 
-
-
     @Test
     public void testDrugsaveDataSuccess() {
-      Drug drug = new Drug();
-      drug.setName("paracetamol");
-      drug.setPrice("50");
-      drug.setQty("10");
-      
-      
+        Drug drug = new Drug();
+        drug.setName("paracetamol");
+        drug.setPrice("50");
+        drug.setQty("10");
 
         try {
             entityManager.persist(drug);
@@ -74,16 +70,16 @@ public class TestDrug {
         }
     }
 
-
-    // ทดสอบห้าม catalogname เป็น not null
+    // ทดสอบห้าม testDrugnameNull เป็น not null
     @Test
     public void testDrugnameNull() {
-        Catalog Cat = new Catalog();
-        Cat.setCatalogname(null);
-        Cat.setPrice("200");
+        Drug drug = new Drug();
+        drug.setName(null);
+        drug.setPrice("50");
+        drug.setQty("10");
 
         try {
-            entityManager.persist(Cat);
+            entityManager.persist(drug);
             entityManager.flush();
             fail("Should not pass to this line");
         } catch (javax.validation.ConstraintViolationException e) {
@@ -91,7 +87,7 @@ public class TestDrug {
             System.out.println();
             System.out.println();
             System.out.println(
-                    "============================================================ from testCatalognameNull =============================================================");
+                    "============================================================ from testDrugnameNull =============================================================");
             System.out.println(e);
             System.out.println();
             System.out.println();
@@ -101,5 +97,302 @@ public class TestDrug {
         }
     }
 
+    // ทดสอบห้าม testDrugnameNull เป็น not null
+    @Test
+    public void testDrugPriceNull() {
+        Drug drug = new Drug();
+        drug.setName("paracetamol");
+        drug.setPrice(null);
+        drug.setQty("10");
+
+        try {
+            entityManager.persist(drug);
+            entityManager.flush();
+            fail("Should not pass to this line");
+        } catch (javax.validation.ConstraintViolationException e) {
+            System.out.println();
+            System.out.println();
+            System.out.println();
+            System.out.println(
+                    "============================================================ from testDrugPriceNull =============================================================");
+            System.out.println(e);
+            System.out.println();
+            System.out.println();
+            Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
+            assertEquals(violations.isEmpty(), false);
+            assertEquals(violations.size(), 1);
+        }
+    }
+
+    // ทดสอบห้าม testDrugPriceNull เป็น not null
+    @Test
+    public void testDrugQTYNull() {
+        Drug drug = new Drug();
+        drug.setName("paracetamol");
+        drug.setPrice("50");
+        drug.setQty(null);
+
+        try {
+            entityManager.persist(drug);
+            entityManager.flush();
+            fail("Should not pass to this line");
+        } catch (javax.validation.ConstraintViolationException e) {
+            System.out.println();
+            System.out.println();
+            System.out.println();
+            System.out.println(
+                    "============================================================ from testDrugQTYNull =============================================================");
+            System.out.println(e);
+            System.out.println();
+            System.out.println();
+            Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
+            assertEquals(violations.isEmpty(), false);
+            assertEquals(violations.size(), 1);
+        }
+    }
+
+    // ทดสอบห้าม testnameDrugtolost สั้นเกิน
+    @Test
+    public void testnameDrugtolost() {
+        Drug drug = new Drug();
+        drug.setName("A");
+        drug.setPrice("50");
+        drug.setQty("10");
+
+        try {
+            entityManager.persist(drug);
+            entityManager.flush();
+            fail("Should not pass to this line");
+        } catch (javax.validation.ConstraintViolationException e) {
+            System.out.println();
+            System.out.println();
+            System.out.println();
+            System.out.println(
+                    "============================================================ from testnameDrugtolost =============================================================");
+            System.out.println(e);
+            System.out.println();
+            System.out.println();
+            Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
+            assertEquals(violations.isEmpty(), false);
+            assertEquals(violations.size(), 2);
+        }
+    }
+
+    // ทดสอบห้าม testnameDrugtoMost ยาวเกิน
+    @Test
+    public void testnameDrugtoMost() {
+        Drug drug = new Drug();
+        drug.setName(
+                "Asdasdsadasdasdsadasdsadasdasdasdasdasdasadasdasdsdasdasdasdsdsadasdasdasdassaddsasadssdasdsasadsadsdsd");
+        drug.setPrice("50");
+        drug.setQty("10");
+
+        try {
+            entityManager.persist(drug);
+            entityManager.flush();
+            fail("Should not pass to this line");
+        } catch (javax.validation.ConstraintViolationException e) {
+            System.out.println();
+            System.out.println();
+            System.out.println();
+            System.out.println(
+                    "============================================================ from testnameDrugtoMost =============================================================");
+            System.out.println(e);
+            System.out.println();
+            System.out.println();
+            Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
+            assertEquals(violations.isEmpty(), false);
+            assertEquals(violations.size(), 2);
+        }
+    }
+
+    // ทดสอบห้าม testDrugprice สั้นเกิน
+    @Test
+    public void testDrugpricetolost() {
+        Drug drug = new Drug();
+        drug.setName("ABCDEFG");
+        drug.setPrice("");
+        drug.setQty("10");
+
+        try {
+            entityManager.persist(drug);
+            entityManager.flush();
+            fail("Should not pass to this line");
+        } catch (javax.validation.ConstraintViolationException e) {
+            System.out.println();
+            System.out.println();
+            System.out.println();
+            System.out.println(
+                    "============================================================ from testDrugpricetolost =============================================================");
+            System.out.println(e);
+            System.out.println();
+            System.out.println();
+            Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
+            assertEquals(violations.isEmpty(), false);
+            assertEquals(violations.size(), 2);
+        }
+    }
+
+    // ทดสอบห้าม testDrugprice ยาวเกิน
+    @Test
+    public void testDrugpricetomost() {
+        Drug drug = new Drug();
+        drug.setName("ABCDEFG");
+        drug.setPrice("2225454242345324523452452345325432544534534534534534554345");
+        drug.setQty("10");
+
+        try {
+            entityManager.persist(drug);
+            entityManager.flush();
+            fail("Should not pass to this line");
+        } catch (javax.validation.ConstraintViolationException e) {
+            System.out.println();
+            System.out.println();
+            System.out.println();
+            System.out.println(
+                    "============================================================ from testDrugpricetomost =============================================================");
+            System.out.println(e);
+            System.out.println();
+            System.out.println();
+            Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
+            assertEquals(violations.isEmpty(), false);
+            assertEquals(violations.size(), 2);
+        }
+    }
+
+    // ทดสอบห้าม testDrugQtytomost สั้นเกิน
+    @Test
+    public void testDrugQtytolost() {
+        Drug drug = new Drug();
+        drug.setName("ABCDEFG");
+        drug.setPrice("32");
+        drug.setQty("");
+
+        try {
+            entityManager.persist(drug);
+            entityManager.flush();
+            fail("Should not pass to this line");
+        } catch (javax.validation.ConstraintViolationException e) {
+            System.out.println();
+            System.out.println();
+            System.out.println();
+            System.out.println(
+                    "============================================================ from testDrugQtytolost =============================================================");
+            System.out.println(e);
+            System.out.println();
+            System.out.println();
+            Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
+            assertEquals(violations.isEmpty(), false);
+            assertEquals(violations.size(), 2);
+        }
+    }
+
+    // ทดสอบห้าม testDrugQty ยาวเกิน
+    @Test
+    public void testDrugQtytomost() {
+        Drug drug = new Drug();
+        drug.setName("ABCDEFG");
+        drug.setPrice("123");
+        drug.setQty("1000000000000000000000000000000000000000000000000000000000000000");
+
+        try {
+            entityManager.persist(drug);
+            entityManager.flush();
+            fail("Should not pass to this line");
+        } catch (javax.validation.ConstraintViolationException e) {
+            System.out.println();
+            System.out.println();
+            System.out.println();
+            System.out.println(
+                    "============================================================ from testDrugQtytomost =============================================================");
+            System.out.println(e);
+            System.out.println();
+            System.out.println();
+            Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
+            assertEquals(violations.isEmpty(), false);
+            assertEquals(violations.size(), 2);
+        }
+    }
+
+    // ทดสอบ testPatternNameDrug ไม่ใช่ตัว อักษร
+    @Test
+    public void testPatternNameDrug() {
+        Drug drug = new Drug();
+        drug.setName("12Abcd");
+        drug.setPrice("50");
+        drug.setQty("10");
+        try {
+            entityManager.persist(drug);
+            entityManager.flush();
+
+            fail("Should not pass to this line");
+        } catch (javax.validation.ConstraintViolationException e) {
+            System.out.println();
+            System.out.println();
+            System.out.println();
+            System.out.println(
+                    "============================================================ from testPatternNameDrug =============================================================");
+            System.out.println(e);
+            System.out.println();
+            System.out.println();
+            Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
+            assertEquals(violations.isEmpty(), false);
+            assertEquals(violations.size(), 1);
+        }
+    }
+
+    // ทดสอบ testPatternPriceDrug ไม่ใช่ตัว เลข
+    @Test
+    public void testPatternPriceDrug() {
+        Drug drug = new Drug();
+        drug.setName("Abcd");
+        drug.setPrice("AC50");
+        drug.setQty("10");
+        try {
+            entityManager.persist(drug);
+            entityManager.flush();
+
+            fail("Should not pass to this line");
+        } catch (javax.validation.ConstraintViolationException e) {
+            System.out.println();
+            System.out.println();
+            System.out.println();
+            System.out.println(
+                    "============================================================ from testPatternPriceDrug =============================================================");
+            System.out.println(e);
+            System.out.println();
+            System.out.println();
+            Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
+            assertEquals(violations.isEmpty(), false);
+            assertEquals(violations.size(), 1);
+        }
+    }
+
+    // ทดสอบ testPatternQtyDrug ไม่ใช่ตัว เลข
+    @Test
+    public void testPatternQtyDrug() {
+        Drug drug = new Drug();
+        drug.setName("ABCDEF");
+        drug.setPrice("50");
+        drug.setQty("AC502");
+        try {
+            entityManager.persist(drug);
+            entityManager.flush();
+
+            fail("Should not pass to this line");
+        } catch (javax.validation.ConstraintViolationException e) {
+            System.out.println();
+            System.out.println();
+            System.out.println();
+            System.out.println(
+                    "============================================================ from testPatternQtyDrug =============================================================");
+            System.out.println(e);
+            System.out.println();
+            System.out.println();
+            Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
+            assertEquals(violations.isEmpty(), false);
+            assertEquals(violations.size(), 1);
+        }
+    }
 
 }
