@@ -197,6 +197,12 @@ public class DatabaseLoader implements ApplicationRunner {
         RecordDrugUse recordDrugUse1 = this.recordDrugUserepository.findByRecordDrugUseId(1L);
         this.resistancerepository.save(new Resistance(recordDrugUse1, "Normal"));
 
+        Drugdata Dru2 = this.drugdatarepository.findByDrugdataId(1L);
+        Customer Cu2 = this.customerrepository.findByCustomerId(2L);
+        this.recordDrugUserepository.save(new RecordDrugUse("death", Dru2, S1, Cu2));
+        RecordDrugUse recordDrugUse2 = this.recordDrugUserepository.findByRecordDrugUseId(2L);
+        this.resistancerepository.save(new Resistance(recordDrugUse2,"Resist"));
+
         // /* end frame db loader */
 
         // pam loader
