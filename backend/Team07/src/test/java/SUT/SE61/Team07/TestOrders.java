@@ -85,9 +85,9 @@ public class TestOrders {
         }
     }
 
-    // ทดสอบห้ามเป็น not null
+    // ทดสอบห้าม name Order เป็น not null
     @Test
-    public void testNameNull() {
+    public void testNameOrdersNull() {
         Orders os = new Orders();
         Partners P = this.partnersrepository.findBypartnersId(1L);
         Catalog C = this.catalogrepository.findByCatalogId(1L);
@@ -104,7 +104,7 @@ public class TestOrders {
             System.out.println();
             System.out.println();
             System.out.println(
-                    "============================================================ from testNameNull =============================================================");
+                    "============================================================ from testNameOrdersNull =============================================================");
             System.out.println(e);
             System.out.println();
             System.out.println();
@@ -113,6 +113,40 @@ public class TestOrders {
             assertEquals(violations.size(), 1);
         }
     }
+
+
+    
+    // ทดสอบห้าม amount เป็น not null
+    @Test
+    public void testamountOrdersNull() {
+        Orders os = new Orders();
+        Partners P = this.partnersrepository.findBypartnersId(1L);
+        Catalog C = this.catalogrepository.findByCatalogId(1L);
+        os.setName("O1234567");
+        os.setAmount(null);
+        os.setPartners(P);
+        os.setCatalog(C);
+        try {
+            entityManager.persist(os);
+            entityManager.flush();
+            fail("Should not pass to this line");
+        } catch (javax.validation.ConstraintViolationException e) {
+            System.out.println();
+            System.out.println();
+            System.out.println();
+            System.out.println(
+                    "============================================================ from testamountOrdersNull =============================================================");
+            System.out.println(e);
+            System.out.println();
+            System.out.println();
+            Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
+            assertEquals(violations.isEmpty(), false);
+            assertEquals(violations.size(), 1);
+        }
+    }
+
+
+    
 
     // ทดสอบ first Orders name ไม่ใช่ตัว O
     @Test
@@ -135,6 +169,37 @@ public class TestOrders {
             System.out.println();
             System.out.println(
                     "============================================================ from testPatternNameOrders =============================================================");
+            System.out.println(e);
+            System.out.println();
+            System.out.println();
+            Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
+            assertEquals(violations.isEmpty(), false);
+            assertEquals(violations.size(), 1);
+        }
+    }
+
+
+    // ทดสอบ amount    ไม่ใช่ตัว ตัวเลข
+    @Test
+    public void testPatternamountOrders() {
+        Orders os = new Orders();
+        Partners P = this.partnersrepository.findBypartnersId(1L);
+        Catalog C = this.catalogrepository.findByCatalogId(1L);
+        os.setName("O1234567");
+        os.setAmount("A20");
+        os.setPartners(P);
+        os.setCatalog(C);
+        try {
+            entityManager.persist(os);
+            entityManager.flush();
+
+            fail("Should not pass to this line");
+        } catch (javax.validation.ConstraintViolationException e) {
+            System.out.println();
+            System.out.println();
+            System.out.println();
+            System.out.println(
+                    "============================================================ from testPatternamountOrders =============================================================");
             System.out.println(e);
             System.out.println();
             System.out.println();
@@ -173,6 +238,35 @@ public class TestOrders {
         }
     }
 
+    // ทดสอบ ความยาวของ Orders amount ไม่ถึง 1
+    @Test
+    public void testMinamountsize1() {
+        Orders os = new Orders();
+        Partners P = this.partnersrepository.findBypartnersId(1L);
+        Catalog C = this.catalogrepository.findByCatalogId(1L);
+        os.setName("O1234567");
+        os.setAmount("");
+        os.setPartners(P);
+        os.setCatalog(C);
+        try {
+            entityManager.persist(os);
+            entityManager.flush();
+            fail("Should not pass to this line");
+        } catch (javax.validation.ConstraintViolationException e) {
+            System.out.println();
+            System.out.println();
+            System.out.println();
+            System.out.println(
+                    "============================================================ from testMinamountsize1  =============================================================");
+            System.out.println(e);
+            System.out.println();
+            System.out.println();
+            Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
+            assertEquals(violations.isEmpty(), false);
+            assertEquals(violations.size(), 2);
+        }
+    }
+
     // ทดสอบ ความยาวของ Orders name มากกว่า 10
     @Test
     public void testMaxsize10() {
@@ -201,6 +295,36 @@ public class TestOrders {
             assertEquals(violations.size(), 2);
         }
     }
+
+
+    // ทดสอบ ความยาวของ Orders amount เกิน 13
+      @Test
+      public void testMaxsizeamount13() {
+          Orders os = new Orders();
+          Partners P = this.partnersrepository.findBypartnersId(1L);
+          Catalog C = this.catalogrepository.findByCatalogId(1L);
+          os.setName("O1234567");
+          os.setAmount("1234567896325874125845");
+          os.setPartners(P);
+          os.setCatalog(C);
+          try {
+              entityManager.persist(os);
+              entityManager.flush();
+              fail("Should not pass to this line");
+          } catch (javax.validation.ConstraintViolationException e) {
+              System.out.println();
+              System.out.println();
+              System.out.println();
+              System.out.println(
+                      "============================================================ from testMaxsizeamount13   =============================================================");
+              System.out.println(e);
+              System.out.println();
+              System.out.println();
+              Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
+              assertEquals(violations.isEmpty(), false);
+              assertEquals(violations.size(), 2);
+          }
+      }
 
     // @Test(expected=javax.persistence.PersistenceException.class)
     // public void testOrdersUnique() {
