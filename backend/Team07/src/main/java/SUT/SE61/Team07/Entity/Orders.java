@@ -31,6 +31,9 @@ public class Orders {
     @Column(unique = true, nullable = false)
     private String name;
 
+    @NotNull(message = " amount Orders must not be null to be valid")
+    @Pattern(regexp = "([0-9]{1,13}$)")
+    @Size(min = 1, max = 13)
     private String amount;
 
     @ManyToOne(fetch = FetchType.EAGER)
