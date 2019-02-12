@@ -14,6 +14,8 @@ import javax.validation.ValidatorFactory;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Set;
+
+import javax.persistence.EntityManager;
 import javax.persistence.PersistenceException;
 import javax.validation.ConstraintViolation;
 import javax.validation.Validation;
@@ -56,7 +58,7 @@ public class TestOrders {
     public void contextLoads() {
         System.out.println("Test Successful");
     }
-    
+
     @Test
     public void testSuccess() {
         Orders os = new Orders();
@@ -177,7 +179,7 @@ public class TestOrders {
         Orders os = new Orders();
         Partners P = this.partnersrepository.findBypartnersId(1L);
         Catalog C = this.catalogrepository.findByCatalogId(1L);
-        os.setName("O12345678910");
+        os.setName("O123456789124245342352524254745340");
         os.setAmount("20");
         os.setPartners(P);
         os.setCatalog(C);
@@ -200,44 +202,45 @@ public class TestOrders {
         }
     }
 
-    @Test
-    public void testOrdersUnique() {
-        Orders os = new Orders();
-        Partners P = this.partnersrepository.findBypartnersId(1L);
-        Catalog C = this.catalogrepository.findByCatalogId(1L);
-        os.setName("O12345678910");
-        os.setAmount("20");
-        os.setPartners(P);
-        os.setCatalog(C);
+    // @Test(expected=javax.persistence.PersistenceException.class)
+    // public void testOrdersUnique() {
+    //     Orders os = new Orders();
+    //     Partners P = this.partnersrepository.findBypartnersId(1L);
+    //     Catalog C = this.catalogrepository.findByCatalogId(1L);
 
-        Orders os2 = new Orders();
-        os2.setName("O12345678910");
-        os.setAmount("20");
-        os.setPartners(P);
-        os.setCatalog(C);
+    //     os.setName("O1234567");
+    //     os.setAmount("20");
+    //     os.setPartners(P);
+    //     os.setCatalog(C);
 
-        try {
-            entityManager.persist(os2);
-            entityManager.flush();
+    //     Orders os2 = new Orders();
+    //     os2.setAmount("20");
+    //     os2.setPartners(P);
+    //     os2.setCatalog(C);
+    //     os2.setName("O1234567");
 
-            fail("Should not pass to this line");
-        } catch (javax.validation.ConstraintViolationException e) {
-            Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
-            System.out.println();
-            System.out.println();
-            System.out.println();
-            System.out.println("=======================================================================FROM testOrdersUnique========================================================================");
-            System.out.println();
-            System.out.println();
-            System.out.println();
-            System.out.println(e);
-            assertEquals(violations.isEmpty(), false);
-            assertEquals(violations.size(),2);
-        } catch (javax.persistence.PersistenceException e) {
-            e.printStackTrace();
-            
-        }
-    }
-    
+    //     try {
+    //         entityManager.persist(os2);
+    //         entityManager.flush();
+
+    //         fail("Should not pass to this line");
+    //     } catch (javax.validation.ConstraintViolationException e) {
+    //         Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
+    //         System.out.println();
+    //         System.out.println();
+    //         System.out.println();
+    //         System.out.println(
+    //                 "=======================================================================FROM testOrdersUnique ========================================================================");
+    //         System.out.println();
+    //         System.out.println();
+    //         System.out.println();
+    //         System.out.println(e);
+    //         assertEquals(violations.isEmpty(), false);
+    //         assertEquals(violations.size(), 2);
+    //     } catch (javax.persistence.PersistenceException e) {
+    //         e.printStackTrace();
+
+    //     }
+    // }
 
 }

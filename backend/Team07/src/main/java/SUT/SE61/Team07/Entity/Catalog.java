@@ -5,6 +5,10 @@ import javax.persistence.*;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
+
 import lombok.*;
 
 @Entity
@@ -16,15 +20,24 @@ public class Catalog {
     @SequenceGenerator(name = "catalog_seq", sequenceName = "catalog_seq")
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "catalog_seq")
     @Column(name = "catalogId")
+    @NotNull
     private Long catalogId;
-    private @NonNull String catalogname;
-    private @NonNull String price;
 
-   
-    private Catalog() {
+    @NotNull(message = "not catalog to null")
+    @Pattern(regexp = "[A-Za-z]{3,25}")
+    @Size(min = 3, max = 25)
+    @Column(unique = true)
+    private String catalogname;
+
+    @NotNull(message = "not price  to null")
+    @Pattern(regexp = "[0-9]{1,8}")
+    @Size(min = 1, max = 25)
+    private String price;
+
+    public Catalog() {
     }
 
-    public Catalog(String catalogname,String price) {
+    public Catalog(String catalogname, String price) {
         this.catalogname = catalogname;
         this.price = price;
 

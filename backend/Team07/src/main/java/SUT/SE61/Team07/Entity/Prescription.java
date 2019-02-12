@@ -26,7 +26,7 @@ public class Prescription {
     @NotNull
     private Long preId;
 
-    @NotNull(message="Package Id must not be null to be valid")
+    @NotNull(message=" namepre Id must not be null to be valid")
     @Pattern(regexp = "(^P{1}[0-9]{8,13}$)")
     @Size(min = 8, max = 13)
     @Column(unique = true)

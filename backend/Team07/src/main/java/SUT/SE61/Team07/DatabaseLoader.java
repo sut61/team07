@@ -111,12 +111,12 @@ public class DatabaseLoader implements ApplicationRunner {
         Staff S1 = this.staffrepository.findByStaffId(1L);
         this.prescriptionrepository.save(new Prescription("P1234567890", C1, D1, S1)); // this is bug WTF
 
-        this.catalogrepository.save(new Catalog("ยาหมอมี", "ยาน้ำ"));
-        this.catalogrepository.save(new Catalog("ยาหมอมา", "ยาเม็ด"));
-        this.catalogrepository.save(new Catalog("ยาหมอแมว", "ยาผง"));
-        this.catalogrepository.save(new Catalog("ยาหมอหมา", "ยาฉีด"));
-        this.catalogrepository.save(new Catalog("ยาหมอหมี", "ยาทา"));
-
+        this.catalogrepository.save(new Catalog("paracetamol", "50"));
+        this.catalogrepository.save(new Catalog("Acidophilus", "1500"));
+        this.catalogrepository.save(new Catalog("Ampicillin", "2000"));
+        this.catalogrepository.save(new Catalog("Atenolol", "300"));
+        this.catalogrepository.save(new Catalog("Adrenaline", "500"));
+    //    this.catalogrepository.save(new Catalog("Adrenaline", "500"));
         Catalog catalog1 = this.catalogrepository.findByCatalogId(1L);
 
         this.partnersrepository.save(new Partners("บริษัทตามา"));
@@ -187,7 +187,7 @@ public class DatabaseLoader implements ApplicationRunner {
 
         this.ordersreciptRepository.save(new OrdersReceipt(10));
         OrdersReceipt Ord1 = this.ordersreciptRepository.findByordersreceiptId(1L);
-        this.receiptrepository.save(new Receipt(Ord1,S1,D1,"13 กุมภาพันธ์62","M1234567"));
+        this.receiptrepository.save(new Receipt(Ord1, S1, D1, "13 กุมภาพันธ์62", "M1234567"));
         // /* end gan dbloader */
 
         // /* frame db loader */
@@ -195,7 +195,7 @@ public class DatabaseLoader implements ApplicationRunner {
         Customer Cu1 = this.customerrepository.findByCustomerId(1L);
         this.recordDrugUserepository.save(new RecordDrugUse("hothead", Dru1, S1, Cu1));
         RecordDrugUse recordDrugUse1 = this.recordDrugUserepository.findByRecordDrugUseId(1L);
-        this.resistancerepository.save(new Resistance(recordDrugUse1,"Normal"));
+        this.resistancerepository.save(new Resistance(recordDrugUse1, "Normal"));
 
         // /* end frame db loader */
 
