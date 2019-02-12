@@ -261,6 +261,7 @@ public class TestCatalog {
             assertEquals(violations.size(), 2);
         }
     }
+    
 
     // ทดสอบ ความยาว ของ testCatalogpricetomost ยาวเกิน
     @Test
@@ -286,7 +287,5 @@ public class TestCatalog {
             assertEquals(violations.size(), 2);
         }
     }
-
-   
 
 }
