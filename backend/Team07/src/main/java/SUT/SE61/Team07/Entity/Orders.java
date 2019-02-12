@@ -14,7 +14,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.FetchType;
 import javax.persistence.Column;
 
-
 @Entity
 @Data
 public class Orders {
@@ -22,40 +21,35 @@ public class Orders {
     @Id
     @SequenceGenerator(name = "orders_seq", sequenceName = "orders_seq")
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "orders_seq")
-    
-    
-    @NotNull private Long ordersId;
+
+    @NotNull
+    private Long ordersId;
 
     @NotNull(message = " name Orders must not be null to be valid")
-    @Pattern(regexp = "[OMD]\\d{7}")
+    @Pattern(regexp = "(^O{1}[0-9]{7,13}$)")
     @Size(min = 8, max = 10)
-    @Column(unique = true)
-    private String  name;
+    @Column(unique = true, nullable = false)
+    private String name;
 
     private String amount;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "partnersId")
     private Partners partners;
- 
+
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "catalogId")
     private Catalog catalog;
 
-    
-
-   
-
-
     public Orders() {
     }
 
-    public Orders(String name,String amount, Partners partners,Catalog catalog) {
+    public Orders(String name, String amount, Partners partners, Catalog catalog) {
         this.name = name;
         this.amount = amount;
         this.partners = partners;
         this.catalog = catalog;
-        
+
     }
 
 }
