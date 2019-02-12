@@ -77,6 +77,7 @@ export class ResistanceComponent implements OnInit {
       this.data.status === ""
     ) {
       this.count = 0;
+      alert("กรุณากรอกข้อมูลให้ครบถ้วน");
     } else {
       if (re.test(this.data.status) && String(this.data.status).length <= 6) {
         this.count += 1;
@@ -113,7 +114,7 @@ export class ResistanceComponent implements OnInit {
         //console.log(data);
       });
     } else {
-      alert("กรุณากรอกข้อมูลให้ครบถ้วน");
+      
     }
   }
 
