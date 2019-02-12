@@ -119,11 +119,11 @@ public class DatabaseLoader implements ApplicationRunner {
     //    this.catalogrepository.save(new Catalog("Adrenaline", "500"));
         Catalog catalog1 = this.catalogrepository.findByCatalogId(1L);
 
-        this.partnersrepository.save(new Partners("บริษัทตามา"));
-        this.partnersrepository.save(new Partners("บริษัทตามี"));
-        this.partnersrepository.save(new Partners("บริษัทตาแมว"));
-        this.partnersrepository.save(new Partners("บริษัทตาโอะ"));
-        this.partnersrepository.save(new Partners("บริษัทตาเอะ"));
+        this.partnersrepository.save(new Partners("Intelligent.co.ltd"));
+        this.partnersrepository.save(new Partners("Tranformer.co.ltd"));
+        this.partnersrepository.save(new Partners("surfaceRX.co.ltd"));
+        this.partnersrepository.save(new Partners("KonamiStdio.co.ltd"));
+        this.partnersrepository.save(new Partners("IdsoftwareRx.co.ltd"));
 
         Partners partners1 = this.partnersrepository.findBypartnersId(1L);
 
