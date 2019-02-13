@@ -111,6 +111,39 @@ public class TestPrescription {
         }
     }
 
+
+     // ทดสอบห้ามเป็น not null
+     @Test
+     public void testNamedateNull() {
+         Prescription mag = new Prescription();
+         Drug D = this.drugrepository.findByDrugId(1L);
+         Category C = this.categoryrepository.findByCategoryId(1L);
+         Staff S = this.staffrepository.findByStaffId(1L);
+         mag.setNamepre("P12345678");
+         mag.setDrug(D);
+         mag.setCategory(C);
+         mag.setStaff(S);
+         mag.setDate(null);
+         try {
+             entityManager.persist(mag);
+             entityManager.flush();
+             fail("Should not pass to this line");
+         } catch (javax.validation.ConstraintViolationException e) {
+             System.out.println();
+             System.out.println();
+             System.out.println();
+             System.out.println(
+                     "============================================================ from testNamedateNull =============================================================");
+             System.out.println(e);
+             System.out.println();
+             System.out.println();
+             Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
+             assertEquals(violations.isEmpty(), false);
+             assertEquals(violations.size(), 1);
+         }
+     }
+ 
+
     // ทดสอบ first Prescription name ไม่ใช่ตัว P
     @Test
     public void testPatternNameOrders() {
