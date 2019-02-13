@@ -61,7 +61,7 @@ public class TestPrescription {
         Drug D = this.drugrepository.findByDrugId(1L);
         Category C = this.categoryrepository.findByCategoryId(1L);
         Staff S = this.staffrepository.findByStaffId(1L);
-        mag.setNamepre("P12345678");
+        mag.setNamepre("P0000000");
         mag.setDrug(D);
         mag.setCategory(C);
         mag.setStaff(S);
@@ -119,7 +119,7 @@ public class TestPrescription {
          Drug D = this.drugrepository.findByDrugId(1L);
          Category C = this.categoryrepository.findByCategoryId(1L);
          Staff S = this.staffrepository.findByStaffId(1L);
-         mag.setNamepre("P12345678");
+         mag.setNamepre("P0000000");
          mag.setDrug(D);
          mag.setCategory(C);
          mag.setStaff(S);
@@ -151,7 +151,7 @@ public class TestPrescription {
         Drug D = this.drugrepository.findByDrugId(1L);
         Category C = this.categoryrepository.findByCategoryId(1L);
         Staff S = this.staffrepository.findByStaffId(1L);
-        mag.setNamepre("A12345678");
+        mag.setNamepre("A0000000");
         mag.setDrug(D);
         mag.setCategory(C);
         mag.setStaff(S);

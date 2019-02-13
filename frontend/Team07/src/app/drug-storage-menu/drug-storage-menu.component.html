@@ -81,6 +81,11 @@
             </mat-form-field>
             <br>
 
+            <mat-form-field>
+              <h4>จำนวนที่ต้องการเบิก:</h4>
+              <input matInput placeholder="" [(ngModel)]="data.amounts" required name="amounts" #amounts>
+            </mat-form-field><br>
+
 
 
 
@@ -93,7 +98,7 @@
       </mat-tab>
 
 
-      <mat-tab label="รายชื่อใบสั่งยา">
+      <mat-tab label="รายชื่อใบเบิกยาออกจากคลัง">
         <div class="flex-container">
         </div>
         <div class="mat-elevation-z8">
@@ -107,24 +112,32 @@
 
             <!-- Name Column -->
             <ng-container matColumnDef="name">
-              <th mat-header-cell *matHeaderCellDef> หมายเลขใบสั่งยา </th>
+              <th mat-header-cell *matHeaderCellDef> หมายเลขใบเบิกยา </th>
               <td mat-cell *matCellDef="let element"> {{element.namepre}} </td>
             </ng-container>
 
             <!-- Weight Column -->
             <ng-container matColumnDef="drugname">
-              <th mat-header-cell *matHeaderCellDef> ชื่อยา </th>
+              <th mat-header-cell *matHeaderCellDef> ชื่อยาที่เบิก </th>
               <td mat-cell *matCellDef="let element"> {{element.drug.name}} </td>
             </ng-container>
 
             <!-- Symbol Column -->
             <ng-container matColumnDef="category">
-              <th mat-header-cell *matHeaderCellDef> ประเภทของยา </th>
+              <th mat-header-cell *matHeaderCellDef> ประเภทของยาที่เบิก </th>
               <td mat-cell *matCellDef="let element"> {{element.category.categoryname}} </td>
             </ng-container>
 
+
+            
+            <!-- Symbol Column -->
+            <ng-container matColumnDef="amountout">
+              <th mat-header-cell *matHeaderCellDef> จำนวนที่เบิก </th>
+              <td mat-cell *matCellDef="let element"> {{element.amountout}} </td>
+            </ng-container>
+
             <ng-container matColumnDef="staff">
-              <th mat-header-cell *matHeaderCellDef> ผู้สั่ง </th>
+              <th mat-header-cell *matHeaderCellDef> ผู้เบิก </th>
               <td mat-cell *matCellDef="let element"> {{element.staff.staffName}} </td>
             </ng-container>
 

@@ -26,11 +26,16 @@ public class Prescription {
     @NotNull
     private Long preId;
 
-    @NotNull(message=" namepre Id must not be null to be valid")
-    @Pattern(regexp = "(^P{1}[0-9]{8,13}$)")
-    @Size(min = 8, max = 13)
+    @NotNull(message = " namepre Id must not be null to be valid")
+    @Pattern(regexp = "(^P{1}[0-9]{7}$)")
+    @Size(min = 8, max = 8)
     @Column(unique = true)
     private String namepre;
+
+    @NotNull(message = " amountout must not be null to be valid")
+    @Pattern(regexp = "([0-9]{1,5}$)")
+    @Size(min = 1, max = 5)
+    private String amountout;
 
     @NotNull
     private Date date;
@@ -50,9 +55,10 @@ public class Prescription {
     public Prescription() {
     }
 
-    public Prescription(String namepre, Category category, Drug drug, Staff staff) {
+    public Prescription(String namepre, String amountout, Category category, Drug drug, Staff staff) {
 
         this.namepre = namepre;
+        this.amountout = amountout;
         this.category = category;
         this.drug = drug;
         this.staff = staff;
