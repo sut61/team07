@@ -43,10 +43,10 @@ class PrescriptionController {
         return prescriptionrepository.findByNamepre(namepre);
     }
 
-    @PostMapping("/Prescription-insert/nameprescription/{nameprescription}/CategoryId/{CategoryId}/DrugId/{DrugId}/staff/{staff}")
+    @PostMapping("/Prescription-insert/nameprescription/{nameprescription}/amountout/{amountout}/CategoryId/{CategoryId}/DrugId/{DrugId}/staff/{staff}")
     public ResponseEntity<Map<String, Object>> Drugsumbit(@PathVariable("nameprescription") String nameprescription,
-            @PathVariable("CategoryId") Long CategoryId, @PathVariable("DrugId") Long DrugId,
-            @PathVariable("staff") String staff) {
+            @PathVariable("amountout") String amountout, @PathVariable("CategoryId") Long CategoryId,
+            @PathVariable("DrugId") Long DrugId, @PathVariable("staff") String staff) {
 
         Prescription P = this.prescriptionrepository.findByNamepre(nameprescription);
         if (P != null) {
@@ -68,7 +68,7 @@ class PrescriptionController {
                 Drug D = this.drugrepository.findByDrugId(DrugId);
                 Category C = this.categoryrepository.findByCategoryId(CategoryId);
 
-                this.prescriptionrepository.save(new Prescription(nameprescription, C, D, S));
+                this.prescriptionrepository.save(new Prescription(nameprescription, amountout, C, D, S));
 
                 Map<String, Object> json = new HashMap<String, Object>();
                 json.put("success", true);

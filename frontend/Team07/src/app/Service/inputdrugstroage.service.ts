@@ -19,10 +19,10 @@ export class InputdrugstroageService {
 
 
 
-  summbituyPrescription(nameprescription: string, categoryId: number, DrugId: number, staff: string): Observable<any> {
+  summbituyPrescription(nameprescription: string,amountout: string, categoryId: number, DrugId: number, staff: string): Observable<any> {
 
     //console.log(this.API + '/Prescription-insert/nameprescription/' + nameprescription + '/CategoryId/' + categoryId + '/DrugId/' + DrugId + '/staffId/' + staffId)
-    return this.http.post(this.API + '/Prescription-insert/nameprescription/' + nameprescription + '/CategoryId/' + categoryId + '/DrugId/' + DrugId + '/staff/' + staff,{});
+    return this.http.post(this.API + '/Prescription-insert/nameprescription/' + nameprescription +'/amountout/' + amountout +'/CategoryId/' + categoryId + '/DrugId/' + DrugId + '/staff/' + staff,{});
   
   }
 }

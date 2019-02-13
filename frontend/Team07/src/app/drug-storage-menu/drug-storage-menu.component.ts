@@ -26,7 +26,7 @@ export class DrugStorageMenuComponent implements OnInit {
   names: any;
 
   constructor(private drugService: DrugService, private route: ActivatedRoute, private router: Router, private categoryService: CategoryService, private httpClient: HttpClient, private inputdrugstroageService: InputdrugstroageService, private pre: PrescriptionService) { }
-  displayedColumns: string[] = ['position', 'name', 'drugname', 'category', 'staff'];
+  displayedColumns: string[] = ['position', 'name', 'drugname', 'category','amountout', 'staff'];
 
   showdata() {
 
@@ -40,7 +40,8 @@ export class DrugStorageMenuComponent implements OnInit {
 
   sumbitData() {
 
-    let re = /(^P{1})(\d{8,13}$)/g
+    let re = /(^P{1})(\d{7}$)/g
+    let rs = /[0-9999]{1,4}/;
     this.count = 0;
 
     if (this.data.namepre === undefined || this.data.namepre === null) {
@@ -58,9 +59,22 @@ export class DrugStorageMenuComponent implements OnInit {
     } else {
       this.count += 1;
     }
-    if (this.count >= 3) {
+    if (this.data.amounts === undefined || this.data.amounts === null || this.data.amounts === "") {
+      this.count = 0;
+    }
+    else {
+      if (rs.test(this.data.amounts)) {
+        this.count += 1;
+      } else {
+        this.count = 0;
+        alert("ใส่เป็นตัวเลขเท่านั้น")
+      }
+
+    }
+
+    if (this.count >= 4) {
       if (re.test(this.data.namepre)) {
-        this.inputdrugstroageService.summbituyPrescription(String(this.data.namepre), Number(this.categoryselect), Number(this.drugselect), String(this.names)).subscribe(dss => {
+        this.inputdrugstroageService.summbituyPrescription(String(this.data.namepre),String(this.data.amounts), Number(this.categoryselect), Number(this.drugselect), String(this.names)).subscribe(dss => {
           if (dss.status == "save") {
             this.pre.getPrescription().subscribe(data => {
               this.prescription = data;
