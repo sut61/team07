@@ -95,12 +95,12 @@ public class DatabaseLoader implements ApplicationRunner {
         this.drugrepository.save(new Drug("Fluticasone", "70", "10"));
 
         Drug D1 = this.drugrepository.findByDrugId(1L);
-        this.categoryrepository.save(new Category("ยาน้ำ"));
-        this.categoryrepository.save(new Category("ยาเม็ด"));
-        this.categoryrepository.save(new Category("ยาผง"));
-        this.categoryrepository.save(new Category("ยาทา"));
-        this.categoryrepository.save(new Category("ยาฉีด"));
-        this.categoryrepository.save(new Category("ยาอม"));
+        this.categoryrepository.save(new Category("nostrum"));
+        this.categoryrepository.save(new Category("conventionalmedicine"));
+        this.categoryrepository.save(new Category("Nonprescriptiondrugs"));
+        this.categoryrepository.save(new Category("HerbalDrugs"));
+        this.categoryrepository.save(new Category("medicine"));
+      
 
         Category C1 = this.categoryrepository.findByCategoryId(1L);
         this.staffrepository.save(new Staff("Bancha", "john", "exx", "0802457192"));
