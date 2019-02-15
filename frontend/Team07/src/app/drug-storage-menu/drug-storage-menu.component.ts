@@ -24,9 +24,10 @@ export class DrugStorageMenuComponent implements OnInit {
   datas: any = {}
   count: 0;
   names: any;
+  ggss: any = { drugId: Number, name: String, price: String, qty: String };
 
   constructor(private drugService: DrugService, private route: ActivatedRoute, private router: Router, private categoryService: CategoryService, private httpClient: HttpClient, private inputdrugstroageService: InputdrugstroageService, private pre: PrescriptionService) { }
-  displayedColumns: string[] = ['position', 'name', 'drugname', 'category','amountout', 'staff'];
+  displayedColumns: string[] = ['position', 'name', 'drugname', 'category', 'amountout', 'amountcount', 'staff'];
 
   showdata() {
 
@@ -39,6 +40,8 @@ export class DrugStorageMenuComponent implements OnInit {
   }
 
   sumbitData() {
+  
+
 
     let re = /(^P{1})(\d{7}$)/g
     let rs = /[0-9999]{1,4}/;
@@ -74,15 +77,29 @@ export class DrugStorageMenuComponent implements OnInit {
 
     if (this.count >= 4) {
       if (re.test(this.data.namepre)) {
-        this.inputdrugstroageService.summbituyPrescription(String(this.data.namepre),String(this.data.amounts), Number(this.categoryselect), Number(this.drugselect), String(this.names)).subscribe(dss => {
+        this.drugService.getDrugById(Number(this.drugselect)).subscribe(data => {
+          this.ggss = data;
+        });
+
+        this.inputdrugstroageService.summbituyPrescription(String(this.data.namepre), String(this.data.amounts), Number(this.categoryselect), Number(this.drugselect), String(this.names)).subscribe(dss => {
           if (dss.status == "save") {
-            this.pre.getPrescription().subscribe(data => {
-              this.prescription = data;
+
+
+            this.ggss.qty = String(Number(this.ggss.qty) - Number(this.data.amounts));
+            this.inputdrugstroageService.updateDrug(Number(this.drugselect), String(this.ggss.name), String(this.ggss.price), String(this.ggss.qty)).subscribe(data => {
+              console.log(data);
+            });
+
+            this.pre.getPrescription().subscribe(datassg => {
+              this.prescription = datassg;
+          
               this.preId = this.prescription.length;
               console.log(this.prescription);
+            });
 
-            })
             alert("บันทึกสำเร็จ")
+           
+
           } else if (dss.status == "save-false") {
             alert(dss.statuss)
           }
@@ -97,6 +114,8 @@ export class DrugStorageMenuComponent implements OnInit {
     }
 
 
+
+    
 
 
 
@@ -117,14 +136,18 @@ export class DrugStorageMenuComponent implements OnInit {
 
     this.pre.getPrescription().subscribe(data => {
       this.prescription = data;
+
       this.preId = this.prescription.length;
-      console.log(this.prescription);
+
 
     })
     this.drugService.getDrug().subscribe(data => {
       this.drug = data;
       console.log(this.drug)
     })
+
+
+
 
 
 
