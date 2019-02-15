@@ -13,4 +13,8 @@ export class DrugService {
   getDrug(): Observable<any> {
     return this.http.get(this.API + '/Stroage-drug');
   }
+
+  getDrugById(drugId:Number): Observable<any> {
+    return this.http.get(this.API + '/Drug/' +  drugId);
+  }
 }

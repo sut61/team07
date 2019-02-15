@@ -39,18 +39,63 @@ class DrugController {
         return drugrepository.findByDrugId(id);
     }
 
-    @PutMapping("/Drug-Update/{drugId}")
-    public ResponseEntity<Object> updateStudent(@RequestBody Drug drug, @PathVariable long drugId) {
-        Optional<Drug> drugOptional = this.drugrepository.findById(drugId);
+    @PostMapping("/Drug-Update/{drugId}/name/{name}/price/{price}/qty/{qty}")
+    public ResponseEntity<Map<String, Object>> drugUpdate(@PathVariable("drugId") Long drugId,
+            @PathVariable("name") String name, @PathVariable("price") String price, @PathVariable("qty") String qty) {
 
-        if (!drugOptional.isPresent())
-            return ResponseEntity.notFound().build();
+        Drug drug = this.drugrepository.findByDrugId(drugId);
 
-            drug.setDrugId(drugId);
+        if (drug != null) {
+            try {
 
-            drugrepository.save(drug);
+                drug.setDrugId(drugId);
+                drug.setName(name);
+                drug.setPrice(price);
+                drug.setQty(qty);
+                this.drugrepository.save(drug);
+                Map<String, Object> json = new HashMap<String, Object>();
+                json.put("success", true);
+                json.put("status", "update complete");
 
-        return ResponseEntity.noContent().build();
+                HttpHeaders headers = new HttpHeaders();
+                headers.add("Content-Type", "application/json; charset=UTF-8");
+                headers.add("X-Fsl-Location", "/");
+                headers.add("X-Fsl-Response-Code", "302");
+                return (new ResponseEntity<Map<String, Object>>(json, headers, HttpStatus.OK));
+
+
+            } catch (NullPointerException e) {
+                Map<String, Object> json = new HashMap<String, Object>();
+                json.put("success", true);
+                json.put("status", "save");
+
+                HttpHeaders headers = new HttpHeaders();
+                headers.add("Content-Type", "application/json; charset=UTF-8");
+                headers.add("X-Fsl-Location", "/");
+                headers.add("X-Fsl-Response-Code", "302");
+                return (new ResponseEntity<Map<String, Object>>(json, headers, HttpStatus.OK));
+            }
+        } else {
+            Map<String, Object> json = new HashMap<String, Object>();
+            json.put("success", true);
+            json.put("status", "save");
+
+            HttpHeaders headers = new HttpHeaders();
+            headers.add("Content-Type", "application/json; charset=UTF-8");
+            headers.add("X-Fsl-Location", "/");
+            headers.add("X-Fsl-Response-Code", "302");
+            return (new ResponseEntity<Map<String, Object>>(json, headers, HttpStatus.OK));
+        }
+
+        // if (!drugOptional.isPresent())
+        // return ResponseEntity.notFound().build();
+
+        // drug.setDrugId(drugId);
+
+        // drugrepository.save(drug);
+
+        // return ResponseEntity.noContent().build();
+
     }
 
 }
