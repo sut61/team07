@@ -194,4 +194,33 @@ public class TestPartners {
         }
     }
 
+    @Test
+    public void testPartnersUnique() {
+        Partners partners = new Partners();
+        partners.setName("AgodaraRx.co.ltd");
+        this.partnersrepository.save(partners);
+
+        Partners partners2 = new Partners();
+        partners2.setName("AgodaraRx.co.ltd");
+
+        try {
+            // this.prescriptionrepository.save(mag2);
+            entityManager.persist(partners2);
+            entityManager.flush();
+
+            fail("Should not pass to this line");
+        } catch (PersistenceException ex) {
+            System.out.println();
+            System.out.println();
+            System.out.println(
+                    "=================================================testPartnersUnique========================================================");
+            System.out.println(ex);
+            System.out.println(
+                    "=========================================================================================================");
+            System.out.println();
+            System.out.println();
+
+        }
+    }
+
 }

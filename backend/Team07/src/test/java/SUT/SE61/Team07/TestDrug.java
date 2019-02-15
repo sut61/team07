@@ -11,6 +11,8 @@ import java.util.Collections;
 import java.util.OptionalInt;
 import java.util.Set;
 import java.util.Date;
+
+import javax.persistence.PersistenceException;
 import javax.validation.ConstraintViolation;
 import javax.validation.Validation;
 import javax.validation.Validator;
@@ -392,6 +394,39 @@ public class TestDrug {
             Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
             assertEquals(violations.isEmpty(), false);
             assertEquals(violations.size(), 1);
+        }
+    }
+
+    @Test
+    public void testDrugUnique() {
+        Drug drug = new Drug();
+        drug.setName("paracetamol");
+        drug.setPrice("50");
+        drug.setQty("10");
+        this.drugrepository.save(drug);
+
+        Drug drug2 = new Drug();
+        drug2.setName("paracetamol");
+        drug2.setPrice("50");
+        drug2.setQty("10");
+
+        try {
+            // this.prescriptionrepository.save(mag2);
+            entityManager.persist(drug2);
+            entityManager.flush();
+
+            fail("Should not pass to this line");
+        } catch (PersistenceException ex) {
+            System.out.println();
+            System.out.println();
+            System.out.println(
+                    "=================================================testDrugUnique========================================================");
+            System.out.println(ex);
+            System.out.println(
+                    "=========================================================================================================");
+            System.out.println();
+            System.out.println();
+
         }
     }
 
