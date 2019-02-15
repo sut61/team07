@@ -6,7 +6,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
-
+import static org.junit.Assert.assertNotNull;
 import java.util.Collections;
 import java.util.OptionalInt;
 import java.util.Set;
@@ -82,6 +82,19 @@ public class TestPrescription {
 
         }
     }
+
+
+    @Test
+  public void NotNullTest() {
+ 
+    Prescription mag = new Prescription();
+    System.out.println(
+        "============================================================ from NotNullTest =============================================================");
+
+ 
+    assertNotNull("Verify that thing is NOT null", mag);
+ 
+  }
 
     // ทดสอบห้าม setNamepre เป็น not null
     @Test
