@@ -114,8 +114,6 @@ public class TestOrders {
         }
     }
 
-
-    
     // ทดสอบห้าม amount เป็น not null
     @Test
     public void testamountOrdersNull() {
@@ -144,9 +142,6 @@ public class TestOrders {
             assertEquals(violations.size(), 1);
         }
     }
-
-
-    
 
     // ทดสอบ first Orders name ไม่ใช่ตัว O
     @Test
@@ -178,8 +173,7 @@ public class TestOrders {
         }
     }
 
-
-    // ทดสอบ amount    ไม่ใช่ตัว ตัวเลข
+    // ทดสอบ amount ไม่ใช่ตัว ตัวเลข
     @Test
     public void testPatternamountOrders() {
         Orders os = new Orders();
@@ -296,75 +290,71 @@ public class TestOrders {
         }
     }
 
-
     // ทดสอบ ความยาวของ Orders amount เกิน 13
-      @Test
-      public void testMaxsizeamount13() {
-          Orders os = new Orders();
-          Partners P = this.partnersrepository.findBypartnersId(1L);
-          Catalog C = this.catalogrepository.findByCatalogId(1L);
-          os.setName("O1234567");
-          os.setAmount("1234567896325874125845");
-          os.setPartners(P);
-          os.setCatalog(C);
-          try {
-              entityManager.persist(os);
-              entityManager.flush();
-              fail("Should not pass to this line");
-          } catch (javax.validation.ConstraintViolationException e) {
-              System.out.println();
-              System.out.println();
-              System.out.println();
-              System.out.println(
-                      "============================================================ from testMaxsizeamount13   =============================================================");
-              System.out.println(e);
-              System.out.println();
-              System.out.println();
-              Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
-              assertEquals(violations.isEmpty(), false);
-              assertEquals(violations.size(), 2);
-          }
-      }
+    @Test
+    public void testMaxsizeamount13() {
+        Orders os = new Orders();
+        Partners P = this.partnersrepository.findBypartnersId(1L);
+        Catalog C = this.catalogrepository.findByCatalogId(1L);
+        os.setName("O1234567");
+        os.setAmount("1234567896325874125845");
+        os.setPartners(P);
+        os.setCatalog(C);
+        try {
+            entityManager.persist(os);
+            entityManager.flush();
+            fail("Should not pass to this line");
+        } catch (javax.validation.ConstraintViolationException e) {
+            System.out.println();
+            System.out.println();
+            System.out.println();
+            System.out.println(
+                    "============================================================ from testMaxsizeamount13   =============================================================");
+            System.out.println(e);
+            System.out.println();
+            System.out.println();
+            Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
+            assertEquals(violations.isEmpty(), false);
+            assertEquals(violations.size(), 2);
+        }
+    }
 
-    // @Test(expected=javax.persistence.PersistenceException.class)
-    // public void testOrdersUnique() {
-    //     Orders os = new Orders();
-    //     Partners P = this.partnersrepository.findBypartnersId(1L);
-    //     Catalog C = this.catalogrepository.findByCatalogId(1L);
+    @Test
+    public void testOrdersUnique() {
+        Orders os = new Orders();
+        Partners P = this.partnersrepository.findBypartnersId(1L);
+        Catalog C = this.catalogrepository.findByCatalogId(1L);
+        os.setName("O1234567");
+        os.setAmount("20");
+        os.setPartners(P);
+        os.setCatalog(C);
+        this.ordersrepository.save(os);
 
-    //     os.setName("O1234567");
-    //     os.setAmount("20");
-    //     os.setPartners(P);
-    //     os.setCatalog(C);
+        Orders os2 = new Orders();
 
-    //     Orders os2 = new Orders();
-    //     os2.setAmount("20");
-    //     os2.setPartners(P);
-    //     os2.setCatalog(C);
-    //     os2.setName("O1234567");
+        os2.setName("O1234567");
+        os2.setAmount("20");
+        os2.setPartners(P);
+        os2.setCatalog(C);
 
-    //     try {
-    //         entityManager.persist(os2);
-    //         entityManager.flush();
+        try {
+            // this.prescriptionrepository.save(mag2);
+            entityManager.persist(os2);
+            entityManager.flush();
 
-    //         fail("Should not pass to this line");
-    //     } catch (javax.validation.ConstraintViolationException e) {
-    //         Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
-    //         System.out.println();
-    //         System.out.println();
-    //         System.out.println();
-    //         System.out.println(
-    //                 "=======================================================================FROM testOrdersUnique ========================================================================");
-    //         System.out.println();
-    //         System.out.println();
-    //         System.out.println();
-    //         System.out.println(e);
-    //         assertEquals(violations.isEmpty(), false);
-    //         assertEquals(violations.size(), 2);
-    //     } catch (javax.persistence.PersistenceException e) {
-    //         e.printStackTrace();
+            fail("Should not pass to this line");
+        } catch (PersistenceException ex) {
+            System.out.println();
+            System.out.println();
+            System.out.println(
+                    "=================================================testPrescriptionUnique========================================================");
+            System.out.println(ex);
+            System.out.println(
+                    "=========================================================================================================");
+            System.out.println();
+            System.out.println();
 
-    //     }
-    // }
+        }
+    }
 
 }

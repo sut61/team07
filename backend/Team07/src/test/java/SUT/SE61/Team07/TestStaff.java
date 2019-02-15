@@ -11,6 +11,8 @@ import java.util.Collections;
 import java.util.OptionalInt;
 import java.util.Set;
 import java.util.Date;
+
+import javax.persistence.PersistenceException;
 import javax.validation.ConstraintViolation;
 import javax.validation.Validation;
 import javax.validation.Validator;
@@ -518,5 +520,118 @@ public class TestStaff {
                  assertEquals(violations.size(), 1);
              }
          }
+
+
+    @Test
+    public void testsetStaffnameUnique() {
+        Staff staff = new Staff();
+        staff.setStaffName("Johnex");
+        staff.setStaffUser("ex12314");
+        staff.setStaffPass("johnexa2");
+        staff.setStaffPhone("0852097965");
+
+        this.staffrepository.save(staff);
+
+        Staff staff2 = new Staff();
+        staff2.setStaffName("Johnex");
+        staff2.setStaffUser("ex1234");
+        staff2.setStaffPass("johnexa2");
+        staff2.setStaffPhone("0852097966");
+
+        try {
+            // this.prescriptionrepository.save(mag2);
+            entityManager.persist(staff2);
+            entityManager.flush();
+
+            fail("Should not pass to this line");
+        } catch (PersistenceException ex) {
+            System.out.println();
+            System.out.println();
+            System.out.println(
+                    "=================================================testsetStaffnameUnique========================================================");
+            System.out.println(ex);
+            System.out.println(
+                    "=========================================================================================================");
+            System.out.println();
+            System.out.println();
+
+        }
+    }
+
+
+    @Test
+    public void testsetStaffUserUnique() {
+        Staff staff = new Staff();
+        staff.setStaffName("Johnex");
+        staff.setStaffUser("ex1234");
+        staff.setStaffPass("johnexa2");
+        staff.setStaffPhone("0852097965");
+
+        this.staffrepository.save(staff);
+
+        Staff staff2 = new Staff();
+        staff2.setStaffName("Johnexx");
+        staff2.setStaffUser("ex1234");
+        staff2.setStaffPass("johnexa2");
+        staff2.setStaffPhone("0852097966");
+
+        try {
+            // this.prescriptionrepository.save(mag2);
+            entityManager.persist(staff2);
+            entityManager.flush();
+
+            fail("Should not pass to this line");
+        } catch (PersistenceException ex) {
+            System.out.println();
+            System.out.println();
+            System.out.println(
+                    "=================================================testsetStaffUserUnique========================================================");
+            System.out.println(ex);
+            System.out.println(
+                    "=========================================================================================================");
+            System.out.println();
+            System.out.println();
+
+        }
+    }
+
+
+    
+    @Test
+    public void testsetStaffPhoneUnique() {
+        Staff staff = new Staff();
+        staff.setStaffName("Johnex");
+        staff.setStaffUser("ex1234");
+        staff.setStaffPass("johnexa2");
+        staff.setStaffPhone("0852097965");
+
+        this.staffrepository.save(staff);
+
+        Staff staff2 = new Staff();
+        staff2.setStaffName("Johnexx");
+        staff2.setStaffUser("ex12234");
+        staff2.setStaffPass("johnexa2");
+        staff2.setStaffPhone("0852097965");
+
+        try {
+            // this.prescriptionrepository.save(mag2);
+            entityManager.persist(staff2);
+            entityManager.flush();
+
+            fail("Should not pass to this line");
+        } catch (PersistenceException ex) {
+            System.out.println();
+            System.out.println();
+            System.out.println(
+                    "=================================================testsetStaffPhoneUnique========================================================");
+            System.out.println(ex);
+            System.out.println(
+                    "=========================================================================================================");
+            System.out.println();
+            System.out.println();
+
+        }
+    }
+
 
 }
