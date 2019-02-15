@@ -88,6 +88,8 @@ export class DrugStorageMenuComponent implements OnInit {
             this.ggss.qty = String(Number(this.ggss.qty) - Number(this.data.amounts));
             this.inputdrugstroageService.updateDrug(Number(this.drugselect), String(this.ggss.name), String(this.ggss.price), String(this.ggss.qty)).subscribe(data => {
               console.log(data);
+              
+      
             });
 
             this.pre.getPrescription().subscribe(datassg => {
@@ -98,6 +100,8 @@ export class DrugStorageMenuComponent implements OnInit {
             });
 
             alert("บันทึกสำเร็จ")
+            window.location.reload();
+           // this.router.navigate(['drug-stroagemenu', {name:this.names}]);
            
 
           } else if (dss.status == "save-false") {
