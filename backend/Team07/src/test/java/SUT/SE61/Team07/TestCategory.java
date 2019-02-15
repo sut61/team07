@@ -11,6 +11,8 @@ import java.util.Collections;
 import java.util.OptionalInt;
 import java.util.Set;
 import java.util.Date;
+
+import javax.persistence.PersistenceException;
 import javax.validation.ConstraintViolation;
 import javax.validation.Validation;
 import javax.validation.Validator;
@@ -28,7 +30,7 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 
 @RunWith(SpringRunner.class)
 @DataJpaTest
-public class TestCatagory {
+public class TestCategory {
 
     @Autowired
     private CategoryRepository categoryrepository;
@@ -143,6 +145,37 @@ public class TestCatagory {
             Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
             assertEquals(violations.isEmpty(), false);
             assertEquals(violations.size(), 1);
+        }
+    }
+
+    @Test
+    public void testsetCategoryUnique() {
+        Category  category  = new Category();
+        category.setCategoryname("herbalremedies");
+
+
+        this.categoryrepository.save(category);
+
+        Category  category2  = new Category();
+        category2.setCategoryname("herbalremedies");
+
+        try {
+            // this.prescriptionrepository.save(mag2);
+            entityManager.persist(category2);
+            entityManager.flush();
+
+            fail("Should not pass to this line");
+        } catch (PersistenceException ex) {
+            System.out.println();
+            System.out.println();
+            System.out.println(
+                    "=================================================testsetCategoryUnique========================================================");
+            System.out.println(ex);
+            System.out.println(
+                    "=========================================================================================================");
+            System.out.println();
+            System.out.println();
+
         }
     }
 
