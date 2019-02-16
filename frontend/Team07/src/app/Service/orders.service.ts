@@ -9,7 +9,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 export class OrdersService {
 
   public API = '//localhost:8080';
-  
+
   constructor(private http: HttpClient) {}
 
   getOrders(): Observable<any> {
@@ -18,10 +18,10 @@ export class OrdersService {
 
 
 
-  PostOrders(nameorders: string, partnersId: number, catalogId: number, amount: string): Observable<any> {
- 
+  PostOrders(nameorders: string, partnersId: number, catalogId: number,drugId :number,staff :string, amount: string): Observable<any> {
+
     console.log(this.API + '/Orders-insert/nameorders/' + nameorders + '/partnersId/' + partnersId + '/catalogId/' + catalogId + '/amount/' + amount)
-    return this.http.post(this.API + '/Orders-insert/nameorders/' + nameorders + '/partnersId/' + partnersId + '/catalogId/' + catalogId + '/amount/' + amount,{});
-  
+    return this.http.post(this.API + '/Orders-insert/nameorders/' + nameorders + '/partnersId/' + partnersId + '/catalogId/' + catalogId + '/drugId/' + drugId + '/staff/' + staff +'/amount/' + amount,{});
+
   }
 }

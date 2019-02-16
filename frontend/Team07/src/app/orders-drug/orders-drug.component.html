@@ -89,6 +89,64 @@
           </form>
         </div>
       </mat-tab>
+
+      <mat-tab label="รายชื่อใบสั่งยาเข้าคลัง">
+        <div class="flex-container">
+        </div>
+        <div class="mat-elevation-z8">
+          <table mat-table [dataSource]="orders">
+
+
+            <ng-container matColumnDef="position">
+              <th mat-header-cell *matHeaderCellDef> No. </th>
+              <td mat-cell *matCellDef="let element"> {{element.ordersId}} </td>
+            </ng-container>
+
+
+            <ng-container matColumnDef="nameorders">
+              <th mat-header-cell *matHeaderCellDef> หมายเลขใบนำเข้ายา </th>
+              <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="namepartners">
+              <th mat-header-cell *matHeaderCellDef> ชื่อผู้ขาย </th>
+              <td mat-cell *matCellDef="let element"> {{element.partners.name}} </td>
+            </ng-container>
+
+
+            <ng-container matColumnDef="namecatalog">
+              <th mat-header-cell *matHeaderCellDef> ประเภทของยาที่นำเข้า </th>
+              <td mat-cell *matCellDef="let element"> {{element.catalog.catalogname}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="namedrug">
+              <th mat-header-cell *matHeaderCellDef> ยา </th>
+              <td mat-cell *matCellDef="let element"> {{element.drug.name}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="amountin">
+              <th mat-header-cell *matHeaderCellDef> จำนวนที่นำเข้า </th>
+              <td mat-cell *matCellDef="let element"> {{element.amount}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="amountcount">
+              <th mat-header-cell *matHeaderCellDef> จำนวนที่มีในคลัง </th>
+              <td mat-cell *matCellDef="let element"> {{element.drug.qty}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="staff">
+              <th mat-header-cell *matHeaderCellDef> ผู้เบิก </th>
+              <td mat-cell *matCellDef="let element"> {{element.staff.staffName}} </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+          </table>
+
+
+        </div>
+
+      </mat-tab>
     </mat-tab-group>
   </div>
 </body>

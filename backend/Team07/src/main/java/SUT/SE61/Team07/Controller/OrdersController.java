@@ -23,13 +23,18 @@ class OrdersController {
     OrdersRepository ordersrepository;
     PartnersRepository partnersrepository;
     CatalogRepository catalogrepository;
+       DrugRepository drugrepository;
+       StaffRepository staffrepository;
+    
 
     public OrdersController(OrdersRepository ordersrepository, PartnersRepository partnersrepository,
-            CatalogRepository catalogrepository) {
+            CatalogRepository catalogrepository, DrugRepository drugrepository, StaffRepository staffrepository) {
         this.ordersrepository = ordersrepository;
         this.partnersrepository = partnersrepository;
         this.catalogrepository = catalogrepository;
-    }
+        this.drugrepository = drugrepository;
+        this.staffrepository = staffrepository;
+    } 
 
     @GetMapping("/Orders-list")
     public Collection<Orders> ordersList() {
@@ -42,9 +47,9 @@ class OrdersController {
         return ordersrepository.findByname(name);
     }
 
-    @PostMapping("/Orders-insert/nameorders/{nameorders}/partnersId/{partnersId}/catalogId/{catalogId}/amount/{amount}")
+    @PostMapping("/Orders-insert/nameorders/{nameorders}/partnersId/{partnersId}/catalogId/{catalogId}/drugId/{drugId}/staff/{staff}/amount/{amount}")
     public ResponseEntity<Map<String, Object>> Orderssumbit(@PathVariable("nameorders") String nameorders,
-            @PathVariable("partnersId") Long partnersId, @PathVariable("catalogId") Long catalogId,
+            @PathVariable("partnersId") Long partnersId, @PathVariable("catalogId") Long catalogId,@PathVariable("drugId") Long drugId,@PathVariable("staff") String staff,
             @PathVariable("amount") String amount) {
 
         Orders O = this.ordersrepository.findByname(nameorders);
@@ -53,8 +58,12 @@ class OrdersController {
 
                 Partners P = this.partnersrepository.findBypartnersId(partnersId);
                 Catalog C = this.catalogrepository.findByCatalogId(catalogId);
+                Drug D = this.drugrepository.findByDrugId(drugId);
+    
+                Staff S = this.staffrepository.findByStaffUser(staff);
+     
 
-                this.ordersrepository.save(new Orders(nameorders, amount, P, C));
+                this.ordersrepository.save(new Orders(nameorders, amount, P, C,D,S));
 
                 Map<String, Object> json = new HashMap<String, Object>();
                 json.put("success", true);

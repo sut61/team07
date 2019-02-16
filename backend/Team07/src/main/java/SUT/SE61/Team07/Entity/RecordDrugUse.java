@@ -26,7 +26,7 @@ public class RecordDrugUse {
     private Long recordDrugUseId;
 
     @NotNull(message = "symptom  must not be null to be valid")
-    @Pattern(regexp = "\\s{3,20}")
+    @Pattern(regexp = "[A-Za-z .]{3,20}")
     @Size(min = 3,max = 20)
     private String symptom;
 
