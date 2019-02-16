@@ -10,7 +10,7 @@ import { LoginStaffComponent } from '../login-staff/login-staff.component';
 
 import { DrugStorageMenuComponent } from '../drug-storage-menu/drug-storage-menu.component';
 
-import { DrugdataComponent } from '../Drugdata/drugdata.component';
+import { DrugdataComponent } from '../drugdata/drugdata.component';
 import { from } from 'rxjs';
 import { PostComponent } from '../post/post.component';
 import { ShowComponent } from '../show/show.component';

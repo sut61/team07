@@ -70,7 +70,7 @@ import { DeliveryShowComponent } from './delivery-show/delivery-show.component';
 
 
 
-import { DrugdataComponent } from './Drugdata/drugdata.component';
+import { DrugdataComponent } from './drugdata/drugdata.component';
 import { MedicineService } from './Service/medicine.service';
 
 import { CategoryService } from './Service/category.service';
