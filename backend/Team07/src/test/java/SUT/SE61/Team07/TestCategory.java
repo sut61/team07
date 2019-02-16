@@ -5,6 +5,7 @@ import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.fail;
 
 import java.util.Collections;
@@ -69,6 +70,18 @@ public class TestCategory {
 
             // fail("Should not pass to this line");
         }
+    }
+
+    @Test
+    public void NotNullTest() {
+   
+        Category  category  = new Category();
+      System.out.println(
+          "============================================================ from NotNullTest =============================================================");
+  
+   
+      assertNotNull("Verify that thing is NOT null", category);
+   
     }
 
 
