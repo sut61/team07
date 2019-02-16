@@ -44,14 +44,24 @@ public class Orders {
     @JoinColumn(name = "catalogId")
     private Catalog catalog;
 
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "drugId")
+    private Drug drug;
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "staffId")
+    private Staff staff;
+
     public Orders() {
     }
 
-    public Orders(String name, String amount, Partners partners, Catalog catalog) {
+    public Orders(String name, String amount, Partners partners, Catalog catalog,Drug drug,Staff staff) {
         this.name = name;
         this.amount = amount;
         this.partners = partners;
         this.catalog = catalog;
+        this.drug = drug;
+        this.staff = staff;
 
     }
 

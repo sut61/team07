@@ -5,8 +5,8 @@ import { ActivatedRoute } from "@angular/router";
 import { OrdersService } from '../Service/orders.service';
 import { PartnersService } from '../Service/partners.service';
 import { CatalogService } from '../Service/catalog.service';
-
-
+import { InputdrugstroageService } from '../Service/inputdrugstroage.service';
+import { DrugService } from '../Service/drug.service';
 
 @Component({
   selector: 'app-orders-drug',
@@ -27,7 +27,12 @@ export class OrdersDrugComponent implements OnInit {
   count: 0;
   names: any;
 
-  constructor(private route: ActivatedRoute, private httpClient: HttpClient, private ordersService: OrdersService, private prdersService: PartnersService, private catalogService: CatalogService) { }
+  drugrecive: any = { drugId: Number, name: String, price: String, qty: String };
+
+
+  constructor(private drugService: DrugService,private route: ActivatedRoute, private httpClient: HttpClient, private ordersService: OrdersService, private prdersService: PartnersService, private catalogService: CatalogService,private inputdrugstroageService: InputdrugstroageService) { }
+  displayedColumns: string[] = ['position', 'nameorders', 'namepartners', 'namecatalog','namedrug', 'amountin', 'amountcount', 'staff'];
+
   saveOrders() {
     let re = /(^O{1})(\d{7}$)/g
     let rs = /[d{0-9}$]/;
@@ -66,19 +71,32 @@ export class OrdersDrugComponent implements OnInit {
 
       if (re.test(this.data.nameorders)) {
 
-        this.ordersService.PostOrders(String(this.data.nameorders), Number(this.partnersselect), Number(this.catalogselect), String(this.data.amount)).subscribe(datas => {
+        this.drugService.getDrugById(Number(this.catalogselect)).subscribe(data => {
+          this.drugrecive = data;
+        });
+
+
+        this.ordersService.PostOrders(String(this.data.nameorders), Number(this.partnersselect), Number(this.catalogselect),Number(this.catalogselect),String(this.names), String(this.data.amount)).subscribe(datas => {
           if (datas.status == "save") {
-            alert("บันทึกสำเร็จ")
+
+            this.drugrecive.qty = String(Number(this.drugrecive.qty) + Number(this.data.amount));
+            this.inputdrugstroageService.updateDrug(Number(this.catalogselect), String(this.drugrecive.name), String(this.drugrecive.price), String(this.drugrecive.qty)).subscribe(data => {
+              console.log(data);
+
+
+            });
+            alert("บันทึกสำเร็จ");
+            window.location.reload();
           } else {
-            alert(datas.status)
+            alert(datas.status);
           }
-        })
+        });
 
       } else {
         alert("ตัวแรกต้องเป็น O และตามด้วยหมายเลข  7 ตัวเท่านั้น ");
       }
     } else {
-      alert("กรุณากรอกข้อมูลให้ครบถ้วน")
+      alert("กรุณากรอกข้อมูลให้ครบถ้วน");
     }
 
   }
@@ -86,23 +104,23 @@ export class OrdersDrugComponent implements OnInit {
   ngOnInit() {
 
     this.route.params.subscribe(prams => {
-      this.names = prams.name
-      console.log(prams)
-    })
+      this.names = prams.name;
+      console.log(prams);
+    });
     this.ordersService.getOrders().subscribe(data => {
       this.orders = data;
-      console.log(this.orders)
-    })
+      console.log(this.orders);
+    });
 
     this.prdersService.getPartners().subscribe(data => {
       this.partners = data;
-      console.log(this.partners)
-    })
+      console.log(this.partners);
+    });
 
     this.catalogService.getCatalog().subscribe(data => {
       this.catalog = data;
-      console.log(this.catalog)
-    })
+      console.log(this.catalog);
+    });
   }
 }
 
