@@ -5,6 +5,7 @@ import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.fail;
 
 import javax.validation.ConstraintViolation;
@@ -83,6 +84,18 @@ public class TestOrders {
 
             // fail("Should not pass to this line");
         }
+    }
+
+    @Test
+    public void NotNullTest() {
+   
+        Orders os = new Orders();
+      System.out.println(
+          "============================================================ from NotNullTest =============================================================");
+  
+   
+      assertNotNull("Verify that thing is NOT null", os);
+   
     }
 
     // ทดสอบห้าม name Order เป็น not null
