@@ -22,7 +22,6 @@ import java.util.stream.Collectors;
 @RestController
 @CrossOrigin(origins = "http://localhost:4200")
 
-
 class StaffController {
     private StaffRepository staffrepository;
 
@@ -35,55 +34,119 @@ class StaffController {
         return staffrepository.findAll().stream().collect(Collectors.toList());
     }
 
-    
     @GetMapping("/Staff/{staffId}")
     public Staff staffFind(@PathVariable("staffId") Long id) {
         return staffrepository.findByStaffId(id);
     }
 
-
-    
     @GetMapping("/Staffuser/{staffUser}")
-     public Staff staffuser(@PathVariable("staffUser")String staffUser){
-         return staffrepository.findByStaffUser(staffUser);
-     }
-    
-     @GetMapping("/staffpassword/{staffPass}")
-     public Staff staffpassword(@PathVariable("staffPass")String staffPass){
-         return staffrepository.findByStaffPass(staffPass);
-     }
+    public Staff staffuser(@PathVariable("staffUser") String staffUser) {
+        return staffrepository.findByStaffUser(staffUser);
+    }
 
+    @GetMapping("/staffpassword/{staffPass}")
+    public Staff staffpassword(@PathVariable("staffPass") String staffPass) {
+        return staffrepository.findByStaffPass(staffPass);
+    }
 
     @PostMapping("/Staff/Staffuser/{staffUser}/staffpassword/{staffPass}")
     public ResponseEntity<Map<String, Object>> staffcheck(@PathVariable("staffUser") String staffUser,
             @PathVariable("staffPass") String staffPass) {
-                Staff staffuser = this.staffrepository.findByStaffUser(staffUser);
-                Staff staffpass = this.staffrepository.findByStaffPass(staffPass);
+        Staff staffuser = this.staffrepository.findByStaffUser(staffUser);
+        Staff staffpass = this.staffrepository.findByStaffPass(staffPass);
 
-                if((staffuser != null ) && (staffpass != null)){
-                    Map<String, Object> json = new HashMap<String, Object>();
-                    json.put("success", true);
-                    json.put("status", "found");
-                    json.put("user",staffuser);
-                    HttpHeaders headers = new HttpHeaders();
-                    headers.add("Content-Type", "application/json; charset=UTF-8");
-                    headers.add("X-Fsl-Location", "/");
-                    headers.add("X-Fsl-Response-Code", "302");
-                    return (new ResponseEntity<Map<String, Object>>(json, headers, HttpStatus.OK));
-                }else{
-                    Map<String, Object> json = new HashMap<String, Object>();
-                    json.put("success", false);
-                    json.put("status", "not found");
+        if ((staffuser != null) && (staffpass != null)) {
+            Map<String, Object> json = new HashMap<String, Object>();
+            json.put("success", true);
+            json.put("status", "found");
+            json.put("user", staffuser);
+            HttpHeaders headers = new HttpHeaders();
+            headers.add("Content-Type", "application/json; charset=UTF-8");
+            headers.add("X-Fsl-Location", "/");
+            headers.add("X-Fsl-Response-Code", "302");
+            return (new ResponseEntity<Map<String, Object>>(json, headers, HttpStatus.OK));
+        } else {
+            Map<String, Object> json = new HashMap<String, Object>();
+            json.put("success", false);
+            json.put("status", "not found");
+
+            HttpHeaders headers = new HttpHeaders();
+            headers.add("Content-Type", "application/json; charset=UTF-8");
+            headers.add("X-Fsl-Location", "/");
+            headers.add("X-Fsl-Response-Code", "404");
+            return (new ResponseEntity<Map<String, Object>>(json, headers, HttpStatus.OK));
+        }
+
+    }
+
+    @PostMapping("/Staff/StaffOnline/{onlineId}")
+            public ResponseEntity<Map<String, Object>> setStaffOnline(@PathVariable("onlineId") Long onlineId) {
+                      Staff staff = this.staffrepository.findByStaffId(onlineId);
         
-                    HttpHeaders headers = new HttpHeaders();
-                    headers.add("Content-Type", "application/json; charset=UTF-8");
-                    headers.add("X-Fsl-Location", "/");
-                    headers.add("X-Fsl-Response-Code", "404");
-                    return (new ResponseEntity<Map<String, Object>>(json, headers, HttpStatus.OK));
-                }
-    
-            }
-    
+                        if(staff != null ){
+
+                            staff.setStaffId(onlineId);
+                            staff.setOnline(true);
+                            this.staffrepository.save(staff);
+
+                            Map<String, Object> json = new HashMap<String, Object>();
+                            json.put("success", true);
+                            json.put("status", "found");
+                            json.put("user",staff);
+                            HttpHeaders headers = new HttpHeaders();
+                            headers.add("Content-Type", "application/json; charset=UTF-8");
+                            headers.add("X-Fsl-Location", "/");
+                            headers.add("X-Fsl-Response-Code", "302");
+                            return (new ResponseEntity<Map<String, Object>>(json, headers, HttpStatus.OK));
+                        }else{
+                            Map<String, Object> json = new HashMap<String, Object>();
+                            json.put("success", false);
+                            json.put("status", "not found");
+                
+                            HttpHeaders headers = new HttpHeaders();
+                            headers.add("Content-Type", "application/json; charset=UTF-8");
+                            headers.add("X-Fsl-Location", "/");
+                            headers.add("X-Fsl-Response-Code", "404");
+                            return (new ResponseEntity<Map<String, Object>>(json, headers, HttpStatus.OK));
+                        }
+            
+                    }
+
+
+
+                    @PostMapping("/Staff/StaffOffline/{onlineId}")
+            public ResponseEntity<Map<String, Object>> setStaffOffline(@PathVariable("onlineId") Long onlineId) {
+                      Staff staff = this.staffrepository.findByStaffId(onlineId);
+        
+                        if(staff != null ){
+
+                            staff.setStaffId(onlineId);
+                            staff.setOnline(false);
+                            this.staffrepository.save(staff);
+
+                            Map<String, Object> json = new HashMap<String, Object>();
+                            json.put("success", true);
+                            json.put("status", "found");
+                            json.put("user",staff);
+                            HttpHeaders headers = new HttpHeaders();
+                            headers.add("Content-Type", "application/json; charset=UTF-8");
+                            headers.add("X-Fsl-Location", "/");
+                            headers.add("X-Fsl-Response-Code", "302");
+                            return (new ResponseEntity<Map<String, Object>>(json, headers, HttpStatus.OK));
+                        }else{
+                            Map<String, Object> json = new HashMap<String, Object>();
+                            json.put("success", false);
+                            json.put("status", "not found");
+                
+                            HttpHeaders headers = new HttpHeaders();
+                            headers.add("Content-Type", "application/json; charset=UTF-8");
+                            headers.add("X-Fsl-Location", "/");
+                            headers.add("X-Fsl-Response-Code", "404");
+                            return (new ResponseEntity<Map<String, Object>>(json, headers, HttpStatus.OK));
+                        }
+            
+                    } 
+
+                    
+
 }
-
-

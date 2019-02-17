@@ -103,11 +103,11 @@ public class DatabaseLoader implements ApplicationRunner {
       
 
         Category C1 = this.categoryrepository.findByCategoryId(1L);
-        this.staffrepository.save(new Staff("Bancha", "john", "exx", "0802457192"));
-        this.staffrepository.save(new Staff("Banchon", "Luy", "kk1234", "0123654789"));
-        this.staffrepository.save(new Staff("warsom", "physics", "physicsIi", "0321546854"));
-        this.staffrepository.save(new Staff("watsmon", "joy", "kkk", "0389563215"));
-        this.staffrepository.save(new Staff("ahmouy", "mouy", "gg1234", "0935478652"));
+        this.staffrepository.save(new Staff("Bancha", "john", "exx", "0802457192",false));
+        this.staffrepository.save(new Staff("Banchon", "Luy", "kk1234", "0123654789",false));
+        this.staffrepository.save(new Staff("warsom", "physics", "physicsIi", "0321546854",false));
+        this.staffrepository.save(new Staff("watsmon", "joy", "kkk", "0389563215",false));
+        this.staffrepository.save(new Staff("ahmouy", "mouy", "gg1234", "0935478652",false));
         Staff S1 = this.staffrepository.findByStaffId(1L);
        // this.prescriptionrepository.save(new Prescription("P0000000","2", C1, D1, S1)); // this is bug WTF
        // this.prescriptionrepository.save(new Prescription("P0000001","4", C1, D1, S1)); // this is bug WTF

@@ -38,7 +38,6 @@ import { HttpClientModule } from '@angular/common/http';
 import { RoutingMainModule } from "./routing-main/routing-main.module";
 
 // PEAK
-import { LoginUserComponent } from './loginuser/loginuser.component';
 import { HomeComponent } from './home/home.component';
 
 
@@ -86,13 +85,12 @@ import { ResistanceService } from './Service/resistance.service';
 import { NotificationComponent } from './notification/notification.component';
 import { OrdersDrugComponent } from './orders-drug/orders-drug.component';
 import { ResistanceComponent } from './resistance/resistance.component';
-import { LoginorderComponent } from './loginorder/loginorder.component';
 import { SalenoteComponent } from './salenote/salenote.component';
 import { SalenoteShowComponent } from './salenote-show/salenote-show.component';
 
 @NgModule({
   declarations: [
-    AppComponent,LoginUserComponent,HomeComponent,
+    AppComponent,HomeComponent,
     RegisterComponent,
     RegisterShowComponent,
     LoginStaffComponent,
@@ -106,7 +104,6 @@ import { SalenoteShowComponent } from './salenote-show/salenote-show.component';
     DeliveryComponent,
     DeliveryShowComponent,
     ResistanceComponent,
-    LoginorderComponent,
     SalenoteComponent,
     SalenoteShowComponent,
 

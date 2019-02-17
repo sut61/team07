@@ -86,7 +86,7 @@ export class OrdersDrugComponent implements OnInit {
 
             });
             alert("บันทึกสำเร็จ");
-            window.location.reload();
+            window.location.reload();s
           } else {
             alert(datas.status);
           }
