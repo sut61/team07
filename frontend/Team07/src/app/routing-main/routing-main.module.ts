@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
-import { LoginUserComponent } from '../loginuser/loginuser.component';
 import { HomeComponent } from '../home/home.component';
 import { RegisterComponent } from '../register/register.component';
 import { RegisterShowComponent } from '../register-show/register-show.component';
@@ -28,14 +27,13 @@ import { OrdersDrugComponent } from '../orders-drug/orders-drug.component';
 import { ResistanceComponent } from '../resistance/resistance.component';
 
 
-import { LoginorderComponent } from '../loginorder/loginorder.component';
 const routes: Routes = [
   //JOHN
-  { path: 'login-staff', component: LoginStaffComponent },
+  { path: '', component: LoginStaffComponent },
   { path: 'drug-stroagemenu', component: DrugStorageMenuComponent },
   { path: 'orders-drug', component: OrdersDrugComponent },
   { path: 'resistance', component: ResistanceComponent },
-  { path: 'login-orders', component: LoginorderComponent },
+
 
 
 
@@ -45,7 +43,7 @@ const routes: Routes = [
 
   { path: 'home', component: HomeComponent },
 
-  { path: '', component: LoginUserComponent },
+
 
   { path: 'register', component: RegisterComponent },
   { path: 'register-show', component: RegisterShowComponent },

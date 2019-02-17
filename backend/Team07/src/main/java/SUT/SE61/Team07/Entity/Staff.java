@@ -40,18 +40,21 @@ public class Staff {
 
     @NotNull(message = "not staffPhone to null")
     @Pattern(regexp = "[0-9]{10}")
-    @Size(min=10,max = 10)
+    @Size(min = 10, max = 10)
     @Column(unique = true)
     private String staffPhone;
 
+    @NotNull(message = "not online to null")
+    private Boolean online;
     public Staff() {
     }
 
-    public Staff(String staffName, String staffUser, String staffPass, String staffPhone) {
+    public Staff(String staffName, String staffUser, String staffPass, String staffPhone, Boolean online) {
 
         this.staffName = staffName;
         this.staffUser = staffUser;
         this.staffPass = staffPass;
         this.staffPhone = staffPhone;
+        this.online = online;
     }
 }

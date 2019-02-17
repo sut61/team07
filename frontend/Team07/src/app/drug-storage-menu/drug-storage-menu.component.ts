@@ -1,3 +1,4 @@
+import { AppserviceService } from './../Service/appservice.service';
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { CategoryService } from '../Service/category.service';
@@ -6,6 +7,7 @@ import { InputdrugstroageService } from '../Service/inputdrugstroage.service';
 import { ActivatedRoute } from "@angular/router";
 import { DrugService } from '../Service/drug.service';
 import { PrescriptionService } from '../Service/prescription.service';
+
 
 @Component({
   selector: 'app-drug-storage-menu',
@@ -26,7 +28,7 @@ export class DrugStorageMenuComponent implements OnInit {
   names: any;
   ggss: any = { drugId: Number, name: String, price: String, qty: String };
 
-  constructor(private drugService: DrugService, private route: ActivatedRoute, private router: Router, private categoryService: CategoryService, private httpClient: HttpClient, private inputdrugstroageService: InputdrugstroageService, private pre: PrescriptionService) { }
+  constructor(private app :AppserviceService,private drugService: DrugService, private route: ActivatedRoute, private router: Router, private categoryService: CategoryService, private httpClient: HttpClient, private inputdrugstroageService: InputdrugstroageService, private pre: PrescriptionService) { }
   displayedColumns: string[] = ['position', 'name', 'drugname', 'category', 'amountout', 'amountcount', 'staff'];
 
   showdata() {
@@ -40,7 +42,7 @@ export class DrugStorageMenuComponent implements OnInit {
   }
 
   sumbitData() {
-  
+
 
 
     let re = /(^P{1})(\d{7}$)/g
@@ -88,13 +90,13 @@ export class DrugStorageMenuComponent implements OnInit {
             this.ggss.qty = String(Number(this.ggss.qty) - Number(this.data.amounts));
             this.inputdrugstroageService.updateDrug(Number(this.drugselect), String(this.ggss.name), String(this.ggss.price), String(this.ggss.qty)).subscribe(data => {
               console.log(data);
-              
-      
+
+
             });
 
             this.pre.getPrescription().subscribe(datassg => {
               this.prescription = datassg;
-          
+
               this.preId = this.prescription.length;
               console.log(this.prescription);
             });
@@ -102,7 +104,7 @@ export class DrugStorageMenuComponent implements OnInit {
             alert("บันทึกสำเร็จ")
             window.location.reload();
            // this.router.navigate(['drug-stroagemenu', {name:this.names}]);
-           
+
 
           } else if (dss.status == "save-false") {
             alert(dss.statuss)
@@ -119,7 +121,7 @@ export class DrugStorageMenuComponent implements OnInit {
 
 
 
-    
+
 
 
 
@@ -129,10 +131,8 @@ export class DrugStorageMenuComponent implements OnInit {
 
 
   ngOnInit() {
-    this.route.params.subscribe(prams => {
-      this.names = prams.name;
-      console.log(prams)
-    })
+    this.names = this.app.getUsername();
+
     this.categoryService.getCategory().subscribe(data => {
       this.category = data;
       console.log(this.category)
