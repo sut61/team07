@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from "@angular/router";
 import { DeliveryService } from '../Service/delivery.service';
 import { HttpClient } from '@angular/common/http';
+import { AppserviceService } from '../Service/appservice.service';
 
 @Component({
   selector: 'app-delivery',
@@ -48,9 +49,34 @@ export class DeliveryComponent implements OnInit {
 
 
   }
-  constructor(private router: Router, private deliveryService: DeliveryService, private httpClient: HttpClient) { }
+  constructor(private app: AppserviceService,private router: Router, private deliveryService: DeliveryService, private httpClient: HttpClient,private http: HttpClient) { }
+
+  
+  names: any;
+  public API = '//localhost:8080';
+  staffdb: any = { staffId: Number, staffName: String, staffUser: String, staffPass: String, staffPhone: String, online: String }
+
+  setstaffOfline() {
+    this.app.setStaffOfline(Number(this.staffdb.staffId)).subscribe(data => {
+      console.log(data);
+    })
+  }
+
+
+  getStaffOnline() {
+    return this.http.get(this.API + '/StaffOnline/' + "true");
+  }
+
 
   ngOnInit() {
+
+    this.getStaffOnline().subscribe(data => {
+      console.log(data);
+      this.staffdb = data;
+      this.names = this.staffdb.staffUser;
+      console.log(this.names)
+    })
+
     this.deliveryService.getStaffs().subscribe(data => {
       this.staffs = data;
       console.log(this.staffs);

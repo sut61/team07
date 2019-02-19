@@ -9,6 +9,8 @@ import { HttpClient } from "@angular/common/http";
 })
 export class LoginStaffComponent implements OnInit {
   credentials = { username: "", password: "",staffname:'',staffId:'' };
+   staff:{staffId:'',staffName:'',staffUser:'',staffPass:'',staffphone:'',staffonline:false}
+  data:any ={}
   constructor(
     private app: AppserviceService,
     private router: Router,
@@ -22,10 +24,9 @@ export class LoginStaffComponent implements OnInit {
     } else {
       this.app.authenticate2(this.credentials, () => {
         if (this.app.authenticated2) {
-          this.credentials.staffname = this.app.getUsername();
-
-          this.credentials.staffId = this.app.getId();
-          this.router.navigate(["home",{username:this.credentials.staffname,staffId: this.credentials.staffId}]);
+          this.data = this.app.getUser();
+          console.log(this.data)
+          this.router.navigate(["home",{staffId:this.data.staffId,staffName:this.data.staffName,staffPass:this.data.staffPass,staffPhone:this.data.staffPhone,staffUser:this.data.staffUser}]);
         } else {
           //  alert('not user')
           alert("No User ");
@@ -33,5 +34,13 @@ export class LoginStaffComponent implements OnInit {
       });
     }
   }
+
+  // logoutstaff(){
+  //   this.credentials.staffId = this.app.getId();
+  //   this.app.setStaffOfline(Number(this.credentials.staffId)).subscribe(data => {
+  //     console.log(data);
+  //   });
+
+  // }
   ngOnInit() {}
 }

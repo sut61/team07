@@ -26,9 +26,11 @@ export class DrugStorageMenuComponent implements OnInit {
   datas: any = {}
   count: 0;
   names: any;
+  staffdb:any = {staffId:Number,staffName:String,staffUser:String,staffPass:String,staffPhone:String,online:String}
   ggss: any = { drugId: Number, name: String, price: String, qty: String };
+  public API = '//localhost:8080';
 
-  constructor(private app :AppserviceService,private drugService: DrugService, private route: ActivatedRoute, private router: Router, private categoryService: CategoryService, private httpClient: HttpClient, private inputdrugstroageService: InputdrugstroageService, private pre: PrescriptionService) { }
+  constructor(private app: AppserviceService, private drugService: DrugService, private route: ActivatedRoute, private router: Router, private categoryService: CategoryService, private http: HttpClient, private inputdrugstroageService: InputdrugstroageService, private pre: PrescriptionService) { }
   displayedColumns: string[] = ['position', 'name', 'drugname', 'category', 'amountout', 'amountcount', 'staff'];
 
   showdata() {
@@ -103,7 +105,7 @@ export class DrugStorageMenuComponent implements OnInit {
 
             alert("บันทึกสำเร็จ")
             window.location.reload();
-           // this.router.navigate(['drug-stroagemenu', {name:this.names}]);
+            // this.router.navigate(['drug-stroagemenu', {name:this.names}]);
 
 
           } else if (dss.status == "save-false") {
@@ -128,10 +130,25 @@ export class DrugStorageMenuComponent implements OnInit {
   }
 
 
+  
+  getStaffOnline() {
+    return this.http.get(this.API + '/StaffOnline/' + "true");
+  }
 
+  setstaffOfline(){
+    this.app.setStaffOfline(Number(this.staffdb.staffId)).subscribe(data =>{
+      console.log(data);
+    })
+  }
 
   ngOnInit() {
-    this.names = this.app.getUsername();
+
+    this.getStaffOnline().subscribe(data => {
+      console.log(data);
+      this.staffdb = data; 
+      this.names = this.staffdb.staffUser;
+      console.log(this.names)
+    })
 
     this.categoryService.getCategory().subscribe(data => {
       this.category = data;
@@ -140,15 +157,15 @@ export class DrugStorageMenuComponent implements OnInit {
 
     this.pre.getPrescription().subscribe(data => {
       this.prescription = data;
-
       this.preId = this.prescription.length;
-
-
+      console.log(data);
     })
     this.drugService.getDrug().subscribe(data => {
       this.drug = data;
       console.log(this.drug)
     })
+
+
 
 
 

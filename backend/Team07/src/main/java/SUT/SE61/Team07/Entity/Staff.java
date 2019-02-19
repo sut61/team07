@@ -45,11 +45,11 @@ public class Staff {
     private String staffPhone;
 
     @NotNull(message = "not online to null")
-    private Boolean online;
+    private String online;
     public Staff() {
     }
 
-    public Staff(String staffName, String staffUser, String staffPass, String staffPhone, Boolean online) {
+    public Staff(String staffName, String staffUser, String staffPass, String staffPhone, String online) {
 
         this.staffName = staffName;
         this.staffUser = staffUser;

@@ -15,6 +15,10 @@ export class StaffService {
   public getStaff() :Object{
     return this.staff;
   }
+
+  getStaffOnline(){
+    return this.http.get(this.API + '/StaffOnline/' + "true" );
+  }
  
   getStaffById(staffId: number): Observable<any> {
     return this.http.get(this.API + '/Staff/' + staffId);

@@ -58,6 +58,7 @@ public class TestStaff {
         staff.setStaffUser("ex1234");
         staff.setStaffPass("johnexa2");
         staff.setStaffPhone("0852097966");
+        staff.setOnline("true");
 
         try {
             entityManager.persist(staff);
@@ -95,6 +96,7 @@ public class TestStaff {
         staff.setStaffUser("ex1234");
         staff.setStaffPass("johnexa2");
         staff.setStaffPhone("0852097966");
+        staff.setOnline("true");
         try {
             entityManager.persist(staff);
             entityManager.flush();
@@ -122,6 +124,7 @@ public class TestStaff {
         staff.setStaffUser(null);
         staff.setStaffPass("johnexa2");
         staff.setStaffPhone("0852097966");
+        staff.setOnline("true");
         try {
             entityManager.persist(staff);
             entityManager.flush();
@@ -149,6 +152,7 @@ public class TestStaff {
         staff.setStaffUser("userss");
         staff.setStaffPass(null);
         staff.setStaffPhone("0852097966");
+        staff.setOnline("true");
         try {
             entityManager.persist(staff);
             entityManager.flush();
@@ -176,6 +180,7 @@ public class TestStaff {
         staff.setStaffUser("userss");
         staff.setStaffPass("Passswf");
         staff.setStaffPhone(null);
+        staff.setOnline("true");
         try {
             entityManager.persist(staff);
             entityManager.flush();
@@ -195,6 +200,34 @@ public class TestStaff {
         }
     }
 
+     // ทดสอบห้าม testStaffOnlineNull เป็น not null
+     @Test
+     public void testStaffOnlineNull() {
+         Staff staff = new Staff();
+         staff.setStaffName("Johnex");
+         staff.setStaffUser("userss");
+         staff.setStaffPass("Passswf");
+         staff.setStaffPhone("0852097966");
+         staff.setOnline(null);
+         try {
+             entityManager.persist(staff);
+             entityManager.flush();
+             fail("Should not pass to this line");
+         } catch (javax.validation.ConstraintViolationException e) {
+             System.out.println();
+             System.out.println();
+             System.out.println();
+             System.out.println(
+                     "============================================================ from testStaffOnlineNull =============================================================");
+             System.out.println(e);
+             System.out.println();
+             System.out.println();
+             Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
+             assertEquals(violations.isEmpty(), false);
+             assertEquals(violations.size(), 1);
+         }
+     }
+
     // ทดสอบ testStaffnametolost สั้น
     @Test
     public void testStaffnametolost() {
@@ -203,6 +236,7 @@ public class TestStaff {
         staff.setStaffUser("userss");
         staff.setStaffPass("Passswf");
         staff.setStaffPhone("0852097966");
+        staff.setOnline("true");
 
         try {
             entityManager.persist(staff);
@@ -231,7 +265,7 @@ public class TestStaff {
         staff.setStaffUser("us");
         staff.setStaffPass("Passswf");
         staff.setStaffPhone("0852097966");
-
+        staff.setOnline("true");
         try {
             entityManager.persist(staff);
             entityManager.flush();
@@ -259,6 +293,7 @@ public class TestStaff {
         staff.setStaffUser("usssss");
         staff.setStaffPass("jo");
         staff.setStaffPhone("0852097966");
+        staff.setOnline("true");
 
         try {
             entityManager.persist(staff);
@@ -287,6 +322,7 @@ public class TestStaff {
         staff.setStaffUser("usssss");
         staff.setStaffPass("jgggso");
         staff.setStaffPhone("0852097");
+        staff.setOnline("true");
 
         try {
             entityManager.persist(staff);
@@ -315,6 +351,7 @@ public class TestStaff {
         staff.setStaffUser("usssss");
         staff.setStaffPass("jgggso");
         staff.setStaffPhone("0852097966");
+        staff.setOnline("true");
 
         try {
             entityManager.persist(staff);
@@ -343,6 +380,7 @@ public class TestStaff {
         staff.setStaffUser("usssssfdssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss");
         staff.setStaffPass("jgggso");
         staff.setStaffPhone("0852097966");
+        staff.setOnline("true");
 
         try {
             entityManager.persist(staff);
@@ -371,6 +409,7 @@ public class TestStaff {
         staff.setStaffUser("safsaa");
         staff.setStaffPass("safsdafgdslgijrtlgtkfdsdsadkdokgdfjgkfljdngkfjndgndfjkgnjjk");
         staff.setStaffPhone("0852097966");
+        staff.setOnline("true");
 
         try {
             entityManager.persist(staff);
@@ -399,6 +438,7 @@ public class TestStaff {
         staff.setStaffUser("safsaa");
         staff.setStaffPass("johnexxl");
         staff.setStaffPhone("0852097900066");
+        staff.setOnline("true");
 
         try {
             entityManager.persist(staff);
@@ -427,6 +467,7 @@ public class TestStaff {
         staff.setStaffUser("safsaa");
         staff.setStaffPass("johnexxl");
         staff.setStaffPhone("0852097966");
+        staff.setOnline("true");
         try {
             entityManager.persist(staff);
             entityManager.flush();
@@ -456,6 +497,7 @@ public class TestStaff {
           staff.setStaffUser("safsaa.+");
           staff.setStaffPass("johnexxl");
           staff.setStaffPhone("0852097966");
+          staff.setOnline("true");
           try {
               entityManager.persist(staff);
               entityManager.flush();
@@ -485,6 +527,7 @@ public class TestStaff {
           staff.setStaffUser("safsaac");
           staff.setStaffPass("johnexxl*+.");
           staff.setStaffPhone("0852097966");
+          staff.setOnline("true");
           try {
               entityManager.persist(staff);
               entityManager.flush();
@@ -514,6 +557,7 @@ public class TestStaff {
              staff.setStaffUser("safsaac");
              staff.setStaffPass("johnexxl");
              staff.setStaffPhone("A091232125");
+             staff.setOnline("true");
              try {
                  entityManager.persist(staff);
                  entityManager.flush();
@@ -542,6 +586,7 @@ public class TestStaff {
         staff.setStaffUser("ex12314");
         staff.setStaffPass("johnexa2");
         staff.setStaffPhone("0852097965");
+        staff.setOnline("true");
 
         this.staffrepository.save(staff);
 
@@ -550,6 +595,7 @@ public class TestStaff {
         staff2.setStaffUser("ex1234");
         staff2.setStaffPass("johnexa2");
         staff2.setStaffPhone("0852097966");
+        staff2.setOnline("true");
 
         try {
             // this.prescriptionrepository.save(mag2);
@@ -579,6 +625,7 @@ public class TestStaff {
         staff.setStaffUser("ex1234");
         staff.setStaffPass("johnexa2");
         staff.setStaffPhone("0852097965");
+        staff.setOnline("true");
 
         this.staffrepository.save(staff);
 
@@ -587,6 +634,7 @@ public class TestStaff {
         staff2.setStaffUser("ex1234");
         staff2.setStaffPass("johnexa2");
         staff2.setStaffPhone("0852097966");
+        staff2.setOnline("true");
 
         try {
             // this.prescriptionrepository.save(mag2);
@@ -617,6 +665,7 @@ public class TestStaff {
         staff.setStaffUser("ex1234");
         staff.setStaffPass("johnexa2");
         staff.setStaffPhone("0852097965");
+        staff.setOnline("true");
 
         this.staffrepository.save(staff);
 
@@ -625,6 +674,8 @@ public class TestStaff {
         staff2.setStaffUser("ex12234");
         staff2.setStaffPass("johnexa2");
         staff2.setStaffPhone("0852097965");
+        staff2.setOnline("true");
+
 
         try {
             // this.prescriptionrepository.save(mag2);
