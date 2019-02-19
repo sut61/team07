@@ -7,6 +7,7 @@ import { PartnersService } from '../Service/partners.service';
 import { CatalogService } from '../Service/catalog.service';
 import { InputdrugstroageService } from '../Service/inputdrugstroage.service';
 import { DrugService } from '../Service/drug.service';
+import { AppserviceService } from '../Service/appservice.service';
 
 @Component({
   selector: 'app-orders-drug',
@@ -25,12 +26,15 @@ export class OrdersDrugComponent implements OnInit {
   data: any = {}
   datas: any = {}
   count: 0;
+  public API = "//localhost:8080";
   names: any;
+  staffdb:any = {staffId:Number,staffName:String,staffUser:String,staffPass:String,staffPhone:String,online:String}
+ 
 
   drugrecive: any = { drugId: Number, name: String, price: String, qty: String };
 
 
-  constructor(private drugService: DrugService,private route: ActivatedRoute, private httpClient: HttpClient, private ordersService: OrdersService, private prdersService: PartnersService, private catalogService: CatalogService,private inputdrugstroageService: InputdrugstroageService) { }
+  constructor(private app: AppserviceService,private drugService: DrugService,private route: ActivatedRoute, private http: HttpClient, private ordersService: OrdersService, private prdersService: PartnersService, private catalogService: CatalogService,private inputdrugstroageService: InputdrugstroageService) { }
   displayedColumns: string[] = ['position', 'nameorders', 'namepartners', 'namecatalog','namedrug', 'amountin', 'amountcount', 'staff'];
 
   saveOrders() {
@@ -86,7 +90,7 @@ export class OrdersDrugComponent implements OnInit {
 
             });
             alert("บันทึกสำเร็จ");
-            window.location.reload();s
+            window.location.reload();
           } else {
             alert(datas.status);
           }
@@ -99,10 +103,30 @@ export class OrdersDrugComponent implements OnInit {
       alert("กรุณากรอกข้อมูลให้ครบถ้วน");
     }
 
+    
+
   }
+
+  getStaffOnline(){
+    return this.http.get(this.API + '/StaffOnline/' + "true" );
+  }
+
+  setstaffOfline() {
+    this.app.setStaffOfline(Number(this.staffdb.staffId)).subscribe(data => {
+      console.log(data);
+    })
+  }s
+  
 
   ngOnInit() {
 
+    this.getStaffOnline().subscribe(data => {
+      console.log(data);
+      this.staffdb = data; 
+      this.names = this.staffdb.staffUser;
+      console.log(this.names)
+    })
+    
     this.route.params.subscribe(prams => {
       this.names = prams.name;
       console.log(prams);

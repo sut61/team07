@@ -5,6 +5,7 @@ import { MatTable } from '@angular/material';
 import { StaffService } from 'src/app/Service/staff.service';
 import { Observable } from 'rxjs';
 import { DataSource } from '@angular/cdk/table';
+import { AppserviceService } from '../Service/appservice.service';
 
 @Component({
   selector: 'app-salenote',
@@ -40,7 +41,7 @@ export class SalenoteComponent implements OnInit {
       }
     );
   }
-  constructor(private http: HttpClient, private staff: StaffService) {
+  constructor(private http: HttpClient, private staff: StaffService,private app: AppserviceService) {
   }
 
   ReceiptPost(orderreceiptId: Number, staffId: Number, drugId: Number, dates: String, noBill: String): Observable<any> {
@@ -61,7 +62,7 @@ export class SalenoteComponent implements OnInit {
     let re = /(^M{1})(\d{7,10}$)/g
     let rs = /[d{0-9}$]/;
     let rt = /[0-9]{1,2}\s(กุมภาพันธ์|มกราคม|มีนาคม|เมษายน|พฤษภาคม|มิถุนายน|กรกฎาคม|สิงหาคม|กันยายน|ตุลาคม|พฤษจิกายน|ธันวาคม)\s[0-9]{2,4}/
- 
+
     this.count = 0;
 
     if (this.data.Receipt === undefined || this.data.Receipt === null) {
@@ -83,9 +84,9 @@ export class SalenoteComponent implements OnInit {
       this.count = 0;
     }
     else {
-      if(rt.test(this.data.Date)){
+      if (rt.test(this.data.Date)) {
         this.count += 1;
-      }else{
+      } else {
         this.count = 0;
         alert("ใส่เป็นเดือน เช่น 14 กุมภาพันธ์ 2562")
       }
@@ -105,7 +106,7 @@ export class SalenoteComponent implements OnInit {
           console.log(data)
         })
 
-        this.ReceiptPost(Number(this.ggid + 1), Number(this.ggid), Number(this.drugselect), String(this.data.Date), String(this.data.Receipt)).subscribe(data => {
+        this.ReceiptPost(Number(this.ggid + 1), Number(this.staffdb.staffId), Number(this.drugselect), String(this.data.Date), String(this.data.Receipt)).subscribe(data => {
           // console.log(data)
           if (data.status == "save") {
             alert("บันทึกสำเร็จ")
@@ -135,7 +136,26 @@ export class SalenoteComponent implements OnInit {
     // }
   }
 
+  names: any;
+  staffdb: any = { staffId: Number, staffName: String, staffUser: String, staffPass: String, staffPhone: String, online: String }
+
+  setstaffOfline() {
+    this.app.setStaffOfline(Number(this.staffdb.staffId)).subscribe(data => {
+      console.log(data);
+    })
+  }
+
+
+  getStaffOnline() {
+    return this.http.get(this.API + '/StaffOnline/' + "true");
+  }
   ngOnInit() {
+    this.getStaffOnline().subscribe(data => {
+      console.log(data);
+      this.staffdb = data;
+      this.names = this.staffdb.staffUser;
+      console.log(this.names)
+    })
 
 
     //  this.http.post("http://localhost:8080/receipt/" + this.staff.getStaffId(), "").subscribe(

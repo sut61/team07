@@ -68,6 +68,17 @@ class PrescriptionController {
                 Drug D = this.drugrepository.findByDrugId(DrugId);
                 Category C = this.categoryrepository.findByCategoryId(CategoryId);
 
+                System.out.println("==============================");
+
+                System.out.println("staff----");
+                System.out.println(staff);
+                System.out.println("staff----");
+                System.out.println(DrugId);
+                System.out.println(amountout);
+                System.out.println(nameprescription);
+
+                System.out.println("==============================");
+
                 this.prescriptionrepository.save(new Prescription(nameprescription, amountout, C, D, S));
 
                 Map<String, Object> json = new HashMap<String, Object>();

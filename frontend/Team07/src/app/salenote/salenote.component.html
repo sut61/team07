@@ -24,11 +24,12 @@
       <a mat-stroked-button routerLink="/notification">แจ้งเตือนทานยา</a>
       <a mat-stroked-button routerLink="/salenote">บันทึกการขาย</a>
 
+
       <!-- <a mat-stroked-button routerLink="/home">ติดต่อร้าน</a>
 
       <a mat-stroked-button routerLink="/bill">จัดการคลังสินค้า</a> -->
 
-      <a mat-stroked-button routerLink="">ออกจากระบบ</a>
+      <a mat-stroked-button routerLink="" (click)="setstaffOfline()">ออกจากระบบ</a>
 
 
     </mat-card-actions>
@@ -38,58 +39,56 @@
 </mat-card>
 
 <body>
-    <div>
-      <mat-tab-group>
-        <mat-tab label="รายการจำหน่ายสินค้า">
-          <div >
-            <form align="center">
-              <h2>รายการจำหน่ายสินค้า</h2>
-                <p>
-                  <mat-form-field  align="center">
-                    <h4>เลขที่ใบเสร็จ :</h4>
-                      <input matInput placeholder="" [(ngModel)]="data.Receipt" required name="Receipt" #Receipt>
-                  </mat-form-field>
-                </p>
+  <div>
+    <mat-tab-group>
+      <mat-tab label="รายการจำหน่ายสินค้า">
+        <div>
+          <form align="center">
+            <h2>รายการจำหน่ายสินค้า</h2>
+            <p>
+              <mat-form-field align="center">
+                <h4>เลขที่ใบเสร็จ :</h4>
+                <input matInput placeholder="" [(ngModel)]="data.Receipt" required name="Receipt" #Receipt>
+              </mat-form-field>
+            </p>
 
-                  <mat-form-field>
-                    <h4>เลือกยาที่ต้องการ :</h4>
-                      <mat-select [(ngModel)]="drugselect" name="Dranss">
-                        <mat-option *ngFor="let titledrug of drug" [value]="titledrug.drugId">
-                          {{titledrug.name}}
-                        </mat-option>
-                      </mat-select>
-                  </mat-form-field>
+            <mat-form-field>
+              <h4>เลือกยาที่ต้องการ :</h4>
+              <mat-select [(ngModel)]="drugselect" name="Dranss">
+                <mat-option *ngFor="let titledrug of drug" [value]="titledrug.drugId">
+                  {{titledrug.name}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
 
-                  <p>
-                    <mat-form-field  align="center">
-                      <h4>จำนวน :</h4>
-                      <input matInput placeholder="" [(ngModel)]="data.Amount" required name="Amount" #Amount>
-                    </mat-form-field>
-                    <br>
-                  </p>
+            <p>
+              <mat-form-field align="center">
+                <h4>จำนวน :</h4>
+                <input matInput placeholder="" [(ngModel)]="data.Amount" required name="Amount" #Amount>
+              </mat-form-field>
+              <br>
+            </p>
 
-                  <p>
-                      <mat-form-field  align="center">
-                        <h4>วันที่ :</h4>
-                          <input matInput placeholder="" [(ngModel)]="data.Date" required name="Date" #Date>
-                      </mat-form-field>
-                    </p>
+            <p>
+              <mat-form-field align="center">
+                <h4>วันที่ :</h4>
+                <input matInput placeholder="" [(ngModel)]="data.Date" required name="Date" #Date>
+              </mat-form-field>
+            </p>
 
-                <mat-card>
-                  <a mat-stroked-button (click) = "ggez()">Add Order</a>
-                    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-                  <button type="submit" mat-stroked-button color="primary" routerLink="/salenote-show">completed</button>
-                </mat-card>
-              <br><br><br>
+            <mat-card>
+              <a mat-stroked-button (click)="ggez()">Add Order</a>
+              &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+              <button type="submit" mat-stroked-button color="primary" routerLink="/salenote-show">completed</button>
+            </mat-card>
+            <br><br><br>
 
-            </form>
-          </div>
-        </mat-tab>
+          </form>
+        </div>
+      </mat-tab>
 
 
 
-      </mat-tab-group>
-    </div>
+    </mat-tab-group>
+  </div>
 </body>
-
-

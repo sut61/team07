@@ -14,14 +14,15 @@ export class AppserviceService {
 
   authenticate2(credentials, callback) {
     this.http.post( this.API + "/Staff/Staffuser/" + credentials.username + "/staffpassword/" +  credentials.password,{}).subscribe(data => {
-        // console.log(credentials)
+        console.log(data)
         if (data["success"]) {
           this.authenticated2 = true;
           this.user = data["user"];
-          this.name = data["user"].staffName;
-          this.staffId = data["user"].staffId;
-          localStorage.setItem("staffId", JSON.stringify(this.staffId));
-         console.log(this.staffId);
+          this.setUser(this.user);
+          // this.name = data["user"].staffName;
+          // this.staffId = data["user"].staffId;
+           localStorage.setItem("user", JSON.stringify(this.user));
+
         } else {
           this.authenticated2 = false;
         }
@@ -30,14 +31,18 @@ return callback && callback();
 }
 
 
-  setStaffOnline(staffId:Number): Observable<any> {
-    return this.http.post(this.API + '/Staff/StaffOnline/{onlineId}' + staffId,{});
+  setStaffOnline(staffId:Number,StaffName:String,staffUser:String,staffPass:String,staffPhone:String): Observable<any> {
+console.log(this.API + '/Staff/StaffOnline/' + staffId +'/staffName/'+ StaffName + '/staffUser/' + staffUser + '/staffPass/' + staffPass + '/staffPhone/' + staffPhone);
+ return this.http.post(this.API + '/Staff/StaffOnline/' + staffId +'/staffName/'+ StaffName + '/staffUser/' + staffUser + '/staffPass/' + staffPass + '/staffPhone/' + staffPhone ,{});
   }
 
-
+  
   setStaffOfline(onlineId:Number): Observable<any> {
-    return this.http.post(this.API + '/Staff/StaffOffline/{onlineId}' + onlineId,{});
+    return this.http.post(this.API + '/Staff/StaffOffline/' + onlineId,{});
   }
+
+
+
 
 
 
@@ -50,6 +55,10 @@ getId():any{
   setUser(user: any) {
     this.user = user;
   }
+  getUser() {
+    return  this.user
+  }
+
   setAuth(auth: boolean) {
     this.auth = auth;
   }

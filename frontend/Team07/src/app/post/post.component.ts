@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from "@angular/router";
 import { PostService } from '../Service/post.service';
 import { HttpClient } from '@angular/common/http';
+import { AppserviceService } from '../Service/appservice.service';
 
 @Component({
   selector: 'app-post',
@@ -15,9 +16,9 @@ export class PostComponent implements OnInit {
   worktimes: Array<any>;
 
   detail: any = {
-    staff:'',
-    department:'',
-    worktime:''
+    staff: '',
+    department: '',
+    worktime: ''
   };
   emp: any = {
     staffSelect: '',
@@ -29,43 +30,67 @@ export class PostComponent implements OnInit {
   showdatainput() {
     console.log(this.detail)
   }
-  constructor(private router:Router,private postService: PostService, private httpClient: HttpClient) { }
+
+
+  names: any;
+  public API = '//localhost:8080';
+  staffdb: any = { staffId: Number, staffName: String, staffUser: String, staffPass: String, staffPhone: String, online: String }
+
+  setstaffOfline() {
+    this.app.setStaffOfline(Number(this.staffdb.staffId)).subscribe(data => {
+      console.log(data);
+    })
+  }
+
+
+  getStaffOnline() {
+    return this.http.get(this.API + '/StaffOnline/' + "true");
+  }
+
+  constructor(private http: HttpClient, private app: AppserviceService, private router: Router, private postService: PostService, private httpClient: HttpClient) { }
 
   ngOnInit() {
+
+    this.getStaffOnline().subscribe(data => {
+      console.log(data);
+      this.staffdb = data;
+      this.names = this.staffdb.staffUser;
+      console.log(this.names)
+    })
     this.postService.getStaffs().subscribe(data => {
       this.staffs = data;
       console.log(this.staffs);
     });
-  
+
     this.postService.getDepartments().subscribe(data => {
       this.departments = data;
       console.log(this.departments);
     });
-    
+
     this.postService.getWorktimes().subscribe(data => {
-    this.worktimes = data;
-    console.log(this.worktimes);
-     });
+      this.worktimes = data;
+      console.log(this.worktimes);
+    });
   }
 
-  SubmitdData(){
+  SubmitdData() {
     console.log(this.detail)
-    const data  = this.detail
-      this.router.navigate(['show',{
-        staff:        data.staff,
-        department:     data.department,
-        worktime:        data.worktime,
-        }])
- 
+    const data = this.detail
+    this.router.navigate(['show', {
+      staff: data.staff,
+      department: data.department,
+      worktime: data.worktime,
+    }])
+
   }
 
   save1() {
-    this.httpClient.post('http://localhost:8080/ShowHrs-insert/staff/' + this.emp.staffSelect + '/department/' + this.emp.departmentSelect + '/worktime/' + this.emp.worktimeSelect  ,this.emp)
-    .subscribe(
-      data =>   {console.log('PUT Request is successful', data);},
-      error =>  {console.log('Error', error);}
+    this.httpClient.post('http://localhost:8080/ShowHrs-insert/staff/' + this.emp.staffSelect + '/department/' + this.emp.departmentSelect + '/worktime/' + this.emp.worktimeSelect, this.emp)
+      .subscribe(
+        data => { console.log('PUT Request is successful', data); },
+        error => { console.log('Error', error); }
       );
-    }
+  }
 }
 
 

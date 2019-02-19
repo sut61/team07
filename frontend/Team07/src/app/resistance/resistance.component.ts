@@ -10,6 +10,7 @@ import { SelectionModel } from "@angular/cdk/collections";
 import { MatTableDataSource } from "@angular/material";
 import { map, filter } from "rxjs/operators";
 import { Observable } from "rxjs";
+import { AppserviceService } from '../Service/appservice.service';
 
 @Component({
   selector: "app-resistance",
@@ -17,6 +18,22 @@ import { Observable } from "rxjs";
   styleUrls: ["./resistance.component.css"]
 })
 export class ResistanceComponent implements OnInit {
+
+  names: any;
+  public API = '//localhost:8080';
+  staffdb: any = { staffId: Number, staffName: String, staffUser: String, staffPass: String, staffPhone: String, online: String }
+
+  setstaffOfline() {
+    this.app.setStaffOfline(Number(this.staffdb.staffId)).subscribe(data => {
+      console.log(data);
+    })
+  }
+
+
+  getStaffOnline() {
+    return this.http.get(this.API + '/StaffOnline/' + "true");
+  }
+
   displayedColumns: string[] = [
     "position",
     "customername",
@@ -27,7 +44,7 @@ export class ResistanceComponent implements OnInit {
     "position",
     "customername",
     "drugs",
-    "symptom","result"
+    "symptom", "result"
   ];
 
   data: any = {};
@@ -38,16 +55,15 @@ export class ResistanceComponent implements OnInit {
   redcorddruguse: Array<any>;
   redcorddruguseselect = "";
   count: 0;
- res: Array<any>;
-
-  public API = "//localhost:8080";
+  res: Array<any>;
 
   constructor(
     private http: HttpClient,
+    private app: AppserviceService,
     private redcorduseService: RedcorduseService,
     private resistanceservice: ResistanceService,
     private deliveryService: DeliveryService
-  ) {}
+  ) { }
 
 
 
@@ -55,10 +71,10 @@ export class ResistanceComponent implements OnInit {
   ResistancePost(RecordDrugUseId: Number, result: String): Observable<any> {
     return this.http.post(
       this.API +
-        "/Resistance-Insert/RecordDrugUseId/" +
-        RecordDrugUseId +
-        "/result/" +
-        result,
+      "/Resistance-Insert/RecordDrugUseId/" +
+      RecordDrugUseId +
+      "/result/" +
+      result,
       {}
     );
   }
@@ -103,7 +119,7 @@ export class ResistanceComponent implements OnInit {
       ).subscribe(data => {
         if (data.status == "save") {
           alert("บันทึกสำเร็จ");
-          this.getResistanceAll().subscribe(datasc=>{
+          this.getResistanceAll().subscribe(datasc => {
             this.res = datasc;
             console.log(datasc);
           });
@@ -114,11 +130,18 @@ export class ResistanceComponent implements OnInit {
         //console.log(data);
       });
     } else {
-      
+
     }
   }
 
   ngOnInit() {
+
+    this.getStaffOnline().subscribe(data => {
+      console.log(data);
+      this.staffdb = data;
+      this.names = this.staffdb.staffUser;
+      console.log(this.names)
+    })
     this.redcorduseService.getRedcorduseAll().subscribe(datas => {
       this.redcorddruguse = datas;
       console.log(datas);
@@ -130,7 +153,7 @@ export class ResistanceComponent implements OnInit {
       console.log(this.customers);
     });
 
-    this.getResistanceAll().subscribe(datasc=>{
+    this.getResistanceAll().subscribe(datasc => {
       this.res = datasc;
       console.log(datasc);
     });

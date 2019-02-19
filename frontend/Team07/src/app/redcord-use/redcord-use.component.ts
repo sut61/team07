@@ -8,6 +8,7 @@ import { RegisterService } from "../Service/register.service"; // get initial ge
 import { CategoryService } from "../Service/category.service"; // get category all
 import { RedcorduseService } from "../Service/redcorduse.service"; // get Customer by Id
 import { Observable } from "rxjs";
+import { AppserviceService } from '../Service/appservice.service';
 
 @Component({
   selector: "app-redcord-use",
@@ -38,11 +39,27 @@ export class RedcordUseComponent implements OnInit {
   }; // customer by name
   //customerselect = '';
 
-  public API = "//localhost:8080";
+ 
+  names: any;
+  public API = '//localhost:8080';
+  staffdb: any = { staffId: Number, staffName: String, staffUser: String, staffPass: String, staffPhone: String, online: String }
+
+  setstaffOfline() {
+    this.app.setStaffOfline(Number(this.staffdb.staffId)).subscribe(data => {
+      console.log(data);
+    })
+  }
+
+
+  getStaffOnline() {
+    return this.http.get(this.API + '/StaffOnline/' + "true");
+  }
+
 
   data: any = {};
 
   constructor(
+    private app: AppserviceService,
     private http: HttpClient,
     private route: ActivatedRoute,
     private redcorduseservice: RedcorduseService,
@@ -64,7 +81,7 @@ export class RedcordUseComponent implements OnInit {
       .postRedcorduse(
         String(this.data.symptom),
         Number(this.drugdataselect),
-        Number(1),
+        Number( this.staffdb.staffId),
         Number(this.customer.customerId)
       )
       .subscribe(data => {
@@ -83,7 +100,15 @@ export class RedcordUseComponent implements OnInit {
         });
     }
   }
+  
   ngOnInit() {
+    this.getStaffOnline().subscribe(data => {
+      console.log(data);
+      this.staffdb = data;
+      this.names = this.staffdb.staffUser;
+      console.log(this.names)
+    })
+
     this.getDrugdataAll().subscribe(datas => {
       this.drugdata = datas;
       console.log(datas)

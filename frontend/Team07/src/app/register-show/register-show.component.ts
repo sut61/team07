@@ -3,7 +3,7 @@ import { ActivatedRoute } from "@angular/router";
 import { RegisterService } from '../Service/register.service';
 import { HttpClient } from '@angular/common/http';
 import { Router } from "@angular/router";
-
+import { AppserviceService } from "../Service/appservice.service";
 import { CategoryService } from '../Service/category.service';
 @Component({
   selector: 'app-register-show',
@@ -14,17 +14,39 @@ export class RegisterShowComponent implements OnInit {
 
   data: any = {}
   category: Array<any>;
-  constructor(private route: ActivatedRoute, private app: RegisterService,private categoryService: CategoryService,private router: Router,private httpClient: HttpClient) { }
+  constructor(private apps: AppserviceService, private route: ActivatedRoute, private app: RegisterService, private categoryService: CategoryService, private router: Router, private http: HttpClient) { }
   initialId: any;
   genderId: any;
   bloodtypeId: any;
+  staffdb: any = { staffId: Number, staffName: String, staffUser: String, staffPass: String, staffPhone: String, online: String }
+  public API = "//localhost:8080";
+  names: any;
+  getStaffOnline() {
+    return this.http.get(this.API + '/StaffOnline/' + "true");
+  }
+
+  setstaffOfline() {
+    this.apps.setStaffOfline(Number(this.staffdb.staffId)).subscribe(data => {
+      console.log(data);
+    })
+  }
+
+
   saveregister() {
-    this.app.Customersumbit(Number(this.initialId),String(this.data.firstname),Number(this.genderId),Number(this.bloodtypeId),String(this.data.address),String(this.data.phonenumber),String(this.data.username),String(this.data.password)).subscribe(data => {
+    this.app.Customersumbit(Number(this.initialId), String(this.data.firstname), Number(this.genderId), Number(this.bloodtypeId), String(this.data.address), String(this.data.phonenumber), String(this.data.username), String(this.data.password)).subscribe(data => {
       console.log(this.data)
     })
   }
 
+
   ngOnInit() {
+
+    this.getStaffOnline().subscribe(data => {
+      console.log(data);
+      this.staffdb = data;
+      this.names = this.staffdb.staffUser;
+      console.log(this.names)
+    })
 
     this.route.params.subscribe(prams => {
       this.data = prams

@@ -6,6 +6,7 @@ import { ActivatedRoute } from "@angular/router";
 // import service
 import { DrugService } from '../Service/drug.service';
 import { NotificationService } from '../Service/notification.service';
+import { AppserviceService } from '../Service/appservice.service';
 
 @Component({
   selector: 'app-notification',
@@ -21,6 +22,22 @@ export class NotificationComponent implements OnInit {
   timeEatselect = '';
   status = '';
 
+  
+  names: any;
+  public API = '//localhost:8080';
+  staffdb: any = { staffId: Number, staffName: String, staffUser: String, staffPass: String, staffPhone: String, online: String }
+
+  setstaffOfline() {
+    this.app.setStaffOfline(Number(this.staffdb.staffId)).subscribe(data => {
+      console.log(data);
+    })
+  }
+
+
+  getStaffOnline() {
+    return this.http.get(this.API + '/StaffOnline/' + "true");
+  }
+
 
 
   customer = {
@@ -35,7 +52,7 @@ export class NotificationComponent implements OnInit {
   data: any = {}
 
 
-  constructor(private route: ActivatedRoute, private drugService: DrugService, private notificationservice: NotificationService, private router: Router, private httpClient: HttpClient) { }
+  constructor(private app: AppserviceService,private http: HttpClient,private route: ActivatedRoute, private drugService: DrugService, private notificationservice: NotificationService, private router: Router, private httpClient: HttpClient) { }
   displayedColumns: string[] = ['position', 'customername', 'drugname', 'timeEat', 'Notification'];
 
 
@@ -98,6 +115,13 @@ export class NotificationComponent implements OnInit {
   }
 
   ngOnInit() {
+    
+    this.getStaffOnline().subscribe(data => {
+      console.log(data);
+      this.staffdb = data;
+      this.names = this.staffdb.staffUser;
+      console.log(this.names)
+    })
 
     this.drugService.getDrug().subscribe(data => {
       this.drug = data;
