@@ -84,7 +84,7 @@ export class OrdersDrugComponent implements OnInit {
           if (datas.status == "save") {
 
             this.drugrecive.qty = String(Number(this.drugrecive.qty) + Number(this.data.amount));
-            this.inputdrugstroageService.updateDrug(Number(this.catalogselect), String(this.drugrecive.name), String(this.drugrecive.price), String(this.drugrecive.qty)).subscribe(data => {
+            this.inputdrugstroageService.updateDrug(Number(this.catalogselect), String(this.drugrecive.name), Number(this.drugrecive.price), Number(this.drugrecive.qty)).subscribe(data => {
               console.log(data);
 
 

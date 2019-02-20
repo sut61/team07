@@ -9,6 +9,7 @@ import { DrugService } from '../Service/drug.service';
 import { PrescriptionService } from '../Service/prescription.service';
 
 
+
 @Component({
   selector: 'app-drug-storage-menu',
   templateUrl: './drug-storage-menu.component.html',
@@ -26,7 +27,7 @@ export class DrugStorageMenuComponent implements OnInit {
   datas: any = {}
   count: 0;
   names: any;
-  staffdb:any = {staffId:Number,staffName:String,staffUser:String,staffPass:String,staffPhone:String,online:String}
+  staffdb: any = { staffId: Number, staffName: String, staffUser: String, staffPass: String, staffPhone: String, online: String }
   ggss: any = { drugId: Number, name: String, price: String, qty: String };
   public API = '//localhost:8080';
 
@@ -75,6 +76,7 @@ export class DrugStorageMenuComponent implements OnInit {
       } else {
         this.count = 0;
         alert("ใส่เป็นตัวเลขเท่านั้น")
+        return;
       }
 
     }
@@ -88,9 +90,8 @@ export class DrugStorageMenuComponent implements OnInit {
         this.inputdrugstroageService.summbituyPrescription(String(this.data.namepre), String(this.data.amounts), Number(this.categoryselect), Number(this.drugselect), String(this.names)).subscribe(dss => {
           if (dss.status == "save") {
 
-
             this.ggss.qty = String(Number(this.ggss.qty) - Number(this.data.amounts));
-            this.inputdrugstroageService.updateDrug(Number(this.drugselect), String(this.ggss.name), String(this.ggss.price), String(this.ggss.qty)).subscribe(data => {
+            this.inputdrugstroageService.updateDrug(Number(this.drugselect), String(this.ggss.name), Number(this.ggss.price), Number(this.ggss.qty)).subscribe(data => {
               console.log(data);
 
 
@@ -114,6 +115,7 @@ export class DrugStorageMenuComponent implements OnInit {
         })
       } else {
         alert("ตัวแรกต้องเป็น P และตามด้วยหมายเลข  8-12 ตัว ");
+        return;
       }
 
 
@@ -130,13 +132,13 @@ export class DrugStorageMenuComponent implements OnInit {
   }
 
 
-  
+
   getStaffOnline() {
     return this.http.get(this.API + '/StaffOnline/' + "true");
   }
 
-  setstaffOfline(){
-    this.app.setStaffOfline(Number(this.staffdb.staffId)).subscribe(data =>{
+  setstaffOfline() {
+    this.app.setStaffOfline(Number(this.staffdb.staffId)).subscribe(data => {
       console.log(data);
     })
   }
@@ -145,7 +147,7 @@ export class DrugStorageMenuComponent implements OnInit {
 
     this.getStaffOnline().subscribe(data => {
       console.log(data);
-      this.staffdb = data; 
+      this.staffdb = data;
       this.names = this.staffdb.staffUser;
       console.log(this.names)
     })
