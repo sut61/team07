@@ -22,7 +22,7 @@ export class NotificationComponent implements OnInit {
   timeEatselect = '';
   status = '';
 
-  
+
   names: any;
   public API = '//localhost:8080';
   staffdb: any = { staffId: Number, staffName: String, staffUser: String, staffPass: String, staffPhone: String, online: String }
@@ -71,28 +71,20 @@ export class NotificationComponent implements OnInit {
     let rt = /[0-9]{1,2}\s(กุมภาพันธ์|มกราคม|มีนาคม|เมษายน|พฤษภาคม|มิถุนายน|กรกฎาคม|สิงหาคม|กันยายน|ตุลาคม|พฤษจิกายน|ธันวาคม)\s[0-9]{2,4}/
     if (this.status === undefined || this.status == "" || this.status == "") {
       alert("ไม่พบผู้ใช้ที่ท่านค้นหา")
-    } else {
-      if(rt.test(this.data.Date)){
-        this.notificationservice.postNotification(Number(this.customer.customerId),Number(this.drugselect),Number(this.timeEatselect),String(this.data.timestartEat)).subscribe(data=>{
-          console.log(data);
-    
-        })
-      }else{
-        
-        alert("ใส่เป็นเดือน เช่น 14 กุมภาพันธ์ 2562")
-      }
-   
-
-    this.notificationservice.getNotificationAll().subscribe(data=>{
-      this.notification = data;
-      console.log(this.notification)
-    })
-
-
-  }
-
-
-  }
+        } else {
+            if(rt.test(this.data.Date)){
+              this.notificationservice.postNotification(Number(this.customer.customerId),Number(this.drugselect),Number(this.timeEatselect),String(this.data.timestartEat)).subscribe(data=>{
+              console.log(data);
+              })
+            }else{
+              alert("ใส่เป็นเดือน เช่น 14 กุมภาพันธ์ 2562")
+            }
+          this.notificationservice.getNotificationAll().subscribe(data=>{
+          this.notification = data;
+          console.log(this.notification)
+          })
+        }
+    }
 
   searchname() {
 
@@ -115,7 +107,7 @@ export class NotificationComponent implements OnInit {
   }
 
   ngOnInit() {
-    
+
     this.getStaffOnline().subscribe(data => {
       console.log(data);
       this.staffdb = data;

@@ -37,13 +37,13 @@ export class ResistanceComponent implements OnInit {
   displayedColumns: string[] = [
     "position",
     "customername",
-    "drugs",
+    "drug",
     "symptom"
   ];
   displayedColumns2: string[] = [
     "position",
     "customername",
-    "drugs",
+    "drug",
     "symptom", "result"
   ];
 

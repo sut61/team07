@@ -136,19 +136,23 @@ public class DatabaseLoader implements ApplicationRunner {
         this.initialrepository.save(new Initial("Mrs."));
         this.initialrepository.save(new Initial("Miss."));
         Initial in1 = this.initialrepository.findByInitialId(1L);
+        Initial in2 = this.initialrepository.findByInitialId(2L);
+        Initial in3 = this.initialrepository.findByInitialId(3L);
         this.genderrepository.save(new Gender("None"));
         this.genderrepository.save(new Gender("Male"));
         this.genderrepository.save(new Gender("Female"));
         this.genderrepository.save(new Gender("Tom"));
         this.genderrepository.save(new Gender("Gay"));
         Gender ge1 = this.genderrepository.findByGenderId(1L);
+        Gender ge2 = this.genderrepository.findByGenderId(2L);
+        Gender ge3 = this.genderrepository.findByGenderId(3L);
         this.bloodTyperepository.save(new BloodType("A"));
         this.bloodTyperepository.save(new BloodType("B"));
         this.bloodTyperepository.save(new BloodType("O"));
         this.bloodTyperepository.save(new BloodType("AB"));
         BloodType blood1 = this.bloodTyperepository.findByBloodTypeId(1L);
         this.customerrepository
-                .save(new Customer(in1, "Bowling", ge1, blood1, "5/7", "0651472525", "Tuntika", "12345")); // การกรอกข้อมูลในcustomer
+                .save(new Customer(in3, "Bowling", ge3, blood1, "5/7", "0651472525", "Tuntika", "12345")); // การกรอกข้อมูลในcustomer
                                                                                                            // คนทีี่
                                                                                                            // 1
         this.customerrepository.save(new Customer(in1, "John", ge1, blood1, "6/9", "0935479424", "john", "nonphala")); // การกรอกข้อมูลในcustomer
@@ -197,7 +201,7 @@ public class DatabaseLoader implements ApplicationRunner {
         RecordDrugUse recordDrugUse1 = this.recordDrugUserepository.findByRecordDrugUseId(1L);
         this.resistancerepository.save(new Resistance(recordDrugUse1, "Normal"));
 
-        Drugdata Dru2 = this.drugdatarepository.findByDrugdataId(1L);
+        Drugdata Dru2 = this.drugdatarepository.findByDrugdataId(2L);
         Customer Cu2 = this.customerrepository.findByCustomerId(2L);
         this.recordDrugUserepository.save(new RecordDrugUse("death", Dru2, S1, Cu2));
         RecordDrugUse recordDrugUse2 = this.recordDrugUserepository.findByRecordDrugUseId(2L);
