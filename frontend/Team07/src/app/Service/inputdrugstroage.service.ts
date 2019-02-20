@@ -28,7 +28,7 @@ export class InputdrugstroageService {
 
   }
 
-  updateDrug(drugId: number, drugname: string, drugprice: string, drugqty: string): Observable<any> {
+  updateDrug(drugId: number, drugname: string, drugprice: number, drugqty: number): Observable<any> {
     console.log(this.API + '/Drug-Update/' + drugId + '/name/' + drugname + '/price/' + drugprice + '/qty/' + drugqty);
     return this.http.post(this.API + '/Drug-Update/' + drugId + '/name/' + drugname + '/price/' + drugprice + '/qty/' + drugqty, {});
   }
