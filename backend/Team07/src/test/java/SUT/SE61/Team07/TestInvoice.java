@@ -63,9 +63,10 @@ public class TestInvoice {
         In.setStaff(S);
         In.setCustomer(C);
         In.setAddress(A);
+        In.setCurrentTel("0802457192");
         In.setDrug(D);
-        In.setAmount("20");
-        In.setNetamount("20");
+        In.setAmount(20);
+        In.setNetamount(200);
         In.setDate(new Date());
 
         try {
@@ -96,9 +97,10 @@ public class TestInvoice {
         In.setStaff(S);
         In.setCustomer(C);
         In.setAddress(A);
+        In.setCurrentTel(null);
         In.setDrug(D);
-        In.setAmount(null);
-        In.setNetamount("20");
+        In.setAmount(20);
+        In.setNetamount(200);
         In.setDate(new Date());
 
         try {
@@ -131,9 +133,11 @@ public class TestInvoice {
         In.setStaff(S);
         In.setCustomer(C);
         In.setAddress(A);
+        In.setCurrentTel("9802457192");
+
         In.setDrug(D);
-        In.setAmount("A");
-        In.setNetamount("20");
+        In.setAmount(20);
+        In.setNetamount(200);
         In.setDate(new Date());
 
         try {
@@ -157,7 +161,7 @@ public class TestInvoice {
     }
 
 
-    // ทดสอบ ความยาวของ Invoice เกิน 8
+    // ทดสอบ ความยาวของ Invoice เกิน 10
     @Test
     public void testMaxInvoicesize8() {
         Invoice In = new Invoice();
@@ -168,9 +172,11 @@ public class TestInvoice {
         In.setStaff(S);
         In.setCustomer(C);
         In.setAddress(A);
+        In.setCurrentTel("08024571922222");
+
         In.setDrug(D);
-        In.setAmount("1234567890123456785852422");
-        In.setNetamount("20");
+        In.setAmount(20);
+        In.setNetamount(200);
         In.setDate(new Date());
         
         try {
@@ -182,7 +188,7 @@ public class TestInvoice {
             System.out.println();
             System.out.println();
             System.out.println(
-                    "============================================================ from testMaxInvoicesize8   =============================================================");
+                    "============================================================ from testMaxInvoicesize10   =============================================================");
             System.out.println(e);
             System.out.println();
             System.out.println();
@@ -204,9 +210,11 @@ public class TestInvoice {
         In.setStaff(S);
         In.setCustomer(C);
         In.setAddress(A);
+        In.setCurrentTel("080245");
+
         In.setDrug(D);
-        In.setAmount("");
-        In.setNetamount("20");
+        In.setAmount(20);
+        In.setNetamount(200);
         In.setDate(new Date());
         try {
             entityManager.persist(In);
@@ -217,7 +225,7 @@ public class TestInvoice {
             System.out.println();
             System.out.println();
             System.out.println(
-                    "============================================================ from testMinInvoicesize1  =============================================================");
+                    "============================================================ from testMinInvoicesize10  =============================================================");
             System.out.println(e);
             System.out.println();
             System.out.println();
