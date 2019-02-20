@@ -30,9 +30,10 @@ public class Customer {
    // @Pattern(regexp = "\\w{0,3}\\d{8,13}")
     //@Size(min = 10, max = 20)
     private  String customerName;
-
-    private @NonNull String customerPhonenumber;
+    
+    private @NonNull String customerAllergic;
     private @NonNull String customerAddress;
+    private @NonNull String customerPhonenumber;
     private @NonNull String customerUserID;
     private @NonNull String customerPassword;
 
@@ -51,13 +52,14 @@ public class Customer {
     public Customer() {
     }
   
-    public Customer(Initial initial, String customerName, Gender gender, BloodType bloodType, String customerAddress,
+    public Customer(Initial initial, String customerName, Gender gender, BloodType bloodType,String customerAllergic, String customerAddress,
             String customerPhonenumber, String customerUserID, String customerPassword) {
 
         this.initial = initial;
         this.customerName = customerName;
         this.gender = gender;
         this.bloodType = bloodType;
+        this.customerAllergic =customerAllergic;
         this.customerAddress = customerAddress;
         this.customerPhonenumber = customerPhonenumber;
         this.customerUserID = customerUserID;

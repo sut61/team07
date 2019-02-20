@@ -57,12 +57,12 @@ class CustomerController {
         return customerrepository.findBycustomerName(customerName);
     }
 
-    @PostMapping("/Customer-insert/InitalId/{InitalId}/Name/{Name}/GenderId/{GenderId}/BloodType/{BloodType}/Address/{Address}/Phonenumber/{Phonenumber}/Username/{Username}/Password/{Password}")
+    @PostMapping("/Customer-insert/InitalId/{InitalId}/Name/{Name}/GenderId/{GenderId}/BloodType/{BloodType}/Allergic/{Allergic}/Address/{Address}/Phonenumber/{Phonenumber}/Username/{Username}/Password/{Password}")
     public ResponseEntity<Map<String, Object>> cussumbit(@PathVariable("InitalId") Long InitalId,
             @PathVariable("Name") String Name, @PathVariable("GenderId") Long GenderId,
-            @PathVariable("BloodType") Long BloodType, @PathVariable("Address") String Address,
-            @PathVariable("Phonenumber") String Phonenumber, @PathVariable("Username") String Username,
-            @PathVariable("Password") String Password) {
+            @PathVariable("BloodType") Long BloodType,@PathVariable("Allergic") String Allergic,
+            @PathVariable("Address") String Address,@PathVariable("Phonenumber") String Phonenumber, 
+            @PathVariable("Username") String Username,@PathVariable("Password") String Password) {
 
         try {
 
@@ -70,7 +70,7 @@ class CustomerController {
             Gender G = this.genderrepository.findByGenderId(GenderId); // Select
             BloodType B = this.bloodTyperepository.findByBloodTypeId(BloodType);// Select
 
-            this.customerrepository.save(new Customer(I, Name, G, B, Address, Phonenumber, Username, Password));
+            this.customerrepository.save(new Customer(I, Name, G, B, Allergic,Address, Phonenumber, Username, Password));
 
             Map<String, Object> json = new HashMap<String, Object>();
             json.put("success", true);
