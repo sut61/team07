@@ -54,8 +54,8 @@ public class TestDrug {
     public void testDrugsaveDataSuccess() {
         Drug drug = new Drug();
         drug.setName("paracetamol");
-        drug.setPrice("50");
-        drug.setQty("10");
+        drug.setPrice(50);
+        drug.setQty(10);
 
         try {
             entityManager.persist(drug);
@@ -69,7 +69,7 @@ public class TestDrug {
             assertEquals(violations.isEmpty(), false);
             assertEquals(violations.size(), 1);
 
-            // fail("Should not pass to this line");
+          //   fail("Should not pass to this line");
         }
     }
 
@@ -91,8 +91,8 @@ public class TestDrug {
     public void testDrugnameNull() {
         Drug drug = new Drug();
         drug.setName(null);
-        drug.setPrice("50");
-        drug.setQty("10");
+        drug.setPrice(50);
+        drug.setQty(10);
 
         try {
             entityManager.persist(drug);
@@ -119,7 +119,7 @@ public class TestDrug {
         Drug drug = new Drug();
         drug.setName("paracetamol");
         drug.setPrice(null);
-        drug.setQty("10");
+        drug.setQty(10);
 
         try {
             entityManager.persist(drug);
@@ -145,7 +145,7 @@ public class TestDrug {
     public void testDrugQTYNull() {
         Drug drug = new Drug();
         drug.setName("paracetamol");
-        drug.setPrice("50");
+        drug.setPrice(50);
         drug.setQty(null);
 
         try {
@@ -172,8 +172,8 @@ public class TestDrug {
     public void testnameDrugtolost() {
         Drug drug = new Drug();
         drug.setName("A");
-        drug.setPrice("50");
-        drug.setQty("10");
+        drug.setPrice(50);
+        drug.setQty(10);
 
         try {
             entityManager.persist(drug);
@@ -200,8 +200,8 @@ public class TestDrug {
         Drug drug = new Drug();
         drug.setName(
                 "Asdasdsadasdasdsadasdsadasdasdasdasdasdasadasdasdsdasdasdasdsdsadasdasdasdassaddsasadssdasdsasadsadsdsd");
-        drug.setPrice("50");
-        drug.setQty("10");
+        drug.setPrice(50);
+        drug.setQty(10);
 
         try {
             entityManager.persist(drug);
@@ -227,8 +227,8 @@ public class TestDrug {
     public void testDrugpricetolost() {
         Drug drug = new Drug();
         drug.setName("ABCDEFG");
-        drug.setPrice("");
-        drug.setQty("10");
+        drug.setPrice(0);
+        drug.setQty(10);
 
         try {
             entityManager.persist(drug);
@@ -245,7 +245,7 @@ public class TestDrug {
             System.out.println();
             Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
             assertEquals(violations.isEmpty(), false);
-            assertEquals(violations.size(), 2);
+            assertEquals(violations.size(), 1);
         }
     }
 
@@ -254,8 +254,8 @@ public class TestDrug {
     public void testDrugpricetomost() {
         Drug drug = new Drug();
         drug.setName("ABCDEFG");
-        drug.setPrice("2225454242345324523452452345325432544534534534534534554345");
-        drug.setQty("10");
+        drug.setPrice(100000000);
+        drug.setQty(10);
 
         try {
             entityManager.persist(drug);
@@ -272,7 +272,7 @@ public class TestDrug {
             System.out.println();
             Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
             assertEquals(violations.isEmpty(), false);
-            assertEquals(violations.size(), 2);
+            assertEquals(violations.size(), 1);
         }
     }
 
@@ -281,8 +281,8 @@ public class TestDrug {
     public void testDrugQtytolost() {
         Drug drug = new Drug();
         drug.setName("ABCDEFG");
-        drug.setPrice("32");
-        drug.setQty("");
+        drug.setPrice(32);
+        drug.setQty(0);
 
         try {
             entityManager.persist(drug);
@@ -299,7 +299,7 @@ public class TestDrug {
             System.out.println();
             Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
             assertEquals(violations.isEmpty(), false);
-            assertEquals(violations.size(), 2);
+            assertEquals(violations.size(), 1);
         }
     }
 
@@ -308,8 +308,8 @@ public class TestDrug {
     public void testDrugQtytomost() {
         Drug drug = new Drug();
         drug.setName("ABCDEFG");
-        drug.setPrice("123");
-        drug.setQty("1000000000000000000000000000000000000000000000000000000000000000");
+        drug.setPrice(50);
+        drug.setQty(1000000000);
 
         try {
             entityManager.persist(drug);
@@ -326,7 +326,7 @@ public class TestDrug {
             System.out.println();
             Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
             assertEquals(violations.isEmpty(), false);
-            assertEquals(violations.size(), 2);
+            assertEquals(violations.size(), 1);
         }
     }
 
@@ -335,8 +335,8 @@ public class TestDrug {
     public void testPatternNameDrug() {
         Drug drug = new Drug();
         drug.setName("12Abcd");
-        drug.setPrice("50");
-        drug.setQty("10");
+        drug.setPrice(50);
+        drug.setQty(10);
         try {
             entityManager.persist(drug);
             entityManager.flush();
@@ -357,72 +357,20 @@ public class TestDrug {
         }
     }
 
-    // ทดสอบ testPatternPriceDrug ไม่ใช่ตัว เลข
-    @Test
-    public void testPatternPriceDrug() {
-        Drug drug = new Drug();
-        drug.setName("Abcd");
-        drug.setPrice("AC50");
-        drug.setQty("10");
-        try {
-            entityManager.persist(drug);
-            entityManager.flush();
 
-            fail("Should not pass to this line");
-        } catch (javax.validation.ConstraintViolationException e) {
-            System.out.println();
-            System.out.println();
-            System.out.println();
-            System.out.println(
-                    "============================================================ from testPatternPriceDrug =============================================================");
-            System.out.println(e);
-            System.out.println();
-            System.out.println();
-            Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
-            assertEquals(violations.isEmpty(), false);
-            assertEquals(violations.size(), 1);
-        }
-    }
-
-    // ทดสอบ testPatternQtyDrug ไม่ใช่ตัว เลข
-    @Test
-    public void testPatternQtyDrug() {
-        Drug drug = new Drug();
-        drug.setName("ABCDEF");
-        drug.setPrice("50");
-        drug.setQty("AC502");
-        try {
-            entityManager.persist(drug);
-            entityManager.flush();
-
-            fail("Should not pass to this line");
-        } catch (javax.validation.ConstraintViolationException e) {
-            System.out.println();
-            System.out.println();
-            System.out.println();
-            System.out.println(
-                    "============================================================ from testPatternQtyDrug =============================================================");
-            System.out.println(e);
-            System.out.println();
-            System.out.println();
-            Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
-            assertEquals(violations.isEmpty(), false);
-            assertEquals(violations.size(), 1);
-        }
-    }
 
     @Test
     public void testDrugUnique() {
         Drug drug = new Drug();
         drug.setName("paracetamol");
-        drug.setPrice("50");
-        drug.setQty("10");
+        drug.setPrice(50);
+        drug.setQty(10);
         this.drugrepository.save(drug);
 
         Drug drug2 = new Drug();
         drug2.setName("paracetamol");
-        drug2.setPrice("50");
-        drug2.setQty("10");
+        drug2.setPrice(50);
+        drug2.setQty(10);
 
         try {
             // this.prescriptionrepository.save(mag2);

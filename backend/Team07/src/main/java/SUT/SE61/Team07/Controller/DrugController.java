@@ -41,7 +41,7 @@ class DrugController {
 
     @PostMapping("/Drug-Update/{drugId}/name/{name}/price/{price}/qty/{qty}")
     public ResponseEntity<Map<String, Object>> drugUpdate(@PathVariable("drugId") Long drugId,
-            @PathVariable("name") String name, @PathVariable("price") String price, @PathVariable("qty") String qty) {
+            @PathVariable("name") String name, @PathVariable("price") Integer price, @PathVariable("qty") Integer qty) {
 
         Drug drug = this.drugrepository.findByDrugId(drugId);
 
