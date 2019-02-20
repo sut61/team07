@@ -25,6 +25,7 @@ export class RedcordUseComponent implements OnInit {
   genderselect = "";
   bloodtypes: Array<any>;
   bloodtypeselect = "";
+  count: 0;
 
   customer = {
     customerId: Number,
@@ -35,11 +36,11 @@ export class RedcordUseComponent implements OnInit {
     customerPassword: String,
     initial: { initialId: Number, name: String },
     gender: { genderId: Number, sex: String },
-    bloodType: { bloodTypeId: Number, name: Number }
+    bloodType: { bloodTypeId: Number, name: String }
   }; // customer by name
   //customerselect = '';
 
- 
+
   names: any;
   public API = '//localhost:8080';
   staffdb: any = { staffId: Number, staffName: String, staffUser: String, staffPass: String, staffPhone: String, online: String }
@@ -73,21 +74,7 @@ export class RedcordUseComponent implements OnInit {
     return this.http.get(this.API + "/Drugdata-list/");
   }
 
-  SaveRedcord() {
-    // console.log(this.data.symptom)
-    // console.log(this.categoryselect)
 
-    this.redcorduseservice
-      .postRedcorduse(
-        String(this.data.symptom),
-        Number(this.drugdataselect),
-        Number( this.staffdb.staffId),
-        Number(this.customer.customerId)
-      )
-      .subscribe(data => {
-        console.log(data);
-      });
-  }
   searchCustomername() {
     console.log(this.data.namecus);
     if (this.data.namecus === undefined || this.data.namecus == "") {
@@ -100,7 +87,71 @@ export class RedcordUseComponent implements OnInit {
         });
     }
   }
-  
+
+  SaveRedcord() {
+    let red = /[A-Za-z .]{3,20}/g
+    this.count = 0;
+      if (this.data.namecus === undefined || this.data.namecus === null) {
+        this.count = 0;
+      }
+      else {
+        this.count += 1;
+      }
+
+
+      if (this.drugdataselect === undefined || this.drugdataselect === null || this.drugdataselect === "") {
+        this.count = 0;
+      }
+      else {
+        this.count += 1;
+      }
+
+
+
+      if (this.data.symptom === undefined || this.data.symptom === null || this.data.symptom === "") {
+        this.count = 0;
+
+          alert("กรุณากรอกข้อมูลให้ครบถ้วน")
+
+      }
+      else {
+        if (red.test(this.data.symptom)) {
+          this.count += 1;
+        }
+        else {
+          this.count = 0;
+          alert("กรอกข้อมูลอย่างน้อย 3 ตัวใน ผลการใช้ยา")
+        }
+      }
+
+      // console.log(      this.data.namecus )
+
+      // console.log(      this.drugdataselect )
+      // console.log(      this.data.symptom )
+      // console.log(      this.count )
+
+
+    if (this.count >= 3) {
+      this.count = 0;
+        console.log(      this.data.symptom )
+        this.redcorduseservice.postRedcorduse(
+            String(this.data.symptom),
+            Number(this.drugdataselect),
+            Number( this.staffdb.staffId),
+            Number(this.customer.customerId)
+          )
+          .subscribe(data => {console.log(data);});
+            alert("บันทึกสำเร็จ");
+            //window.location.reload();
+
+    }
+    // else
+    // {
+    //   alert("กรุณากรอกข้อมูลให้ครบถ้วน")
+    //      }
+  }
+
+
   ngOnInit() {
     this.getStaffOnline().subscribe(data => {
       console.log(data);
