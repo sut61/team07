@@ -120,7 +120,7 @@ export class RedcordUseComponent implements OnInit {
         }
         else {
           this.count = 0;
-          alert("กรอกข้อมูลอย่างน้อย 3 ตัว")
+          alert("กรอกข้อมูลอย่างน้อย 3 ตัวใน ผลการใช้ยา")
         }
       }
 
