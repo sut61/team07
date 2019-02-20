@@ -147,16 +147,14 @@ public class DatabaseLoader implements ApplicationRunner {
         this.bloodTyperepository.save(new BloodType("O"));
         this.bloodTyperepository.save(new BloodType("AB"));
         BloodType blood1 = this.bloodTyperepository.findByBloodTypeId(1L);
-        this.customerrepository
-                .save(new Customer(in1, "Bowling", ge1, blood1, "5/7", "0651472525", "Tuntika", "12345")); // การกรอกข้อมูลในcustomer
-                                                                                                           // คนทีี่
-                                                                                                           // 1
-        this.customerrepository.save(new Customer(in1, "John", ge1, blood1, "6/9", "0935479424", "john", "nonphala")); // การกรอกข้อมูลในcustomer
-        // // คนที่
-        // // 2
-        // /* end bow db loader */
+        this.customerrepository.save(new Customer(in1, "Bowling", ge1, blood1,"คนไข้ปฏิเสธการแพ้ยา", "5/7", "0651472525", "Tuntika", "12345")); // การกรอกข้อมูลในcustomer
+      // คนที่1
+                                                                                                   
+        this.customerrepository.save(new Customer(in1, "John", ge1, blood1,"คนไข้มีการแพ้ยาพารา", "6/9", "0935479424", "john", "nonphala")); // การกรอกข้อมูลในcustomer
+ // คนที่ 2
+// /* end bow db loader */
 
-        // /* pam dbloader */
+// /* pam dbloader */
 
         this.worktimerepository.save(new Worktime("9:00-12:00", 3));
         this.worktimerepository.save(new Worktime("13:00-17:00", 4));
