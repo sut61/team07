@@ -28,13 +28,18 @@ public class Invoice {
     @NotNull
     private Date date;
 
-    @Pattern(regexp = "(\\d{1,8})")
-    @Size(min = 1, max = 8)
+    //@Pattern(regexp = "(^M{1}[0-9]{7,10}$)")
+    //@Pattern(regexp = "(\\d{10})")
+    @Pattern(regexp = "(^0{1}[0-9]{9,9}$)")
+    @Size(min = 10, max = 10)
     @NotNull
-    private String amount;
+    private String currentTel;
 
     @NotNull
-    private String netamount;
+    private int amount;
+
+    @NotNull
+    private int netamount;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "customerId")
@@ -56,14 +61,15 @@ public class Invoice {
 
     }
 
-    public Invoice(Staff staff, Customer customer, Address address, Drug drug, String amount, String netamount) {
+    public Invoice(Staff staff, Customer customer, Address address, String currentTel, Drug drug, int amount, int netamount) {
         this.staff = staff;
         this.customer = customer;
         this.address = address;
+        this.currentTel = currentTel;
         this.drug = drug;
         this.amount = amount;
         this.netamount = netamount;
-
+        
         this.date = new Date();
     }
 

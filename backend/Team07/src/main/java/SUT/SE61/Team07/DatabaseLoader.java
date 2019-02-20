@@ -207,7 +207,7 @@ public class DatabaseLoader implements ApplicationRunner {
 
         // pam loader
 
-        this.invoicerepository.save(new Invoice(S1, Cu1, A1, D1, "4", "150"));
+        this.invoicerepository.save(new Invoice(S1, Cu1, A1, "0802457192", D1, 4, 150));
 
         // bow loader sprint2
 
