@@ -151,10 +151,7 @@ public class DatabaseLoader implements ApplicationRunner {
         this.bloodTyperepository.save(new BloodType("O"));
         this.bloodTyperepository.save(new BloodType("AB"));
         BloodType blood1 = this.bloodTyperepository.findByBloodTypeId(1L);
-        this.customerrepository
-                .save(new Customer(in3, "Bowling", ge3, blood1, "5/7", "0651472525", "Tuntika", "12345")); // การกรอกข้อมูลในcustomer
-                                                                                                           // คนทีี่
-                                                                                                           // 1
+        this.customerrepository.save(new Customer(in3, "Bowling", ge3, blood1, "5/7", "0651472525", "Tuntika", "12345")); // การกรอกข้อมูลในcustomer                                                                                            // 1
         this.customerrepository.save(new Customer(in1, "John", ge1, blood1, "6/9", "0935479424", "john", "nonphala")); // การกรอกข้อมูลในcustomer
         // // คนที่
         // // 2
