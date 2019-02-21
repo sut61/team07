@@ -28,6 +28,10 @@ public class ShowHrs {
     @NotNull 
     private  Date date;
 
+    @Pattern(regexp = "([A-Za-z]{3,25}$)")
+    @Size(min = 2, max = 25) 
+    private  String note;
+
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "deptId")
     private Department department;
@@ -44,10 +48,11 @@ public class ShowHrs {
     public ShowHrs() {
     }
 
-    public ShowHrs(Staff staff ,Department department, Worktime worktime) {
+    public ShowHrs(Staff staff ,Department department, Worktime worktime,String note) {
         this.department = department;
         this.worktime = worktime;
         this.staff = staff;
+        this.note = note;
         this.date = new Date();
     }
 
