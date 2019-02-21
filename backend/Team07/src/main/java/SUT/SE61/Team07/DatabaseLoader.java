@@ -150,7 +150,7 @@ public class DatabaseLoader implements ApplicationRunner {
         Initial in2 = this.initialrepository.findByInitialId(2L);
         Initial in3 = this.initialrepository.findByInitialId(3L);
 
-        this.genderrepository.save(new Gender("None"));
+        
         this.genderrepository.save(new Gender("Male"));
         this.genderrepository.save(new Gender("Female"));
         this.genderrepository.save(new Gender("Tom"));
@@ -167,9 +167,13 @@ public class DatabaseLoader implements ApplicationRunner {
         BloodType blood2 = this.bloodTyperepository.findByBloodTypeId(2L);
         BloodType blood3 = this.bloodTyperepository.findByBloodTypeId(3L);
 
-        this.customerrepository.save(new Customer(in3, "A", ge3, blood3, "คนไข้ปฏิเสธการแพ้ยา", "5/7","0651472525", "Tuntika", "12345")); // การกรอกข้อมูลในcustomer คนที่1
-        this.customerrepository.save(new Customer(in1, "B", ge1, blood1, "คนไข้มีการแพ้ยาพารา", "6/9", "0935479424", "john", "nonphala")); // การกรอกข้อมูลในcustomer คนที่ 2
-        this.customerrepository.save(new Customer(in2, "C", ge2, blood2, "มีอาการป่วยทางจิต", "37/3280 หมู่4", "08กล้วย45หวี678เครือ", "framza05", "123456789"));
+        this.customerrepository.save(new Customer(in1, "Bowling", ge1, blood1,"คนไข้ปฏิเสธการแพ้ยา", "5/7", "0651472525")); 
+        // การกรอกข้อมูลในcustomerคนที่ 1
+        this.customerrepository.save(new Customer(in2, "John", ge2, blood2,"คนไข้มีการแพ้ยาพารา", "6/9", "0935479424")); 
+        // การกรอกข้อมูลในcustomerคนที่ 2
+        this.customerrepository.save(new Customer(in3, "Pam", ge2, blood3,"คนไข้มีการแพ้ยาแก้แพ้", "4/2", "0901833934")); 
+        // การกรอกข้อมูลในcustomerคนที่ 3
+        
         // /* end bow db loader */
 
         // /* pam dbloader */

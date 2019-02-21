@@ -42,27 +42,19 @@ class CustomerController {
         return customerrepository.findByCustomerId(id);
     }
 
-    @GetMapping("/Customer/customeruserID/{customeruserID}")
-    public Customer customeruser(@PathVariable("customeruserID") String name) {
-        return customerrepository.findBycustomerUserID(name);
-    }
-
-    @GetMapping("/Customer/customerPassword/{customerPassword}")
-    public Customer customerpassword(@PathVariable("customerPassword") String password) {
-        return customerrepository.findBycustomerPassword(password);
-    }
-
+ 
     @GetMapping("/Customer/customerName/{customerName}")
     public Customer customerusername(@PathVariable("customerName") String customerName) {
         return customerrepository.findBycustomerName(customerName);
     }
 
-    @PostMapping("/Customer-insert/InitalId/{InitalId}/Name/{Name}/GenderId/{GenderId}/BloodType/{BloodType}/Allergic/{Allergic}/Address/{Address}/Phonenumber/{Phonenumber}/Username/{Username}/Password/{Password}")
+
+
+    @PostMapping("/Customer-insert/InitalId/{InitalId}/Name/{Name}/GenderId/{GenderId}/BloodType/{BloodType}/Allergic/{Allergic}/Address/{Address}/Phonenumber/{Phonenumber}")
     public ResponseEntity<Map<String, Object>> cussumbit(@PathVariable("InitalId") Long InitalId,
             @PathVariable("Name") String Name, @PathVariable("GenderId") Long GenderId,
             @PathVariable("BloodType") Long BloodType,@PathVariable("Allergic") String Allergic,
-            @PathVariable("Address") String Address,@PathVariable("Phonenumber") String Phonenumber, 
-            @PathVariable("Username") String Username,@PathVariable("Password") String Password) {
+            @PathVariable("Address") String Address,@PathVariable("Phonenumber") String Phonenumber) {
 
         try {
 
@@ -70,7 +62,7 @@ class CustomerController {
             Gender G = this.genderrepository.findByGenderId(GenderId); // Select
             BloodType B = this.bloodTyperepository.findByBloodTypeId(BloodType);// Select
 
-            this.customerrepository.save(new Customer(I, Name, G, B, Allergic,Address, Phonenumber, Username, Password));
+            this.customerrepository.save(new Customer(I, Name, G, B, Allergic,Address, Phonenumber));
 
             Map<String, Object> json = new HashMap<String, Object>();
             json.put("success", true);
@@ -98,34 +90,6 @@ class CustomerController {
 
     }
 
-    @PostMapping("/Customer/customeruserID/{customeruserID}/customerPassword/{customerPassword}")
-    public ResponseEntity<Map<String, Object>> customercheck(@PathVariable("customeruserID") String customeruserID,
-            @PathVariable("customerPassword") String customerPassword) {
-        Customer cusUID = this.customerrepository.findBycustomerUserID(customeruserID);
-        Customer cuspasswd = this.customerrepository.findBycustomerPassword(customerPassword);
-
-        if ((cusUID != null) && (cuspasswd != null)) {
-            Map<String, Object> json = new HashMap<String, Object>();
-            json.put("success", true);
-            json.put("status", "found");
-            json.put("user", cusUID);
-            HttpHeaders headers = new HttpHeaders();
-            headers.add("Content-Type", "application/json; charset=UTF-8");
-            headers.add("X-Fsl-Location", "/");
-            headers.add("X-Fsl-Response-Code", "302");
-            return (new ResponseEntity<Map<String, Object>>(json, headers, HttpStatus.OK));
-        } else {
-            Map<String, Object> json = new HashMap<String, Object>();
-            json.put("success", false);
-            json.put("status", "not found");
-
-            HttpHeaders headers = new HttpHeaders();
-            headers.add("Content-Type", "application/json; charset=UTF-8");
-            headers.add("X-Fsl-Location", "/");
-            headers.add("X-Fsl-Response-Code", "404");
-            return (new ResponseEntity<Map<String, Object>>(json, headers, HttpStatus.OK));
-        }
-
-    }
+    
 
 }
