@@ -29,7 +29,7 @@ export class OrdersDrugComponent implements OnInit {
   public API = "//localhost:8080";
   names: any;
   staffdb:any = {staffId:Number,staffName:String,staffUser:String,staffPass:String,staffPhone:String,online:String}
- 
+
 
   drugrecive: any = { drugId: Number, name: String, price: String, qty: String };
 
@@ -80,7 +80,7 @@ export class OrdersDrugComponent implements OnInit {
         });
 
 
-        this.ordersService.PostOrders(String(this.data.nameorders), Number(this.partnersselect), Number(this.catalogselect),Number(this.catalogselect),String(this.names), String(this.data.amount)).subscribe(datas => {
+        this.ordersService.PostOrders(String(this.data.nameorders), Number(this.partnersselect), Number(this.catalogselect),Number(this.catalogselect),String(this.names), Number(this.data.amount)).subscribe(datas => {
           if (datas.status == "save") {
 
             this.drugrecive.qty = String(Number(this.drugrecive.qty) + Number(this.data.amount));
@@ -103,7 +103,7 @@ export class OrdersDrugComponent implements OnInit {
       alert("กรุณากรอกข้อมูลให้ครบถ้วน");
     }
 
-    
+
 
   }
 
@@ -116,17 +116,17 @@ export class OrdersDrugComponent implements OnInit {
       console.log(data);
     })
   }s
-  
+
 
   ngOnInit() {
 
     this.getStaffOnline().subscribe(data => {
       console.log(data);
-      this.staffdb = data; 
+      this.staffdb = data;
       this.names = this.staffdb.staffUser;
       console.log(this.names)
     })
-    
+
     this.route.params.subscribe(prams => {
       this.names = prams.name;
       console.log(prams);

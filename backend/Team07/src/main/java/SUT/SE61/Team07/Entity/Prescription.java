@@ -33,9 +33,9 @@ public class Prescription {
     private String namepre;
 
     @NotNull(message = " amountout must not be null to be valid")
-    @Pattern(regexp = "([0-9]{1,5}$)")
-    @Size(min = 1, max = 5)
-    private String amountout;
+    @Max(1000000)
+    @Min(1)
+    private Integer amountout;
 
     @NotNull
     private Date date;
@@ -55,7 +55,7 @@ public class Prescription {
     public Prescription() {
     }
 
-    public Prescription(String namepre, String amountout, Category category, Drug drug, Staff staff) {
+    public Prescription(String namepre, Integer amountout, Category category, Drug drug, Staff staff) {
 
         this.namepre = namepre;
         this.amountout = amountout;

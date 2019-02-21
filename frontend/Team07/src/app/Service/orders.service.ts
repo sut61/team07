@@ -18,7 +18,7 @@ export class OrdersService {
 
 
 
-  PostOrders(nameorders: string, partnersId: number, catalogId: number,drugId :number,staff :string, amount: string): Observable<any> {
+  PostOrders(nameorders: string, partnersId: number, catalogId: number,drugId :number,staff :string, amount: Number): Observable<any> {
 
     console.log(this.API + '/Orders-insert/nameorders/' + nameorders + '/partnersId/' + partnersId + '/catalogId/' + catalogId + '/amount/' + amount)
     return this.http.post(this.API + '/Orders-insert/nameorders/' + nameorders + '/partnersId/' + partnersId + '/catalogId/' + catalogId + '/drugId/' + drugId + '/staff/' + staff +'/amount/' + amount,{});

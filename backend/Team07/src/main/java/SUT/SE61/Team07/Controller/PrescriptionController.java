@@ -45,7 +45,7 @@ class PrescriptionController {
 
     @PostMapping("/Prescription-insert/nameprescription/{nameprescription}/amountout/{amountout}/CategoryId/{CategoryId}/DrugId/{DrugId}/staff/{staff}")
     public ResponseEntity<Map<String, Object>> Drugsumbit(@PathVariable("nameprescription") String nameprescription,
-            @PathVariable("amountout") String amountout, @PathVariable("CategoryId") Long CategoryId,
+            @PathVariable("amountout") Integer amountout, @PathVariable("CategoryId") Long CategoryId,
             @PathVariable("DrugId") Long DrugId, @PathVariable("staff") String staff) {
 
         Prescription P = this.prescriptionrepository.findByNamepre(nameprescription);

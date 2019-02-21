@@ -213,9 +213,9 @@ public class DatabaseLoader implements ApplicationRunner {
         Medicine M2 = this.medicinerepository.findBymedicineId(2L);
         Medicine M3 = this.medicinerepository.findBymedicineId(3L);
 
-        this.drugdatarepository.save(new Drugdata("John", D1, S1, C1, M1));
-        this.drugdatarepository.save(new Drugdata("Bowling", D2, S2, C2, M2));
-        this.drugdatarepository.save(new Drugdata("Frame", D3, S3, C3, M3));
+        this.drugdatarepository.save(new Drugdata("ยาใช้ภายนอก ทาบริเวณที่บวม", D1, S1, C1, M1));
+        this.drugdatarepository.save(new Drugdata("กินครั้งละ 1 เม็ด ก่อนนอน", D2, S2, C2, M2));
+        this.drugdatarepository.save(new Drugdata("กินครั้งละ 2 เม็ด หลังอาหารเช้า", D3, S3, C3, M3));
 
         this.ordersreciptRepository.save(new OrdersReceipt(10));
         this.ordersreciptRepository.save(new OrdersReceipt(20));
