@@ -187,9 +187,9 @@ public class DatabaseLoader implements ApplicationRunner {
         Worktime W2 = this.worktimerepository.findBytimeId(2L);
         Worktime W3 = this.worktimerepository.findBytimeId(3L);
 
-        this.showHrsrepository.save(new ShowHrs(S1, De1, W1));
-        this.showHrsrepository.save(new ShowHrs(S2, De2, W2));
-        this.showHrsrepository.save(new ShowHrs(S3, De3, W3));
+        this.showHrsrepository.save(new ShowHrs(S1, De1, W1,"take leave"));
+        this.showHrsrepository.save(new ShowHrs(S2, De2, W2,""));
+        this.showHrsrepository.save(new ShowHrs(S3, De3, W3,"take sick leave"));
 
         this.addressrepository.save(new Address("48/2 หมู่10 ต.หัวสำโรง อ.ท่าวุ้ง จ.ลพบุรี 15150"));
         this.addressrepository.save(new Address("Pocinki"));

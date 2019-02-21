@@ -1,119 +1,247 @@
-// package SUT.SE61.Team07;
+package SUT.SE61.Team07;
 
-// import org.junit.Test;
-// import org.junit.runner.RunWith;
-// import org.springframework.boot.test.context.SpringBootTest;
-// import org.springframework.test.context.junit4.SpringRunner;
-// import static org.junit.Assert.assertEquals;
-// import static org.junit.Assert.fail;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.junit4.SpringRunner;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.fail;
 
-// import java.util.Collections;
-// import java.util.OptionalInt;
-// import java.util.Set;
-// import java.util.Date;
-// import javax.validation.ConstraintViolation;
-// import javax.validation.Validation;
-// import javax.validation.Validator;
-// import javax.validation.ValidatorFactory;
+import java.util.Collections;
+import java.util.OptionalInt;
+import java.util.Set;
+import java.util.Date;
+import javax.validation.ConstraintViolation;
+import javax.validation.Validation;
+import javax.validation.Validator;
+import javax.validation.ValidatorFactory;
 
-// import org.junit.Before;
-// import org.junit.Test;
+import org.junit.Before;
+import org.junit.Test;
 
-// import SUT.SE61.Team07.Entity.*;
-// import SUT.SE61.Team07.Repository.*;
+import SUT.SE61.Team07.Entity.*;
+import SUT.SE61.Team07.Repository.*;
 
-// import org.springframework.beans.factory.annotation.Autowired;
-// import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
-// import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 
-// @RunWith(SpringRunner.class)
-// @DataJpaTest
+@RunWith(SpringRunner.class)
+@DataJpaTest
 
-// public class TestShowHrs{
+public class TestShowHrs{
 
-//     @Autowired
-//     private ShowHrsRepository showHrsrepository;
+    @Autowired     
+   private ShowHrsRepository showHrsRepository;
 
-//     @Autowired
-//     private StaffRepository staffrepository;
+   @Autowired     
+   private StaffRepository staffRepository;
 
-//     @Autowired
-//     private TestEntityManager entityManager;
+   @Autowired     
+   private DepartmentRepository departmentRepository;
 
-//     private Validator validator;
+   @Autowired     
+   private WorktimeRepository worktimeRepository;
 
-//     @Before
-//     public void setup() {
-//         ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
-//         validator = factory.getValidator();
-//     }
+    @Autowired
+    private TestEntityManager entityManager;
 
+    private Validator validator;
 
+    @Before
+    public void setup() {
+        ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
+        validator = factory.getValidator();
+    }
 
-//     // ทดสอบ save data ShowHrs ปกติ
-//     @Test
-//     public void testTestInsertShowHrsDataSuccess() {
-//         ShowHrs ss = new ShowHrs();
-//         ss.setDate(new Date());
-//         // ss.setDate(new Date());
+    @Test
+    public void contextLoads() {
+        System.out.println("Test Successful");
+    }
 
-//         try {
-//             entityManager.persist(ss);
-//             entityManager.flush();
-//         } catch (javax.validation.ConstraintViolationException e) {
-//             fail("Should not pass to this line");
-//         }
-//     }
+    // ทดสอบ save data ShowHrs ปกติ
+    @Test
+    public void testTestInsertShowHrsDataSuccess() {
+        ShowHrs Sh = new ShowHrs();
+        Staff S = this.staffRepository.findByStaffId(1L);
+        Department D = this.departmentRepository.findBydeptId(1L);
+        Worktime W = this.worktimeRepository.findBytimeId(1L);
+        Sh.setStaff(S);
+        Sh.setDepartment(D);
+        Sh.setWorktime(W);
+        Sh.setNote("take leave");
+        Sh.setDate(new Date());
+        try {
+            entityManager.persist(Sh);
+            entityManager.flush();
+        }  catch (javax.validation.ConstraintViolationException e) {
+            System.out.println();
+            System.out.println();
+            System.out.println();
+            System.out.println(
+                    "============================================================ from testPatternNameInvoice =============================================================");
+            System.out.println(e);
+            System.out.println();
+            System.out.println();
+            Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
+            assertEquals(violations.isEmpty(), false);
+            assertEquals(violations.size(), 1);
+            // fail("Should not pass to this line");
+        }
+    }
 
-//     // ทดสอบห้าม ShowHrs เป็น not null
-//     @Test
-//     public void testTestShowHrsNotNull() {
-//         ShowHrs ss = new ShowHrs();
-//         ss.setDate(null);
-//         try {
-//             entityManager.persist(ss);
-//             entityManager.flush();
-//             fail("Should not pass to this line");
-//         } catch (javax.validation.ConstraintViolationException e) {
-//             Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
-//             assertEquals(violations.isEmpty(), false);
-//             assertEquals(violations.size(), 1);
-//         }
-//     }
-// //    // ทดสอบ  ความยาวของ Orders name  ไม่ถึง 8
-// //
-// //    @Test
-// //    public void testLengthMinimum8(){
-// //        Staff st = new Staff();
-// //        st.setName("O123456");
-// //        //ss.setAmount("20");
-// //        try {
-// //            entityManager.persist(ss);
-// //            entityManager.flush();
-// //
-// //            fail("Should not pass to this line");
-// //        } catch(javax.validation.ConstraintViolationException e) {
-// //            Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
-// //            assertEquals(violations.isEmpty(), false);
-// //            assertEquals(violations.size(),2);
-// //        }
-// //    }
-// //
-// //    // ทดสอบ  ความยาวของ Orders name  มากกว่า 10
-// //    @Test
-// //    public void testLengthNotEquals10(){
-// //        Staff ss = new Staff();
-// //        st.setName("O1234567891");
-// //        //os.setAmount("20");
-// //        try {
-// //            entityManager.persist(os);
-// //            entityManager.flush();
-// //
-// //            fail("Should not pass to this line");
-// //        } catch(javax.validation.ConstraintViolationException e) {
-// //            Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
-// //            assertEquals(violations.isEmpty(), false);
-// //            assertEquals(violations.size(),2);
-// //        }
-// //    }
-// }
+    // ทดสอบห้าม ShowHrs เป็น not null
+    @Test
+    public void testTestInsertShowHrsDataNotNull() {
+        ShowHrs Sh = new ShowHrs();
+        Staff S = this.staffRepository.findByStaffId(1L);
+        Department D = this.departmentRepository.findBydeptId(1L);
+        Worktime W = this.worktimeRepository.findBytimeId(1L);
+        Sh.setStaff(S);
+        Sh.setDepartment(D);
+        Sh.setWorktime(null);
+        Sh.setNote("take leave");
+        Sh.setDate(new Date());
+        try {
+            entityManager.persist(Sh);
+            entityManager.flush();
+            fail("Should not pass to this line");
+        } catch (javax.validation.ConstraintViolationException e) {
+            System.out.println();
+            System.out.println();
+            System.out.println();
+            System.out.println(
+                    "============================================================ from testTestInvoiceNotNull =============================================================");
+            System.out.println(e);
+            System.out.println();
+            System.out.println();
+            Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
+            assertEquals(violations.isEmpty(), false);
+            assertEquals(violations.size(), 1);
+        }
+    }
+    @Test
+    public void testTestInsertShowHrsDataPatten() {
+        ShowHrs Sh = new ShowHrs();
+        Staff S = this.staffRepository.findByStaffId(1L);
+        Department D = this.departmentRepository.findBydeptId(1L);
+        Worktime W = this.worktimeRepository.findBytimeId(1L);
+        Sh.setStaff(S);
+        Sh.setDepartment(D);
+        Sh.setWorktime(W);
+        Sh.setNote("1234567899");
+        Sh.setDate(new Date());
+        try {
+            entityManager.persist(Sh);
+            entityManager.flush();
+            fail("Should not pass to this line");
+        } catch (javax.validation.ConstraintViolationException e) {
+            System.out.println();
+            System.out.println();
+            System.out.println();
+            System.out.println(
+                    "============================================================ from testTestInsertShowHrsDataPatten =============================================================");
+            System.out.println(e);
+            System.out.println();
+            System.out.println();
+            Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
+            assertEquals(violations.isEmpty(), false);
+            assertEquals(violations.size(), 1);
+        }
+    }
+    @Test
+    public void testMaxShowHrssize25() {
+        ShowHrs Sh = new ShowHrs();
+        Staff S = this.staffRepository.findByStaffId(1L);
+        Department D = this.departmentRepository.findBydeptId(1L);
+        Worktime W = this.worktimeRepository.findBytimeId(1L);
+        Sh.setStaff(S);
+        Sh.setDepartment(D);
+        Sh.setWorktime(W);
+        Sh.setNote("take leaveeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee");
+        Sh.setDate(new Date());
+        try {
+            entityManager.persist(Sh);
+            entityManager.flush();
+            fail("Should not pass to this line");
+        } catch (javax.validation.ConstraintViolationException e) {
+            System.out.println();
+            System.out.println();
+            System.out.println();
+            System.out.println(
+                    "============================================================ from testMaxShowHrssize25 =============================================================");
+            System.out.println(e);
+            System.out.println();
+            System.out.println();
+            Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
+            assertEquals(violations.isEmpty(), false);
+            assertEquals(violations.size(), 2);
+        }
+    }
+    @Test
+    public void testMinShowHrssize3() {
+        ShowHrs Sh = new ShowHrs();
+        Staff S = this.staffRepository.findByStaffId(1L);
+        Department D = this.departmentRepository.findBydeptId(1L);
+        Worktime W = this.worktimeRepository.findBytimeId(1L);
+        Sh.setStaff(S);
+        Sh.setDepartment(D);
+        Sh.setWorktime(W);
+        Sh.setNote("ta");
+        Sh.setDate(new Date());
+        try {
+            entityManager.persist(Sh);
+            entityManager.flush();
+            fail("Should not pass to this line");
+        } catch (javax.validation.ConstraintViolationException e) {
+            System.out.println();
+            System.out.println();
+            System.out.println();
+            System.out.println(
+                    "============================================================ from testMinShowHrssize3 =============================================================");
+            System.out.println(e);
+            System.out.println();
+            System.out.println();
+            Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
+            assertEquals(violations.isEmpty(), false);
+            assertEquals(violations.size(), 1);
+        }
+    }
+
+//    // ทดสอบ  ความยาวของ Orders name  ไม่ถึง 8
+//
+//    @Test
+//    public void testLengthMinimum8(){
+//        Staff st = new Staff();
+//        st.setName("O123456");
+//        //ss.setAmount("20");
+//        try {
+//            entityManager.persist(ss);
+//            entityManager.flush();
+//
+//            fail("Should not pass to this line");
+//        } catch(javax.validation.ConstraintViolationException e) {
+//            Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
+//            assertEquals(violations.isEmpty(), false);
+//            assertEquals(violations.size(),2);
+//        }
+//    }
+//
+//    // ทดสอบ  ความยาวของ Orders name  มากกว่า 10
+//    @Test
+//    public void testLengthNotEquals10(){
+//        Staff ss = new Staff();
+//        st.setName("O1234567891");
+//        //os.setAmount("20");
+//        try {
+//            entityManager.persist(os);
+//            entityManager.flush();
+//
+//            fail("Should not pass to this line");
+//        } catch(javax.validation.ConstraintViolationException e) {
+//            Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
+//            assertEquals(violations.isEmpty(), false);
+//            assertEquals(violations.size(),2);
+//        }
+//    }
+}

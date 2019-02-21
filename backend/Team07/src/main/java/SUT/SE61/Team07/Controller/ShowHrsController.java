@@ -43,17 +43,18 @@ import SUT.SE61.Team07.Repository.*;
     public Collection<ShowHrs>showHrsList() {
         return showHrsRepository.findAll().stream().collect(Collectors.toList());
    }
-   @PostMapping("ShowHrs-insert/staff/{staffId}/department/{deptId}/worktime/{timeId}")
+   @PostMapping("ShowHrs-insert/staff/{staffId}/department/{deptId}/worktime/{timeId}/Note/{Note}")
     public ResponseEntity<Map<String,Object>> ShowHrssubmit(@PathVariable ("staffId") Long staffId,
             @PathVariable ("deptId") Long deptId, 
-            @PathVariable ("timeId") Long timeId  ){             
+            @PathVariable ("timeId") Long timeId,
+            @PathVariable ("Note") String Note ){             
     
       try {
          Staff S = this.staffRepository.findByStaffId(staffId);
          Department D = this.departmentRepository.findBydeptId(deptId);
          Worktime W = this.worktimeRepository.findBytimeId(timeId);
 
-         this.showHrsRepository.save(new ShowHrs(S, D, W));
+         this.showHrsRepository.save(new ShowHrs(S, D, W,"take leave"));
 
          Map<String, Object> json = new HashMap<String, Object>();
          json.put("success", true);
