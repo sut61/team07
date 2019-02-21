@@ -26,7 +26,7 @@ public class Drugdata {
     @NotNull private  Long drugdataId;
 
     @NotNull(message="detail  must not be null to be valid")
-    //@Size(min = 10, max = 20)
+    @Size(min = 10, max = 35)
     private  String detail; //สรรพคุณ
 
     @ManyToOne(fetch = FetchType.EAGER)
