@@ -5,7 +5,7 @@
   display: flex;
   align-content: center;
   align-items: center;
-  height: 60px;
+  height: 40px;
 }
 
 .example-margin {
@@ -54,6 +54,9 @@ margin: auto;
 
  
 h2{
-  font-size: 145%;
+  font-size: 120%;
 }
  
+h1{
+  font-size: 150%;
+}

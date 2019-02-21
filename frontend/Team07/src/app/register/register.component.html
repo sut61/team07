@@ -1,10 +1,7 @@
-    <h2 align="center">
-    <img src="https://sv1.picz.in.th/images/2019/01/24/TS6xHy.png" width="200" height="200">
-
-  </h2>
+   
     <h2 align="center">Welcome To YaMaii</h2>
     <h2 align="center">ร้านยามั้ย ยินดีต้อนรับ</h2>
-    <h2 align="center">สมัครสมาขิก</h2>
+   
 ิิ<br>
 <br>
 <mat-card-actions>
@@ -36,14 +33,14 @@
 
   <a mat-stroked-button routerLink="/bill">จัดการคลังสินค้า</a> -->
   <a mat-stroked-button routerLink="" (click) = "setstaffOfline()">ออกจากระบบ</a>
-
-
-
+   
 </mat-card-actions>
 
 <br><br>
 
-
+<h1 style="text-align:center">
+  สมัครสมาขิก
+</h1>
 
     <mat-card class="register-all">
 
@@ -91,8 +88,18 @@
             </mat-form-field>
       </td>
       </tr>
-      <tr>
+      
 
+          <tr>
+              <td>
+                <mat-form-field class="example-first-last ">
+                  <input matInput placeholder="AllergyHistory" [(ngModel)]="data.allergyHistory" required name="AllergyHistory" #AllergyHistory>
+                </mat-form-field>
+              </td>
+            </tr>
+      
+          
+       <tr>
         <td>
           <mat-form-field class="example-first-last ">
             <input matInput placeholder="Address" [(ngModel)]="data.address" required name="Address" #Address>
@@ -107,23 +114,6 @@
           <mat-form-field class="example-first-last ">
             <input matInput placeholder="Phonenumber" [(ngModel)]="data.phonenumber" required name="Phonenumber"
               #Phonenumber>
-          </mat-form-field>
-        </td>
-      </tr>
-
-      <tr>
-        <td>
-          <mat-form-field class="example-first-last ">
-            <input matInput placeholder="Username" [(ngModel)]="data.username" required name="Username" #Username>
-          </mat-form-field>
-        </td>
-      </tr>
-
-      <tr>
-        <td>
-          <mat-form-field class="example-first-last ">
-            <input matInput placeholder="Password" type="password" [(ngModel)]="data.password" required name="Password"
-              #Password>
           </mat-form-field>
         </td>
       </tr>

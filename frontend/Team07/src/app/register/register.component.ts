@@ -24,10 +24,11 @@ export class RegisterComponent implements OnInit {
     firstname: '',
     gender: '',
     bloodTypeSelect: '',
+    allergyHistory: '',
     address: '',
-    phonenumber: '',
-    username: '',
-    password: ''
+    phonenumber: ''
+    
+
   };
   customers: any = {
     initialSelect: '',
@@ -93,10 +94,11 @@ export class RegisterComponent implements OnInit {
       firstname: data.firstname,
       gender: data.gender,
       bloodType: data.bloodType,
+      allergyHistory: data.allergyHistory,
       address: data.address,
       phonenumber: data.phonenumber,
-      username: data.username,
-      password: data.password,
+     
+     
       
       
       
