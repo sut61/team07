@@ -64,7 +64,7 @@ public class TestPrescription {
         Category C = this.categoryrepository.findByCategoryId(1L);
         Staff S = this.staffrepository.findByStaffId(1L);
         mag.setNamepre("P0000000");
-        mag.setAmountout("10");
+        mag.setAmountout(10);
         mag.setDrug(D);
         mag.setCategory(C);
         mag.setStaff(S);
@@ -104,7 +104,7 @@ public class TestPrescription {
         Category C = this.categoryrepository.findByCategoryId(1L);
         Staff S = this.staffrepository.findByStaffId(1L);
         mag.setNamepre(null);
-        mag.setAmountout("10");
+        mag.setAmountout(10);
         mag.setDrug(D);
         mag.setCategory(C);
         mag.setStaff(S);
@@ -135,7 +135,7 @@ public class TestPrescription {
         Category C = this.categoryrepository.findByCategoryId(1L);
         Staff S = this.staffrepository.findByStaffId(1L);
         mag.setNamepre("P0000000");
-        mag.setAmountout(null);
+        mag.setAmountout(0);
         mag.setDrug(D);
         mag.setCategory(C);
         mag.setStaff(S);
@@ -167,7 +167,7 @@ public class TestPrescription {
         Category C = this.categoryrepository.findByCategoryId(1L);
         Staff S = this.staffrepository.findByStaffId(1L);
         mag.setNamepre("P0000000");
-        mag.setAmountout("10");
+        mag.setAmountout(10);
         mag.setDrug(D);
         mag.setCategory(C);
         mag.setStaff(S);
@@ -199,7 +199,7 @@ public class TestPrescription {
         Category C = this.categoryrepository.findByCategoryId(1L);
         Staff S = this.staffrepository.findByStaffId(1L);
         mag.setNamepre("A0000000");
-        mag.setAmountout("10");
+        mag.setAmountout(10);
         mag.setDrug(D);
         mag.setCategory(C);
         mag.setStaff(S);
@@ -224,38 +224,7 @@ public class TestPrescription {
         }
     }
 
-    // ทดสอบ Amount name ไม่ใช่ตัว เลข
-    @Test
-    public void testPatternAmount() {
-        Prescription mag = new Prescription();
-        Drug D = this.drugrepository.findByDrugId(1L);
-        Category C = this.categoryrepository.findByCategoryId(1L);
-        Staff S = this.staffrepository.findByStaffId(1L);
-        mag.setNamepre("P0000000");
-        mag.setAmountout("A0");
-        mag.setDrug(D);
-        mag.setCategory(C);
-        mag.setStaff(S);
-        mag.setDate(new Date());
-        try {
-            entityManager.persist(mag);
-            entityManager.flush();
-
-            fail("Should not pass to this line");
-        } catch (javax.validation.ConstraintViolationException e) {
-            System.out.println();
-            System.out.println();
-            System.out.println();
-            System.out.println(
-                    "============================================================ from testPatternAmount =============================================================");
-            System.out.println(e);
-            System.out.println();
-            System.out.println();
-            Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
-            assertEquals(violations.isEmpty(), false);
-            assertEquals(violations.size(), 1);
-        }
-    }
+  
 
     // ทดสอบ ความยาวของ Prescription ไม่ถึง 8
     @Test
@@ -265,7 +234,7 @@ public class TestPrescription {
         Category C = this.categoryrepository.findByCategoryId(1L);
         Staff S = this.staffrepository.findByStaffId(1L);
         mag.setNamepre("P12345");
-        mag.setAmountout("10");
+        mag.setAmountout(10);
         mag.setDrug(D);
         mag.setCategory(C);
         mag.setStaff(S);
@@ -289,7 +258,7 @@ public class TestPrescription {
         }
     }
 
-    // ทดสอบ ความยาวของ AmountOut ไม่ถึง 1
+    // ทดสอบ  AmountOut ไม่ถึง 1
     @Test
     public void testMinAmountOut1() {
         Prescription mag = new Prescription();
@@ -297,7 +266,7 @@ public class TestPrescription {
         Category C = this.categoryrepository.findByCategoryId(1L);
         Staff S = this.staffrepository.findByStaffId(1L);
         mag.setNamepre("P0000000");
-        mag.setAmountout("");
+        mag.setAmountout(0);
         mag.setDrug(D);
         mag.setCategory(C);
         mag.setStaff(S);
@@ -317,11 +286,11 @@ public class TestPrescription {
             System.out.println();
             Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
             assertEquals(violations.isEmpty(), false);
-            assertEquals(violations.size(), 2);
+            assertEquals(violations.size(), 1);
         }
     }
 
-    // ทดสอบ ความยาวของ AmountOut เกิน 8
+    // ทดสอบ ความยาวของ AmountOut เกิน 10000000
     @Test
     public void testMaxAmountOut8() {
         Prescription mag = new Prescription();
@@ -329,7 +298,7 @@ public class TestPrescription {
         Category C = this.categoryrepository.findByCategoryId(1L);
         Staff S = this.staffrepository.findByStaffId(1L);
         mag.setNamepre("P0000000");
-        mag.setAmountout("1222222236");
+        mag.setAmountout(100000000);
         mag.setDrug(D);
         mag.setCategory(C);
         mag.setStaff(S);
@@ -349,7 +318,7 @@ public class TestPrescription {
             System.out.println();
             Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
             assertEquals(violations.isEmpty(), false);
-            assertEquals(violations.size(), 2);
+            assertEquals(violations.size(), 1);
         }
     }
 
@@ -361,7 +330,7 @@ public class TestPrescription {
         Category C = this.categoryrepository.findByCategoryId(1L);
         Staff S = this.staffrepository.findByStaffId(1L);
         mag.setNamepre("P1234567890123412345678901234");
-        mag.setAmountout("10");
+        mag.setAmountout(10);
         mag.setDrug(D);
         mag.setCategory(C);
         mag.setStaff(S);
@@ -392,7 +361,7 @@ public class TestPrescription {
         Category C = this.categoryrepository.findByCategoryId(1L);
         Staff S = this.staffrepository.findByStaffId(1L);
         mag.setNamepre("P0000001");
-        mag.setAmountout("10");
+        mag.setAmountout(10);
         mag.setDrug(D);
         mag.setCategory(C);
         mag.setStaff(S);
@@ -401,7 +370,7 @@ public class TestPrescription {
 
         Prescription mag2 = new Prescription();
         mag2.setNamepre("P0000001");
-        mag2.setAmountout("10");
+        mag2.setAmountout(10);
         mag2.setDrug(D);
         mag2.setCategory(C);
         mag2.setStaff(S);
