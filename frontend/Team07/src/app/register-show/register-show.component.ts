@@ -33,8 +33,12 @@ export class RegisterShowComponent implements OnInit {
 
 
   saveregister() {
-    this.app.Customersumbit(Number(this.initialId), String(this.data.firstname), Number(this.genderId), Number(this.bloodtypeId), String(this.data.allergyHistory), String(this.data.address), String(this.data.phonenumber)).subscribe(data => {
-      console.log(this.data)
+    this.app.Customersumbit(Number(this.initialId), String(this.data.firstname), Number(this.genderId), Number(this.bloodtypeId), String(this.data.allergyHistory), String(this.data.address), String(this.data.phonenumber)).subscribe(datsa => {
+     if(datsa.status =="save"){
+       alert("save complete")
+     }else{
+       alert("not complete")
+     }
     })
   }
 
