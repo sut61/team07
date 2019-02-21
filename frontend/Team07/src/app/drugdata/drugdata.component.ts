@@ -22,6 +22,7 @@ export class DrugdataComponent implements OnInit {
   data: any = {}
   datas: any = {}
   staffId: any = {}
+  count: 0;
 
   drug: Array<any>;
   drugselect = '';
@@ -43,11 +44,48 @@ export class DrugdataComponent implements OnInit {
   getStaffOnline() {
     return this.http.get(this.API + '/StaffOnline/' + "true");
   }
+
   Savedrugdata() {
-    this.drugdataService.DrugDataPost(String(this.data.nameexplantion), Number(this.drugselect), Number(this.staffdb.staffId), Number(this.categoryselect), Number(this.medicineselect)).subscribe(data => {
+    let mc = /\w{2,35}$/g;
+
+    this.count = 0;
+    if (this.drugselect === undefined || this.drugselect === null || this.drugselect === "") {
+      this.count = 0;
+    }else {
+      this.count += 1;
+    }
+    if (this.categoryselect === undefined || this.categoryselect === null || this.categoryselect === "") {
+      this.count = 0;
+    }else {
+      this.count += 1;
+    }
+    if (this.medicineselect === undefined || this.medicineselect === null || this.medicineselect === "") {
+      this.count = 0;
+    }else {
+      this.count += 1;
+    }
+    if (this.data.nameexplantion === undefined || this.data.nameexplantion === null) {
+      this.count = 0;
+    } else {
+      this.count += 1;
+    }
+    if (this.count >= 4) {
+      if (mc.test(this.data.Drugdata)) {
+        this.drugdataService.DrugDataPost(String(this.data.nameexplantion), Number(this.drugselect), Number(this.staffdb.staffId), Number(this.categoryselect), Number(this.medicineselect)).subscribe(data => {
       console.log(this.data)
+      if (data.status == "save") {
+        alert("บันทึกสำเร็จ")
+      } else {
+        alert("บันทึกไม่สำเร็จ")
+      }
     })
-  }
+      } else{
+          alert("กรอกให้ครบถ้วน")
+        }
+    }else {
+        alert("กรุณากรอกข้อมูลให้ครบถ้วน")
+    }
+}
   Savemedicine() {
     this.drugdataService.MedicinePost(String(this.data.medicinex)).subscribe(data => {
       console.log(this.data)
