@@ -136,9 +136,9 @@ public class DatabaseLoader implements ApplicationRunner {
         Partners partners2 = this.partnersrepository.findBypartnersId(2L);
         Partners partners3 = this.partnersrepository.findBypartnersId(3L);
 
-        this.ordersrepository.save(new Orders("O1234567", "20", partners1, catalog1, D1, S1));
-        this.ordersrepository.save(new Orders("O7654321", "40", partners2, catalog2, D2, S2));
-        this.ordersrepository.save(new Orders("O5555555", "60", partners3, catalog3, D3, S3));
+        //this.ordersrepository.save(new Orders("O1234567", "20", partners1, catalog1, D1, S1));
+       // this.ordersrepository.save(new Orders("O7654321", "40", partners2, catalog2, D2, S2));
+       // this.ordersrepository.save(new Orders("O5555555", "60", partners3, catalog3, D3, S3));
 
         // /* end john db loader */
 

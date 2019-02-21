@@ -90,7 +90,7 @@ class StaffController {
             @PathVariable("staffName") String staffName, @PathVariable("staffUser") String staffUser,
             @PathVariable("staffPass") String staffPass, @PathVariable("staffPhone") String staffPhone) {
 
-        System.out.println("==============================");
+        System.out.println("=============stafflogin=================");
 
         System.out.println(onlineId);
         System.out.println(staffName);
@@ -98,7 +98,7 @@ class StaffController {
         System.out.println(staffPass);
         System.out.println(staffPhone);
 
-        System.out.println("==============================");
+        System.out.println("================stafflogin==============");
         Staff staff = this.staffrepository.findByStaffId(onlineId);
         if (staff != null) {
 

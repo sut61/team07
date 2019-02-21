@@ -50,7 +50,7 @@ class OrdersController {
     @PostMapping("/Orders-insert/nameorders/{nameorders}/partnersId/{partnersId}/catalogId/{catalogId}/drugId/{drugId}/staff/{staff}/amount/{amount}")
     public ResponseEntity<Map<String, Object>> Orderssumbit(@PathVariable("nameorders") String nameorders,
             @PathVariable("partnersId") Long partnersId, @PathVariable("catalogId") Long catalogId,@PathVariable("drugId") Long drugId,@PathVariable("staff") String staff,
-            @PathVariable("amount") String amount) {
+            @PathVariable("amount") Integer amount) {
 
         Orders O = this.ordersrepository.findByname(nameorders);
         if (O == null) {
