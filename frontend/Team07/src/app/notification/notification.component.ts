@@ -68,13 +68,20 @@ export class NotificationComponent implements OnInit {
 
 
   SaveNotification() {
-    let rt = /[0-9]{1,2}\s(กุมภาพันธ์|มกราคม|มีนาคม|เมษายน|พฤษภาคม|มิถุนายน|กรกฎาคม|สิงหาคม|กันยายน|ตุลาคม|พฤษจิกายน|ธันวาคม)\s[0-9]{2,4}/
+    let rt = /[0-9]{1,2}\s(กุมภาพันธ์|มกราคม|มีนาคม|เมษายน|พฤษภาคม|มิถุนายน|กรกฎาคม|สิงหาคม|กันยายน|ตุลาคม|พฤษจิกายน|ธันวาคม)\s[0-9]{2,4}/g;
     if (this.status === undefined || this.status == "" || this.status == "") {
       alert("ไม่พบผู้ใช้ที่ท่านค้นหา")
         } else {
-            if(rt.test(this.data.Date)){
+            if(rt.test(this.data.timestartEat)){
               this.notificationservice.postNotification(Number(this.customer.customerId),Number(this.drugselect),Number(this.timeEatselect),String(this.data.timestartEat)).subscribe(data=>{
               console.log(data);
+              
+              if (data.status == "save") {
+                alert("บันทึกสำเร็จ");
+                window.location.reload();
+          } else {
+            alert(data.status);
+          }
               })
             }else{
               alert("ใส่เป็นเดือน เช่น 14 กุมภาพันธ์ 2562")
