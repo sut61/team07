@@ -77,10 +77,9 @@ public class TestCustomer{
         cus.setGender(G); 
         cus.setBloodType(B);
         cus.setCustomerAllergic("คนไข้ปฏิเสธการแพ้ยา");
-        cus.setCustomerAddress("717 หมู่5 ต.ในเมือง อ.เมือง จ.นครราชสีมา 30000");
+        cus.setCustomerAddress("7/7 หมู่5 ต.ในเมือง อ.เมือง จ.นครราชสีมา 30000");
         cus.setCustomerPhonenumber("0612345678");
-        cus.setCustomerUserID("B5802838");
-        cus.setCustomerPassword("123456");
+        
         
    try {
             entityManager.persist(cus);
@@ -108,15 +107,15 @@ public class TestCustomer{
     }
     
 
-    // ทดสอบ save Customer ห้ามเป็น null
+    // ทดสอบ  CustomerName ห้ามเป็น null
 
    @Test
-   public void testTestCustomerdataNotNull() {
+   public void testCustomerNameNull() {
 
        Initial I = this.initialrepository.findByInitialId(1L);
        Gender G = this.genderrepository.findByGenderId(1L);
        BloodType B = this.bloodTyperepository.findByBloodTypeId(1L);
-       Notification no = new Notification();
+      
 
        Customer cus = new Customer();
        cus.setInitial(I);
@@ -124,10 +123,9 @@ public class TestCustomer{
        cus.setGender(G); 
        cus.setBloodType(B);
        cus.setCustomerAllergic("คนไข้ปฏิเสธการแพ้ยา");
-       cus.setCustomerAddress("717 หมู่5 ต.ในเมือง อ.เมือง จ.นครราชสีมา 30000");
+       cus.setCustomerAddress("7/7 หมู่5 ต.ในเมือง อ.เมือง จ.นครราชสีมา 30000");
        cus.setCustomerPhonenumber("0612345678");
-       cus.setCustomerUserID("B5802838");
-       cus.setCustomerPassword("123456");
+       
       
       
        try {
@@ -139,20 +137,139 @@ public class TestCustomer{
            System.out.println();
            System.out.println();
            System.out.println(
-                   "============================================================ from testTestNotificationdataNotNull =============================================================");
+                   "============================================================ from testCustomerNameNulll =============================================================");
            System.out.println(e);
            System.out.println();
            System.out.println();
            Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
            assertEquals(violations.isEmpty(), false);
-           assertEquals(violations.size(), 1);
+           assertEquals(violations.size(), 2);
        }
      }
 
-      // ทดสอบ ความยาวของ Customer ไม่ถึง 10
- /*  @Test
-   public void testMinCustomersize10() {
+     // ทดสอบ  CustomerAllergicNull ห้ามเป็น null
+
+   @Test
+   public void testCustomerAllergicNull() {
+
+       Initial I = this.initialrepository.findByInitialId(1L);
+       Gender G = this.genderrepository.findByGenderId(1L);
+       BloodType B = this.bloodTyperepository.findByBloodTypeId(1L);
       
+
+       Customer cus = new Customer();
+       cus.setInitial(I);
+       cus.setCustomerName("Tuntika");
+       cus.setGender(G); 
+       cus.setBloodType(B);
+       cus.setCustomerAllergic(null);
+       cus.setCustomerAddress("7/7 หมู่5 ต.ในเมือง อ.เมือง จ.นครราชสีมา 30000");
+       cus.setCustomerPhonenumber("0612345678");
+       
+      
+      
+       try {
+           entityManager.persist(cus);
+           entityManager.flush();
+           fail("Should not pass to this line");
+       } catch (javax.validation.ConstraintViolationException e) {
+           System.out.println();
+           System.out.println();
+           System.out.println();
+           System.out.println(
+                   "============================================================ from testCustomerAllergicNull =============================================================");
+           System.out.println(e);
+           System.out.println();
+           System.out.println();
+           Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
+           assertEquals(violations.isEmpty(), false);
+           assertEquals(violations.size(), 2);
+       }
+     }
+
+         // ทดสอบ  CustomerPhonenumberNull ห้ามเป็น null
+
+   @Test
+   public void testCustomerPhonenumberNull() {
+
+       Initial I = this.initialrepository.findByInitialId(1L);
+       Gender G = this.genderrepository.findByGenderId(1L);
+       BloodType B = this.bloodTyperepository.findByBloodTypeId(1L);
+      
+
+       Customer cus = new Customer();
+       cus.setInitial(I);
+       cus.setCustomerName("Tuntika");
+       cus.setGender(G); 
+       cus.setBloodType(B);
+       cus.setCustomerAllergic("คนไข้ปฏิเสธการแพ้ยา");
+       cus.setCustomerAddress("7/7 หมู่5 ต.ในเมือง อ.เมือง จ.นครราชสีมา 30000");
+       cus.setCustomerPhonenumber(null);
+       
+      
+      
+       try {
+           entityManager.persist(cus);
+           entityManager.flush();
+           fail("Should not pass to this line");
+       } catch (javax.validation.ConstraintViolationException e) {
+           System.out.println();
+           System.out.println();
+           System.out.println();
+           System.out.println(
+                   "============================================================ from CustomerPhonenumberNull =============================================================");
+           System.out.println(e);
+           System.out.println();
+           System.out.println();
+           Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
+           assertEquals(violations.isEmpty(), false);
+           assertEquals(violations.size(), 2);
+       }
+     }
+    
+
+     // ทดสอบ Pattern CustomerName ห้ามมีตัวเลข
+    @Test
+    public void testPatternCustomerNameNotNumber() {
+       Initial I = this.initialrepository.findByInitialId(1L);
+       Gender G = this.genderrepository.findByGenderId(1L);
+       BloodType B = this.bloodTyperepository.findByBloodTypeId(1L);
+
+       Customer cus = new Customer();
+       cus.setInitial(I);
+       cus.setCustomerName("tuntika56");
+       cus.setGender(G); 
+       cus.setBloodType(B);
+       cus.setCustomerAllergic("คนไข้ปฏิเสธการแพ้ยา");
+       cus.setCustomerAddress("7/7 หมู่5 ต.ในเมือง อ.เมือง จ.นครราชสีมา 30000");
+       cus.setCustomerPhonenumber("0612345678");
+       
+
+       try {
+        entityManager.persist(cus);
+        entityManager.flush();
+        fail("Should not pass to this line");
+    } catch (javax.validation.ConstraintViolationException e) {
+        System.out.println();
+        System.out.println();
+        System.out.println();
+        System.out.println(
+                "============================================================ from testPatternCustomerNameNotNumber   =============================================================");
+        System.out.println(e);
+        System.out.println();
+        System.out.println();
+        Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
+        assertEquals(violations.isEmpty(), false);
+        assertEquals(violations.size(), 2);
+    }
+} 
+
+     
+    
+
+    // ทดสอบ ความยาวของ MinCustomerAddress ไม่เกิน 3
+    @Test
+    public void testMinCustomerAddresssize3() {
        Initial I = this.initialrepository.findByInitialId(1L);
        Gender G = this.genderrepository.findByGenderId(1L);
        BloodType B = this.bloodTyperepository.findByBloodTypeId(1L);
@@ -162,27 +279,65 @@ public class TestCustomer{
        cus.setCustomerName("Tuntika");
        cus.setGender(G); 
        cus.setBloodType(B);
-       cus.setCustomerAddress("717 หมู่5 ต.ในเมือง อ.เมือง จ.นครราชสีมา 30000");
+       cus.setCustomerAllergic("คนไข้ปฏิเสธการแพ้ยา");
+       cus.setCustomerAddress("77");
        cus.setCustomerPhonenumber("0612345678");
-       cus.setCustomerUserID("B5802838");
-       cus.setCustomerPassword("123456");
+       
 
        try {
-           entityManager.persist(cus);
-           entityManager.flush();
-           fail("Should not pass to this line");
-       } catch (javax.validation.ConstraintViolationException e) {
-           System.out.println();
-           System.out.println();
-           System.out.println();
-           System.out.println(
-                   "============================================================ from testMinNotificationsize10  =============================================================");
-           System.out.println(e);
-           System.out.println();
-           System.out.println();
-           Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
-           assertEquals(violations.isEmpty(), false);
-           assertEquals(violations.size(), 2);
-       }
-   } */
+        entityManager.persist(cus);
+        entityManager.flush();
+     fail("Should not pass to this line");
+    } catch (javax.validation.ConstraintViolationException e) {
+        System.out.println();
+        System.out.println();
+        System.out.println();
+        System.out.println(
+                "============================================================ from testMinCustomerize3   =============================================================");
+        System.out.println(e);
+        System.out.println();
+        System.out.println();
+        Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
+        assertEquals(violations.isEmpty(), false);
+        assertEquals(violations.size(), 1);
+    }
+}
+
+    // ทดสอบ ความยาวของ MaxCustomerAddress เกิน 40
+    @Test
+    public void testMaxCustomerAddresssize40() {
+       Initial I = this.initialrepository.findByInitialId(1L);
+       Gender G = this.genderrepository.findByGenderId(1L);
+       BloodType B = this.bloodTyperepository.findByBloodTypeId(1L);
+
+       Customer cus = new Customer();
+       cus.setInitial(I);
+       cus.setCustomerName("Tuntika");
+       cus.setGender(G); 
+       cus.setBloodType(B);
+       cus.setCustomerAllergic("คนไข้ปฏิเสธการแพ้ยา");
+       cus.setCustomerAddress("7/7 หมู่5 ต.ในเมือง อ.เมือง จ.นครราชสีมา 3000000000000000000000");
+       cus.setCustomerPhonenumber("0612345678");
+       
+
+       try {
+        entityManager.persist(cus);
+        entityManager.flush();
+        fail("Should not pass to this line");
+    } catch (javax.validation.ConstraintViolationException e) {
+        System.out.println();
+        System.out.println();
+        System.out.println();
+        System.out.println(
+                "============================================================ from testMaxCustomerize40   =============================================================");
+        System.out.println(e);
+        System.out.println();
+        System.out.println();
+        Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
+        assertEquals(violations.isEmpty(), false);
+        assertEquals(violations.size(), 1);
+    }
+}
+
+
 }

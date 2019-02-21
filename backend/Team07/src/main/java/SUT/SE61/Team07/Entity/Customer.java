@@ -26,16 +26,21 @@ public class Customer {
   
     @NotNull private Long customerId;
 
-    @NotNull(message="customerName must not be null to be valid")
-   // @Pattern(regexp = "\\w{0,3}\\d{8,13}")
-    //@Size(min = 10, max = 20)
+    @NotNull(message="not customerName  to null")
+    @Pattern(regexp = "([A-Za-z]{2,10}$)") //มีอย่างน้อยสองตัวมากสุดสิบตัวใส่ได้แต่ภาษาอังกฤษ
     private  String customerName;
+
+    @NotNull(message="not customerAllergic  to null")
+    private  String customerAllergic;
+
+    @NonNull
+    @Size(min =3 ,max = 40)
+    private  String customerAddress;
+
+    @NotNull(message="not customerPhonenumber  to null")
+    private String customerPhonenumber;
     
-    private @NonNull String customerAllergic;
-    private @NonNull String customerAddress;
-    private @NonNull String customerPhonenumber;
-    private @NonNull String customerUserID;
-    private @NonNull String customerPassword;
+    
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "InitialId")
@@ -53,7 +58,7 @@ public class Customer {
     }
   
     public Customer(Initial initial, String customerName, Gender gender, BloodType bloodType,String customerAllergic, String customerAddress,
-            String customerPhonenumber, String customerUserID, String customerPassword) {
+            String customerPhonenumber) {
 
         this.initial = initial;
         this.customerName = customerName;
@@ -62,8 +67,7 @@ public class Customer {
         this.customerAllergic =customerAllergic;
         this.customerAddress = customerAddress;
         this.customerPhonenumber = customerPhonenumber;
-        this.customerUserID = customerUserID;
-        this.customerPassword = customerPassword;
+        ;
 
     }
 
