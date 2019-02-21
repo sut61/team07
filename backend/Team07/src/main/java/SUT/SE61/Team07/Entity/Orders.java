@@ -1,6 +1,9 @@
 package SUT.SE61.Team07.Entity;
 
 import lombok.*;
+
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
@@ -32,9 +35,9 @@ public class Orders {
     private String name;
 
     @NotNull(message = " amount Orders must not be null to be valid")
-    @Pattern(regexp = "([0-9]{1,13}$)")
-    @Size(min = 1, max = 13)
-    private String amount;
+    @Max(1000000)
+    @Min(1)
+    private Integer amount;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "partnersId")
@@ -55,7 +58,7 @@ public class Orders {
     public Orders() {
     }
 
-    public Orders(String name, String amount, Partners partners, Catalog catalog,Drug drug,Staff staff) {
+    public Orders(String name, Integer amount, Partners partners, Catalog catalog,Drug drug,Staff staff) {
         this.name = name;
         this.amount = amount;
         this.partners = partners;

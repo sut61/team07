@@ -76,7 +76,7 @@ public class TestOrders {
         Staff S = this.staffrepository.findByStaffId(1L);
      
         os.setName("O1234567");
-        os.setAmount("20");
+        os.setAmount(20);
         os.setPartners(P);
         os.setCatalog(C);
         os.setDrug(D);
@@ -122,7 +122,7 @@ public class TestOrders {
         
         os.setName(null);
          os.setDrug(D);
-        os.setAmount("20");
+        os.setAmount(20);
         os.setPartners(P);
         os.setCatalog(C);
         os.setDrug(D);
@@ -192,7 +192,7 @@ public class TestOrders {
      
       
         os.setName("A1234567");
-        os.setAmount("20");
+        os.setAmount(20);
         os.setPartners(P);
         os.setCatalog(C);
         os.setDrug(D);
@@ -217,41 +217,6 @@ public class TestOrders {
         }
     }
 
-    // ทดสอบ amount ไม่ใช่ตัว ตัวเลข
-    @Test
-    public void testPatternamountOrders() {
-        Orders os = new Orders();
-        Partners P = this.partnersrepository.findBypartnersId(1L);
-        Catalog C = this.catalogrepository.findByCatalogId(1L);
-        Drug D = this.drugrepository.findByDrugId(1L);
-        Staff S = this.staffrepository.findByStaffId(1L);
-     
-      
-        os.setName("O1234567");
-        os.setAmount("A20");
-        os.setPartners(P);
-        os.setCatalog(C);
-        os.setDrug(D);
-        os.setStaff(S);
-        try {
-            entityManager.persist(os);
-            entityManager.flush();
-
-            fail("Should not pass to this line");
-        } catch (javax.validation.ConstraintViolationException e) {
-            System.out.println();
-            System.out.println();
-            System.out.println();
-            System.out.println(
-                    "============================================================ from testPatternamountOrders =============================================================");
-            System.out.println(e);
-            System.out.println();
-            System.out.println();
-            Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
-            assertEquals(violations.isEmpty(), false);
-            assertEquals(violations.size(), 1);
-        }
-    }
 
     // ทดสอบ ความยาวของ Orders name ไม่ถึง 8
     @Test
@@ -263,7 +228,7 @@ public class TestOrders {
         Staff S = this.staffrepository.findByStaffId(1L);
      
         os.setName("O123456");
-        os.setAmount("20");
+        os.setAmount(20);
         os.setPartners(P);
         os.setCatalog(C);
         os.setDrug(D);
@@ -287,7 +252,7 @@ public class TestOrders {
         }
     }
 
-    // ทดสอบ ความยาวของ Orders amount ไม่ถึง 1
+    // ทดสอบ  Orders amount ไม่ถึง 1
     @Test
     public void testMinamountsize1() {
         Orders os = new Orders();
@@ -298,7 +263,7 @@ public class TestOrders {
      
         
         os.setName("O1234567");
-        os.setAmount("");
+        os.setAmount(0);
         os.setPartners(P);
         os.setCatalog(C);
         os.setDrug(D);
@@ -318,7 +283,7 @@ public class TestOrders {
             System.out.println();
             Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
             assertEquals(violations.isEmpty(), false);
-            assertEquals(violations.size(), 2);
+            assertEquals(violations.size(), 1);
         }
     }
 
@@ -332,7 +297,7 @@ public class TestOrders {
         Staff S = this.staffrepository.findByStaffId(1L);
      
         os.setName("O123456789124245342352524254745340");
-        os.setAmount("20");
+        os.setAmount(20);
         os.setPartners(P);
         os.setCatalog(C);
         os.setDrug(D);
@@ -356,7 +321,7 @@ public class TestOrders {
         }
     }
 
-    // ทดสอบ ความยาวของ Orders amount เกิน 13
+    // ทดสอบ  Orders amount เกิน 1000000000
     @Test
     public void testMaxsizeamount13() {
         Orders os = new Orders();
@@ -366,7 +331,7 @@ public class TestOrders {
         Staff S = this.staffrepository.findByStaffId(1L);
      
         os.setName("O1234567");
-        os.setAmount("1234567896325874125845");
+        os.setAmount(1000000000);
         os.setPartners(P);
         os.setCatalog(C);
         os.setDrug(D);
@@ -386,7 +351,7 @@ public class TestOrders {
             System.out.println();
             Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
             assertEquals(violations.isEmpty(), false);
-            assertEquals(violations.size(), 2);
+            assertEquals(violations.size(), 1);
         }
     }
 
@@ -399,7 +364,7 @@ public class TestOrders {
         Staff S = this.staffrepository.findByStaffId(1L);
      
         os.setName("O1234567");
-        os.setAmount("20");
+        os.setAmount(20);
         os.setPartners(P);
         os.setCatalog(C);
         os.setDrug(D);
@@ -409,7 +374,7 @@ public class TestOrders {
         Orders os2 = new Orders();
 
         os2.setName("O1234567");
-        os2.setAmount("20");
+        os2.setAmount(20);
         os2.setPartners(P);
         os2.setCatalog(C);
         os2.setDrug(D);
