@@ -33,7 +33,7 @@ export class RegisterShowComponent implements OnInit {
 
 
   saveregister() {
-    this.app.Customersumbit(Number(this.initialId), String(this.data.firstname), Number(this.genderId), Number(this.bloodtypeId), String(this.data.address), String(this.data.phonenumber), String(this.data.username), String(this.data.password)).subscribe(data => {
+    this.app.Customersumbit(Number(this.initialId), String(this.data.firstname), Number(this.genderId), Number(this.bloodtypeId), String(this.data.allergyHistory), String(this.data.address), String(this.data.phonenumber)).subscribe(data => {
       console.log(this.data)
     })
   }
@@ -91,6 +91,8 @@ export class RegisterShowComponent implements OnInit {
       console.log("initial = " + this.initialId)
       console.log("gender = " + this.genderId)
       console.log("bloodtype = " + this.bloodtypeId)
+     
+      console.log(" this.data.allergicHistory = " +  this.data.allergyHistory)
 
     })
 

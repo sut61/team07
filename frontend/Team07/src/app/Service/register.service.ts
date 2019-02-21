@@ -12,9 +12,9 @@ export class RegisterService {
 
  
 
-  Customersumbit(initalId: number, name: string, genderId: number, bloodTypeId: number, address: string, phonenumber: string, username: string, password: string): Observable<any> {
-    console.log(this.API + '/Customer-insert/InitalId/' + initalId + '/Name/' + name + '/GenderId/' + genderId + '/BloodType/' + bloodTypeId + '/Address/' + address + '/Phonenumber/' + phonenumber + '/Username/' + username + '/Password/' + password)
-    return this.http.post(this.API + '/Customer-insert/InitalId/' + initalId + '/Name/' + name + '/GenderId/' + genderId + '/BloodType/' + bloodTypeId + '/Address/' + address + '/Phonenumber/' + phonenumber + '/Username/' + username + '/Password/' + password, {});
+  Customersumbit(initalId: number, name: string, genderId: number, bloodTypeId: number ,allergic: string, address: string, phonenumber: string): Observable<any> {
+    console.log(this.API + '/Customer-insert/InitalId/' + initalId + '/Name/' + name + '/GenderId/' + genderId + '/BloodType/' + bloodTypeId +'/Allergic/'+ allergic + '/Address/' + address + '/Phonenumber/' + phonenumber )
+    return this.http.post(this.API + '/Customer-insert/InitalId/' + initalId + '/Name/' + name + '/GenderId/' + genderId + '/BloodType/' + bloodTypeId + '/Allergic/'+ allergic + '/Address/' + address + '/Phonenumber/' + phonenumber , {});
   }
 
 
