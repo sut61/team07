@@ -30,6 +30,8 @@ export class DeliveryComponent implements OnInit {
     drug: '',
     amount: '',
     netamount: '',
+    currentTel: '',
+
 
 
   };
@@ -106,6 +108,7 @@ export class DeliveryComponent implements OnInit {
       staff: data.staff,
       customer: data.customer,
       address: this.addressselect,
+      currentTel: data.currentTel,
 
       drug: data.drug,
       amount: data.amount,
@@ -184,7 +187,7 @@ export class DeliveryComponent implements OnInit {
 
     if (this.count >= 6) {
       this.detail.addressSelect = this.addressselect;
-      this.httpClient.post('http://localhost:8080/Invoice-insert/StaffId/' + this.detail.staff + '/customerId/' + this.detail.customer + '/addressId/' + this.detail.addressSelect + '/drugId/' + this.detail.drug + '/Amount/' + String(parseInt(this.detail.amount)) + '/Netamount/' + String(this.detail.netamount), this.emp)
+      this.httpClient.post('http://localhost:8080/Invoice-insert/StaffId/' + this.detail.staff + '/customerId/' + this.detail.customer + '/addressId/' + '/CurrentTel/' + String(this.detail.currentTel),+ this.detail.addressSelect + '/drugId/' + this.detail.drug + '/Amount/' + Number(this.detail.amount) + '/Netamount/' + Number(this.detail.netamount), this.emp)
         .subscribe(
           datas => { console.log('PUT Request is successful', datas); },
           error => { console.log('Error', error); }

@@ -27,9 +27,10 @@ public class ShowHrs {
 
     @NotNull 
     private  Date date;
-
-    @Pattern(regexp = "([A-Za-z]{3,25}$)")
-    @Size(min = 2, max = 25) 
+    
+    @NotNull
+    @Pattern(regexp = "[A-Za-z ]{3,25}")
+    @Size(min = 3, max = 25)
     private  String note;
 
     @ManyToOne(fetch = FetchType.EAGER)

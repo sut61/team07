@@ -76,6 +76,12 @@
         </mat-option>
       </mat-select>
     </mat-form-field>
+    
+    <form>
+      <mat-form-field class="example-first-last ">
+        <input matInput placeholder="กรอกเบอร์โทรที่สามารถติดต่อได้(08xxxxxxxx)" [(ngModel)]="detail.currentTel" required name="CurrentTel" #CurrentTel>
+      </mat-form-field>
+    </form>
 
     <form>
       <mat-form-field>
