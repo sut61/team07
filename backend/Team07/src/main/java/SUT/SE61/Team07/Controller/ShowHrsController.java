@@ -47,36 +47,50 @@ import SUT.SE61.Team07.Repository.*;
     public ResponseEntity<Map<String,Object>> ShowHrssubmit(@PathVariable ("staffId") Long staffId,
             @PathVariable ("deptId") Long deptId, 
             @PathVariable ("timeId") Long timeId,
-            @PathVariable ("Note") String Note ){             
+            @PathVariable ("Note") String Note ){   
+                if(Note.length() >= 3 && Note.length() <= 25 ) {
+                    try {
+                        Staff S = this.staffRepository.findByStaffId(staffId);
+                        Department D = this.departmentRepository.findBydeptId(deptId);
+                        Worktime W = this.worktimeRepository.findBytimeId(timeId);
+               
+                        this.showHrsRepository.save(new ShowHrs(S, D, W,Note));
+               
+                        Map<String, Object> json = new HashMap<String, Object>();
+                        json.put("success", true);
+                        json.put("status", "บันทึกสำเร็จ");
+               
+                        HttpHeaders headers = new HttpHeaders();
+                        headers.add("Content-Type", "application/json; charset=UTF-8");
+                        headers.add("X-Fsl-Location", "/");
+                        headers.add("X-Fsl-Response-Code", "302");
+                        return (new ResponseEntity<Map<String, Object>>(json, headers, HttpStatus.OK));
+                    } catch (NullPointerException e) {
+                        Map<String, Object> json = new HashMap<String, Object>();
+                        System.out.println("Error Save CancelReservation");
+                        json.put("success", false);
+                        json.put("status", "save-false");
+               
+                        HttpHeaders headers = new HttpHeaders();
+                        headers.add("Content-Type", "application/json; charset=UTF-8");
+                        headers.add("X-Fsl-Location", "/");
+                        headers.add("X-Fsl-Response-Code", "500");
+                        return (new ResponseEntity<Map<String, Object>>(json, headers, HttpStatus.INTERNAL_SERVER_ERROR));
+               
+                    }
+                }   else{
+                    
+                    Map<String, Object> json = new HashMap<String, Object>();
+                    json.put("success", false);
+                    json.put("status", "ข้อมูลสั้นหรือยาวเกินไป");
+           
+                    HttpHeaders headers = new HttpHeaders();
+                    headers.add("Content-Type", "application/json; charset=UTF-8");
+                    headers.add("X-Fsl-Location", "/");
+                    headers.add("X-Fsl-Response-Code", "302");
+                    return (new ResponseEntity<Map<String, Object>>(json, headers, HttpStatus.OK));
+                }     
     
-      try {
-         Staff S = this.staffRepository.findByStaffId(staffId);
-         Department D = this.departmentRepository.findBydeptId(deptId);
-         Worktime W = this.worktimeRepository.findBytimeId(timeId);
-
-         this.showHrsRepository.save(new ShowHrs(S, D, W,Note));
-
-         Map<String, Object> json = new HashMap<String, Object>();
-         json.put("success", true);
-         json.put("status", "save");
-
-         HttpHeaders headers = new HttpHeaders();
-         headers.add("Content-Type", "application/json; charset=UTF-8");
-         headers.add("X-Fsl-Location", "/");
-         headers.add("X-Fsl-Response-Code", "302");
-         return (new ResponseEntity<Map<String, Object>>(json, headers, HttpStatus.OK));
-     } catch (NullPointerException e) {
-         Map<String, Object> json = new HashMap<String, Object>();
-         System.out.println("Error Save CancelReservation");
-         json.put("success", false);
-         json.put("status", "save-false");
-
-         HttpHeaders headers = new HttpHeaders();
-         headers.add("Content-Type", "application/json; charset=UTF-8");
-         headers.add("X-Fsl-Location", "/");
-         headers.add("X-Fsl-Response-Code", "500");
-         return (new ResponseEntity<Map<String, Object>>(json, headers, HttpStatus.INTERNAL_SERVER_ERROR));
-
-     }
+    
     }
  }

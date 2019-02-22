@@ -14,7 +14,7 @@ export class PostComponent implements OnInit {
   staffs: Array<any>;
   departments: Array<any>;
   worktimes: Array<any>;
-  status;
+ 
   count: 0;
 
   detail: any = {
@@ -39,7 +39,7 @@ export class PostComponent implements OnInit {
   names: any;
   public API = '//localhost:8080';
   staffdb: any = { staffId: Number, staffName: String, staffUser: String, staffPass: String, staffPhone: String, online: String }
-
+status:any = {status:String}
   setstaffOfline() {
     this.app.setStaffOfline(Number(this.staffdb.staffId)).subscribe(data => {
       console.log(data);
@@ -91,11 +91,7 @@ export class PostComponent implements OnInit {
   }
 
   save1() {
-    // this.httpClient.post('http://localhost:8080/ShowHrs-insert/staff/' + this.emp.staffSelect + '/department/' + this.emp.departmentSelect + '/worktime/' + this.emp.worktimeSelect+ '/Note/' + String(this.detail.note), this.emp)
-    //   .subscribe(
-    //     data => { console.log('PUT Request is successful', data); },
-    //     error => { console.log('Error', error); }
-    //   );
+
     let rs = /[A-Za-z ]{3,25}/;
     this.count = 0;
     //this.detail.addressSelect = this.addressselect;
@@ -129,38 +125,40 @@ export class PostComponent implements OnInit {
     }
 
 
-      if (rs.test(this.detail.note)) {
-        // this.count += 1;
-        if (String(this.detail.note).length >= 25) {
-          alert("พยัญชนะห้ามเกิน 25 ตัว")
-        } else {
-          this.count += 1;
-        }
-        if (rs.test(this.detail.note)) {
-          // this.count += 1;
-          if (String(this.detail.note).length <= 2) {
-            alert("พยัญชนะมากกว่า 2 ตัวขึ้นไป")
-          } else {
-            this.count += 1;
-          }
+    // if (rs.test(this.detail.note)) {
+    //   // this.count += 1;
+    //   if (String(this.detail.note).length >= 25) {
+    //     alert("พยัญชนะห้ามเกิน 25 ตัว")
+    //   } else {
+    //     this.count += 1;
+    //   }
+    //   if (rs.test(this.detail.note)) {
+    //     // this.count += 1;
+    //     if (String(this.detail.note).length <= 2) {
+    //       alert("พยัญชนะมากกว่า 2 ตัวขึ้นไป")
+    //     } else {
+    //       this.count += 1;
+    //     }
 
-      } else {
-        this.count = 0;
-        alert("กรอกยอดสุทธิเป็นตัวเลขเท่านั้น")
-      }
-    }
-    
+    //   } else {
+    //     this.count = 0;
+    //     alert("กรอกยอดสุทธิเป็นตัวเลขเท่านั้น")
+    //   }
+    // }
+
     if (this.count >= 4) {
-     this.httpClient.post('http://localhost:8080/ShowHrs-insert/staff/' + this.emp.staffSelect + '/department/' + this.emp.departmentSelect + '/worktime/' + this.emp.worktimeSelect+ '/Note/' + String(this.detail.note), this.emp)
-    .subscribe(
-          datas => { console.log('PUT Request is successful', datas); },
-          error => { console.log('Error', error); }
+      this.httpClient.post('http://localhost:8080/ShowHrs-insert/staff/' + this.emp.staffSelect + '/department/' + this.emp.departmentSelect + '/worktime/' + this.emp.worktimeSelect + '/Note/' + String(this.detail.note), this.emp)
+        .subscribe(datas => {
+          this.status = datas;
+          alert( this.status.status)
+          //console.log('PUT Request is successful', datas);
+        }
         );
 
-      this.SubmitdData();
+      //   this.SubmitdData();
 
     } else {
-      this.count = 0;
+     
       alert("กรุณากรอกข้อมูลให้ครบถ้วน")
     }
   }
