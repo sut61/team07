@@ -58,37 +58,53 @@ class DrugdataController {
     public ResponseEntity<Map<String, Object>> Drugdatasumbit(@PathVariable("detail") String detail,
             @PathVariable("drugId") Long drugId, @PathVariable("staffId") Long staffId,
             @PathVariable("categoryId") Long categoryId, @PathVariable("medicineId") Long medicineId) {
-        try {
 
-            Drug D = this.drugrepository.findByDrugId(drugId);
-            Staff S = this.staffrepository.findByStaffId(staffId);
-            Category C = this.categoryrepository.findByCategoryId(categoryId);
-            Medicine M = this.medicinerepository.findBymedicineId(medicineId);
 
-            this.drugdatarepository.save(new Drugdata(detail, D, S, C, M));
+                if(detail.length() <10){
+                    Map<String, Object> json = new HashMap<String, Object>();
+                    json.put("success", false);
+                    json.put("status", "คำอธิบายรายละเอียดตัวยาสั้นเกินไป กรุณากรอกใหม่อีกครั้ง");
+        
+                    HttpHeaders headers = new HttpHeaders();
+                    headers.add("Content-Type", "application/json; charset=UTF-8");
+                    headers.add("X-Fsl-Location", "/");
+                    headers.add("X-Fsl-Response-Code", "302");
+                    return (new ResponseEntity<Map<String, Object>>(json, headers, HttpStatus.OK));
 
-            Map<String, Object> json = new HashMap<String, Object>();
-            json.put("success", true);
-            json.put("status", "save");
+                }else{
+                    try {
 
-            HttpHeaders headers = new HttpHeaders();
-            headers.add("Content-Type", "application/json; charset=UTF-8");
-            headers.add("X-Fsl-Location", "/");
-            headers.add("X-Fsl-Response-Code", "302");
-            return (new ResponseEntity<Map<String, Object>>(json, headers, HttpStatus.OK));
-        } catch (NullPointerException e) {
-            Map<String, Object> json = new HashMap<String, Object>();
-            System.out.println("Error Save CancelReservation");
-            json.put("success", false);
-            json.put("status", "save-false");
-
-            HttpHeaders headers = new HttpHeaders();
-            headers.add("Content-Type", "application/json; charset=UTF-8");
-            headers.add("X-Fsl-Location", "/");
-            headers.add("X-Fsl-Response-Code", "500");
-            return (new ResponseEntity<Map<String, Object>>(json, headers, HttpStatus.INTERNAL_SERVER_ERROR));
-
-        }
+                        Drug D = this.drugrepository.findByDrugId(drugId);
+                        Staff S = this.staffrepository.findByStaffId(staffId);
+                        Category C = this.categoryrepository.findByCategoryId(categoryId);
+                        Medicine M = this.medicinerepository.findBymedicineId(medicineId);
+            
+                        this.drugdatarepository.save(new Drugdata(detail, D, S, C, M));
+            
+                        Map<String, Object> json = new HashMap<String, Object>();
+                        json.put("success", true);
+                        json.put("status", "save");
+            
+                        HttpHeaders headers = new HttpHeaders();
+                        headers.add("Content-Type", "application/json; charset=UTF-8");
+                        headers.add("X-Fsl-Location", "/");
+                        headers.add("X-Fsl-Response-Code", "302");
+                        return (new ResponseEntity<Map<String, Object>>(json, headers, HttpStatus.OK));
+                    } catch (NullPointerException e) {
+                        Map<String, Object> json = new HashMap<String, Object>();
+                        System.out.println("Error Save CancelReservation");
+                        json.put("success", false);
+                        json.put("status", "save-false");
+            
+                        HttpHeaders headers = new HttpHeaders();
+                        headers.add("Content-Type", "application/json; charset=UTF-8");
+                        headers.add("X-Fsl-Location", "/");
+                        headers.add("X-Fsl-Response-Code", "500");
+                        return (new ResponseEntity<Map<String, Object>>(json, headers, HttpStatus.INTERNAL_SERVER_ERROR));
+            
+                    }
+                }
+       
     }
 
    
