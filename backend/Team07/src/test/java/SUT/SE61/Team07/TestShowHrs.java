@@ -99,9 +99,9 @@ public class TestShowHrs{
         Worktime W = this.worktimeRepository.findBytimeId(1L);
         Sh.setStaff(S);
         Sh.setDepartment(D);
-        Sh.setWorktime(null);
+        Sh.setWorktime(W);
         Sh.setNote("take leave");
-        Sh.setDate(new Date());
+        Sh.setDate(null);
         try {
             entityManager.persist(Sh);
             entityManager.flush();
