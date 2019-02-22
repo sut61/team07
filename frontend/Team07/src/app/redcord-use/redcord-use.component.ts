@@ -84,6 +84,10 @@ export class RedcordUseComponent implements OnInit {
         .getCustomerByname(String(this.data.namecus))
         .subscribe(data => {
           this.customer = data;
+          if(data === null){
+            this.data = null;
+              alert("ไม่พบผู้ใช้")
+          }
         });
     }
   }
@@ -91,8 +95,9 @@ export class RedcordUseComponent implements OnInit {
   SaveRedcord() {
     let red = /[A-Za-z .]{3,20}/g
     this.count = 0;
-      if (this.data.namecus === undefined || this.data.namecus === null) {
+      if (this.data.namecus === undefined || this.data.namecus === null || this.drugdataselect === "") {
         this.count = 0;
+        alert("กรุณากรอกข้อมูลให้ครบถ้วน")
       }
       else {
         this.count += 1;
