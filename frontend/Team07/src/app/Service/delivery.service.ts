@@ -10,9 +10,9 @@ export class DeliveryService {
 
   constructor(private http: HttpClient) {}
 
-  Deliverysumbit(staffId: number, customerId: number, addressId: string, currentTel: string, drugId: number, amount: string, netamount: string): Observable<any> {
-    console.log(this.API + '/Delivery-insert/StaffId/' + staffId + '/CustomerId/' + customerId + '/AddressId/' + addressId + '/CurrentTel/' + currentTel + '/DrugId/' + drugId + '/Amount/' + amount + '/Netamount/' + netamount)
-    return this.http.post(this.API + '/Delivery-insert/StaffId/' + staffId + '/CustomerId/' + customerId + '/AddressId/' + addressId + '/CurrentTel/' + currentTel+'/DrugId/' + drugId + '/Amount/' + amount + '/Netamount/' + netamount, {});
+  Deliverysumbit(staffId: number, customerId: number, addressId: number, currentTel: string, drugId: number, amount: string, netamount: string): Observable<any> {
+    console.log(this.API + '/Invoice-insert/StaffId/' + staffId + '/CustomerId/' + customerId + '/AddressId/' + addressId + '/CurrentTel/' + currentTel + '/DrugId/' + drugId + '/Amount/' + amount + '/Netamount/' + netamount)
+    return this.http.post(this.API + '/Invoice-insert/StaffId/' + staffId + '/CustomerId/' + customerId + '/AddressId/' + addressId + '/CurrentTel/' + currentTel +'/DrugId/' + drugId + '/Amount/' + amount + '/Netamount/' + netamount, {});
   }
 
 
