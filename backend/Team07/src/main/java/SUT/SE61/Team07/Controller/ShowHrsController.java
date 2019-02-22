@@ -54,7 +54,7 @@ import SUT.SE61.Team07.Repository.*;
          Department D = this.departmentRepository.findBydeptId(deptId);
          Worktime W = this.worktimeRepository.findBytimeId(timeId);
 
-         this.showHrsRepository.save(new ShowHrs(S, D, W,"take leave"));
+         this.showHrsRepository.save(new ShowHrs(S, D, W,Note));
 
          Map<String, Object> json = new HashMap<String, Object>();
          json.put("success", true);
