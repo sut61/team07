@@ -79,7 +79,7 @@ public class TestShowHrs{
             System.out.println();
             System.out.println();
             System.out.println(
-                    "============================================================ from testPatternNameInvoice =============================================================");
+                    "============================================================ from testTestInsertShowHrsDataSuccess =============================================================");
             System.out.println(e);
             System.out.println();
             System.out.println();
@@ -111,7 +111,7 @@ public class TestShowHrs{
             System.out.println();
             System.out.println();
             System.out.println(
-                    "============================================================ from testTestInvoiceNotNull =============================================================");
+                    "============================================================ from testTestInsertShowHrsDataNotNull =============================================================");
             System.out.println(e);
             System.out.println();
             System.out.println();
@@ -129,7 +129,7 @@ public class TestShowHrs{
         Sh.setStaff(S);
         Sh.setDepartment(D);
         Sh.setWorktime(W);
-        Sh.setNote("1234567899");
+        Sh.setNote("12345678pppp99");
         Sh.setDate(new Date());
         try {
             entityManager.persist(Sh);
@@ -149,6 +149,7 @@ public class TestShowHrs{
             assertEquals(violations.size(), 1);
         }
     }
+    //เช็คความยาวของข้อความ 
     @Test
     public void testMaxShowHrssize25() {
         ShowHrs Sh = new ShowHrs();
@@ -204,7 +205,7 @@ public class TestShowHrs{
             System.out.println();
             Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
             assertEquals(violations.isEmpty(), false);
-            assertEquals(violations.size(), 1);
+            assertEquals(violations.size(), 2);
         }
     }
 
