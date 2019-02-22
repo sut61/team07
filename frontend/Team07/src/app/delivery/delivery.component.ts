@@ -45,11 +45,6 @@ export class DeliveryComponent implements OnInit {
 
   showdatainput() {
     console.log("all = ", this.detail)
-
-
-
-
-
   }
   constructor(private app: AppserviceService,private router: Router, private deliveryService: DeliveryService, private httpClient: HttpClient,private http: HttpClient) { }
 
