@@ -68,7 +68,7 @@ public class TestDrugdata{
         dd.setStaff(S);
         dd.setCategory(C);
         dd.setMedicine(M);
-        dd.setDetail("ABCDEFGHIJ");
+        dd.setDetail("ABCDEFGHIJK");
 
         try {
             entityManager.persist(dd);
@@ -78,7 +78,7 @@ public class TestDrugdata{
             System.out.println();
             System.out.println();
             System.out.println(
-                    "================================== from testInsertDrugDataSuccess =====================================================");
+                    "================================== from testInsertDrugDataSuccessful =====================================================");
             System.out.println(e.getMessage());
             System.out.println();
             System.out.println();
