@@ -27,10 +27,10 @@ export class DeliveryComponent implements OnInit {
     staff: '',
     customer: '',
     address: '',
+    currentTel: '',
     drug: '',
     amount: '',
     netamount: '',
-    currentTel: '',
 
 
 
@@ -153,6 +153,12 @@ export class DeliveryComponent implements OnInit {
     } else {
       this.count += 1;
     }
+    if (this.detail.currentTel === undefined || this.detail.currentTel === "" || this.detail.currentTel == null) {
+
+      this.count = 0;
+    } else {
+      this.count += 1;
+    }
 
     if (this.detail.amount === undefined || this.detail.amount === "" || this.detail.amount == null) {
 
@@ -184,10 +190,9 @@ export class DeliveryComponent implements OnInit {
     }
 
 
-
-    if (this.count >= 6) {
+    if (this.count >= 7) {
       this.detail.addressSelect = this.addressselect;
-      this.httpClient.post('http://localhost:8080/Invoice-insert/StaffId/' + this.detail.staff + '/customerId/' + this.detail.customer + '/addressId/' + '/CurrentTel/' + String(this.detail.currentTel),+ this.detail.addressSelect + '/drugId/' + this.detail.drug + '/Amount/' + Number(this.detail.amount) + '/Netamount/' + Number(this.detail.netamount), this.emp)
+      this.httpClient.post('http://localhost:8080/Invoice-insert/StaffId/' + this.detail.staff + '/CustomerId/' + this.detail.customer + '/AddressId/'+ this.detail.addressSelect + '/CurrentTel/' + String(this.detail.currentTel)+ '/DrugId/' + this.detail.drug + '/Amount/' + Number(this.detail.amount) + '/Netamount/' + Number(this.detail.netamount), this.emp)
         .subscribe(
           datas => { console.log('PUT Request is successful', datas); },
           error => { console.log('Error', error); }

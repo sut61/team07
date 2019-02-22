@@ -49,18 +49,18 @@ class InvoiceController {
         return invoiceRepository.findAll().stream().collect(Collectors.toList());
     }
 
-    @PostMapping("/Invoice-insert/StaffId/{StaffId}/customerId/{customerId}/addressId/{addressId}/CurrentTel/{CurrentTel}/drugId/{drugId}/Amount/{Amount}/Netamount/{Netamount}")
-    public ResponseEntity<Map<String, Object>> ShowHrssubmit(@PathVariable("StaffId") Long staffId,
-            @PathVariable("customerId") Long customerId, @PathVariable("addressId") Long addressId,
+    @PostMapping("/Invoice-insert/StaffId/{StaffId}/CustomerId/{CustomerId}/AddressId/{AddressId}/CurrentTel/{CurrentTel}/DrugId/{DrugId}/Amount/{Amount}/Netamount/{Netamount}")
+    public ResponseEntity<Map<String, Object>> ShowHrssubmit(@PathVariable("StaffId") Long StaffId,
+            @PathVariable("CustomerId") Long CustomerId, @PathVariable("AddressId") Long AddressId,
             @PathVariable("CurrentTel") String CurrentTel,
-            @PathVariable("drugId") Long drugId, @PathVariable("Amount") int Amount,
+            @PathVariable("DrugId") Long DrugId, @PathVariable("Amount") int Amount,
             @PathVariable("Netamount") int Netamount) {
 
         try {
-            Staff S = this.staffrepository.findByStaffId(staffId);
-            Customer C = this.customerrepository.findByCustomerId(customerId);
-            Address A = this.addressrepository.findByAddressId(addressId);
-            Drug D = this.drugrepository.findByDrugId(drugId);
+            Staff S = this.staffrepository.findByStaffId(StaffId);
+            Customer C = this.customerrepository.findByCustomerId(CustomerId);
+            Address A = this.addressrepository.findByAddressId(AddressId);
+            Drug D = this.drugrepository.findByDrugId(DrugId);
 
             this.invoiceRepository.save(new Invoice(S, C, A, CurrentTel,D, Amount, Netamount));
 
