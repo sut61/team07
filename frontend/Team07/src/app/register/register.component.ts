@@ -109,7 +109,7 @@ export class RegisterComponent implements OnInit {
 
   save() {
     let red = /[A-Za-z]{3,20}/g
-    let rs = /[0]{1}[1-9]{9}/g;
+    let rs = /[0]{1}[0-9]{9}/g;
     this.count = 0;
     if (this.data.initial === undefined || this.data.initial === "" || this.data.initial == "") {
 
