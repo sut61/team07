@@ -76,7 +76,7 @@ export class DrugdataComponent implements OnInit {
       if (data.status == "save") {
         alert("บันทึกสำเร็จ")
       } else {
-        alert("บันทึกไม่สำเร็จ")
+        alert(data.status)
       }
     })
       } else{
