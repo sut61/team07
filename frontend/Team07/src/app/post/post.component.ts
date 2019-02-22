@@ -18,7 +18,9 @@ export class PostComponent implements OnInit {
   detail: any = {
     staff: '',
     department: '',
-    worktime: ''
+    worktime: '',
+    note: '',
+
   };
   emp: any = {
     staffSelect: '',
@@ -80,12 +82,14 @@ export class PostComponent implements OnInit {
       staff: data.staff,
       department: data.department,
       worktime: data.worktime,
+      note: data.note,
+
     }])
 
   }
 
   save1() {
-    this.httpClient.post('http://localhost:8080/ShowHrs-insert/staff/' + this.emp.staffSelect + '/department/' + this.emp.departmentSelect + '/worktime/' + this.emp.worktimeSelect, this.emp)
+    this.httpClient.post('http://localhost:8080/ShowHrs-insert/staff/' + this.emp.staffSelect + '/department/' + this.emp.departmentSelect + '/worktime/' + this.emp.worktimeSelect+ '/Note/' + String(this.detail.note), this.emp)
       .subscribe(
         data => { console.log('PUT Request is successful', data); },
         error => { console.log('Error', error); }
