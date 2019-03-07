@@ -199,7 +199,7 @@ public class TestReceipt {
         re.setStaff(S);
         re.setDrug(D);
         re.setNoBill("M1234");
-        re.setDates("12 กุมพาพันธ์ 62");
+        re.setDates("12 กุมภาพันธ์ 62");
         try {
             entityManager.persist(re);
             entityManager.flush();
@@ -215,8 +215,219 @@ public class TestReceipt {
             System.out.println();
             Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
             assertEquals(violations.isEmpty(), false);
-            assertEquals(violations.size(), 6);
+            assertEquals(violations.size(), 5);
         }
     }
 
+     // ทดสอบ Receipt datesNull
+     @Test
+     public void testReceiptdatesNull() {
+         Receipt re = new Receipt();
+         OrdersReceipt O  = this.ordersreciptRepository.findByordersreceiptId(1L);
+         Staff S = this.staffrepository.findByStaffId(1L);
+         Drug D = this.drugrepository.findByDrugId(1L);
+         re.setOrdersReceipt(O);
+         re.setStaff(S);
+         re.setDrug(D);
+         re.setNoBill("M12345678");
+         re.setDates(null);
+         try {
+             entityManager.persist(re);
+             entityManager.flush();
+             fail("Should not pass to this line");
+         } catch (javax.validation.ConstraintViolationException e) {
+             System.out.println();
+             System.out.println();
+             System.out.println();
+             System.out.println(
+                     "============================================================ from testReceiptdatesNull  =============================================================");
+             System.out.println(e);
+             System.out.println();
+             System.out.println();
+             Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
+             assertEquals(violations.isEmpty(), false);
+             assertEquals(violations.size(), 4);
+         }
+     }
+
+      // ทดสอบ Receipt testReceiptdatesNotPattern
+      @Test
+      public void testReceiptdatesNotPattern() {
+          Receipt re = new Receipt();
+          OrdersReceipt O  = this.ordersreciptRepository.findByordersreceiptId(1L);
+          Staff S = this.staffrepository.findByStaffId(1L);
+          Drug D = this.drugrepository.findByDrugId(1L);
+          re.setOrdersReceipt(O);
+          re.setStaff(S);
+          re.setDrug(D);
+          re.setNoBill("M12345678");
+          re.setDates("12 เดือนมีนา 62");
+          try {
+              entityManager.persist(re);
+              entityManager.flush();
+              fail("Should not pass to this line");
+          } catch (javax.validation.ConstraintViolationException e) {
+              System.out.println();
+              System.out.println();
+              System.out.println();
+              System.out.println(
+                      "============================================================ from testReceiptdatesNotPattern  =============================================================");
+              System.out.println(e);
+              System.out.println();
+              System.out.println();
+              Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
+              assertEquals(violations.isEmpty(), false);
+              assertEquals(violations.size(), 4);
+          }
+      }
+       // ทดสอบ Receipt testReceiptdates ไม่มีวัน
+       @Test
+       public void testReceiptdatesNotDay() {
+           Receipt re = new Receipt();
+           OrdersReceipt O  = this.ordersreciptRepository.findByordersreceiptId(1L);
+           Staff S = this.staffrepository.findByStaffId(1L);
+           Drug D = this.drugrepository.findByDrugId(1L);
+           re.setOrdersReceipt(O);
+           re.setStaff(S);
+           re.setDrug(D);
+           re.setNoBill("M12345678");
+           re.setDates(" มีนาคม 62");
+           try {
+               entityManager.persist(re);
+               entityManager.flush();
+               fail("Should not pass to this line");
+           } catch (javax.validation.ConstraintViolationException e) {
+               System.out.println();
+               System.out.println();
+               System.out.println();
+               System.out.println(
+                       "============================================================ from testReceiptdatesNotDay  =============================================================");
+               System.out.println(e);
+               System.out.println();
+               System.out.println();
+               Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
+               assertEquals(violations.isEmpty(), false);
+               assertEquals(violations.size(), 4);
+           }
+       }
+        // ทดสอบ Receipt testReceiptdatesNotYear ไม่มีปี
+        @Test
+        public void testReceiptdatesNotYear() {
+            Receipt re = new Receipt();
+            OrdersReceipt O  = this.ordersreciptRepository.findByordersreceiptId(1L);
+            Staff S = this.staffrepository.findByStaffId(1L);
+            Drug D = this.drugrepository.findByDrugId(1L);
+            re.setOrdersReceipt(O);
+            re.setStaff(S);
+            re.setDrug(D);
+            re.setNoBill("M12345678");
+            re.setDates("23 มีนาคม ");
+            try {
+                entityManager.persist(re);
+                entityManager.flush();
+                fail("Should not pass to this line");
+            } catch (javax.validation.ConstraintViolationException e) {
+                System.out.println();
+                System.out.println();
+                System.out.println();
+                System.out.println(
+                        "============================================================ from testReceiptdatesNotYear  =============================================================");
+                System.out.println(e);
+                System.out.println();
+                System.out.println();
+                Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
+                assertEquals(violations.isEmpty(), false);
+                assertEquals(violations.size(), 4);
+            }
+        }
+        // ทดสอบ Receipt testReceiptordersReceiptNull 
+        @Test
+        public void testReceiptordersReceiptNull() {
+            Receipt re = new Receipt();
+            OrdersReceipt O  = this.ordersreciptRepository.findByordersreceiptId(1L);
+            Staff S = this.staffrepository.findByStaffId(1L);
+            Drug D = this.drugrepository.findByDrugId(1L);
+            re.setOrdersReceipt(null);
+            re.setStaff(S);
+            re.setDrug(D);
+            re.setNoBill("M12345678");
+            re.setDates("23 มีนาคม 62");
+            try {
+                entityManager.persist(re);
+                entityManager.flush();
+                fail("Should not pass to this line");
+            } catch (javax.validation.ConstraintViolationException e) {
+                System.out.println();
+                System.out.println();
+                System.out.println();
+                System.out.println(
+                        "============================================================ from testReceiptordersReceiptNull  =============================================================");
+                System.out.println(e);
+                System.out.println();
+                System.out.println();
+                Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
+                assertEquals(violations.isEmpty(), false);
+                assertEquals(violations.size(), 3);
+            }
+        }
+        // ทดสอบ Receipt testReceiptstaffNull 
+        @Test
+        public void testReceiptstaffNull() {
+            Receipt re = new Receipt();
+            OrdersReceipt O  = this.ordersreciptRepository.findByordersreceiptId(1L);
+            Staff S = this.staffrepository.findByStaffId(1L);
+            Drug D = this.drugrepository.findByDrugId(1L);
+            re.setOrdersReceipt(O);
+            re.setStaff(null);
+            re.setDrug(D);
+            re.setNoBill("M12345678");
+            re.setDates("23 มีนาคม 62");
+            try {
+                entityManager.persist(re);
+                entityManager.flush();
+                fail("Should not pass to this line");
+            } catch (javax.validation.ConstraintViolationException e) {
+                System.out.println();
+                System.out.println();
+                System.out.println();
+                System.out.println(
+                        "============================================================ from testReceiptstaffNull  =============================================================");
+                System.out.println(e);
+                System.out.println();
+                System.out.println();
+                Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
+                assertEquals(violations.isEmpty(), false);
+                assertEquals(violations.size(), 3);
+            }
+        }
+         // ทดสอบ Receipt testReceiptdrugNull 
+         @Test
+         public void testReceiptdrugNull() {
+             Receipt re = new Receipt();
+             OrdersReceipt O  = this.ordersreciptRepository.findByordersreceiptId(1L);
+             Staff S = this.staffrepository.findByStaffId(1L);
+             Drug D = this.drugrepository.findByDrugId(1L);
+             re.setOrdersReceipt(O);
+             re.setStaff(S);
+             re.setDrug(null);
+             re.setNoBill("M12345678");
+             re.setDates("23 มีนาคม 62");
+             try {
+                 entityManager.persist(re);
+                 entityManager.flush();
+                 fail("Should not pass to this line");
+             } catch (javax.validation.ConstraintViolationException e) {
+                 System.out.println();
+                 System.out.println();
+                 System.out.println();
+                 System.out.println(
+                         "============================================================ from testReceiptdrugNull  =============================================================");
+                 System.out.println(e);
+                 System.out.println();
+                 System.out.println();
+                 Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
+                 assertEquals(violations.isEmpty(), false);
+                 assertEquals(violations.size(), 3);
+             }
+         }
 }
