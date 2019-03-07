@@ -9,6 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 
 
 @Entity
@@ -22,6 +23,8 @@ public class BloodType {
   
   @NotNull(message = "not initialName to null")
   @Pattern(regexp = "([A-Z]{1,2})")
+  @Size(min = 1, max = 2)
+  @Column(unique = true)
   private String name;
 
   public BloodType() {

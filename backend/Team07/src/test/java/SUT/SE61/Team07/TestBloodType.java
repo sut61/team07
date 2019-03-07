@@ -139,8 +139,39 @@ public void contextLoads() {
         System.out.println();
         Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
         assertEquals(violations.isEmpty(), false);
-        assertEquals(violations.size(), 1);
+        assertEquals(violations.size(), 2);
 
    }
  }
+
+ // ทดสอบ Pattern  BloodTypeName ห้ามเกินสองตัวและต้องเป็นภาษาอังกฤษตัวใหญ่
+ @Test
+ public void testPatternBloodTypeNamelost() {
+  BloodType bl = new BloodType();
+  bl.setName("");
+
+  try {
+      entityManager.persist(bl);
+      entityManager.flush();
+  } catch (javax.validation.ConstraintViolationException e) {
+      System.out.println();
+      System.out.println();
+      System.out.println();
+      System.out.println();
+      System.out.println();
+      System.out.println();
+      System.out.println("================ from testPatternBloodTypeNameLetter ===================");
+      System.out.println(e.getMessage());
+      System.out.println();
+      System.out.println();
+      System.out.println();
+      System.out.println();
+      System.out.println();
+      System.out.println();
+      Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
+      assertEquals(violations.isEmpty(), false);
+      assertEquals(violations.size(), 2);
+
+ }
+}
 }
