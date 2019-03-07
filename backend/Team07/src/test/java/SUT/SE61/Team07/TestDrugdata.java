@@ -15,6 +15,7 @@ import javax.validation.ConstraintViolation;
 import javax.validation.Validation;
 import javax.validation.Validator;
 import javax.validation.ValidatorFactory;
+import javax.persistence.PersistenceException;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -187,4 +188,173 @@ public class TestDrugdata{
             assertEquals(violations.size(), 6);
         }
     }
+    //ทดสอบ Drugdata Drug Null
+    @Test
+    public void testInsertDrugdatadrugNull() {
+        Drugdata dd = new Drugdata();
+        Drug D = this.drugrepository.findByDrugId(1L);
+        Staff S = this.staffrepository.findByStaffId(1L);
+        Category C = this.categoryrepository.findByCategoryId(1L);
+        Medicine M = this.medicinerepository.findBymedicineId(1L);
+        dd.setDrug(null);
+        dd.setStaff(S);
+        dd.setCategory(C);
+        dd.setMedicine(M);
+        dd.setDetail("Muscle-like medicine,external drugs apply to the swelling");
+
+        try {
+            entityManager.persist(dd);
+            entityManager.flush();
+            fail("Should not pass to this line");
+        } catch (javax.validation.ConstraintViolationException e) {
+            System.out.println();
+            System.out.println();
+            System.out.println();
+            System.out.println(
+                    "============================================================ from testInsertDrugdatadrugNull =============================================================");
+            System.out.println(e);
+            System.out.println();
+            System.out.println();
+            Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
+            assertEquals(violations.isEmpty(), false);
+            assertEquals(violations.size(), 5);
+        }
+    }
+    //ทดสอบ Drugdata Medicine Null
+    @Test
+    public void testInsertDrugdataMedicineNull() {
+        Drugdata dd = new Drugdata();
+        Drug D = this.drugrepository.findByDrugId(1L);
+        Staff S = this.staffrepository.findByStaffId(1L);
+        Category C = this.categoryrepository.findByCategoryId(1L);
+        Medicine M = this.medicinerepository.findBymedicineId(1L);
+        dd.setDrug(D);
+        dd.setStaff(S);
+        dd.setCategory(C);
+        dd.setMedicine(null);
+        dd.setDetail("Muscle-like medicine,external drugs apply to the swelling");
+
+        try {
+            entityManager.persist(dd);
+            entityManager.flush();
+            fail("Should not pass to this line");
+        } catch (javax.validation.ConstraintViolationException e) {
+            System.out.println();
+            System.out.println();
+            System.out.println();
+            System.out.println(
+                    "============================================================ from testInsertDrugdataMedicineNull =============================================================");
+            System.out.println(e);
+            System.out.println();
+            System.out.println();
+            Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
+            assertEquals(violations.isEmpty(), false);
+            assertEquals(violations.size(), 5);
+        }
+    }
+    //ทดสอบ Drugdata Staff Null
+    @Test
+    public void testInsertDrugdataStaffNull() {
+        Drugdata dd = new Drugdata();
+        Drug D = this.drugrepository.findByDrugId(1L);
+        Staff S = this.staffrepository.findByStaffId(1L);
+        Category C = this.categoryrepository.findByCategoryId(1L);
+        Medicine M = this.medicinerepository.findBymedicineId(1L);
+        dd.setDrug(D);
+        dd.setStaff(null);
+        dd.setCategory(C);
+        dd.setMedicine(M);
+        dd.setDetail("Muscle-like medicine,external drugs apply to the swelling");
+
+        try {
+            entityManager.persist(dd);
+            entityManager.flush();
+            fail("Should not pass to this line");
+        } catch (javax.validation.ConstraintViolationException e) {
+            System.out.println();
+            System.out.println();
+            System.out.println();
+            System.out.println(
+                    "============================================================ from testInsertDrugdataStaffNull =============================================================");
+            System.out.println(e);
+            System.out.println();
+            System.out.println();
+            Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
+            assertEquals(violations.isEmpty(), false);
+            assertEquals(violations.size(), 5);
+        }
+    }
+    //ทดสอบ Drugdata Category Null
+    @Test
+    public void testInsertDrugdataCategoryNull() {
+        Drugdata dd = new Drugdata();
+        Drug D = this.drugrepository.findByDrugId(1L);
+        Staff S = this.staffrepository.findByStaffId(1L);
+        Category C = this.categoryrepository.findByCategoryId(1L);
+        Medicine M = this.medicinerepository.findBymedicineId(1L);
+        dd.setDrug(D);
+        dd.setStaff(S);
+        dd.setCategory(null);
+        dd.setMedicine(M);
+        dd.setDetail("Muscle-like medicine,external drugs apply to the swelling");
+
+        try {
+            entityManager.persist(dd);
+            entityManager.flush();
+            fail("Should not pass to this line");
+        } catch (javax.validation.ConstraintViolationException e) {
+            System.out.println();
+            System.out.println();
+            System.out.println();
+            System.out.println(
+                    "============================================================ from testInsertDrugdataCategoryNull =============================================================");
+            System.out.println(e);
+            System.out.println();
+            System.out.println();
+            Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
+            assertEquals(violations.isEmpty(), false);
+            assertEquals(violations.size(), 5);
+        }
+    }
+    //ทดสอบ Drugdata ใส่ข้อมูลซ้ำ
+    @Test
+    public void testDetailUnique() {
+        Drugdata dd = new Drugdata();
+        Drug D = this.drugrepository.findByDrugId(1L);
+        Staff S = this.staffrepository.findByStaffId(1L);
+        Category C = this.categoryrepository.findByCategoryId(1L);
+        Medicine M = this.medicinerepository.findBymedicineId(1L);
+        dd.setDrug(D);
+        dd.setStaff(S);
+        dd.setCategory(C);
+        dd.setMedicine(M);
+        dd.setDetail("Muscle-like medicine,external drugs apply to the swelling");
+
+
+        this.drugdatarepository.save(dd);
+        
+        Drugdata dd2 = new Drugdata();
+        dd2.setDrug(D);
+        dd2.setStaff(S);
+        dd2.setCategory(C);
+        dd2.setMedicine(M);
+        dd2.setDetail("Muscle-like medicine,external drugs apply to the swelling");
+        try {
+            entityManager.persist(dd2);
+            entityManager.flush();
+            fail("Should not pass to this line");
+        } catch (javax.validation.ConstraintViolationException e) {
+            System.out.println();
+            System.out.println();
+            System.out.println();
+            System.out.println("============================ from testDetailUnique   ===================================");
+            System.out.println(e);
+            System.out.println();
+            System.out.println();
+            Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
+            assertEquals(violations.isEmpty(), false);
+            assertEquals(violations.size(), 5);
+       }
+    }
+
 }
