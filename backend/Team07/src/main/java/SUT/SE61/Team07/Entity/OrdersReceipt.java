@@ -7,6 +7,8 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Entity;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
 import javax.persistence.ManyToOne;
 import javax.persistence.JoinColumn;
 import javax.persistence.FetchType;
@@ -20,6 +22,10 @@ public class OrdersReceipt {
 
     @NotNull
     private Long ordersreceiptId;
+
+    @NotNull(message = "not amount to null")
+    @Max(100000)
+    @Min(1)
     private Integer amount;
    
 

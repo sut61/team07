@@ -214,9 +214,9 @@ public class DatabaseLoader implements ApplicationRunner {
         Medicine M2 = this.medicinerepository.findBymedicineId(2L);
         Medicine M3 = this.medicinerepository.findBymedicineId(3L);
 
-        this.drugdatarepository.save(new Drugdata("ยาใช้ภายนอก ทาบริเวณที่บวม", D1, S1, C1, M1));
-        this.drugdatarepository.save(new Drugdata("กินครั้งละ 1 เม็ด ก่อนนอน", D2, S2, C2, M2));
-        this.drugdatarepository.save(new Drugdata("กินครั้งละ 2 เม็ด หลังอาหารเช้า", D3, S3, C3, M3));
+        this.drugdatarepository.save(new Drugdata("Muscle like medicine external drugs apply to the swelling area", D1, S1, C1, M1));
+        this.drugdatarepository.save(new Drugdata("Antacids in blood vessels eat 1 tablet at bedtime", D2, S2, C2, M2));
+        this.drugdatarepository.save(new Drugdata("Drugs reduce neuralgia eat 2 tablets at a time after breakfast", D3, S3, C3, M3));
 
         this.ordersreciptRepository.save(new OrdersReceipt(10));
         this.ordersreciptRepository.save(new OrdersReceipt(20));
@@ -224,7 +224,7 @@ public class DatabaseLoader implements ApplicationRunner {
         OrdersReceipt Ord1 = this.ordersreciptRepository.findByordersreceiptId(1L);
         OrdersReceipt Ord2 = this.ordersreciptRepository.findByordersreceiptId(2L);
         OrdersReceipt Ord3 = this.ordersreciptRepository.findByordersreceiptId(3L);
-        this.receiptrepository.save(new Receipt(Ord1, S1, D1, "13 กุมภาพันธ์ 62", "M1234567"));
+        this.receiptrepository.save(new Receipt(Ord1, S1, D1, "13 กุมภาพันธ์ 62", "M1234568"));
         this.receiptrepository.save(new Receipt(Ord2, S2, D2, "14 กุมภาพันธ์ 63", "M7654321"));
         this.receiptrepository.save(new Receipt(Ord3, S3, D3, "15 กุมภาพันธ์ 64", "M5555555"));
         // /* end gan dbloader */

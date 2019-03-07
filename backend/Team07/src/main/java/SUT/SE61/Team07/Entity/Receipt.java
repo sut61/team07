@@ -24,22 +24,27 @@ public class Receipt {
     @NotNull(message = "receiptId must not be null to be valid")
     private Long receiptId;
 
-    @NotNull
+    @NotNull(message = "noBill not null")
     @Pattern(regexp = "(^M{1}[0-9]{7,10}$)")
     @Size(min = 7,max = 10)
     private String noBill;
 
-    @NotNull
+    @NotNull(message = "dates not null")
+    @Size(min = 10, max = 20)
+    @Pattern(regexp = "[0-9]{1,2}\\s(กุมภาพันธ์|มกราคม|มีนาคม|เมษายน|พฤษภาคม|มิถุนายน|กรกฎาคม|สิงหาคม|กันยายน|ตุลาคม|พฤศจิกายน|ธันวาคม)\\s[0-9]{2,4}")
     private String dates;
 
+    @NotNull
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "ordersreceiptId")
     private OrdersReceipt ordersReceipt;
 
+    @NotNull
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "staffId")
     private Staff staff;
 
+    @NotNull
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "drugId")
     private Drug drug;
