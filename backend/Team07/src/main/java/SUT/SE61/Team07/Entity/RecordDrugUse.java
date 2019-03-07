@@ -12,6 +12,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.JoinColumn;
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.FetchType;
 import javax.validation.constraints.*;
 
@@ -31,6 +32,7 @@ public class RecordDrugUse {
     private String symptom;
 
     @NotNull
+    @Column(unique = true)
     private Date date;
 
     @ManyToOne(fetch = FetchType.EAGER)

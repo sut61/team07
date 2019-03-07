@@ -12,6 +12,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.JoinColumn;
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.FetchType;
 import javax.validation.constraints.*;
 
@@ -25,6 +26,10 @@ public class Resistance {
     @NotNull
     private Long resistanceId;
 
+    @NotNull
+    @Column(unique = true)
+    private Date date;
+
     @NotNull(message = "resist  must not be null to be valid")
     @Size(min = 6, max = 8)
     @Pattern(regexp = "[NR][A-Za-z]{5,8}")
@@ -34,6 +39,8 @@ public class Resistance {
     @JoinColumn(name = "recordDrugUseId")
     private RecordDrugUse recordDrugUse;
 
+    
+
     public Resistance() {
 
     }
@@ -41,6 +48,7 @@ public class Resistance {
     public Resistance(RecordDrugUse recordDrugUse, String resist) {
         this.recordDrugUse = recordDrugUse;
         this.resist = resist;
+        this.date = new Date();
 
     }
 
