@@ -6,6 +6,6 @@ import SUT.SE61.Team07.Entity.*;
 @RepositoryRestResource
 public interface InitialRepository extends JpaRepository<Initial, Long> {
    Initial findByInitialId(Long initialId);
-   Initial findByName(String name);
+   Initial findByInitialName(String initialName);
 
 }

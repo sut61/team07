@@ -1,5 +1,10 @@
 package SUT.SE61.Team07.Entity;
 import javax.persistence.*;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import lombok.*;
 
 @Entity
@@ -10,13 +15,16 @@ public class Initial {
   @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "initial_seq")
 
   private Long initialId;
-  private String name;
+  
+  @NotNull(message = "not initialName to null")
+  @Size(min = 2, max =5)
+  private String initialName;
 
   public Initial() {
 
   }
 
-  public Initial(String name) {
-    this.name = name;
+  public Initial(String initialName) {
+    this.initialName = initialName;
   }
 }

@@ -22,8 +22,12 @@ public class TimeEat {
     @Id
     @SequenceGenerator(name = "timeEat_seq", sequenceName = "timeEat_seq")
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "timeEat_seq")
-    private @NonNull Long timeEatId;
-    private @NonNull String timeEatName;
+    private  Long timeEatId;
+    
+    
+    @NotNull(message = "timeEatName not null")
+    @Size(min =5 ,max = 20)
+    private String timeEatName;
 
     public TimeEat() {
     }

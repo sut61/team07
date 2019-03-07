@@ -7,6 +7,8 @@ import javax.persistence.*;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 
 
 @Entity
@@ -17,6 +19,9 @@ public class BloodType {
   @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "bloodType_seq")
 
   private Long bloodTypeId;
+  
+  @NotNull(message = "not initialName to null")
+  @Pattern(regexp = "([A-Z]{1,2})")
   private String name;
 
   public BloodType() {

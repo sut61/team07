@@ -60,7 +60,7 @@ public class TestNotification {
 
     // ทดสอบ save Notification ปกติ
     @Test
-    public void testTestInsertNotificationDataSuccess() {
+    public void testInsertNotificationDataSuccess() {
 
         Customer C = this.customerrepository.findByCustomerId(1L);
         Drug D = this.drugrepository.findByDrugId(1L);
@@ -93,7 +93,7 @@ public class TestNotification {
             System.out.println();
             Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
             assertEquals(violations.isEmpty(), false);
-            assertEquals(violations.size(), 1);
+            assertEquals(violations.size(), 3);
 
         }
     }
@@ -101,7 +101,7 @@ public class TestNotification {
     // ทดสอบ save Notification ห้ามเป็น null
 
     @Test
-    public void testTestNotificationdataNotNull() {
+    public void testNotificationdataNotNull() {
 
         Customer C = this.customerrepository.findByCustomerId(1L);
         Drug D = this.drugrepository.findByDrugId(1L);
@@ -130,7 +130,7 @@ public class TestNotification {
             System.out.println();
             Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
             assertEquals(violations.isEmpty(), false);
-            assertEquals(violations.size(), 1);
+            assertEquals(violations.size(), 4);
         }
     }
 
@@ -165,7 +165,7 @@ public class TestNotification {
             System.out.println();
             Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
             assertEquals(violations.isEmpty(), false);
-            assertEquals(violations.size(), 1);
+            assertEquals(violations.size(), 4);
         }
     }
 
@@ -200,7 +200,7 @@ public class TestNotification {
             System.out.println();
             Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
             assertEquals(violations.isEmpty(), false);
-            assertEquals(violations.size(), 2);
+            assertEquals(violations.size(), 5);
         }
     }
 
@@ -232,8 +232,10 @@ public class TestNotification {
             System.out.println();
             Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
             assertEquals(violations.isEmpty(), false);
-            assertEquals(violations.size(), 2);
+            assertEquals(violations.size(), 5);
         }
     }
+
+  
 
 }

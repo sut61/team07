@@ -1,3 +1,4 @@
+
 package SUT.SE61.Team07.Entity;
 
 import lombok.*;
@@ -25,6 +26,7 @@ public class Notification {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "notification_seq")
 
     @NotNull(message = "data notificationId must not be null to be valid")
+    
     private Long notificationId;
 
     @NotNull(message = "notificationName not null")
@@ -32,17 +34,20 @@ public class Notification {
     @Pattern(regexp = "[0-9]{1,2}\\s(กุมภาพันธ์|มกราคม|มีนาคม|เมษายน|พฤษภาคม|มิถุนายน|กรกฎาคม|สิงหาคม|กันยายน|ตุลาคม|พฤษจิกายน|ธันวาคม)\\s[0-9]{2,4}")
     private String notificationName;
 
-    @NotNull
+    @NotNull(message = "date not null")
     private Date date;
-
+    
+    @NotNull(message = "customer not null")
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "customerId")
     private Customer customer;
-
+    
+    @NotNull(message = "drug not null")
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "drugId")
     private Drug drug;
-
+    
+    @NotNull(message = "timeEat not null")
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "timeEatId")
     private TimeEat timeEat;
