@@ -59,6 +59,7 @@ public class TestResistance {
         RecordDrugUse re = this.recordDrugUserepository.findByRecordDrugUseId(1L);
         res.setRecordDrugUse(re);
         res.setResist("Normal");
+        res.setDate(new Date());
 
         try {
             entityManager.persist(res);
@@ -89,6 +90,7 @@ public class TestResistance {
         RecordDrugUse re = this.recordDrugUserepository.findByRecordDrugUseId(1L);
         res.setRecordDrugUse(re);
         res.setResist(null);
+        res.setDate(new Date());
 
         try {
             entityManager.persist(res);
@@ -116,6 +118,7 @@ public class TestResistance {
         RecordDrugUse re = this.recordDrugUserepository.findByRecordDrugUseId(1L);
         res.setRecordDrugUse(re);
         res.setResist("Mormal");
+        res.setDate(new Date());
         try {
             entityManager.persist(res);
             entityManager.flush();
@@ -143,6 +146,7 @@ public class TestResistance {
         RecordDrugUse re = this.recordDrugUserepository.findByRecordDrugUseId(1L);
         res.setRecordDrugUse(re);
         res.setResist("Ressssssssssssssssssssssssssssssssssssssssssit");
+        res.setDate(new Date());
 
         try {
             entityManager.persist(res);
@@ -170,6 +174,7 @@ public class TestResistance {
         RecordDrugUse re = this.recordDrugUserepository.findByRecordDrugUseId(1L);
         res.setRecordDrugUse(re);
         res.setResist("Norm");
+        res.setDate(new Date());
         try {
             entityManager.persist(res);
             entityManager.flush();
@@ -186,6 +191,33 @@ public class TestResistance {
             Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
             assertEquals(violations.isEmpty(), false);
             assertEquals(violations.size(), 2);
+        }
+    }
+
+    // ทดสอบ DateNull
+    @Test
+    public void testResistanceDateNull() {
+        Resistance res = new Resistance();
+        RecordDrugUse re = this.recordDrugUserepository.findByRecordDrugUseId(1L);
+        res.setRecordDrugUse(re);
+        res.setResist("Norm");
+        res.setDate(null);
+        try {
+            entityManager.persist(res);
+            entityManager.flush();
+            fail("Should not pass to this line");
+        } catch (javax.validation.ConstraintViolationException e) {
+            System.out.println();
+            System.out.println();
+            System.out.println();
+            System.out.println(
+                    "=============================== from testResistanceDatenull  ===================================");
+            System.out.println(e);
+            System.out.println();
+            System.out.println();
+            Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
+            assertEquals(violations.isEmpty(), false);
+            assertEquals(violations.size(), 3);
         }
     }
 
