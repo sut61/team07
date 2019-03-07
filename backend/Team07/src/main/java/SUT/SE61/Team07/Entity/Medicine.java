@@ -23,6 +23,7 @@ public class Medicine {
 
     public Medicine() {
     }
+    
     public Medicine(String name) {
         this.name = name;
     }
