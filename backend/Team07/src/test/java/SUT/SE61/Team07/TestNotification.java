@@ -98,7 +98,7 @@ public class TestNotification {
         }
     }
 
-    // ทดสอบ save Notification ห้ามเป็น null
+    // ทดสอบ  Notification ห้ามเป็น null
 
     @Test
     public void testNotificationdataNotNull() {
@@ -123,8 +123,7 @@ public class TestNotification {
             System.out.println();
             System.out.println();
             System.out.println();
-            System.out.println(
-                    "============================================================ from testTestNotificationdataNotNull =============================================================");
+            System.out.println("============================== from testTestNotificationdataNotNull ==================================");
             System.out.println(e);
             System.out.println();
             System.out.println();
@@ -133,6 +132,150 @@ public class TestNotification {
             assertEquals(violations.size(), 4);
         }
     }
+   
+
+    // ทดสอบ  Customer ห้ามเป็น null
+
+    @Test
+    public void testCustomerNotNull() {
+
+        Customer C = this.customerrepository.findByCustomerId(1L);
+        Drug D = this.drugrepository.findByDrugId(1L);
+        TimeEat T = this.timeEatrepository.findByTimeEatId(1L);
+
+        Notification no = new Notification();
+
+        no.setNotificationName("16 กุมภาพันธ์ 2562");
+        no.setCustomer(null);
+        no.setDrug(D);
+        no.setTimeEat(T);
+        no.setDate(new Date());
+
+        try {
+            entityManager.persist(no);
+            entityManager.flush();
+            fail("Should not pass to this line");
+        } catch (javax.validation.ConstraintViolationException e) {
+            System.out.println();
+            System.out.println();
+            System.out.println();
+            System.out.println("============================== from testCustomerNotNull ==================================");
+            System.out.println(e);
+            System.out.println();
+            System.out.println();
+            Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
+            assertEquals(violations.isEmpty(), false);
+            assertEquals(violations.size(), 3);
+        }
+    }
+
+    // ทดสอบ  Drug ห้ามเป็น null
+
+    @Test
+    public void testDrugNotNull() {
+
+        Customer C = this.customerrepository.findByCustomerId(1L);
+        Drug D = this.drugrepository.findByDrugId(1L);
+        TimeEat T = this.timeEatrepository.findByTimeEatId(1L);
+
+        Notification no = new Notification();
+
+        no.setNotificationName("16 กุมภาพันธ์ 2562");
+        no.setCustomer(C);
+        no.setDrug(null);
+        no.setTimeEat(T);
+        no.setDate(new Date());
+
+        try {
+            entityManager.persist(no);
+            entityManager.flush();
+            fail("Should not pass to this line");
+        } catch (javax.validation.ConstraintViolationException e) {
+            System.out.println();
+            System.out.println();
+            System.out.println();
+            System.out.println("============================== from testDrugNotNull ==================================");
+            System.out.println(e);
+            System.out.println();
+            System.out.println();
+            Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
+            assertEquals(violations.isEmpty(), false);
+            assertEquals(violations.size(), 3);
+        }
+    }
+  
+
+    // ทดสอบ  TimeEat ห้ามเป็น null
+
+    @Test
+    public void testTimeEatNotNull() {
+
+        Customer C = this.customerrepository.findByCustomerId(1L);
+        Drug D = this.drugrepository.findByDrugId(1L);
+        TimeEat T = this.timeEatrepository.findByTimeEatId(1L);
+
+        Notification no = new Notification();
+
+        no.setNotificationName("16 กุมภาพันธ์ 2562");
+        no.setCustomer(C);
+        no.setDrug(D);
+        no.setTimeEat(null);
+        no.setDate(new Date());
+
+        try {
+            entityManager.persist(no);
+            entityManager.flush();
+            fail("Should not pass to this line");
+        } catch (javax.validation.ConstraintViolationException e) {
+            System.out.println();
+            System.out.println();
+            System.out.println();
+            System.out.println("============================== from testTimeEatNotNull ==================================");
+            System.out.println(e);
+            System.out.println();
+            System.out.println();
+            Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
+            assertEquals(violations.isEmpty(), false);
+            assertEquals(violations.size(), 3);
+        }
+    }
+   
+
+    // ทดสอบ  Date ห้ามเป็น null
+
+    @Test
+    public void testDateNotNull() {
+
+        Customer C = this.customerrepository.findByCustomerId(1L);
+        Drug D = this.drugrepository.findByDrugId(1L);
+        TimeEat T = this.timeEatrepository.findByTimeEatId(1L);
+
+        Notification no = new Notification();
+
+        no.setNotificationName("16 กุมภาพันธ์ 2562");
+        no.setCustomer(C);
+        no.setDrug(D);
+        no.setTimeEat(T);
+        no.setDate(null);
+
+        try {
+            entityManager.persist(no);
+            entityManager.flush();
+            fail("Should not pass to this line");
+        } catch (javax.validation.ConstraintViolationException e) {
+            System.out.println();
+            System.out.println();
+            System.out.println();
+            System.out.println("============================== from testDateNotNull ==================================");
+            System.out.println(e);
+            System.out.println();
+            System.out.println();
+            Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
+            assertEquals(violations.isEmpty(), false);
+            assertEquals(violations.size(), 4);
+        }
+    }
+
 
     // test pattern ไม่ตรง
     @Test
@@ -158,8 +301,7 @@ public class TestNotification {
             System.out.println();
             System.out.println();
             System.out.println();
-            System.out.println(
-                    "============================================================ from testNotificationNamepattern =============================================================");
+            System.out.println( "=============================== from testNotificationNamepattern ==================================");
             System.out.println(e);
             System.out.println();
             System.out.println();
@@ -193,8 +335,7 @@ public class TestNotification {
             System.out.println();
             System.out.println();
             System.out.println();
-            System.out.println(
-                    "============================================================ from testMaxNotificationsize20   =============================================================");
+            System.out.println("=============================== from testMaxNotificationsize20   ====================================");
             System.out.println(e);
             System.out.println();
             System.out.println();
@@ -225,8 +366,7 @@ public class TestNotification {
             System.out.println();
             System.out.println();
             System.out.println();
-            System.out.println(
-                    "============================================================ from testMinNotificationsize10  =============================================================");
+            System.out.println("============================= from testMinNotificationsize10  ===================================");
             System.out.println(e);
             System.out.println();
             System.out.println();
