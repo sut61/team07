@@ -85,14 +85,14 @@ public class TestShowHrs{
             System.out.println();
             Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
             assertEquals(violations.isEmpty(), false);
-            assertEquals(violations.size(), 1);
+            assertEquals(violations.size(), 3);
             // fail("Should not pass to this line");
         }
     }
 
     // ทดสอบห้าม ShowHrs เป็น not null
     @Test
-    public void testTestInsertShowHrsDataNotNull() {
+    public void testShowHrsDateNotNull() {
         ShowHrs Sh = new ShowHrs();
         Staff S = this.staffRepository.findByStaffId(1L);
         Department D = this.departmentRepository.findBydeptId(1L);
@@ -100,7 +100,7 @@ public class TestShowHrs{
         Sh.setStaff(S);
         Sh.setDepartment(D);
         Sh.setWorktime(W);
-        Sh.setNote("take leave");
+        Sh.setNote("Late");
         Sh.setDate(null);
         try {
             entityManager.persist(Sh);
@@ -111,17 +111,133 @@ public class TestShowHrs{
             System.out.println();
             System.out.println();
             System.out.println(
-                    "============================================================ from testTestInsertShowHrsDataNotNull =============================================================");
+                    "============================================================ from testTestInsertShowHrsDateNotNull =============================================================");
             System.out.println(e);
             System.out.println();
             System.out.println();
             Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
             assertEquals(violations.isEmpty(), false);
-            assertEquals(violations.size(), 1);
+            assertEquals(violations.size(), 4);
         }
     }
     @Test
-    public void testTestInsertShowHrsDataPatten() {
+    public void testShowHrsNoteNotNull() {
+        ShowHrs Sh = new ShowHrs();
+        Staff S = this.staffRepository.findByStaffId(1L);
+        Department D = this.departmentRepository.findBydeptId(1L);
+        Worktime W = this.worktimeRepository.findBytimeId(1L);
+        Sh.setStaff(S);
+        Sh.setDepartment(D);
+        Sh.setWorktime(W);
+        Sh.setNote("");
+        Sh.setDate(new Date());
+        try {
+            entityManager.persist(Sh);
+            entityManager.flush();
+            fail("Should not pass to this line");
+        } catch (javax.validation.ConstraintViolationException e) {
+            System.out.println();
+            System.out.println();
+            System.out.println();
+            System.out.println(
+                    "============================================================ from testShowHrsNoteNotNull =============================================================");
+            System.out.println(e);
+            System.out.println();
+            System.out.println();
+            Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
+            assertEquals(violations.isEmpty(), false);
+            assertEquals(violations.size(), 5);
+        }
+    }
+    @Test
+    public void testShowHrsNotNullWorktime() {
+        ShowHrs Sh = new ShowHrs();
+        Staff S = this.staffRepository.findByStaffId(1L);
+        Department D = this.departmentRepository.findBydeptId(1L);
+        Worktime W = this.worktimeRepository.findBytimeId(1L);
+        Sh.setStaff(S);
+        Sh.setDepartment(D);
+        Sh.setWorktime(null);
+        Sh.setNote("Late");
+        Sh.setDate(new Date());
+        try {
+            entityManager.persist(Sh);
+            entityManager.flush();
+            fail("Should not pass to this line");
+        } catch (javax.validation.ConstraintViolationException e) {
+            System.out.println();
+            System.out.println();
+            System.out.println();
+            System.out.println(
+                    "============================================================ from testShowHrsNotNullWorktime =============================================================");
+            System.out.println(e);
+            System.out.println();
+            System.out.println();
+            Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
+            assertEquals(violations.isEmpty(), false);
+            assertEquals(violations.size(), 3);
+        }
+    }
+    @Test
+    public void testShowHrsNotNullDepartment() {
+        ShowHrs Sh = new ShowHrs();
+        Staff S = this.staffRepository.findByStaffId(1L);
+        Department D = this.departmentRepository.findBydeptId(1L);
+        Worktime W = this.worktimeRepository.findBytimeId(1L);
+        Sh.setStaff(S);
+        Sh.setDepartment(null);
+        Sh.setWorktime(W);
+        Sh.setNote("Late");
+        Sh.setDate(new Date());
+        try {
+            entityManager.persist(Sh);
+            entityManager.flush();
+            fail("Should not pass to this line");
+        } catch (javax.validation.ConstraintViolationException e) {
+            System.out.println();
+            System.out.println();
+            System.out.println();
+            System.out.println(
+                    "============================================================ from testShowHrsNotNullDepartment =============================================================");
+            System.out.println(e);
+            System.out.println();
+            System.out.println();
+            Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
+            assertEquals(violations.isEmpty(), false);
+            assertEquals(violations.size(), 3);
+        }
+    }
+    @Test
+    public void testShowHrsNotNullStaff() {
+        ShowHrs Sh = new ShowHrs();
+        Staff S = this.staffRepository.findByStaffId(1L);
+        Department D = this.departmentRepository.findBydeptId(1L);
+        Worktime W = this.worktimeRepository.findBytimeId(1L);
+        Sh.setStaff(null);
+        Sh.setDepartment(D);
+        Sh.setWorktime(W);
+        Sh.setNote("Late");
+        Sh.setDate(new Date());
+        try {
+            entityManager.persist(Sh);
+            entityManager.flush();
+            fail("Should not pass to this line");
+        } catch (javax.validation.ConstraintViolationException e) {
+            System.out.println();
+            System.out.println();
+            System.out.println();
+            System.out.println(
+                    "============================================================ from testShowHrsNotNullStaff =============================================================");
+            System.out.println(e);
+            System.out.println();
+            System.out.println();
+            Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
+            assertEquals(violations.isEmpty(), false);
+            assertEquals(violations.size(), 3);
+        }
+    }
+    @Test
+    public void testShowHrsNotePatten() {
         ShowHrs Sh = new ShowHrs();
         Staff S = this.staffRepository.findByStaffId(1L);
         Department D = this.departmentRepository.findBydeptId(1L);
@@ -140,13 +256,13 @@ public class TestShowHrs{
             System.out.println();
             System.out.println();
             System.out.println(
-                    "============================================================ from testTestInsertShowHrsDataPatten =============================================================");
+                    "============================================================ from testShowHrsNotePatten =============================================================");
             System.out.println(e);
             System.out.println();
             System.out.println();
             Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
             assertEquals(violations.isEmpty(), false);
-            assertEquals(violations.size(), 1);
+            assertEquals(violations.size(), 4);
         }
     }
     //เช็คความยาวของข้อความ 
@@ -159,7 +275,7 @@ public class TestShowHrs{
         Sh.setStaff(S);
         Sh.setDepartment(D);
         Sh.setWorktime(W);
-        Sh.setNote("take leaveeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee");
+        Sh.setNote("Lateeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee");
         Sh.setDate(new Date());
         try {
             entityManager.persist(Sh);
@@ -176,7 +292,7 @@ public class TestShowHrs{
             System.out.println();
             Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
             assertEquals(violations.isEmpty(), false);
-            assertEquals(violations.size(), 2);
+            assertEquals(violations.size(), 5);
         }
     }
     @Test
@@ -205,44 +321,8 @@ public class TestShowHrs{
             System.out.println();
             Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
             assertEquals(violations.isEmpty(), false);
-            assertEquals(violations.size(), 2);
+            assertEquals(violations.size(), 5);
         }
     }
-
-//    // ทดสอบ  ความยาวของ Orders name  ไม่ถึง 8
-//
-//    @Test
-//    public void testLengthMinimum8(){
-//        Staff st = new Staff();
-//        st.setName("O123456");
-//        //ss.setAmount("20");
-//        try {
-//            entityManager.persist(ss);
-//            entityManager.flush();
-//
-//            fail("Should not pass to this line");
-//        } catch(javax.validation.ConstraintViolationException e) {
-//            Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
-//            assertEquals(violations.isEmpty(), false);
-//            assertEquals(violations.size(),2);
-//        }
-//    }
-//
-//    // ทดสอบ  ความยาวของ Orders name  มากกว่า 10
-//    @Test
-//    public void testLengthNotEquals10(){
-//        Staff ss = new Staff();
-//        st.setName("O1234567891");
-//        //os.setAmount("20");
-//        try {
-//            entityManager.persist(os);
-//            entityManager.flush();
-//
-//            fail("Should not pass to this line");
-//        } catch(javax.validation.ConstraintViolationException e) {
-//            Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
-//            assertEquals(violations.isEmpty(), false);
-//            assertEquals(violations.size(),2);
-//        }
-//    }
+    
 }

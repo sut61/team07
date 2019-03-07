@@ -30,6 +30,8 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 @DataJpaTest
 public class TestInvoice {
     @Autowired
+    private InvoiceRepository invoicerepository;
+    @Autowired
     private StaffRepository staffrepository;
     @Autowired
     private CustomerRepository customerrepository;
@@ -79,7 +81,7 @@ public class TestInvoice {
             System.out.println(e.getMessage());
             Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
             assertEquals(violations.isEmpty(), false);
-            assertEquals(violations.size(), 1);
+            assertEquals(violations.size(), 4);
 
             // fail("Should not pass to this line");
         }
@@ -87,7 +89,7 @@ public class TestInvoice {
 
 
     @Test
-    public void testTestInvoiceNotNull() {
+    public void testInvoiceNotNullCurrentTel() {
 
         Invoice In = new Invoice();
         Drug D = this.drugrepository.findByDrugId(1L);
@@ -112,19 +114,403 @@ public class TestInvoice {
             System.out.println();
             System.out.println();
             System.out.println(
-                    "============================================================ from testTestInvoiceNotNull =============================================================");
+                    "============================================================ from testInvoiceNotNullCurrentTel =============================================================");
             System.out.println(e);
             System.out.println();
             System.out.println();
             Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
             assertEquals(violations.isEmpty(), false);
-            assertEquals(violations.size(), 1);
+            assertEquals(violations.size(), 5);
         }
     }
+    @Test
+    public void testInvoiceNotNullAmount() {
 
+        Invoice In = new Invoice();
+        Drug D = this.drugrepository.findByDrugId(1L);
+        Staff S = this.staffrepository.findByStaffId(1L);
+        Customer C = this.customerrepository.findByCustomerId(1L);
+        Address A = this.addressrepository.findByAddressId(1L);
+        In.setStaff(S);
+        In.setCustomer(C);
+        In.setAddress(A);
+        In.setCurrentTel("0802457192");
+        In.setDrug(D);
+        In.setAmount(null);
+        In.setNetamount(200);
+        In.setDate(new Date());
+
+        try {
+            entityManager.persist(In);
+            entityManager.flush();
+            fail("Should not pass to this line");
+        } catch (javax.validation.ConstraintViolationException e) {
+            System.out.println();
+            System.out.println();
+            System.out.println();
+            System.out.println(
+                    "============================================================ from testInvoiceNotNullAmount =============================================================");
+            System.out.println(e);
+            System.out.println();
+            System.out.println();
+            Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
+            assertEquals(violations.isEmpty(), false);
+            assertEquals(violations.size(), 5);
+        }
+    }
+    @Test
+    public void testInvoiceNotNullNetAmount() {
+
+        Invoice In = new Invoice();
+        Drug D = this.drugrepository.findByDrugId(1L);
+        Staff S = this.staffrepository.findByStaffId(1L);
+        Customer C = this.customerrepository.findByCustomerId(1L);
+        Address A = this.addressrepository.findByAddressId(1L);
+        In.setStaff(S);
+        In.setCustomer(C);
+        In.setAddress(A);
+        In.setCurrentTel("0802457192");
+        In.setDrug(D);
+        In.setAmount(20);
+        In.setNetamount(null);
+        In.setDate(new Date());
+
+        try {
+            entityManager.persist(In);
+            entityManager.flush();
+            fail("Should not pass to this line");
+        } catch (javax.validation.ConstraintViolationException e) {
+            System.out.println();
+            System.out.println();
+            System.out.println();
+            System.out.println(
+                    "============================================================ from testInvoiceNotNullNetAmount =============================================================");
+            System.out.println(e);
+            System.out.println();
+            System.out.println();
+            Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
+            assertEquals(violations.isEmpty(), false);
+            assertEquals(violations.size(), 5);
+        }
+    }
+    @Test
+    public void testInvoiceNotNullDate() {
+
+        Invoice In = new Invoice();
+        Drug D = this.drugrepository.findByDrugId(1L);
+        Staff S = this.staffrepository.findByStaffId(1L);
+        Customer C = this.customerrepository.findByCustomerId(1L);
+        Address A = this.addressrepository.findByAddressId(1L);
+        In.setStaff(S);
+        In.setCustomer(C);
+        In.setAddress(A);
+        In.setCurrentTel("0802457192");
+        In.setDrug(D);
+        In.setAmount(20);
+        In.setNetamount(2000);
+        In.setDate(null);
+
+        try {
+            entityManager.persist(In);
+            entityManager.flush();
+            fail("Should not pass to this line");
+        } catch (javax.validation.ConstraintViolationException e) {
+            System.out.println();
+            System.out.println();
+            System.out.println();
+            System.out.println(
+                    "============================================================ from testInvoiceNotNullDate =============================================================");
+            System.out.println(e);
+            System.out.println();
+            System.out.println();
+            Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
+            assertEquals(violations.isEmpty(), false);
+            assertEquals(violations.size(), 5);
+        }
+    }
+    @Test
+    public void testInvoiceNotNullDrug() {
+
+        Invoice In = new Invoice();
+        Drug D = this.drugrepository.findByDrugId(1L);
+        Staff S = this.staffrepository.findByStaffId(1L);
+        Customer C = this.customerrepository.findByCustomerId(1L);
+        Address A = this.addressrepository.findByAddressId(1L);
+        In.setStaff(S);
+        In.setCustomer(C);
+        In.setAddress(A);
+        In.setCurrentTel("0802457192");
+        In.setDrug(null);
+        In.setAmount(20);
+        In.setNetamount(2000);
+        In.setDate(new Date());
+
+        try {
+            entityManager.persist(In);
+            entityManager.flush();
+            fail("Should not pass to this line");
+        } catch (javax.validation.ConstraintViolationException e) {
+            System.out.println();
+            System.out.println();
+            System.out.println();
+            System.out.println(
+                    "============================================================ from testInvoiceNotNullDrug =============================================================");
+            System.out.println(e);
+            System.out.println();
+            System.out.println();
+            Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
+            assertEquals(violations.isEmpty(), false);
+            assertEquals(violations.size(), 4);
+        }
+    }
+    @Test
+    public void testInvoiceNotNullStaff() {
+
+        Invoice In = new Invoice();
+        Drug D = this.drugrepository.findByDrugId(1L);
+        Staff S = this.staffrepository.findByStaffId(1L);
+        Customer C = this.customerrepository.findByCustomerId(1L);
+        Address A = this.addressrepository.findByAddressId(1L);
+        In.setStaff(null);
+        In.setCustomer(C);
+        In.setAddress(A);
+        In.setCurrentTel("0802457192");
+        In.setDrug(D);
+        In.setAmount(20);
+        In.setNetamount(2000);
+        In.setDate(new Date());
+
+        try {
+            entityManager.persist(In);
+            entityManager.flush();
+            fail("Should not pass to this line");
+        } catch (javax.validation.ConstraintViolationException e) {
+            System.out.println();
+            System.out.println();
+            System.out.println();
+            System.out.println(
+                    "============================================================ from testInvoiceNotNullStaff =============================================================");
+            System.out.println(e);
+            System.out.println();
+            System.out.println();
+            Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
+            assertEquals(violations.isEmpty(), false);
+            assertEquals(violations.size(), 4);
+        }
+    }
+    @Test
+    public void testInvoiceNotNullCustomer() {
+
+        Invoice In = new Invoice();
+        Drug D = this.drugrepository.findByDrugId(1L);
+        Staff S = this.staffrepository.findByStaffId(1L);
+        Customer C = this.customerrepository.findByCustomerId(1L);
+        Address A = this.addressrepository.findByAddressId(1L);
+        In.setStaff(S);
+        In.setCustomer(null);
+        In.setAddress(A);
+        In.setCurrentTel("0802457192");
+        In.setDrug(D);
+        In.setAmount(20);
+        In.setNetamount(2000);
+        In.setDate(new Date());
+
+        try {
+            entityManager.persist(In);
+            entityManager.flush();
+            fail("Should not pass to this line");
+        } catch (javax.validation.ConstraintViolationException e) {
+            System.out.println();
+            System.out.println();
+            System.out.println();
+            System.out.println(
+                    "============================================================ from testInvoiceNotNullCustomer =============================================================");
+            System.out.println(e);
+            System.out.println();
+            System.out.println();
+            Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
+            assertEquals(violations.isEmpty(), false);
+            assertEquals(violations.size(), 4);
+        }
+    }
+    @Test
+    public void testInvoiceNotNullAddress() {
+
+        Invoice In = new Invoice();
+        Drug D = this.drugrepository.findByDrugId(1L);
+        Staff S = this.staffrepository.findByStaffId(1L);
+        Customer C = this.customerrepository.findByCustomerId(1L);
+        Address A = this.addressrepository.findByAddressId(1L);
+        In.setStaff(S);
+        In.setCustomer(C);
+        In.setAddress(null);
+        In.setCurrentTel("0802457192");
+        In.setDrug(D);
+        In.setAmount(20);
+        In.setNetamount(2000);
+        In.setDate(new Date());
+
+        try {
+            entityManager.persist(In);
+            entityManager.flush();
+            fail("Should not pass to this line");
+        } catch (javax.validation.ConstraintViolationException e) {
+            System.out.println();
+            System.out.println();
+            System.out.println();
+            System.out.println(
+                    "============================================================ from testInvoiceNotNullAddress =============================================================");
+            System.out.println(e);
+            System.out.println();
+            System.out.println();
+            Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
+            assertEquals(violations.isEmpty(), false);
+            assertEquals(violations.size(), 4);
+        }
+    }
+    @Test
+    public void testInvoiceMinAmount1() {
+
+        Invoice In = new Invoice();
+        Drug D = this.drugrepository.findByDrugId(1L);
+        Staff S = this.staffrepository.findByStaffId(1L);
+        Customer C = this.customerrepository.findByCustomerId(1L);
+        Address A = this.addressrepository.findByAddressId(1L);
+        In.setStaff(S);
+        In.setCustomer(C);
+        In.setAddress(A);
+        In.setCurrentTel("0802457192");
+        In.setDrug(D);
+        In.setAmount(0);
+        In.setNetamount(200);
+        In.setDate(new Date());
+
+        try {
+            entityManager.persist(In);
+            entityManager.flush();
+            fail("Should not pass to this line");
+        } catch (javax.validation.ConstraintViolationException e) {
+            System.out.println();
+            System.out.println();
+            System.out.println();
+            System.out.println(
+                    "============================================================ from testInvoiceMinAmount1 =============================================================");
+            System.out.println(e);
+            System.out.println();
+            System.out.println();
+            Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
+            assertEquals(violations.isEmpty(), false);
+            assertEquals(violations.size(), 5);
+        }
+    }
+    @Test
+    public void testInvoiceMaxAmount1000() {
+
+        Invoice In = new Invoice();
+        Drug D = this.drugrepository.findByDrugId(1L);
+        Staff S = this.staffrepository.findByStaffId(1L);
+        Customer C = this.customerrepository.findByCustomerId(1L);
+        Address A = this.addressrepository.findByAddressId(1L);
+        In.setStaff(S);
+        In.setCustomer(C);
+        In.setAddress(A);
+        In.setCurrentTel("0802457192");
+        In.setDrug(D);
+        In.setAmount(1001);
+        In.setNetamount(200);
+        In.setDate(new Date());
+
+        try {
+            entityManager.persist(In);
+            entityManager.flush();
+            fail("Should not pass to this line");
+        } catch (javax.validation.ConstraintViolationException e) {
+            System.out.println();
+            System.out.println();
+            System.out.println();
+            System.out.println(
+                    "============================================================ from testInvoiceMaxAmount1000 =============================================================");
+            System.out.println(e);
+            System.out.println();
+            System.out.println();
+            Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
+            assertEquals(violations.isEmpty(), false);
+            assertEquals(violations.size(), 5);
+        }
+    }
+    @Test
+    public void testInvoiceMinNetAmount1() {
+
+        Invoice In = new Invoice();
+        Drug D = this.drugrepository.findByDrugId(1L);
+        Staff S = this.staffrepository.findByStaffId(1L);
+        Customer C = this.customerrepository.findByCustomerId(1L);
+        Address A = this.addressrepository.findByAddressId(1L);
+        In.setStaff(S);
+        In.setCustomer(C);
+        In.setAddress(A);
+        In.setCurrentTel("0802457192");
+        In.setDrug(D);
+        In.setAmount(0);
+        In.setNetamount(200);
+        In.setDate(new Date());
+
+        try {
+            entityManager.persist(In);
+            entityManager.flush();
+            fail("Should not pass to this line");
+        } catch (javax.validation.ConstraintViolationException e) {
+            System.out.println();
+            System.out.println();
+            System.out.println();
+            System.out.println(
+                    "============================================================ from testInvoiceMinNetAmount1 =============================================================");
+            System.out.println(e);
+            System.out.println();
+            System.out.println();
+            Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
+            assertEquals(violations.isEmpty(), false);
+            assertEquals(violations.size(), 5);
+        }
+    }
+    @Test
+    public void testInvoiceMaxNetAmount100000() {
+
+        Invoice In = new Invoice();
+        Drug D = this.drugrepository.findByDrugId(1L);
+        Staff S = this.staffrepository.findByStaffId(1L);
+        Customer C = this.customerrepository.findByCustomerId(1L);
+        Address A = this.addressrepository.findByAddressId(1L);
+        In.setStaff(S);
+        In.setCustomer(C);
+        In.setAddress(A);
+        In.setCurrentTel("0802457192");
+        In.setDrug(D);
+        In.setAmount(20);
+        In.setNetamount(100001);
+        In.setDate(new Date());
+
+        try {
+            entityManager.persist(In);
+            entityManager.flush();
+            fail("Should not pass to this line");
+        } catch (javax.validation.ConstraintViolationException e) {
+            System.out.println();
+            System.out.println();
+            System.out.println();
+            System.out.println(
+                    "============================================================ from testInvoiceMaxNetAmount100000 =============================================================");
+            System.out.println(e);
+            System.out.println();
+            System.out.println();
+            Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
+            assertEquals(violations.isEmpty(), false);
+            assertEquals(violations.size(), 5);
+        }
+    }
 // test pattern ไม่ตรง
     @Test
-    public void testInvoiceNameInvoice() {
+    public void testInvoicePatternCurrentTel() {
         Invoice In = new Invoice();
         Drug D = this.drugrepository.findByDrugId(1L);
         Staff S = this.staffrepository.findByStaffId(1L);
@@ -150,20 +536,20 @@ public class TestInvoice {
             System.out.println();
             System.out.println();
             System.out.println(
-                    "============================================================ from testPatternNameInvoice =============================================================");
+                    "============================================================ from testInvoicePatternCurrentTel =============================================================");
             System.out.println(e);
             System.out.println();
             System.out.println();
             Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
             assertEquals(violations.isEmpty(), false);
-            assertEquals(violations.size(), 1);
+            assertEquals(violations.size(), 5);
         }
     }
 
 
     // ทดสอบ ความยาวของ Invoice เกิน 10
     @Test
-    public void testMaxInvoicesize8() {
+    public void testInvoicesCurrentTelMaxsize10() {
         Invoice In = new Invoice();
         Drug D = this.drugrepository.findByDrugId(1L);
         Staff S = this.staffrepository.findByStaffId(1L);
@@ -188,20 +574,20 @@ public class TestInvoice {
             System.out.println();
             System.out.println();
             System.out.println(
-                    "============================================================ from testMaxInvoicesize10   =============================================================");
+                    "============================================================ from testInvoicesCurrentTelMaxsize10   =============================================================");
             System.out.println(e);
             System.out.println();
             System.out.println();
             Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
             assertEquals(violations.isEmpty(), false);
-            assertEquals(violations.size(), 2);
+            assertEquals(violations.size(), 6);
         }
     }
 
 
     // ทดสอบ ความยาวของ Invoice ไม่ถึง 1
     @Test
-    public void testMinInvoicesize1() {
+    public void testInvoiceCurrentTelMinsize10() {
         Invoice In = new Invoice();
         Drug D = this.drugrepository.findByDrugId(1L);
         Staff S = this.staffrepository.findByStaffId(1L);
@@ -225,13 +611,13 @@ public class TestInvoice {
             System.out.println();
             System.out.println();
             System.out.println(
-                    "============================================================ from testMinInvoicesize10  =============================================================");
+                    "============================================================ from testInvoiceCurrentTelMinsize10  =============================================================");
             System.out.println(e);
             System.out.println();
             System.out.println();
             Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
             assertEquals(violations.isEmpty(), false);
-            assertEquals(violations.size(), 2);
+            assertEquals(violations.size(), 6);
         }
     }
 
