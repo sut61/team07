@@ -11,6 +11,8 @@ import java.util.Collections;
 import java.util.OptionalInt;
 import java.util.Set;
 import java.util.Date;
+
+import javax.persistence.PersistenceException;
 import javax.validation.ConstraintViolation;
 import javax.validation.Validation;
 import javax.validation.Validator;
@@ -91,7 +93,7 @@ public class TestCustomer{
             System.out.println();
             System.out.println();
             System.out.println();
-            System.out.println("================ from testTestInsertNotificationDataSuccess =================");
+            System.out.println("================ from testTestInsertCustomerDataSuccess =================");
             System.out.println(e.getMessage());
             System.out.println();
             System.out.println();
@@ -101,7 +103,7 @@ public class TestCustomer{
             System.out.println();
             Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
             assertEquals(violations.isEmpty(), false);
-            assertEquals(violations.size(), 1);
+            assertEquals(violations.size(), 4);
 
         }
     }
@@ -143,7 +145,7 @@ public class TestCustomer{
            System.out.println();
            Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
            assertEquals(violations.isEmpty(), false);
-           assertEquals(violations.size(), 2);
+           assertEquals(violations.size(), 5);
        }
      }
 
@@ -183,10 +185,51 @@ public class TestCustomer{
            System.out.println();
            Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
            assertEquals(violations.isEmpty(), false);
-           assertEquals(violations.size(), 2);
+           assertEquals(violations.size(), 5);
        }
      }
 
+         // ทดสอบ  CustomerAddressNull ห้ามเป็น null
+
+   @Test
+   public void testCustomeAddressNull() {
+
+       Initial I = this.initialrepository.findByInitialId(1L);
+       Gender G = this.genderrepository.findByGenderId(1L);
+       BloodType B = this.bloodTyperepository.findByBloodTypeId(1L);
+      
+
+       Customer cus = new Customer();
+       cus.setInitial(I);
+       cus.setCustomerName("Tuntika");
+       cus.setGender(G); 
+       cus.setBloodType(B);
+       cus.setCustomerAllergic("คนไข้ปฏิเสธการแพ้ยา");
+       cus.setCustomerAddress(null);
+       cus.setCustomerPhonenumber("0612345678");
+       
+      
+      
+       try {
+           entityManager.persist(cus);
+           entityManager.flush();
+           fail("Should not pass to this line");
+       } catch (javax.validation.ConstraintViolationException e) {
+           System.out.println();
+           System.out.println();
+           System.out.println();
+           System.out.println(
+                   "============================================================ from CustomereAddressNull =============================================================");
+           System.out.println(e);
+           System.out.println();
+           System.out.println();
+           Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
+           assertEquals(violations.isEmpty(), false);
+           assertEquals(violations.size(), 4);
+       }
+     }
+
+     
          // ทดสอบ  CustomerPhonenumberNull ห้ามเป็น null
 
    @Test
@@ -223,9 +266,10 @@ public class TestCustomer{
            System.out.println();
            Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
            assertEquals(violations.isEmpty(), false);
-           assertEquals(violations.size(), 2);
+           assertEquals(violations.size(), 5);
        }
      }
+    
     
 
      // ทดสอบ Pattern CustomerName ห้ามมีตัวเลข
@@ -237,7 +281,7 @@ public class TestCustomer{
 
        Customer cus = new Customer();
        cus.setInitial(I);
-       cus.setCustomerName("tuntika56");
+       cus.setCustomerName("Tuntika56");
        cus.setGender(G); 
        cus.setBloodType(B);
        cus.setCustomerAllergic("คนไข้ปฏิเสธการแพ้ยา");
@@ -260,9 +304,48 @@ public class TestCustomer{
         System.out.println();
         Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
         assertEquals(violations.isEmpty(), false);
-        assertEquals(violations.size(), 2);
+        assertEquals(violations.size(), 5);
     }
 } 
+
+
+     // ทดสอบ Pattern CustomerPhonenumber ห้ามเป็นตัวหนังสือ
+     @Test
+     public void testPatternCustomerPhonenumberNotLetter() {
+        Initial I = this.initialrepository.findByInitialId(1L);
+        Gender G = this.genderrepository.findByGenderId(1L);
+        BloodType B = this.bloodTyperepository.findByBloodTypeId(1L);
+ 
+        Customer cus = new Customer();
+        cus.setInitial(I);
+        cus.setCustomerName("Tuntika");
+        cus.setGender(G); 
+        cus.setBloodType(B);
+        cus.setCustomerAllergic("คนไข้ปฏิเสธการแพ้ยา");
+        cus.setCustomerAddress("7/7 หมู่5 ต.ในเมือง อ.เมือง จ.นครราชสีมา 30000");
+        cus.setCustomerPhonenumber("ศูนย์แปดเก้าห้าเก้าหนึ่งสองหกเจ็ดแปด");
+        
+
+        try {
+         entityManager.persist(cus);
+         entityManager.flush();
+         fail("Should not pass to this line");
+     } catch (javax.validation.ConstraintViolationException e) {
+         System.out.println();
+         System.out.println();
+         System.out.println();
+         System.out.println(
+                 "============================================================ from testPatternCustomerPhonenumberNotLetter   =============================================================");
+         System.out.println(e);
+         System.out.println();
+         System.out.println();
+         Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
+         assertEquals(violations.isEmpty(), false);
+         assertEquals(violations.size(), 5);
+     }
+ } 
+ 
+
 
      
     
@@ -293,13 +376,13 @@ public class TestCustomer{
         System.out.println();
         System.out.println();
         System.out.println(
-                "============================================================ from testMinCustomerize3   =============================================================");
+                "============================================================ from testMinCustomersize3   =============================================================");
         System.out.println(e);
         System.out.println();
         System.out.println();
         Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
         assertEquals(violations.isEmpty(), false);
-        assertEquals(violations.size(), 1);
+        assertEquals(violations.size(), 4);
     }
 }
 
@@ -335,9 +418,105 @@ public class TestCustomer{
         System.out.println();
         Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
         assertEquals(violations.isEmpty(), false);
-        assertEquals(violations.size(), 1);
+        assertEquals(violations.size(), 4);
     }
 }
 
+ // test  column customerAddress ห้ามซ้ำ
+ @Test
+ public void testsetcustomerAddressUnique() {
+    Initial I = this.initialrepository.findByInitialId(1L);
+    Gender G = this.genderrepository.findByGenderId(1L);
+    BloodType B = this.bloodTyperepository.findByBloodTypeId(1L);
+    Customer cus = new Customer();
+    cus.setInitial(I);
+    cus.setCustomerName("Tuntika");
+    cus.setGender(G); 
+    cus.setBloodType(B);
+    cus.setCustomerAllergic("คนไข้ปฏิเสธการแพ้ยา");
+    cus.setCustomerAddress("7/7 หมู่5 ต.ในเมือง อ.เมือง จ.นครราชสีมา 30000");
+    cus.setCustomerPhonenumber("0612345677");
+    
 
+     this.customerrepository.save(cus);
+
+    Customer cus2 = new Customer();
+    cus2.setInitial(I);
+    cus2.setCustomerName("Tuntika");
+    cus2.setGender(G); 
+    cus2.setBloodType(B);
+    cus2.setCustomerAllergic("คนไข้ปฏิเสธการแพ้ยา");
+    cus2.setCustomerAddress("7/7 หมู่5 ต.ในเมือง อ.เมือง จ.นครราชสีมา 30000");
+    cus2.setCustomerPhonenumber("0612345678");
+    
+
+
+    try {
+        entityManager.persist(cus2);
+        entityManager.flush();
+        fail("Should not pass to this line");
+    } catch (javax.validation.ConstraintViolationException e) {
+        System.out.println();
+        System.out.println();
+        System.out.println();
+        System.out.println(
+                "============================================================ from testsetcustomerAddressUnique   =============================================================");
+        System.out.println(e);
+        System.out.println();
+        System.out.println();
+        Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
+        assertEquals(violations.isEmpty(), false);
+        assertEquals(violations.size(), 4);
+   }
+ }
+
+  // test  column customerPhonenumber ห้ามซ้ำ
+  @Test
+  public void testsetcustomerPhonenumberUnique() {
+     Initial I = this.initialrepository.findByInitialId(1L);
+     Gender G = this.genderrepository.findByGenderId(1L);
+     BloodType B = this.bloodTyperepository.findByBloodTypeId(1L);
+     Customer cus = new Customer();
+     cus.setInitial(I);
+     cus.setCustomerName("Tuntika");
+     cus.setGender(G); 
+     cus.setBloodType(B);
+     cus.setCustomerAllergic("คนไข้ปฏิเสธการแพ้ยา");
+     cus.setCustomerAddress("7/7 หมู่5 ต.ในเมือง อ.เมือง จ.นครราชสีมา 30000");
+     cus.setCustomerPhonenumber("0612345677");
+     
+ 
+      this.customerrepository.save(cus);
+ 
+     Customer cus2 = new Customer();
+     cus2.setInitial(I);
+     cus2.setCustomerName("Tuntika");
+     cus2.setGender(G); 
+     cus2.setBloodType(B);
+     cus2.setCustomerAllergic("คนไข้ปฏิเสธการแพ้ยา");
+     cus2.setCustomerAddress("7/7 หมู่5 ต.ในเมือง อ.เมือง จ.นครราชสีมา 30");
+     cus2.setCustomerPhonenumber("0612345677");
+     
+ 
+ 
+     try {
+         entityManager.persist(cus2);
+         entityManager.flush();
+         fail("Should not pass to this line");
+     } catch (javax.validation.ConstraintViolationException e) {
+         System.out.println();
+         System.out.println();
+         System.out.println();
+         System.out.println(
+                 "============================================================ from testsetcustomerPhonenumberUnique   =============================================================");
+         System.out.println(e);
+         System.out.println();
+         System.out.println();
+         Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
+         assertEquals(violations.isEmpty(), false);
+         assertEquals(violations.size(), 4);
+    }
+  }
+
+  
 }

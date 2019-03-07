@@ -12,6 +12,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.JoinColumn;
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.FetchType;
 import javax.validation.constraints.*;
 
@@ -33,23 +34,29 @@ public class Customer {
     @NotNull(message="not customerAllergic  to null")
     private  String customerAllergic;
 
-    @NonNull
+    @NotNull(message="not customerAddress  to null")
     @Size(min =3 ,max = 40)
+    @Column(unique = true)
     private  String customerAddress;
 
-    @NotNull(message="not customerPhonenumber  to null")
+    @NotNull(message="not customerPhonenumber to null")
+    @Pattern(regexp = "([0-9]{2,10}$)")
+    @Column(unique = true)
     private String customerPhonenumber;
     
     
 
+    @NotNull(message="not initial to null")
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "InitialId")
     private Initial initial;
-
+    
+    @NotNull(message="not gender to null")
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "genderId")
     private Gender gender;
-
+    
+    @NotNull(message="not bloodType to null")
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "bloodTypeId")
     private BloodType bloodType;
