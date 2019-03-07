@@ -74,7 +74,7 @@ public class Customer {
         this.customerAllergic =customerAllergic;
         this.customerAddress = customerAddress;
         this.customerPhonenumber = customerPhonenumber;
-        ;
+        
 
     }
 

@@ -109,7 +109,45 @@ public class TestCustomer{
     }
     
 
-    // ทดสอบ  CustomerName ห้ามเป็น null
+    // ทดสอบ  Initial ห้ามเป็น null
+
+   @Test
+   public void testInitialNull() {
+
+       Initial I = this.initialrepository.findByInitialId(1L);
+       Gender G = this.genderrepository.findByGenderId(1L);
+       BloodType B = this.bloodTyperepository.findByBloodTypeId(1L);
+      
+
+       Customer cus = new Customer();
+       cus.setInitial(null);
+       cus.setCustomerName("Tuntika");
+       cus.setGender(G); 
+       cus.setBloodType(B);
+       cus.setCustomerAllergic("คนไข้ปฏิเสธการแพ้ยา");
+       cus.setCustomerAddress("7/7 หมู่5 ต.ในเมือง อ.เมือง จ.นครราชสีมา 30000");
+       cus.setCustomerPhonenumber("0612345678");
+       
+      
+    try {
+           entityManager.persist(cus);
+           entityManager.flush();
+           fail("Should not pass to this line");
+       } catch (javax.validation.ConstraintViolationException e) {
+           System.out.println();
+           System.out.println();
+           System.out.println();
+           System.out.println("======================================== from testInitialNulll ========================================");
+           System.out.println(e);
+           System.out.println();
+           System.out.println();
+           Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
+           assertEquals(violations.isEmpty(), false);
+           assertEquals(violations.size(), 4);
+       }
+     }
+
+      // ทดสอบ  CustomerName ห้ามเป็น null
 
    @Test
    public void testCustomerNameNull() {
@@ -138,14 +176,93 @@ public class TestCustomer{
            System.out.println();
            System.out.println();
            System.out.println();
-           System.out.println(
-                   "============================================================ from testCustomerNameNulll =============================================================");
+           System.out.println("=================================== from testCustomerNameNulll =====================================");
            System.out.println(e);
            System.out.println();
            System.out.println();
            Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
            assertEquals(violations.isEmpty(), false);
            assertEquals(violations.size(), 5);
+       }
+     }
+     
+
+     // ทดสอบ  Gender ห้ามเป็น null
+
+   @Test
+   public void testGenderNull() {
+
+       Initial I = this.initialrepository.findByInitialId(1L);
+       Gender G = this.genderrepository.findByGenderId(1L);
+       BloodType B = this.bloodTyperepository.findByBloodTypeId(1L);
+      
+
+       Customer cus = new Customer();
+       cus.setInitial(I);
+       cus.setCustomerName("Tuntika");
+       cus.setGender(null); 
+       cus.setBloodType(B);
+       cus.setCustomerAllergic("คนไข้ปฏิเสธการแพ้ยา");
+       cus.setCustomerAddress("7/7 หมู่5 ต.ในเมือง อ.เมือง จ.นครราชสีมา 30000");
+       cus.setCustomerPhonenumber("0612345678");
+       
+      
+      
+       try {
+           entityManager.persist(cus);
+           entityManager.flush();
+           fail("Should not pass to this line");
+       } catch (javax.validation.ConstraintViolationException e) {
+           System.out.println();
+           System.out.println();
+           System.out.println();
+           System.out.println("================================ from testGenderNulll =============================");
+           System.out.println(e);
+           System.out.println();
+           System.out.println();
+           Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
+           assertEquals(violations.isEmpty(), false);
+           assertEquals(violations.size(), 4);
+       }
+     }
+
+     
+     // ทดสอบ BloodType ห้ามเป็น null
+
+   @Test
+   public void testBloodTypeNull() {
+
+       Initial I = this.initialrepository.findByInitialId(1L);
+       Gender G = this.genderrepository.findByGenderId(1L);
+       BloodType B = this.bloodTyperepository.findByBloodTypeId(1L);
+      
+
+       Customer cus = new Customer();
+       cus.setInitial(I);
+       cus.setCustomerName("Tuntika");
+       cus.setGender(G); 
+       cus.setBloodType(null);
+       cus.setCustomerAllergic("คนไข้ปฏิเสธการแพ้ยา");
+       cus.setCustomerAddress("7/7 หมู่5 ต.ในเมือง อ.เมือง จ.นครราชสีมา 30000");
+       cus.setCustomerPhonenumber("0612345678");
+       
+      
+      
+       try {
+           entityManager.persist(cus);
+           entityManager.flush();
+           fail("Should not pass to this line");
+       } catch (javax.validation.ConstraintViolationException e) {
+           System.out.println();
+           System.out.println();
+           System.out.println();
+           System.out.println("================================ from testBloodTypeNulll =============================");
+           System.out.println(e);
+           System.out.println();
+           System.out.println();
+           Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
+           assertEquals(violations.isEmpty(), false);
+           assertEquals(violations.size(), 4);
        }
      }
 
@@ -178,8 +295,7 @@ public class TestCustomer{
            System.out.println();
            System.out.println();
            System.out.println();
-           System.out.println(
-                   "============================================================ from testCustomerAllergicNull =============================================================");
+           System.out.println("=============================== from testCustomerAllergicNull ===============================");
            System.out.println(e);
            System.out.println();
            System.out.println();
@@ -218,8 +334,7 @@ public class TestCustomer{
            System.out.println();
            System.out.println();
            System.out.println();
-           System.out.println(
-                   "============================================================ from CustomereAddressNull =============================================================");
+           System.out.println( "============================ from CustomereAddressNull =======================================");
            System.out.println(e);
            System.out.println();
            System.out.println();
@@ -259,8 +374,7 @@ public class TestCustomer{
            System.out.println();
            System.out.println();
            System.out.println();
-           System.out.println(
-                   "============================================================ from CustomerPhonenumberNull =============================================================");
+           System.out.println( "=============================== from CustomerPhonenumberNull ==================================");
            System.out.println(e);
            System.out.println();
            System.out.println();
@@ -297,8 +411,7 @@ public class TestCustomer{
         System.out.println();
         System.out.println();
         System.out.println();
-        System.out.println(
-                "============================================================ from testPatternCustomerNameNotNumber   =============================================================");
+        System.out.println("================================= from testPatternCustomerNameNotNumber   ===================================");
         System.out.println(e);
         System.out.println();
         System.out.println();
@@ -334,8 +447,7 @@ public class TestCustomer{
          System.out.println();
          System.out.println();
          System.out.println();
-         System.out.println(
-                 "============================================================ from testPatternCustomerPhonenumberNotLetter   =============================================================");
+         System.out.println("========================= from testPatternCustomerPhonenumberNotLetter   ================================");
          System.out.println(e);
          System.out.println();
          System.out.println();
@@ -343,14 +455,9 @@ public class TestCustomer{
          assertEquals(violations.isEmpty(), false);
          assertEquals(violations.size(), 5);
      }
- } 
+    } 
  
-
-
-     
-    
-
-    // ทดสอบ ความยาวของ MinCustomerAddress ไม่เกิน 3
+   // ทดสอบ ความยาวของ MinCustomerAddress ไม่เกิน 3
     @Test
     public void testMinCustomerAddresssize3() {
        Initial I = this.initialrepository.findByInitialId(1L);
@@ -375,8 +482,7 @@ public class TestCustomer{
         System.out.println();
         System.out.println();
         System.out.println();
-        System.out.println(
-                "============================================================ from testMinCustomersize3   =============================================================");
+        System.out.println("============================= from testMinCustomersize3   =================================");
         System.out.println(e);
         System.out.println();
         System.out.println();
@@ -411,8 +517,7 @@ public class TestCustomer{
         System.out.println();
         System.out.println();
         System.out.println();
-        System.out.println(
-                "============================================================ from testMaxCustomerize40   =============================================================");
+        System.out.println( "================================ from testMaxCustomerize40   ======================================");
         System.out.println(e);
         System.out.println();
         System.out.println();
@@ -459,8 +564,7 @@ public class TestCustomer{
         System.out.println();
         System.out.println();
         System.out.println();
-        System.out.println(
-                "============================================================ from testsetcustomerAddressUnique   =============================================================");
+        System.out.println("=========================== from testsetcustomerAddressUnique   ================================");
         System.out.println(e);
         System.out.println();
         System.out.println();
@@ -507,8 +611,7 @@ public class TestCustomer{
          System.out.println();
          System.out.println();
          System.out.println();
-         System.out.println(
-                 "============================================================ from testsetcustomerPhonenumberUnique   =============================================================");
+         System.out.println("============================ from testsetcustomerPhonenumberUnique   ===================================");
          System.out.println(e);
          System.out.println();
          System.out.println();
@@ -518,5 +621,4 @@ public class TestCustomer{
     }
   }
 
-  
 }
