@@ -21,7 +21,7 @@ public class Medicine {
     @Size(min = 7,max = 100)
     private String name;
 
-    private Medicine() {
+    public Medicine() {
     }
     public Medicine(String name) {
         this.name = name;
