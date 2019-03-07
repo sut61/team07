@@ -68,7 +68,7 @@ public class TestDrugdata{
         dd.setStaff(S);
         dd.setCategory(C);
         dd.setMedicine(M);
-        dd.setDetail("ABCDEFGHIJK");
+        dd.setDetail("Muscle-like medicine,external drugs apply to the swelling");
 
         try {
             entityManager.persist(dd);
@@ -85,7 +85,7 @@ public class TestDrugdata{
             System.out.println();
             Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
             assertEquals(violations.isEmpty(), false);
-            assertEquals(violations.size(), 1);
+            assertEquals(violations.size(), 5);
 
             // fail("Should not pass to this line");
         }
@@ -120,7 +120,7 @@ public class TestDrugdata{
             System.out.println();
             Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
             assertEquals(violations.isEmpty(), false);
-            assertEquals(violations.size(), 1);
+            assertEquals(violations.size(), 5);
         }
     }
     //ทดสอบ Drugdata ความยาวน้อยกว่า 10
@@ -135,7 +135,7 @@ public class TestDrugdata{
         dd.setStaff(S);
         dd.setCategory(C);
         dd.setMedicine(M);
-        dd.setDetail("สสสสสสสส");
+        dd.setDetail("AA");
 
         try {
             entityManager.persist(dd);
@@ -152,7 +152,7 @@ public class TestDrugdata{
             System.out.println();
             Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
             assertEquals(violations.isEmpty(), false);
-            assertEquals(violations.size(), 1);
+            assertEquals(violations.size(), 6);
         }
     }
     //ทดสอบ Drugdata ความยาวมากกว่า 35
@@ -167,7 +167,7 @@ public class TestDrugdata{
         dd.setStaff(S);
         dd.setCategory(C);
         dd.setMedicine(M);
-        dd.setDetail("สสสสสสสสสสสสสสสสสสสสสสสสสสสสสสสสสสสส");
+        dd.setDetail("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
 
         try {
             entityManager.persist(dd);
@@ -184,7 +184,7 @@ public class TestDrugdata{
             System.out.println();
             Set<ConstraintViolation<?>> violations = e.getConstraintViolations();
             assertEquals(violations.isEmpty(), false);
-            assertEquals(violations.size(), 1);
+            assertEquals(violations.size(), 6);
         }
     }
 }

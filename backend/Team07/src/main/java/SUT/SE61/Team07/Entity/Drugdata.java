@@ -13,6 +13,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.JoinColumn;
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.FetchType;
 import javax.validation.constraints.*;
 
@@ -26,23 +27,27 @@ public class Drugdata {
     @NotNull private  Long drugdataId;
 
     @NotNull(message="detail  must not be null to be valid")
-    @Size(min = 10, max = 35)
+    @Pattern(regexp = "[A-Za-z0-9 .]{3,200}")
+    @Column(unique = true)
+    @Size(min = 3, max = 200)
     private  String detail; //สรรพคุณ
 
+    @NotNull
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "staffId")
     private Staff staff;
 
-   
+    @NotNull
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "categoryId")
     private Category category;
 
+    @NotNull
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "medicineId")
     private Medicine medicine;
 
-    
+    @NotNull
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "drugId")
     private Drug drug;
