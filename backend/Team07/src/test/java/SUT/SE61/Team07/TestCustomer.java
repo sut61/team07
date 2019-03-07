@@ -384,8 +384,6 @@ public class TestCustomer{
        }
      }
     
-    
-
      // ทดสอบ Pattern CustomerName ห้ามมีตัวเลข
     @Test
     public void testPatternCustomerNameNotNumber() {
@@ -421,8 +419,7 @@ public class TestCustomer{
     }
 } 
 
-
-     // ทดสอบ Pattern CustomerPhonenumber ห้ามเป็นตัวหนังสือ
+   // ทดสอบ Pattern CustomerPhonenumber ห้ามเป็นตัวหนังสือ
      @Test
      public void testPatternCustomerPhonenumberNotLetter() {
         Initial I = this.initialrepository.findByInitialId(1L);
