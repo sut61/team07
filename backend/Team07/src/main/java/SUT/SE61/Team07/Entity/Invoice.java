@@ -35,24 +35,32 @@ public class Invoice {
     @NotNull
     private String currentTel;
 
-    @NotNull
-    private int amount;
+    @NotNull(message = "not  amount  to null")
+    @Max(1000)
+    @Min(1)
+    private Integer amount;
 
-    @NotNull
-    private int netamount;
+    @NotNull(message = "not  netamount  to null")
+    @Max(100000)
+    @Min(1)
+    private Integer netamount;
 
+    @NotNull(message = "not  customer  to null")
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "customerId")
     private Customer customer;
 
+    @NotNull(message = "not  staff  to null")
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "staffId")
     private Staff staff;
 
+    @NotNull(message = "not  drug  to null")
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "drugId")
     private Drug drug;
 
+    @NotNull(message = "not  address  to null")
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "addressId")
     private Address address;

@@ -5,18 +5,29 @@ import javax.persistence.*;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
+
 import lombok.*;
 
 
 @Entity
 @Data
-public class Worktime {
+public class  Worktime{
     @Id
     @SequenceGenerator(name = "worktime_seq", sequenceName = "worktime_seq")
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "worktime_seq")
     private  Long timeId;
-    private @NonNull String rangeTime;
-    private @NonNull Integer hrsAmount;
+
+    @NotNull
+    @Column(unique = true)
+    private  String rangeTime;
+
+    @NotNull
+    @Max(13)
+    @Min(3)
+    private  Integer hrsAmount;
 
     public Worktime() {
     }
