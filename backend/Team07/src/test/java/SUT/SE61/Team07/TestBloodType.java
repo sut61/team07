@@ -51,7 +51,7 @@ public void contextLoads() {
 
   // ทดสอบ save BloodType ปกติ
   @Test
-  public void testTestInsertInitialDataSuccess() {
+  public void testTestInsertBloodTypeDataSuccess() {
     BloodType bl = new BloodType();
     bl.setName("AB");
   
@@ -84,7 +84,7 @@ public void contextLoads() {
   // ทดสอบ  BloodTypeName ห้ามเป็น null
 
   @Test
-  public void testInitialNameNull() {
+  public void testBloodTypeNameNull() {
     BloodType bl = new BloodType();
     bl.setName(null);
 

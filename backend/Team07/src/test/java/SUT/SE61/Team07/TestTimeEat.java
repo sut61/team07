@@ -49,7 +49,7 @@ public void contextLoads() {
 }
 
 
-// ทดสอบ save Initial ปกติ
+// ทดสอบ save TimeEat ปกติ
 @Test
 public void testTestInsertTimeEatDataSuccess() {
     TimeEat ti = new TimeEat();
@@ -84,7 +84,7 @@ public void testTestInsertTimeEatDataSuccess() {
  // ทดสอบ  TimeEatName ห้ามเป็น null
 
  @Test
- public void testInitialNameNull() {
+ public void testTimeEatNameNull() {
     TimeEat ti = new TimeEat();
    ti.setTimeEatName(null);
 
@@ -151,7 +151,7 @@ public void testTestInsertTimeEatDataSuccess() {
        System.out.println();
        System.out.println();
        System.out.println();
-       System.out.println("========================================== from testMaxInitialNamesize20   =============================================================");
+       System.out.println("========================================== from testMaxTimeEatNamesize20   =============================================================");
        System.out.println(e);
        System.out.println();
        System.out.println();
