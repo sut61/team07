@@ -126,8 +126,7 @@ public void contextLoads() {
         System.out.println();
         System.out.println();
         System.out.println();
-        System.out.println(
-                "====================================================== from testMinSexsize3  =============================================================");
+        System.out.println( "============================== from testMinSexsize3 ===================================");
         System.out.println(e);
         System.out.println();
         System.out.println();
@@ -151,7 +150,7 @@ public void contextLoads() {
         System.out.println();
         System.out.println();
         System.out.println();
-        System.out.println("========================================== from testSexsize6   =============================================================");
+        System.out.println("============================== from testSexsize6   ==================================================");
         System.out.println(e);
         System.out.println();
         System.out.println();

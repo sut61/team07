@@ -375,7 +375,4 @@ public class TestNotification {
             assertEquals(violations.size(), 5);
         }
     }
-
-  
-
 }
